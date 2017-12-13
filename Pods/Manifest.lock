@@ -1,0 +1,23 @@
+PODS:
+  - CloudFeedback (0.1.0):
+    - CloudFeedback/Client (= 0.1.0)
+  - CloudFeedback/Client (0.1.0):
+    - CloudFeedback/Core
+  - CloudFeedback/Core (0.1.0):
+    - CoreDataPersistence (= 0.1.5)
+  - CoreDataPersistence (0.1.5)
+
+DEPENDENCIES:
+  - CloudFeedback (from `.`)
+
+EXTERNAL SOURCES:
+  CloudFeedback:
+    :path: .
+
+SPEC CHECKSUMS:
+  CloudFeedback: a7ecb90f37d4525a262861e0d1396bd113a57177
+  CoreDataPersistence: 605a7fc5a96eeea8e27d0f02607b51627fe774bc
+
+PODFILE CHECKSUM: af48e69eecba6c535e4ce8c8a0ae1a2c01baea1d
+
+COCOAPODS: 1.3.1
