@@ -11,7 +11,7 @@
 		A7C9036B1FE0EBC600FE921A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C9036A1FE0EBC600FE921A /* ViewController.swift */; };
 		A7C9036E1FE0EBC600FE921A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C9036C1FE0EBC600FE921A /* Main.storyboard */; };
 		A7C903701FE0EBC600FE921A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C9036F1FE0EBC600FE921A /* Assets.xcassets */; };
-		A7C903731FE0EBC600FE921A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C903711FE0EBC600FE921A /* LaunchScreen.storyboard */; };
+		A7C9037C1FE1010A00FE921A /* LaunchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C9037B1FE1010A00FE921A /* LaunchView.xib */; };
 		DF7EFCF6DB6C248F79C87684 /* Pods_FeedbackAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBAEEB274C9D54B54EB5D6CD /* Pods_FeedbackAdmin.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,8 +23,8 @@
 		A7C9036A1FE0EBC600FE921A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A7C9036D1FE0EBC600FE921A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A7C9036F1FE0EBC600FE921A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A7C903721FE0EBC600FE921A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7C903741FE0EBC600FE921A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7C9037B1FE1010A00FE921A /* LaunchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchView.xib; sourceTree = "<group>"; };
 		DBAEEB274C9D54B54EB5D6CD /* Pods_FeedbackAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedbackAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -61,14 +61,22 @@
 		A7C903671FE0EBC600FE921A /* FeedbackAdmin */ = {
 			isa = PBXGroup;
 			children = (
+				A7C9037A1FE100FC00FE921A /* Views */,
 				A7C903681FE0EBC600FE921A /* AppDelegate.swift */,
 				A7C9036A1FE0EBC600FE921A /* ViewController.swift */,
 				A7C9036C1FE0EBC600FE921A /* Main.storyboard */,
 				A7C9036F1FE0EBC600FE921A /* Assets.xcassets */,
-				A7C903711FE0EBC600FE921A /* LaunchScreen.storyboard */,
 				A7C903741FE0EBC600FE921A /* Info.plist */,
 			);
 			path = FeedbackAdmin;
+			sourceTree = "<group>";
+		};
+		A7C9037A1FE100FC00FE921A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A7C9037B1FE1010A00FE921A /* LaunchView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C79BE95958F68DE2FE9F6E54 /* Frameworks */ = {
@@ -150,7 +158,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7C903731FE0EBC600FE921A /* LaunchScreen.storyboard in Resources */,
+				A7C9037C1FE1010A00FE921A /* LaunchView.xib in Resources */,
 				A7C903701FE0EBC600FE921A /* Assets.xcassets in Resources */,
 				A7C9036E1FE0EBC600FE921A /* Main.storyboard in Resources */,
 			);
@@ -233,14 +241,6 @@
 				A7C9036D1FE0EBC600FE921A /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A7C903711FE0EBC600FE921A /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A7C903721FE0EBC600FE921A /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -365,7 +365,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coodly.FeedbackAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -381,7 +381,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coodly.FeedbackAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
