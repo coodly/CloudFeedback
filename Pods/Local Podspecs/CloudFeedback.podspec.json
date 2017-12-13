@@ -24,6 +24,9 @@
       "dependencies": {
         "CoreDataPersistence": [
           "0.1.5"
+        ],
+        "Puff": [
+          "0.1.0"
         ]
       }
     },

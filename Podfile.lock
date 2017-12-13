@@ -5,7 +5,9 @@ PODS:
     - CloudFeedback/Core
   - CloudFeedback/Core (0.1.0):
     - CoreDataPersistence (= 0.1.5)
+    - Puff (= 0.1.0)
   - CoreDataPersistence (0.1.5)
+  - Puff (0.1.0)
 
 DEPENDENCIES:
   - CloudFeedback (from `.`)
@@ -15,8 +17,9 @@ EXTERNAL SOURCES:
     :path: .
 
 SPEC CHECKSUMS:
-  CloudFeedback: a7ecb90f37d4525a262861e0d1396bd113a57177
+  CloudFeedback: bfaad088f989aa5fe92a56180c332edc6dccb3c4
   CoreDataPersistence: 605a7fc5a96eeea8e27d0f02607b51627fe774bc
+  Puff: 7e77b0f736ef02fee1018787066a7e5b30e3307b
 
 PODFILE CHECKSUM: af48e69eecba6c535e4ce8c8a0ae1a2c01baea1d
 
