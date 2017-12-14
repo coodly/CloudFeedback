@@ -16,6 +16,7 @@
 
 import UIKit
 import AdminCore
+import AdminUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,11 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        CoreLog.enableLogging()
+        
         let controller = window!.rootViewController as! InitializationViewController
         
         CoreInjection.sharedInstance.inject(into: controller)
         controller.afterLoad = {
+            let main = Storyboards.loadFromStoryboard() as MainViewController
             
+            let animation: (() -> ()) = {
+                self.window?.rootViewController = main
+            }
+            UIView.transition(with: self.window!, duration: 0.3, options: [], animations: animation, completion: nil)
         }
         
         return true

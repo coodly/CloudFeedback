@@ -4,20 +4,31 @@ PODS:
     - Puff (= 0.1.0)
   - CoreDataPersistence (0.1.5)
   - Puff (0.1.0)
+  - SWLogger (0.3.1)
 
 DEPENDENCIES:
   - CloudFeedback/Core (from `.`)
   - CoreDataPersistence (= 0.1.5)
+  - SWLogger (from `git@github.com:coodly/swlogger.git`, tag `0.3.1`)
 
 EXTERNAL SOURCES:
   CloudFeedback:
     :path: .
+  SWLogger:
+    :git: git@github.com:coodly/swlogger.git
+    :tag: 0.3.1
+
+CHECKOUT OPTIONS:
+  SWLogger:
+    :git: git@github.com:coodly/swlogger.git
+    :tag: 0.3.1
 
 SPEC CHECKSUMS:
   CloudFeedback: bfaad088f989aa5fe92a56180c332edc6dccb3c4
   CoreDataPersistence: 605a7fc5a96eeea8e27d0f02607b51627fe774bc
   Puff: 7e77b0f736ef02fee1018787066a7e5b30e3307b
+  SWLogger: 333135cadd381962c3667f5af500f7ae140c74a4
 
-PODFILE CHECKSUM: b8ab8a10b71ec3ddd381a6ad7271dfefaac2aa52
+PODFILE CHECKSUM: 3a7ddbda10fb86c1bbbda42547195747ca5acda5
 
 COCOAPODS: 1.3.1

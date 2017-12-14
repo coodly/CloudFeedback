@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		7E5CC45238E5136C5EEA1E25 /* Pods_AdminCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4811BD0DF26F2C2293C1AC15 /* Pods_AdminCore.framework */; };
+		A7203E051FE23D20009558A7 /* StoryboardLoaded.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E031FE23D20009558A7 /* StoryboardLoaded.swift */; };
+		A7203E061FE23D20009558A7 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E041FE23D20009558A7 /* Storyboards.swift */; };
+		A7203E091FE23D50009558A7 /* CoreLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E081FE23D50009558A7 /* CoreLog.swift */; };
+		A7203E0C1FE23F75009558A7 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E0B1FE23F75009558A7 /* Log.swift */; };
+		A7203E0F1FE23FCE009558A7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E0E1FE23FCE009558A7 /* MainViewController.swift */; };
+		A7203E111FE23FD9009558A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7203E101FE23FD9009558A7 /* Main.storyboard */; };
+		A7203E141FE2426F009558A7 /* ApplicationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E131FE2426F009558A7 /* ApplicationsViewController.swift */; };
+		A7203E161FE24276009558A7 /* Applications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7203E151FE24276009558A7 /* Applications.storyboard */; };
+		A7203E191FE2431E009558A7 /* Conversations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7203E181FE2431E009558A7 /* Conversations.storyboard */; };
+		A7203E1B1FE24325009558A7 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E1A1FE24325009558A7 /* ConversationsViewController.swift */; };
+		A7203E1E1FE24365009558A7 /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7203E1D1FE24365009558A7 /* Messages.storyboard */; };
+		A7203E201FE2436B009558A7 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E1F1FE2436B009558A7 /* MessagesViewController.swift */; };
+		A7203E231FE243D1009558A7 /* UIInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E221FE243D1009558A7 /* UIInjector.swift */; };
+		A7203E261FE24527009558A7 /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E251FE24527009558A7 /* UIView+Autolayout.swift */; };
 		A7C903691FE0EBC600FE921A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C903681FE0EBC600FE921A /* AppDelegate.swift */; };
 		A7C9036E1FE0EBC600FE921A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C9036C1FE0EBC600FE921A /* Main.storyboard */; };
 		A7C903701FE0EBC600FE921A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C9036F1FE0EBC600FE921A /* Assets.xcassets */; };
@@ -67,6 +81,20 @@
 		380000594BA3CDFA03FD9B53 /* Pods-AdminCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdminCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-AdminCore/Pods-AdminCore.release.xcconfig"; sourceTree = "<group>"; };
 		4811BD0DF26F2C2293C1AC15 /* Pods_AdminCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdminCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		719703010A62BE38279E846E /* Pods-FeedbackAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedbackAdmin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin.debug.xcconfig"; sourceTree = "<group>"; };
+		A7203E031FE23D20009558A7 /* StoryboardLoaded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardLoaded.swift; sourceTree = "<group>"; };
+		A7203E041FE23D20009558A7 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
+		A7203E081FE23D50009558A7 /* CoreLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLog.swift; sourceTree = "<group>"; };
+		A7203E0B1FE23F75009558A7 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		A7203E0E1FE23FCE009558A7 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A7203E101FE23FD9009558A7 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A7203E131FE2426F009558A7 /* ApplicationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationsViewController.swift; sourceTree = "<group>"; };
+		A7203E151FE24276009558A7 /* Applications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Applications.storyboard; sourceTree = "<group>"; };
+		A7203E181FE2431E009558A7 /* Conversations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Conversations.storyboard; sourceTree = "<group>"; };
+		A7203E1A1FE24325009558A7 /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
+		A7203E1D1FE24365009558A7 /* Messages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
+		A7203E1F1FE2436B009558A7 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		A7203E221FE243D1009558A7 /* UIInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIInjector.swift; sourceTree = "<group>"; };
+		A7203E251FE24527009558A7 /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
 		A7B30DF4D6215F25D8566D8E /* Pods-FeedbackAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedbackAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		A7C903651FE0EBC600FE921A /* FeedbackAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedbackAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C903681FE0EBC600FE921A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +151,83 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A7203E021FE23D20009558A7 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A7203E031FE23D20009558A7 /* StoryboardLoaded.swift */,
+				A7203E041FE23D20009558A7 /* Storyboards.swift */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A7203E071FE23D46009558A7 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				A7203E081FE23D50009558A7 /* CoreLog.swift */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		A7203E0A1FE23F6B009558A7 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				A7203E0B1FE23F75009558A7 /* Log.swift */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		A7203E0D1FE23FC1009558A7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A7203E101FE23FD9009558A7 /* Main.storyboard */,
+				A7203E0E1FE23FCE009558A7 /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		A7203E121FE24257009558A7 /* Applications */ = {
+			isa = PBXGroup;
+			children = (
+				A7203E151FE24276009558A7 /* Applications.storyboard */,
+				A7203E131FE2426F009558A7 /* ApplicationsViewController.swift */,
+			);
+			path = Applications;
+			sourceTree = "<group>";
+		};
+		A7203E171FE2430D009558A7 /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				A7203E181FE2431E009558A7 /* Conversations.storyboard */,
+				A7203E1A1FE24325009558A7 /* ConversationsViewController.swift */,
+			);
+			path = Conversations;
+			sourceTree = "<group>";
+		};
+		A7203E1C1FE24355009558A7 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				A7203E1D1FE24365009558A7 /* Messages.storyboard */,
+				A7203E1F1FE2436B009558A7 /* MessagesViewController.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		A7203E211FE243C2009558A7 /* Injection */ = {
+			isa = PBXGroup;
+			children = (
+				A7203E221FE243D1009558A7 /* UIInjector.swift */,
+			);
+			path = Injection;
+			sourceTree = "<group>";
+		};
+		A7203E241FE24513009558A7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A7203E251FE24527009558A7 /* UIView+Autolayout.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A7C9035C1FE0EBC600FE921A = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +274,7 @@
 		A7C903831FE112CA00FE921A /* AdminCore */ = {
 			isa = PBXGroup;
 			children = (
+				A7203E071FE23D46009558A7 /* Log */,
 				A7C903A51FE1177800FE921A /* Injection */,
 				A7C903AB1FE118C300FE921A /* Persistence */,
 				A7C903A41FE116E700FE921A /* Supporting files */,
@@ -179,6 +285,14 @@
 		A7C903951FE112D300FE921A /* AdminUI */ = {
 			isa = PBXGroup;
 			children = (
+				A7203E121FE24257009558A7 /* Applications */,
+				A7203E171FE2430D009558A7 /* Conversations */,
+				A7203E241FE24513009558A7 /* Extensions */,
+				A7203E211FE243C2009558A7 /* Injection */,
+				A7203E0A1FE23F6B009558A7 /* Log */,
+				A7203E0D1FE23FC1009558A7 /* Main */,
+				A7203E1C1FE24355009558A7 /* Messages */,
+				A7203E021FE23D20009558A7 /* Storyboards */,
 				A7C903A31FE116D400FE921A /* Supporting files */,
 			);
 			path = AdminUI;
@@ -402,6 +516,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7203E111FE23FD9009558A7 /* Main.storyboard in Resources */,
+				A7203E161FE24276009558A7 /* Applications.storyboard in Resources */,
+				A7203E1E1FE24365009558A7 /* Messages.storyboard in Resources */,
+				A7203E191FE2431E009558A7 /* Conversations.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,12 +584,14 @@
 				"${BUILT_PRODUCTS_DIR}/CloudFeedback/CloudFeedback.framework",
 				"${BUILT_PRODUCTS_DIR}/CoreDataPersistence/CoreDataPersistence.framework",
 				"${BUILT_PRODUCTS_DIR}/Puff/Puff.framework",
+				"${BUILT_PRODUCTS_DIR}/SWLogger/SWLogger.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CloudFeedback.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreDataPersistence.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Puff.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWLogger.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -512,6 +632,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7203E091FE23D50009558A7 /* CoreLog.swift in Sources */,
 				A7C903B01FE1193000FE921A /* Application.swift in Sources */,
 				A7C903AE1FE118D900FE921A /* Feedback.xcdatamodeld in Sources */,
 				A7C903A91FE117D300FE921A /* CoreInjection.swift in Sources */,
@@ -527,6 +648,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7203E061FE23D20009558A7 /* Storyboards.swift in Sources */,
+				A7203E261FE24527009558A7 /* UIView+Autolayout.swift in Sources */,
+				A7203E201FE2436B009558A7 /* MessagesViewController.swift in Sources */,
+				A7203E051FE23D20009558A7 /* StoryboardLoaded.swift in Sources */,
+				A7203E0C1FE23F75009558A7 /* Log.swift in Sources */,
+				A7203E1B1FE24325009558A7 /* ConversationsViewController.swift in Sources */,
+				A7203E141FE2426F009558A7 /* ApplicationsViewController.swift in Sources */,
+				A7203E0F1FE23FCE009558A7 /* MainViewController.swift in Sources */,
+				A7203E231FE243D1009558A7 /* UIInjector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
