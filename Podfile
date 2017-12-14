@@ -5,11 +5,14 @@ project 'FeedbackAdmin.xcodeproj/'
 
 # Uncomment the next line to define a global platform for your project
 platform :ios, '10.0'
+use_frameworks!
 
 target 'FeedbackAdmin' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
 
-  # Pods for FeedbackAdmin
-  pod 'CloudFeedback', :path => '.'
+  pod 'CloudFeedback/Core', :path => '.'
+end
+
+
+target 'AdminCore' do
+    pod 'CoreDataPersistence', '0.1.5'
 end

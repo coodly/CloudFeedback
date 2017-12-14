@@ -14,23 +14,14 @@
  * limitations under the License.
  */
 
-import UIKit
-import AdminCore
+#import <UIKit/UIKit.h>
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+//! Project version number for AdminCore.
+FOUNDATION_EXPORT double AdminCoreVersionNumber;
 
-    var window: UIWindow?
+//! Project version string for AdminCore.
+FOUNDATION_EXPORT const unsigned char AdminCoreVersionString[];
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let controller = window!.rootViewController as! InitializationViewController
-        
-        CoreInjection.sharedInstance.inject(into: controller)
-        controller.afterLoad = {
-            
-        }
-        
-        return true
-    }
-}
+// In this header, you should import all the public headers of your framework using statements like #import <AdminCore/PublicHeader.h>
+
 

@@ -1,0 +1,6 @@
+framework module Pods_AdminCore {
+  umbrella header "Pods-AdminCore-umbrella.h"
+
+  export *
+  module * { export * }
+}

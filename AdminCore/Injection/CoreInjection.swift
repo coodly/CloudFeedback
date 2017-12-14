@@ -14,23 +14,16 @@
  * limitations under the License.
  */
 
-import UIKit
-import AdminCore
+import Foundation
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let controller = window!.rootViewController as! InitializationViewController
-        
-        CoreInjection.sharedInstance.inject(into: controller)
-        controller.afterLoad = {
-            
+public class CoreInjection {
+    public static let sharedInstance = CoreInjection()
+    
+    private lazy var persistence = Persistence()
+    
+    public func inject(into object: AnyObject) {
+        if var consumer = object as? PersistenceConsumer {
+            consumer.persistence = persistence
         }
-        
-        return true
     }
 }
-

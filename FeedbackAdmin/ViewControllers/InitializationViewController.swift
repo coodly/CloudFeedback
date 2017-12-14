@@ -17,20 +17,18 @@
 import UIKit
 import AdminCore
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+private typealias Dependencies = PersistenceConsumer
 
-    var window: UIWindow?
+class InitializationViewController: UIViewController, Dependencies {
+    var persistence: Persistence!
+    
+    var afterLoad: (() -> Void)!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let controller = window!.rootViewController as! InitializationViewController
-        
-        CoreInjection.sharedInstance.inject(into: controller)
-        controller.afterLoad = {
-            
+        persistence.loadPersistentStores() {
+            DispatchQueue.main.async(execute: self.afterLoad)
         }
-        
-        return true
     }
 }
-

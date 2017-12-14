@@ -14,23 +14,11 @@
  * limitations under the License.
  */
 
-import UIKit
-import AdminCore
+import Foundation
+import CoreDataPersistence
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let controller = window!.rootViewController as! InitializationViewController
-        
-        CoreInjection.sharedInstance.inject(into: controller)
-        controller.afterLoad = {
-            
-        }
-        
-        return true
+public class Persistence: CorePersistence {
+    init() {
+        super.init(modelName: "Feedback", bundle: Bundle(for: Persistence.self), wipeOnConflict: true)
     }
 }
-

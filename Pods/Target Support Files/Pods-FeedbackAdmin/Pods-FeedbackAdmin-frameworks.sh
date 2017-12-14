@@ -102,10 +102,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/CloudFeedback/CloudFeedback.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CoreDataPersistence/CoreDataPersistence.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Puff/Puff.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/CloudFeedback/CloudFeedback.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CoreDataPersistence/CoreDataPersistence.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Puff/Puff.framework"
 fi

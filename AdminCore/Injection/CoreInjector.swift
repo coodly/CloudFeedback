@@ -14,23 +14,14 @@
  * limitations under the License.
  */
 
-import UIKit
-import AdminCore
+import Foundation
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let controller = window!.rootViewController as! InitializationViewController
-        
-        CoreInjection.sharedInstance.inject(into: controller)
-        controller.afterLoad = {
-            
-        }
-        
-        return true
-    }
+internal protocol CoreInjector {
+    func inject(into object: AnyObject)
 }
 
+internal extension CoreInjector {
+    func inject(into object: AnyObject) {
+        CoreInjection.sharedInstance.inject(into: object)
+    }
+}
