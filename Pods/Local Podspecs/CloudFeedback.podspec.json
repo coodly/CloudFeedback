@@ -38,6 +38,15 @@
 
         ]
       }
+    },
+    {
+      "name": "Admin",
+      "source_files": "Source/Admin",
+      "dependencies": {
+        "CloudFeedback/Core": [
+
+        ]
+      }
     }
   ]
 }

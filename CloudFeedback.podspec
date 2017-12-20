@@ -23,6 +23,11 @@ Pod::Spec.new do |s|
     client.dependency "CloudFeedback/Core"
   end
 
+  s.subspec 'Admin' do |admin|
+    admin.source_files = "Source/Admin"
+    admin.dependency "CloudFeedback/Core"
+  end
+
 
   s.source_files = 'Sources/*.swift'
   #s.tvos.exclude_files = ['Sources/ShakeWindow.swift']

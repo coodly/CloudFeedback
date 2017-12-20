@@ -15,13 +15,23 @@
  */
 
 import UIKit
+import AdminCore
 
-public class MainViewController: UIViewController, StoryboardLoaded, UIInjector {
+private extension Selector {
+    static let checkConversations = #selector(MainViewController.checkConversations)
+}
+
+private typealias Dependencies = FeedbackManagerConsumer
+
+public class MainViewController: UIViewController, StoryboardLoaded, UIInjector, Dependencies {
     public static var storyboardName: String {
         return "Main"
     }
     
+    public var manager: FeedbackManager!
+    
     @IBOutlet private var applicationsContainer: UIView!
+    private var applicationsController: ApplicationsViewController?
     @IBOutlet private var conversationsContainer: UIView!
     @IBOutlet private var messagesContainer: UIView!
     
@@ -30,6 +40,7 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector 
         
         let applications = Storyboards.loadFromStoryboard() as ApplicationsViewController
         inject(into: applications)
+        applicationsController = applications
         let aoplicationsNavigation = UINavigationController(rootViewController: applications)
         addChildViewController(aoplicationsNavigation)
         applicationsContainer.addSubview(aoplicationsNavigation.view)
@@ -48,5 +59,18 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector 
         addChildViewController(messagesNavigation)
         messagesContainer.addSubview(messagesNavigation.view)
         messagesNavigation.view.pinToSuperviewEdges()
+        
+        NotificationCenter.default.addObserver(self, selector: .checkConversations, name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        checkConversations()
+    }
+    
+    @objc fileprivate func checkConversations() {
+        Log.debug("Check conversations")
+        
     }
 }

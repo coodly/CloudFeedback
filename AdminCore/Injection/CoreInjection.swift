@@ -15,15 +15,33 @@
  */
 
 import Foundation
+import CloudKit
+import CloudFeedback
 
 public class CoreInjection {
     public static let sharedInstance = CoreInjection()
     
     private lazy var persistence = Persistence()
+    private lazy var feedbackConainer = CKContainer(identifier: "iCloud.com.coodly.feedback")
+    private lazy var feedback = Feedback(container: self.feedbackConainer)
+    private lazy var adminModule = self.feedback.admin
+    private lazy var feedbackManager: FeedbackManager = {
+        let manager = FeedbackManager()
+        self.inject(into: manager)
+        return manager
+    }()
     
     public func inject(into object: AnyObject) {
         if var consumer = object as? PersistenceConsumer {
             consumer.persistence = persistence
+        }
+        
+        if var consumer = object as? FeedbackAdminConsumer {
+            consumer.adminModule = adminModule
+        }
+        
+        if var consumer = object as? FeedbackManagerConsumer {
+            consumer.manager = feedbackManager
         }
     }
 }

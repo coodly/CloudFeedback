@@ -17,6 +17,7 @@
 import Foundation
 import SWLogger
 import CoreDataPersistence
+import CloudFeedback
 
 public class CoreLog {
     public static func enableLogging() {
@@ -26,6 +27,7 @@ public class CoreLog {
         SWLogger.Log.logLevel = .debug
         
         CoreDataPersistence.Logging.set(logger: PersistenceLogger())
+        CloudFeedback.Logging.set(logger: FeedbackLogger())
     }
     
     public static func debug<T>(_ object: T, file: String = #file, function: String = #function, line: Int = #line) {
@@ -40,6 +42,12 @@ internal class Log {
 }
 
 private class PersistenceLogger: CoreDataPersistence.Logger {
+    func log<T>(_ object: T, file: String = #file, function: String = #function, line: Int = #line) {
+        CoreLog.debug(object, file: file, function: function, line: line)
+    }
+}
+
+private class FeedbackLogger: CloudFeedback.Logger {
     func log<T>(_ object: T, file: String = #file, function: String = #function, line: Int = #line) {
         CoreLog.debug(object, file: file, function: function, line: line)
     }

@@ -5,9 +5,14 @@
     </entity>
     <entity name="Conversation" representedClassName=".Conversation" syncable="YES"/>
     <entity name="Message" representedClassName=".Message" syncable="YES"/>
+    <entity name="Setting" representedClassName=".Setting" syncable="YES">
+        <attribute name="internalKey" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Application" positionX="-54" positionY="-9" width="128" height="60"/>
         <element name="Conversation" positionX="-63" positionY="-18" width="128" height="45"/>
         <element name="Message" positionX="-36" positionY="9" width="128" height="45"/>
+        <element name="Setting" positionX="-36" positionY="9" width="128" height="75"/>
     </elements>
 </model>
