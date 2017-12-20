@@ -15,8 +15,22 @@
  */
 
 import Foundation
-import CoreData
 
-public class Application: NSManagedObject {
+internal extension UIView {
+    internal class func viewNib(_ bundle: Bundle? = nil) -> UINib {
+        let name = className()
+        return UINib(nibName: name, bundle: bundle)
+    }
     
+    internal class func className() -> String {
+        return NSStringFromClass(self).components(separatedBy: ".").last!
+    }
+    
+    internal class func identifier() -> String {
+        return className()
+    }
+    
+    internal static func loadInstance<T: UIView>() -> T {
+        return viewNib(Bundle(for: T.self)).instantiate(withOwner: nil, options: nil).first as! T
+    }
 }

@@ -16,7 +16,11 @@
 
 import Foundation
 import CoreData
+import CoreDataPersistence
 
-public class Application: NSManagedObject {
-    
+extension NSManagedObjectContext {
+    public func fetchedControllerForAllApplications() -> NSFetchedResultsController<Application> {
+        let sort = NSSortDescriptor(key: "identifier", ascending: true)
+        return fetchedController(sort: [sort])
+    }
 }

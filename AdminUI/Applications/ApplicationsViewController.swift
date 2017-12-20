@@ -15,15 +15,35 @@
  */
 
 import UIKit
+import AdminCore
+import CoreData
 
-internal class ApplicationsViewController: UIViewController, StoryboardLoaded {
+private typealias Dependencies = PersistenceConsumer
+
+internal class ApplicationsViewController: FetchedTableViewController<Application, ApplicationCell>, StoryboardLoaded, Dependencies {
     static var storyboardName: String {
         return "Applications"
+    }
+    
+    var persistence: Persistence!
+    
+    @IBOutlet private var table: UITableView! {
+        didSet {
+            tableView = table
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Applications"
+    }
+    
+    override func createFetchedController() -> NSFetchedResultsController<Application> {
+        return persistence.mainContext.fetchedControllerForAllApplications()
+    }
+    
+    override func configure(cell: ApplicationCell, with application: Application, at indexPath: IndexPath) {
+        cell.textLabel?.text = application.identifier
     }
 }

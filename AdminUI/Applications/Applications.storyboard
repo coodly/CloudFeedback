@@ -17,13 +17,28 @@
                     <view key="view" contentMode="scaleToFill" id="4mN-wA-Ye7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xkS-Uu-XGU">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xkS-Uu-XGU" firstAttribute="bottom" secondItem="77N-du-TYB" secondAttribute="bottom" id="AzJ-5b-5B6"/>
+                            <constraint firstItem="xkS-Uu-XGU" firstAttribute="leading" secondItem="77N-du-TYB" secondAttribute="leading" id="B6t-JI-MBh"/>
+                            <constraint firstItem="xkS-Uu-XGU" firstAttribute="trailing" secondItem="77N-du-TYB" secondAttribute="trailing" id="cgn-m2-GJe"/>
+                            <constraint firstItem="xkS-Uu-XGU" firstAttribute="top" secondItem="4mN-wA-Ye7" secondAttribute="top" id="dpr-7I-fgx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="77N-du-TYB"/>
                     </view>
+                    <connections>
+                        <outlet property="table" destination="xkS-Uu-XGU" id="v1y-w6-dgu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1F-qi-KAn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="287" y="187"/>
+            <point key="canvasLocation" x="285.60000000000002" y="186.65667166416793"/>
         </scene>
     </scenes>
 </document>

@@ -22,6 +22,13 @@
 		A7203E201FE2436B009558A7 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E1F1FE2436B009558A7 /* MessagesViewController.swift */; };
 		A7203E231FE243D1009558A7 /* UIInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E221FE243D1009558A7 /* UIInjector.swift */; };
 		A7203E261FE24527009558A7 /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E251FE24527009558A7 /* UIView+Autolayout.swift */; };
+		A7203E281FE24ED5009558A7 /* Persistence+Applications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E271FE24ED5009558A7 /* Persistence+Applications.swift */; };
+		A7203E2B1FE24F6D009558A7 /* Application+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E2A1FE24F6D009558A7 /* Application+Properties.swift */; };
+		A7203E2E1FE25027009558A7 /* FetchedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E2D1FE25027009558A7 /* FetchedTableViewController.swift */; };
+		A7203E301FE25084009558A7 /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E2F1FE25084009558A7 /* UITableView+Dequeue.swift */; };
+		A7203E321FE250A2009558A7 /* UIView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E311FE250A2009558A7 /* UIView+Loading.swift */; };
+		A7203E351FE252D8009558A7 /* ApplicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E331FE252D8009558A7 /* ApplicationCell.swift */; };
+		A7203E361FE252D8009558A7 /* ApplicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7203E341FE252D8009558A7 /* ApplicationCell.xib */; };
 		A7C903691FE0EBC600FE921A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C903681FE0EBC600FE921A /* AppDelegate.swift */; };
 		A7C9036E1FE0EBC600FE921A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C9036C1FE0EBC600FE921A /* Main.storyboard */; };
 		A7C903701FE0EBC600FE921A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C9036F1FE0EBC600FE921A /* Assets.xcassets */; };
@@ -95,6 +102,13 @@
 		A7203E1F1FE2436B009558A7 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		A7203E221FE243D1009558A7 /* UIInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIInjector.swift; sourceTree = "<group>"; };
 		A7203E251FE24527009558A7 /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
+		A7203E271FE24ED5009558A7 /* Persistence+Applications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistence+Applications.swift"; sourceTree = "<group>"; };
+		A7203E2A1FE24F6D009558A7 /* Application+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Application+Properties.swift"; sourceTree = "<group>"; };
+		A7203E2D1FE25027009558A7 /* FetchedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedTableViewController.swift; sourceTree = "<group>"; };
+		A7203E2F1FE25084009558A7 /* UITableView+Dequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeue.swift"; sourceTree = "<group>"; };
+		A7203E311FE250A2009558A7 /* UIView+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Loading.swift"; sourceTree = "<group>"; };
+		A7203E331FE252D8009558A7 /* ApplicationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCell.swift; sourceTree = "<group>"; };
+		A7203E341FE252D8009558A7 /* ApplicationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplicationCell.xib; sourceTree = "<group>"; };
 		A7B30DF4D6215F25D8566D8E /* Pods-FeedbackAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedbackAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		A7C903651FE0EBC600FE921A /* FeedbackAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedbackAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C903681FE0EBC600FE921A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +202,8 @@
 		A7203E121FE24257009558A7 /* Applications */ = {
 			isa = PBXGroup;
 			children = (
+				A7203E331FE252D8009558A7 /* ApplicationCell.swift */,
+				A7203E341FE252D8009558A7 /* ApplicationCell.xib */,
 				A7203E151FE24276009558A7 /* Applications.storyboard */,
 				A7203E131FE2426F009558A7 /* ApplicationsViewController.swift */,
 			);
@@ -223,9 +239,27 @@
 		A7203E241FE24513009558A7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A7203E2F1FE25084009558A7 /* UITableView+Dequeue.swift */,
 				A7203E251FE24527009558A7 /* UIView+Autolayout.swift */,
+				A7203E311FE250A2009558A7 /* UIView+Loading.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A7203E291FE24F63009558A7 /* _ */ = {
+			isa = PBXGroup;
+			children = (
+				A7203E2A1FE24F6D009558A7 /* Application+Properties.swift */,
+			);
+			path = _;
+			sourceTree = "<group>";
+		};
+		A7203E2C1FE25008009558A7 /* Fetched */ = {
+			isa = PBXGroup;
+			children = (
+				A7203E2D1FE25027009558A7 /* FetchedTableViewController.swift */,
+			);
+			path = Fetched;
 			sourceTree = "<group>";
 		};
 		A7C9035C1FE0EBC600FE921A = {
@@ -288,6 +322,7 @@
 				A7203E121FE24257009558A7 /* Applications */,
 				A7203E171FE2430D009558A7 /* Conversations */,
 				A7203E241FE24513009558A7 /* Extensions */,
+				A7203E2C1FE25008009558A7 /* Fetched */,
 				A7203E211FE243C2009558A7 /* Injection */,
 				A7203E0A1FE23F6B009558A7 /* Log */,
 				A7203E0D1FE23FC1009558A7 /* Main */,
@@ -337,11 +372,13 @@
 		A7C903AB1FE118C300FE921A /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				A7203E291FE24F63009558A7 /* _ */,
 				A7C903AF1FE1193000FE921A /* Application.swift */,
 				A7C903B11FE1195F00FE921A /* Conversation.swift */,
 				A7C903AC1FE118D900FE921A /* Feedback.xcdatamodeld */,
 				A7C903B31FE1196E00FE921A /* Message.swift */,
 				A7C903B51FE119AD00FE921A /* Persistence.swift */,
+				A7203E271FE24ED5009558A7 /* Persistence+Applications.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -517,6 +554,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7203E111FE23FD9009558A7 /* Main.storyboard in Resources */,
+				A7203E361FE252D8009558A7 /* ApplicationCell.xib in Resources */,
 				A7203E161FE24276009558A7 /* Applications.storyboard in Resources */,
 				A7203E1E1FE24365009558A7 /* Messages.storyboard in Resources */,
 				A7203E191FE2431E009558A7 /* Conversations.storyboard in Resources */,
@@ -638,9 +676,11 @@
 				A7C903A91FE117D300FE921A /* CoreInjection.swift in Sources */,
 				A7C903B61FE119AD00FE921A /* Persistence.swift in Sources */,
 				A7C903B41FE1196E00FE921A /* Message.swift in Sources */,
+				A7203E281FE24ED5009558A7 /* Persistence+Applications.swift in Sources */,
 				A7C903B81FE119D200FE921A /* PersistenceConsumer.swift in Sources */,
 				A7C903B21FE1195F00FE921A /* Conversation.swift in Sources */,
 				A7C903A71FE1178500FE921A /* CoreInjector.swift in Sources */,
+				A7203E2B1FE24F6D009558A7 /* Application+Properties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,7 +690,11 @@
 			files = (
 				A7203E061FE23D20009558A7 /* Storyboards.swift in Sources */,
 				A7203E261FE24527009558A7 /* UIView+Autolayout.swift in Sources */,
+				A7203E2E1FE25027009558A7 /* FetchedTableViewController.swift in Sources */,
+				A7203E301FE25084009558A7 /* UITableView+Dequeue.swift in Sources */,
+				A7203E351FE252D8009558A7 /* ApplicationCell.swift in Sources */,
 				A7203E201FE2436B009558A7 /* MessagesViewController.swift in Sources */,
+				A7203E321FE250A2009558A7 /* UIView+Loading.swift in Sources */,
 				A7203E051FE23D20009558A7 /* StoryboardLoaded.swift in Sources */,
 				A7203E0C1FE23F75009558A7 /* Log.swift in Sources */,
 				A7203E1B1FE24325009558A7 /* ConversationsViewController.swift in Sources */,

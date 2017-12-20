@@ -17,6 +17,6 @@
 import Foundation
 import CoreData
 
-public class Application: NSManagedObject {
-    
+extension Application {
+    @NSManaged public var identifier: String
 }
