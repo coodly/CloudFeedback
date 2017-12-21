@@ -35,6 +35,10 @@
 		A7C0505B1FEAC87B00F73B6B /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C0505A1FEAC87B00F73B6B /* Setting.swift */; };
 		A7C0505D1FEAC8BF00F73B6B /* Setting+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C0505C1FEAC8BF00F73B6B /* Setting+Properties.swift */; };
 		A7C0505F1FEAC90600F73B6B /* Persistence+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C0505E1FEAC90600F73B6B /* Persistence+Settings.swift */; };
+		A7C050651FEB750E00F73B6B /* AppQueueConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050641FEB750E00F73B6B /* AppQueueConsumer.swift */; };
+		A7C050671FEB75EB00F73B6B /* RefreshConversationsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050661FEB75EB00F73B6B /* RefreshConversationsOperation.swift */; };
+		A7C050691FEB76C700F73B6B /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050681FEB76C700F73B6B /* ConcurrentOperation.swift */; };
+		A7C050721FEB7EB100F73B6B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C050711FEB7EB100F73B6B /* CloudKit.framework */; };
 		A7C903691FE0EBC600FE921A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C903681FE0EBC600FE921A /* AppDelegate.swift */; };
 		A7C9036E1FE0EBC600FE921A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C9036C1FE0EBC600FE921A /* Main.storyboard */; };
 		A7C903701FE0EBC600FE921A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C9036F1FE0EBC600FE921A /* Assets.xcassets */; };
@@ -122,6 +126,11 @@
 		A7C0505A1FEAC87B00F73B6B /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		A7C0505C1FEAC8BF00F73B6B /* Setting+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Setting+Properties.swift"; sourceTree = "<group>"; };
 		A7C0505E1FEAC90600F73B6B /* Persistence+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistence+Settings.swift"; sourceTree = "<group>"; };
+		A7C050641FEB750E00F73B6B /* AppQueueConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppQueueConsumer.swift; sourceTree = "<group>"; };
+		A7C050661FEB75EB00F73B6B /* RefreshConversationsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshConversationsOperation.swift; sourceTree = "<group>"; };
+		A7C050681FEB76C700F73B6B /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
+		A7C0506E1FEB7E5800F73B6B /* FeedbackAdmin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FeedbackAdmin.entitlements; sourceTree = "<group>"; };
+		A7C050711FEB7EB100F73B6B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		A7C903651FE0EBC600FE921A /* FeedbackAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedbackAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C903681FE0EBC600FE921A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7C9036D1FE0EBC600FE921A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -153,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF7EFCF6DB6C248F79C87684 /* Pods_FeedbackAdmin.framework in Frameworks */,
+				A7C050721FEB7EB100F73B6B /* CloudKit.framework in Frameworks */,
 				A7C903891FE112CA00FE921A /* AdminCore.framework in Frameworks */,
 				A7C9039B1FE112D300FE921A /* AdminUI.framework in Frameworks */,
 			);
@@ -283,6 +293,15 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		A7C050631FEB74D200F73B6B /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				A7C050681FEB76C700F73B6B /* ConcurrentOperation.swift */,
+				A7C050661FEB75EB00F73B6B /* RefreshConversationsOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
 		A7C9035C1FE0EBC600FE921A = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +327,7 @@
 		A7C903671FE0EBC600FE921A /* FeedbackAdmin */ = {
 			isa = PBXGroup;
 			children = (
+				A7C0506E1FEB7E5800F73B6B /* FeedbackAdmin.entitlements */,
 				A7C903A01FE1167D00FE921A /* ViewControllers */,
 				A7C9037A1FE100FC00FE921A /* Views */,
 				A7C903681FE0EBC600FE921A /* AppDelegate.swift */,
@@ -332,6 +352,7 @@
 				A7C903A51FE1177800FE921A /* Injection */,
 				A7203E071FE23D46009558A7 /* Log */,
 				A7C050551FEAC65C00F73B6B /* Manager */,
+				A7C050631FEB74D200F73B6B /* Operations */,
 				A7C903AB1FE118C300FE921A /* Persistence */,
 				A7C903A41FE116E700FE921A /* Supporting files */,
 			);
@@ -384,6 +405,7 @@
 		A7C903A51FE1177800FE921A /* Injection */ = {
 			isa = PBXGroup;
 			children = (
+				A7C050641FEB750E00F73B6B /* AppQueueConsumer.swift */,
 				A7C903A81FE117D300FE921A /* CoreInjection.swift */,
 				A7C903A61FE1178500FE921A /* CoreInjector.swift */,
 				A7C050511FEAC42300F73B6B /* FeedbackAdminConsumer.swift */,
@@ -412,6 +434,7 @@
 		C79BE95958F68DE2FE9F6E54 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A7C050711FEB7EB100F73B6B /* CloudKit.framework */,
 				DBAEEB274C9D54B54EB5D6CD /* Pods_FeedbackAdmin.framework */,
 				4811BD0DF26F2C2293C1AC15 /* Pods_AdminCore.framework */,
 			);
@@ -525,6 +548,14 @@
 					A7C903641FE0EBC600FE921A = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					A7C903811FE112CA00FE921A = {
 						CreatedOnToolsVersion = 9.2;
@@ -697,6 +728,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7203E091FE23D50009558A7 /* CoreLog.swift in Sources */,
+				A7C050651FEB750E00F73B6B /* AppQueueConsumer.swift in Sources */,
 				A7C903B01FE1193000FE921A /* Application.swift in Sources */,
 				A7C903AE1FE118D900FE921A /* Feedback.xcdatamodeld in Sources */,
 				A7C903A91FE117D300FE921A /* CoreInjection.swift in Sources */,
@@ -707,6 +739,8 @@
 				A7C050521FEAC42300F73B6B /* FeedbackAdminConsumer.swift in Sources */,
 				A7203E281FE24ED5009558A7 /* Persistence+Applications.swift in Sources */,
 				A7C0505D1FEAC8BF00F73B6B /* Setting+Properties.swift in Sources */,
+				A7C050691FEB76C700F73B6B /* ConcurrentOperation.swift in Sources */,
+				A7C050671FEB75EB00F73B6B /* RefreshConversationsOperation.swift in Sources */,
 				A7C903B81FE119D200FE921A /* PersistenceConsumer.swift in Sources */,
 				A7C903B21FE1195F00FE921A /* Conversation.swift in Sources */,
 				A7C903A71FE1178500FE921A /* CoreInjector.swift in Sources */,
@@ -876,11 +910,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FeedbackAdmin/FeedbackAdmin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5T8DRBFCBP;
 				INFOPLIST_FILE = FeedbackAdmin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coodly.FeedbackAdmin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coodly.feedback;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -893,11 +928,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FeedbackAdmin/FeedbackAdmin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5T8DRBFCBP;
 				INFOPLIST_FILE = FeedbackAdmin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coodly.FeedbackAdmin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coodly.feedback;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 2;

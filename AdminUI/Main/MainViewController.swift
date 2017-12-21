@@ -34,6 +34,11 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
     private var applicationsController: ApplicationsViewController?
     @IBOutlet private var conversationsContainer: UIView!
     @IBOutlet private var messagesContainer: UIView!
+    private lazy var activityIndicatorItem: UIBarButtonItem = {
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        indicator.startAnimating()
+        return UIBarButtonItem(customView: indicator)
+    }()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +76,11 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
     
     @objc fileprivate func checkConversations() {
         Log.debug("Check conversations")
-        
+        applicationsController?.navigationItem.rightBarButtonItem = activityIndicatorItem
+        manager.checkConversationUpdates() {
+            DispatchQueue.main.async {
+                self.applicationsController?.navigationItem.rightBarButtonItem = nil
+            }
+        }
     }
 }

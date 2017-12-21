@@ -14,19 +14,22 @@
  * limitations under the License.
  */
 
-private typealias Dependencies = AppQueueConsumer
+import CloudFeedback
 
-public class FeedbackManager: Dependencies, CoreInjector {
-    var appQueue: OperationQueue!
+private typealias Dependencies = PersistenceConsumer & FeedbackAdminConsumer
+
+internal class RefreshConversationsOperation: ConcurrentOperation, Dependencies {
+    var persistence: Persistence!
+    var adminModule: FeedbackModule!
     
-    public func checkConversationUpdates(completion: @escaping (() -> Void)) {
-        let op = RefreshConversationsOperation()
-        inject(into: op)
-        op.completionHandler = {
-            _, _ in
+    override func main() {
+        persistence.performInBackground() {
+            context in
             
-            completion()
+            let lastCheckTime = context.lastConversationsCheckTime
+            Log.debug("Last checked at \(lastCheckTime)")
+            
+            self.adminModule.fetchConversations(since: lastCheckTime)
         }
-        appQueue.addOperation(op)
     }
 }

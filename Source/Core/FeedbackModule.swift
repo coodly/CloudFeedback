@@ -14,6 +14,18 @@
  * limitations under the License.
  */
 
-public protocol FeedbackModule {
+import CloudKit
+
+public class FeedbackModule {
+    internal let container: CKContainer
+    internal let queue: OperationQueue
+    internal init(container: CKContainer, queue: OperationQueue) {
+        self.container = container
+        self.queue = queue
+    }
     
+    public func fetchConversations(since: Date = Date.distantPast) {
+        let op = FetchConversationsOperation(since: since, in: container)
+        queue.addOperation(op)
+    }
 }

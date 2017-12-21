@@ -18,6 +18,7 @@ import Foundation
 import SWLogger
 import CoreDataPersistence
 import CloudFeedback
+import Puff
 
 public class CoreLog {
     public static func enableLogging() {
@@ -28,10 +29,17 @@ public class CoreLog {
         
         CoreDataPersistence.Logging.set(logger: PersistenceLogger())
         CloudFeedback.Logging.set(logger: FeedbackLogger())
+        Puff.Logging.set(logger: PuffLogger())
     }
     
     public static func debug<T>(_ object: T, file: String = #file, function: String = #function, line: Int = #line) {
         SWLogger.Log.debug(object, file: file, function: function, line: line)
+    }
+}
+
+internal class Logging {
+    public static func log<T>(_ object: T, file: String = #file, function: String = #function, line: Int = #line) {
+        CoreLog.debug(object, file: file, function: function, line: line)
     }
 }
 
@@ -48,6 +56,12 @@ private class PersistenceLogger: CoreDataPersistence.Logger {
 }
 
 private class FeedbackLogger: CloudFeedback.Logger {
+    func log<T>(_ object: T, file: String = #file, function: String = #function, line: Int = #line) {
+        CoreLog.debug(object, file: file, function: function, line: line)
+    }
+}
+
+private class PuffLogger: Puff.Logger {
     func log<T>(_ object: T, file: String = #file, function: String = #function, line: Int = #line) {
         CoreLog.debug(object, file: file, function: function, line: line)
     }

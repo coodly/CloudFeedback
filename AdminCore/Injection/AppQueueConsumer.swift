@@ -14,19 +14,6 @@
  * limitations under the License.
  */
 
-private typealias Dependencies = AppQueueConsumer
-
-public class FeedbackManager: Dependencies, CoreInjector {
-    var appQueue: OperationQueue!
-    
-    public func checkConversationUpdates(completion: @escaping (() -> Void)) {
-        let op = RefreshConversationsOperation()
-        inject(into: op)
-        op.completionHandler = {
-            _, _ in
-            
-            completion()
-        }
-        appQueue.addOperation(op)
-    }
+internal protocol AppQueueConsumer {
+    var appQueue: OperationQueue! { get set }
 }

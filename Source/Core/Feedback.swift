@@ -17,7 +17,12 @@
 import CloudKit
 
 public final class Feedback {
-    private let container: CKContainer
+    internal let container: CKContainer
+    internal lazy var queue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.qualityOfService = .utility
+        return queue
+    }()
     
     public init(container: CKContainer = .default()) {
         Logging.log("Start with \(String(describing: container.containerIdentifier))")

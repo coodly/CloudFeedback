@@ -31,7 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CoreInjection.sharedInstance.inject(into: controller)
         controller.afterLoad = {
             let main = Storyboards.loadFromStoryboard() as MainViewController
-            
+
+            CoreInjection.sharedInstance.inject(into: main)
+
             let animation: (() -> ()) = {
                 self.window?.rootViewController = main
             }

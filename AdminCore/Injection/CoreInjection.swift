@@ -30,6 +30,11 @@ public class CoreInjection {
         self.inject(into: manager)
         return manager
     }()
+    private lazy var appQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.qualityOfService = .utility
+        return queue
+    }()
     
     public func inject(into object: AnyObject) {
         if var consumer = object as? PersistenceConsumer {
@@ -42,6 +47,10 @@ public class CoreInjection {
         
         if var consumer = object as? FeedbackManagerConsumer {
             consumer.manager = feedbackManager
+        }
+        
+        if var consumer = object as? AppQueueConsumer {
+            consumer.appQueue = appQueue
         }
     }
 }

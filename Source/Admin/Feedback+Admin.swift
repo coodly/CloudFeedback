@@ -18,6 +18,6 @@ import Foundation
 
 public extension Feedback {
     public var admin: FeedbackModule {
-        return AdminModile()
+        return AdminModule(container: container, queue: queue)
     }
 }

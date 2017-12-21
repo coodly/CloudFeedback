@@ -13,3 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import Puff
+import CloudKit
+
+public struct Conversation: RemoteRecord {
+    public static var recordType: String {
+        return "Conversation"
+    }
+
+    public var recordName: String?
+    public var recordData: Data?
+    public var parent: CKRecordID?
+    
+    public var appIdentifier: String?
+    public var lastMessageTime: Date?
+    public var snippet: String?
+    
+    public mutating func loadFields(from record: CKRecord) -> Bool {
+        appIdentifier = record["appIdentifier"] as? String
+        lastMessageTime = record["lastMessageTime"] as? Date
+        snippet = record["snippet"] as? String
+        
+        return true
+    }
+    
+    public init() {
+        
+    }
+}
