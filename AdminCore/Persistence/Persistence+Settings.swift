@@ -19,17 +19,17 @@ import CoreDataPersistence
 
 internal extension Setting {
     enum Key: String {
-        case lastConversationsCheckTime
+        case lastKnownConversationTime
     }
 }
 
 internal extension NSManagedObjectContext {
-    internal var lastConversationsCheckTime: Date {
+    internal var lastKnownConversationTime: Date {
         get {
-            return date(for: .lastConversationsCheckTime)
+            return date(for: .lastKnownConversationTime)
         }
         set {
-            set(date: newValue, for: .lastConversationsCheckTime)
+            set(date: newValue, for: .lastKnownConversationTime)
         }
     }
 }

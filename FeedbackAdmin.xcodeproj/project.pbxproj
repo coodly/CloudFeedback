@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7E5CC45238E5136C5EEA1E25 /* Pods_AdminCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4811BD0DF26F2C2293C1AC15 /* Pods_AdminCore.framework */; };
+		A705DF811FF3C69D001D865E /* Persistence+Conversations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF801FF3C69D001D865E /* Persistence+Conversations.swift */; };
+		A705DF831FF3C756001D865E /* Conversation+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF821FF3C756001D865E /* Conversation+Properties.swift */; };
 		A7203E051FE23D20009558A7 /* StoryboardLoaded.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E031FE23D20009558A7 /* StoryboardLoaded.swift */; };
 		A7203E061FE23D20009558A7 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E041FE23D20009558A7 /* Storyboards.swift */; };
 		A7203E091FE23D50009558A7 /* CoreLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E081FE23D50009558A7 /* CoreLog.swift */; };
@@ -98,6 +100,8 @@
 		380000594BA3CDFA03FD9B53 /* Pods-AdminCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdminCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-AdminCore/Pods-AdminCore.release.xcconfig"; sourceTree = "<group>"; };
 		4811BD0DF26F2C2293C1AC15 /* Pods_AdminCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdminCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		719703010A62BE38279E846E /* Pods-FeedbackAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedbackAdmin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin.debug.xcconfig"; sourceTree = "<group>"; };
+		A705DF801FF3C69D001D865E /* Persistence+Conversations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistence+Conversations.swift"; sourceTree = "<group>"; };
+		A705DF821FF3C756001D865E /* Conversation+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+Properties.swift"; sourceTree = "<group>"; };
 		A7203E031FE23D20009558A7 /* StoryboardLoaded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardLoaded.swift; sourceTree = "<group>"; };
 		A7203E041FE23D20009558A7 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		A7203E081FE23D50009558A7 /* CoreLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLog.swift; sourceTree = "<group>"; };
@@ -272,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				A7203E2A1FE24F6D009558A7 /* Application+Properties.swift */,
+				A705DF821FF3C756001D865E /* Conversation+Properties.swift */,
 				A7C0505C1FEAC8BF00F73B6B /* Setting+Properties.swift */,
 			);
 			path = _;
@@ -425,6 +430,7 @@
 				A7C903B31FE1196E00FE921A /* Message.swift */,
 				A7C903B51FE119AD00FE921A /* Persistence.swift */,
 				A7203E271FE24ED5009558A7 /* Persistence+Applications.swift */,
+				A705DF801FF3C69D001D865E /* Persistence+Conversations.swift */,
 				A7C0505E1FEAC90600F73B6B /* Persistence+Settings.swift */,
 				A7C0505A1FEAC87B00F73B6B /* Setting.swift */,
 			);
@@ -737,12 +743,14 @@
 				A7C0505B1FEAC87B00F73B6B /* Setting.swift in Sources */,
 				A7C903B41FE1196E00FE921A /* Message.swift in Sources */,
 				A7C050521FEAC42300F73B6B /* FeedbackAdminConsumer.swift in Sources */,
+				A705DF811FF3C69D001D865E /* Persistence+Conversations.swift in Sources */,
 				A7203E281FE24ED5009558A7 /* Persistence+Applications.swift in Sources */,
 				A7C0505D1FEAC8BF00F73B6B /* Setting+Properties.swift in Sources */,
 				A7C050691FEB76C700F73B6B /* ConcurrentOperation.swift in Sources */,
 				A7C050671FEB75EB00F73B6B /* RefreshConversationsOperation.swift in Sources */,
 				A7C903B81FE119D200FE921A /* PersistenceConsumer.swift in Sources */,
 				A7C903B21FE1195F00FE921A /* Conversation.swift in Sources */,
+				A705DF831FF3C756001D865E /* Conversation+Properties.swift in Sources */,
 				A7C903A71FE1178500FE921A /* CoreInjector.swift in Sources */,
 				A7203E2B1FE24F6D009558A7 /* Application+Properties.swift in Sources */,
 				A7C050591FEAC69000F73B6B /* FeedbackManagerConsumer.swift in Sources */,

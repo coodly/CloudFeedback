@@ -16,6 +16,12 @@
 
 import CloudKit
 
+public enum FetchConversationsProgress {
+    case failure
+    case fetched([Conversation])
+    case completed
+}
+
 public class FeedbackModule {
     internal let container: CKContainer
     internal let queue: OperationQueue
@@ -24,8 +30,18 @@ public class FeedbackModule {
         self.queue = queue
     }
     
-    public func fetchConversations(since: Date = Date.distantPast) {
+    public func fetchConversations(since: Date = Date.distantPast, progress: @escaping ((FetchConversationsProgress) -> Void)) {
         let op = FetchConversationsOperation(since: since, in: container)
+        op.progress = progress
+        op.completionHandler = {
+            success, _ in
+            
+            if success {
+                progress(.completed)
+            } else {
+                progress(.failure)
+            }
+        }
         queue.addOperation(op)
     }
 }

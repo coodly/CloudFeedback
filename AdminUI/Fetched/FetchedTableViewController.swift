@@ -44,6 +44,7 @@ internal class FetchedTableViewController<Model: NSManagedObject, Cell: UITableV
         
         fetchedController = createFetchedController()
         fetchedController?.delegate = self
+        Log.debug("Have \((fetchedController?.fetchedObjects?.count ?? 0)) elements for \(String(describing: Model.self))")
         tableView.reloadData()
     }
     

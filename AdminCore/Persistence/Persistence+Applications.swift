@@ -23,4 +23,14 @@ extension NSManagedObjectContext {
         let sort = NSSortDescriptor(key: "identifier", ascending: true)
         return fetchedController(sort: [sort])
     }
+    
+    internal func application(with identifier: String) -> Application {
+        if let existing: Application = fetchEntity(where: "identifier", hasValue: identifier) {
+            return existing
+        }
+        
+        let saved: Application = insertEntity()
+        saved.identifier = identifier
+        return saved
+    }
 }

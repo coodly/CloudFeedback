@@ -18,6 +18,8 @@ import CloudKit
 import Puff
 
 internal class FetchConversationsOperation: CloudKitRequest<Conversation> {
+    internal var progress: ((FetchConversationsProgress) -> Void)!
+    
     private let since: Date
     
     init(since: Date, in container: CKContainer) {
@@ -39,10 +41,11 @@ internal class FetchConversationsOperation: CloudKitRequest<Conversation> {
         switch result {
         case .failure:
             Logging.log("Fetch failed")
-            finish()
         case .success(let conversations, _):
             Logging.log("Pulled \(conversations.count) conversations")
-            finish()
+            progress(.fetched(conversations))
         }
+        
+        completion()
     }
 }

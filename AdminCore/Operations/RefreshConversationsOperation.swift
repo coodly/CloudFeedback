@@ -26,10 +26,27 @@ internal class RefreshConversationsOperation: ConcurrentOperation, Dependencies 
         persistence.performInBackground() {
             context in
             
-            let lastCheckTime = context.lastConversationsCheckTime
-            Log.debug("Last checked at \(lastCheckTime)")
+            let lastCheckTime = context.lastKnownConversationTime
+            Log.debug("Last known conversation time \(lastCheckTime)")
             
-            self.adminModule.fetchConversations(since: lastCheckTime)
+            self.adminModule.fetchConversations(since: lastCheckTime, progress: self.handle(progress:))
+        }
+    }
+    
+    private func handle(progress: FetchConversationsProgress) {
+        Log.debug("Progress: \(progress)")
+        switch progress {
+        case .failure, .completed:
+            self.finish()
+        case .fetched(let conversations):
+            persistence.performInBackground() {
+                context in
+                
+                context.update(conversations: conversations)
+                if let last = conversations.last?.lastMessageTime {
+                    context.lastKnownConversationTime = last
+                }
+            }
         }
     }
 }

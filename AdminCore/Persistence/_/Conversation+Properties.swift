@@ -17,8 +17,12 @@
 import Foundation
 import CoreData
 
-extension Application {
-    @NSManaged public var identifier: String
+internal extension Conversation {
+    @NSManaged var recordName: String?
+    @NSManaged var recordData: Data?
     
-    @NSManaged var conversations: Set<Conversation>?
+    @NSManaged var lastMessageTime: Date
+    @NSManaged var snippet: String
+    
+    @NSManaged var application: Application
 }
