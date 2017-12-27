@@ -17,7 +17,7 @@
 import Foundation
 import CoreData
 
-internal class Conversation: NSManagedObject {
+public class Conversation: NSManagedObject {
     
 }
 

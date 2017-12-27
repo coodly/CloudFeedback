@@ -18,6 +18,10 @@ import UIKit
 import AdminCore
 import CoreData
 
+internal protocol ApplicationSelectionDelegate: class {
+    func selected(application: Application)
+}
+
 private typealias Dependencies = PersistenceConsumer
 
 internal class ApplicationsViewController: FetchedTableViewController<Application, ApplicationCell>, StoryboardLoaded, Dependencies {
@@ -26,6 +30,8 @@ internal class ApplicationsViewController: FetchedTableViewController<Applicatio
     }
     
     var persistence: Persistence!
+    
+    internal weak var delegate: ApplicationSelectionDelegate?
     
     @IBOutlet private var table: UITableView! {
         didSet {
@@ -45,5 +51,9 @@ internal class ApplicationsViewController: FetchedTableViewController<Applicatio
     
     override func configure(cell: ApplicationCell, with application: Application, at indexPath: IndexPath) {
         cell.textLabel?.text = application.identifier
+    }
+    
+    override func tapped(_ application: Application, at indexPath: IndexPath) {
+        delegate?.selected(application: application)
     }
 }

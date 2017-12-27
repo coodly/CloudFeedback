@@ -19,7 +19,12 @@ import CoreData
 import CoreDataPersistence
 import CloudFeedback
 
-internal extension NSManagedObjectContext {
+private extension NSPredicate {
+    static let falsePredicate = NSPredicate(format: "FALSEPREDICATE")
+}
+
+
+public extension NSManagedObjectContext {
     internal func update(conversations: [CloudFeedback.Conversation]) {
         let names = conversations.flatMap({ $0.recordName })
         
@@ -37,5 +42,14 @@ internal extension NSManagedObjectContext {
             
             saved.application = application(with: conversation.appIdentifier!)
         }
+    }
+    
+    public func emptyConversationsController() -> NSFetchedResultsController<Conversation> {
+        let sort = NSSortDescriptor(key: "lastMessageTime", ascending: false)
+        return fetchedController(predicate: .falsePredicate, sort: [sort])
+    }
+    
+    public func conversationsPredicate(for application: Application) -> NSPredicate {
+        return NSPredicate(format: "application = %@", application)
     }
 }

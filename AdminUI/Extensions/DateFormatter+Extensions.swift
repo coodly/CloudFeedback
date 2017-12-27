@@ -15,14 +15,11 @@
  */
 
 import Foundation
-import CoreData
 
-extension Conversation {
-    @NSManaged var recordName: String?
-    @NSManaged var recordData: Data?
-    
-    @NSManaged public var lastMessageTime: Date
-    @NSManaged public var snippet: String
-    
-    @NSManaged var application: Application
+internal extension DateFormatter {
+    internal static let time: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("yyyyMMddHHmm")
+        return formatter
+    }()
 }

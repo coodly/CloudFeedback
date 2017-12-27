@@ -17,12 +17,14 @@
 import UIKit
 import CoreData
 
-private typealias ConformsTo = NSFetchedResultsControllerDelegate & UITableViewDataSource & UITextViewDelegate
+private typealias ConformsTo = NSFetchedResultsControllerDelegate & UITableViewDataSource & UITableViewDelegate
 
 internal class FetchedTableViewController<Model: NSManagedObject, Cell: UITableViewCell>: UIViewController, ConformsTo {
     internal var tableView: UITableView!
     
     private var fetchedController: NSFetchedResultsController<Model>?
+    
+    internal var clearSelection = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,5 +79,27 @@ internal class FetchedTableViewController<Model: NSManagedObject, Cell: UITableV
     
     func configure(cell: Cell, with object: Model, at indexPath: IndexPath) {
         Log.debug("Configure cell at \(indexPath)")
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let item = fetchedController?.object(at: indexPath) else {
+            return
+        }
+        
+        tapped(item, at: indexPath)
+        
+        guard clearSelection else {
+            return
+        }
+    }
+    
+    func tapped(_ object: Model, at indexPath: IndexPath) {
+        
+    }
+    
+    internal func updateFetch(_ predicate: NSPredicate) {
+        fetchedController?.fetchRequest.predicate = predicate
+        try! fetchedController?.performFetch()
+        tableView.reloadData()
     }
 }

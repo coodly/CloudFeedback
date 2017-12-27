@@ -17,13 +17,32 @@
                     <view key="view" contentMode="scaleToFill" id="59N-nU-AED">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ReE-cE-VcA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="a5W-y3-het" id="xeO-HZ-ZR0"/>
+                                    <outlet property="delegate" destination="a5W-y3-het" id="YWR-e2-7I8"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ReE-cE-VcA" firstAttribute="top" secondItem="59N-nU-AED" secondAttribute="top" id="QmJ-6u-KEP"/>
+                            <constraint firstItem="ReE-cE-VcA" firstAttribute="leading" secondItem="59N-nU-AED" secondAttribute="leading" id="lHH-HP-Gzx"/>
+                            <constraint firstAttribute="trailing" secondItem="ReE-cE-VcA" secondAttribute="trailing" id="lHN-AZ-a9S"/>
+                            <constraint firstAttribute="bottom" secondItem="ReE-cE-VcA" secondAttribute="bottom" id="tpj-Gp-Tq8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="SXw-ts-ye0"/>
                     </view>
+                    <connections>
+                        <outlet property="table" destination="ReE-cE-VcA" id="yPB-0E-Ari"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QBS-g7-Qrt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-274" y="38"/>
+            <point key="canvasLocation" x="-274.39999999999998" y="37.331334332833585"/>
         </scene>
     </scenes>
 </document>

@@ -10,6 +10,9 @@
 		7E5CC45238E5136C5EEA1E25 /* Pods_AdminCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4811BD0DF26F2C2293C1AC15 /* Pods_AdminCore.framework */; };
 		A705DF811FF3C69D001D865E /* Persistence+Conversations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF801FF3C69D001D865E /* Persistence+Conversations.swift */; };
 		A705DF831FF3C756001D865E /* Conversation+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF821FF3C756001D865E /* Conversation+Properties.swift */; };
+		A705DF861FF3CF85001D865E /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF841FF3CF85001D865E /* ConversationCell.swift */; };
+		A705DF871FF3CF85001D865E /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A705DF851FF3CF85001D865E /* ConversationCell.xib */; };
+		A705DF8A1FF3D518001D865E /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF891FF3D518001D865E /* DateFormatter+Extensions.swift */; };
 		A7203E051FE23D20009558A7 /* StoryboardLoaded.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E031FE23D20009558A7 /* StoryboardLoaded.swift */; };
 		A7203E061FE23D20009558A7 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E041FE23D20009558A7 /* Storyboards.swift */; };
 		A7203E091FE23D50009558A7 /* CoreLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E081FE23D50009558A7 /* CoreLog.swift */; };
@@ -102,6 +105,9 @@
 		719703010A62BE38279E846E /* Pods-FeedbackAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedbackAdmin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin.debug.xcconfig"; sourceTree = "<group>"; };
 		A705DF801FF3C69D001D865E /* Persistence+Conversations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistence+Conversations.swift"; sourceTree = "<group>"; };
 		A705DF821FF3C756001D865E /* Conversation+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+Properties.swift"; sourceTree = "<group>"; };
+		A705DF841FF3CF85001D865E /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		A705DF851FF3CF85001D865E /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
+		A705DF891FF3D518001D865E /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		A7203E031FE23D20009558A7 /* StoryboardLoaded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardLoaded.swift; sourceTree = "<group>"; };
 		A7203E041FE23D20009558A7 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		A7203E081FE23D50009558A7 /* CoreLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLog.swift; sourceTree = "<group>"; };
@@ -239,6 +245,8 @@
 		A7203E171FE2430D009558A7 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
+				A705DF841FF3CF85001D865E /* ConversationCell.swift */,
+				A705DF851FF3CF85001D865E /* ConversationCell.xib */,
 				A7203E181FE2431E009558A7 /* Conversations.storyboard */,
 				A7203E1A1FE24325009558A7 /* ConversationsViewController.swift */,
 			);
@@ -265,6 +273,7 @@
 		A7203E241FE24513009558A7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A705DF891FF3D518001D865E /* DateFormatter+Extensions.swift */,
 				A7203E2F1FE25084009558A7 /* UITableView+Dequeue.swift */,
 				A7203E251FE24527009558A7 /* UIView+Autolayout.swift */,
 				A7203E311FE250A2009558A7 /* UIView+Loading.swift */,
@@ -616,6 +625,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A705DF871FF3CF85001D865E /* ConversationCell.xib in Resources */,
 				A7203E111FE23FD9009558A7 /* Main.storyboard in Resources */,
 				A7203E361FE252D8009558A7 /* ApplicationCell.xib in Resources */,
 				A7203E161FE24276009558A7 /* Applications.storyboard in Resources */,
@@ -768,6 +778,7 @@
 				A7203E301FE25084009558A7 /* UITableView+Dequeue.swift in Sources */,
 				A7203E351FE252D8009558A7 /* ApplicationCell.swift in Sources */,
 				A7203E201FE2436B009558A7 /* MessagesViewController.swift in Sources */,
+				A705DF861FF3CF85001D865E /* ConversationCell.swift in Sources */,
 				A7203E321FE250A2009558A7 /* UIView+Loading.swift in Sources */,
 				A7203E051FE23D20009558A7 /* StoryboardLoaded.swift in Sources */,
 				A7203E0C1FE23F75009558A7 /* Log.swift in Sources */,
@@ -775,6 +786,7 @@
 				A7203E141FE2426F009558A7 /* ApplicationsViewController.swift in Sources */,
 				A7203E0F1FE23FCE009558A7 /* MainViewController.swift in Sources */,
 				A7203E231FE243D1009558A7 /* UIInjector.swift in Sources */,
+				A705DF8A1FF3D518001D865E /* DateFormatter+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

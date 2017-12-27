@@ -15,15 +15,42 @@
  */
 
 import UIKit
+import AdminCore
+import CoreData
 
-internal class ConversationsViewController: UIViewController, StoryboardLoaded {
+private typealias Dependencies = PersistenceConsumer
+
+internal class ConversationsViewController: FetchedTableViewController<Conversation, ConversationCell>, StoryboardLoaded, Dependencies {
     static var storyboardName: String {
         return "Conversations"
     }
+    
+    @IBOutlet private var table: UITableView! {
+        didSet {
+            tableView = table
+        }
+    }
+    
+    var persistence: Persistence!
+    
+    private var application: Application?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Conversations"
+    }
+    
+    override func createFetchedController() -> NSFetchedResultsController<Conversation> {
+        return persistence.mainContext.emptyConversationsController()
+    }
+    
+    internal func presentConversations(for application: Application) {
+        let predicate = persistence.mainContext.conversationsPredicate(for: application)
+        updateFetch(predicate)
+    }
+    
+    override func configure(cell: ConversationCell, with conversation: Conversation, at indexPath: IndexPath) {
+        cell.conversation = conversation
     }
 }

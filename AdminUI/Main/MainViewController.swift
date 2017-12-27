@@ -33,6 +33,7 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
     @IBOutlet private var applicationsContainer: UIView!
     private var applicationsController: ApplicationsViewController?
     @IBOutlet private var conversationsContainer: UIView!
+    private var conversationsController: ConversationsViewController?
     @IBOutlet private var messagesContainer: UIView!
     private lazy var activityIndicatorItem: UIBarButtonItem = {
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
@@ -46,6 +47,7 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
         let applications = Storyboards.loadFromStoryboard() as ApplicationsViewController
         inject(into: applications)
         applicationsController = applications
+        applications.delegate = self
         let aoplicationsNavigation = UINavigationController(rootViewController: applications)
         addChildViewController(aoplicationsNavigation)
         applicationsContainer.addSubview(aoplicationsNavigation.view)
@@ -53,6 +55,7 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
         
         let conversations = Storyboards.loadFromStoryboard() as ConversationsViewController
         inject(into: conversations)
+        conversationsController = conversations
         let conversationsNavigation = UINavigationController(rootViewController: conversations)
         addChildViewController(conversationsNavigation)
         conversationsContainer.addSubview(conversationsNavigation.view)
@@ -82,5 +85,11 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
                 self.applicationsController?.navigationItem.rightBarButtonItem = nil
             }
         }
+    }
+}
+
+extension MainViewController: ApplicationSelectionDelegate {
+    func selected(application: Application) {
+        conversationsController?.presentConversations(for: application)
     }
 }

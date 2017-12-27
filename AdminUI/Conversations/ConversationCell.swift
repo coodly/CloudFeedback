@@ -14,15 +14,27 @@
  * limitations under the License.
  */
 
-import Foundation
-import CoreData
+import UIKit
+import AdminCore
 
-extension Conversation {
-    @NSManaged var recordName: String?
-    @NSManaged var recordData: Data?
+internal class ConversationCell: UITableViewCell {
+    @IBOutlet private var date: UILabel!
+    @IBOutlet private var snippet: UILabel!
     
-    @NSManaged public var lastMessageTime: Date
-    @NSManaged public var snippet: String
+    internal var conversation: Conversation? {
+        didSet {
+            guard let shown = conversation else {
+                return
+            }
+            
+            date.text = DateFormatter.time.string(from: shown.lastMessageTime)
+            snippet.text = shown.snippet
+        }
+    }
     
-    @NSManaged var application: Application
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        snippet.numberOfLines = 0
+    }
 }
