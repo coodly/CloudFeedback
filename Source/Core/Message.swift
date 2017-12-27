@@ -17,33 +17,30 @@
 import Puff
 import CloudKit
 
-public struct Conversation: RemoteRecord {
-    public static var recordType: String {
-        return "Conversation"
-    }
-
-    public var recordName: String?
-    public var recordData: Data?
+public struct Message: RemoteRecord {
     public var parent: CKRecordID?
+    public var recordData: Data?
+    public var recordName: String?
+    public static var recordType: String {
+        return "Message"
+    }
     
-    public var appIdentifier: String?
-    public var lastMessageTime: Date?
-    public var snippet: String?
+    var body: String?
+    var conversation: CKReference?
+    var postedAt: Date?
+    var sentBy: String?
+    var platform: String?
     
     public mutating func loadFields(from record: CKRecord) -> Bool {
-        appIdentifier = record["appIdentifier"] as? String
-        lastMessageTime = record["lastMessageTime"] as? Date
-        snippet = record["snippet"] as? String
-        
+        body = record["body"] as? String
+        conversation = record["conversation"] as? CKReference
+        postedAt = record["postedAt"] as? Date
+        sentBy = record["sentBy"] as? String
+        platform = record["platform"] as? String
         return true
     }
     
     public init() {
         
-    }
-    
-    public init(recordName: String?, recordData: Data?) {
-        self.recordName = recordName
-        self.recordData = recordData
     }
 }

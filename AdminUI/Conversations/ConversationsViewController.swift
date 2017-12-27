@@ -18,6 +18,10 @@ import UIKit
 import AdminCore
 import CoreData
 
+internal protocol ConversationSelectionDelegate: class {
+    func selected(conversation: Conversation)
+}
+
 private typealias Dependencies = PersistenceConsumer
 
 internal class ConversationsViewController: FetchedTableViewController<Conversation, ConversationCell>, StoryboardLoaded, Dependencies {
@@ -32,8 +36,7 @@ internal class ConversationsViewController: FetchedTableViewController<Conversat
     }
     
     var persistence: Persistence!
-    
-    private var application: Application?
+    internal weak var delegate: ConversationSelectionDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,5 +55,9 @@ internal class ConversationsViewController: FetchedTableViewController<Conversat
     
     override func configure(cell: ConversationCell, with conversation: Conversation, at indexPath: IndexPath) {
         cell.conversation = conversation
+    }
+    
+    override func tapped(_ conversation: Conversation, at indexPath: IndexPath) {
+        delegate?.selected(conversation: conversation)
     }
 }

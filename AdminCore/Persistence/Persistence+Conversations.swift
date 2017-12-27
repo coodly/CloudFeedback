@@ -19,7 +19,7 @@ import CoreData
 import CoreDataPersistence
 import CloudFeedback
 
-private extension NSPredicate {
+internal extension NSPredicate {
     static let falsePredicate = NSPredicate(format: "FALSEPREDICATE")
 }
 

@@ -6,20 +6,30 @@
     </entity>
     <entity name="Conversation" representedClassName=".Conversation" syncable="YES">
         <attribute name="lastMessageTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="messagesCheckedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="recordData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="recordName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="snippet" attributeType="String" syncable="YES"/>
         <relationship name="application" maxCount="1" deletionRule="Nullify" destinationEntity="Application" inverseName="conversations" inverseEntity="Application" syncable="YES"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Message" inverseName="conversation" inverseEntity="Message" syncable="YES"/>
     </entity>
-    <entity name="Message" representedClassName=".Message" syncable="YES"/>
+    <entity name="Message" representedClassName=".Message" syncable="YES">
+        <attribute name="body" attributeType="String" syncable="YES"/>
+        <attribute name="platform" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="recordData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="recordName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sentBy" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="conversation" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="messages" inverseEntity="Conversation" syncable="YES"/>
+    </entity>
     <entity name="Setting" representedClassName=".Setting" syncable="YES">
         <attribute name="internalKey" attributeType="String" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Application" positionX="-54" positionY="-9" width="128" height="75"/>
-        <element name="Conversation" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="Message" positionX="-36" positionY="9" width="128" height="45"/>
+        <element name="Conversation" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Message" positionX="-36" positionY="9" width="128" height="150"/>
         <element name="Setting" positionX="-36" positionY="9" width="128" height="75"/>
     </elements>
 </model>

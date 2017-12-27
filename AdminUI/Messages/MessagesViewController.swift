@@ -15,15 +15,50 @@
  */
 
 import UIKit
+import AdminCore
+import CoreData
 
-internal class MessagesViewController: UIViewController, StoryboardLoaded {
+private typealias Dependencies = PersistenceConsumer & FeedbackManagerConsumer
+
+internal class MessagesViewController: FetchedTableViewController<Message, MessageCell>, StoryboardLoaded, Dependencies {
     static var storyboardName: String {
         return "Messages"
     }
+    
+    var persistence: Persistence!
+    var manager: FeedbackManager!
+    
+    @IBOutlet private var table: UITableView! {
+        didSet {
+            tableView = table
+        }
+    }
+    
+    private lazy var activityIndicatorItem: UIBarButtonItem = {
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        indicator.startAnimating()
+        return UIBarButtonItem(customView: indicator)
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Messages"
+    }
+    
+    override func createFetchedController() -> NSFetchedResultsController<Message> {
+        return persistence.mainContext.emptyMessagesController()
+    }
+    
+    func presentMessages(in conversation: Conversation) {
+        let predicate = persistence.mainContext.messagesPredicate(for: conversation)
+        updateFetch(predicate)
+        
+        navigationItem.leftBarButtonItem = activityIndicatorItem
+        manager.checkMessages(for: conversation) {
+            DispatchQueue.main.async {
+                self.navigationItem.leftBarButtonItem = nil
+            }
+        }
     }
 }

@@ -17,9 +17,28 @@
                     <view key="view" contentMode="scaleToFill" id="IxV-Tc-cxP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OzS-Yu-5mL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Mbs-mr-rM1" id="mIm-aI-yfL"/>
+                                    <outlet property="delegate" destination="Mbs-mr-rM1" id="65a-pm-vQD"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jNy-eu-6MV" firstAttribute="trailing" secondItem="OzS-Yu-5mL" secondAttribute="trailing" id="9bG-FG-Cr9"/>
+                            <constraint firstItem="OzS-Yu-5mL" firstAttribute="leading" secondItem="jNy-eu-6MV" secondAttribute="leading" id="Ov5-Uq-XNO"/>
+                            <constraint firstItem="jNy-eu-6MV" firstAttribute="bottom" secondItem="OzS-Yu-5mL" secondAttribute="bottom" id="cal-Sv-9Hq"/>
+                            <constraint firstItem="OzS-Yu-5mL" firstAttribute="top" secondItem="IxV-Tc-cxP" secondAttribute="top" id="lQE-MZ-89x"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="jNy-eu-6MV"/>
                     </view>
+                    <connections>
+                        <outlet property="table" destination="OzS-Yu-5mL" id="q6v-Iu-Pnx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EuG-Zr-zYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

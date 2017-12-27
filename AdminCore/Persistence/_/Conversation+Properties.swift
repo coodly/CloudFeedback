@@ -23,6 +23,8 @@ extension Conversation {
     
     @NSManaged public var lastMessageTime: Date
     @NSManaged public var snippet: String
+    @NSManaged var messagesCheckedAt: Date?
     
     @NSManaged var application: Application
+    @NSManaged var messages: Set<Message>?
 }

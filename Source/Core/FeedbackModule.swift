@@ -22,6 +22,12 @@ public enum FetchConversationsProgress {
     case completed
 }
 
+public enum FetchMessagesProgress {
+    case failure
+    case fetched([Message])
+    case completed
+}
+
 public class FeedbackModule {
     internal let container: CKContainer
     internal let queue: OperationQueue
@@ -32,6 +38,21 @@ public class FeedbackModule {
     
     public func fetchConversations(since: Date = Date.distantPast, progress: @escaping ((FetchConversationsProgress) -> Void)) {
         let op = FetchConversationsOperation(since: since, in: container)
+        op.progress = progress
+        op.completionHandler = {
+            success, _ in
+            
+            if success {
+                progress(.completed)
+            } else {
+                progress(.failure)
+            }
+        }
+        queue.addOperation(op)
+    }
+    
+    public func fetchMessages(in conversation: Conversation, since: Date = Date.distantPast, progress: @escaping ((FetchMessagesProgress) -> Void)) {
+        let op = FetchMessagesOperation(conversation: conversation, since: since, in: container)
         op.progress = progress
         op.completionHandler = {
             success, _ in

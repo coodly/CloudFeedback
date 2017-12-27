@@ -14,10 +14,16 @@
  * limitations under the License.
  */
 
-import Foundation
 import CoreData
 
-public class Message: NSManagedObject {
+extension Message {
+    @NSManaged var recordName: String?
+    @NSManaged var recordData: Data?
+    
+    @NSManaged var body: String
+    @NSManaged var postedAt: Date
+    @NSManaged var sentBy: String?
+    @NSManaged var platform: String?
 
+    @NSManaged var conversation: Conversation
 }
-

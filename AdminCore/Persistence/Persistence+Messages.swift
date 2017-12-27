@@ -14,10 +14,16 @@
  * limitations under the License.
  */
 
-import Foundation
 import CoreData
+import CoreDataPersistence
 
-public class Message: NSManagedObject {
+extension NSManagedObjectContext {
+    public func emptyMessagesController() -> NSFetchedResultsController<Message> {
+        let sort = NSSortDescriptor(key: "postedAt", ascending: true)
+        return fetchedController(predicate: .falsePredicate, sort: [sort])
+    }
 
+    public func messagesPredicate(for conversation: Conversation) -> NSPredicate {
+        return NSPredicate(format: "conversation = %@", conversation)
+    }
 }
-

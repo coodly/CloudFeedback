@@ -13,6 +13,11 @@
 		A705DF861FF3CF85001D865E /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF841FF3CF85001D865E /* ConversationCell.swift */; };
 		A705DF871FF3CF85001D865E /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A705DF851FF3CF85001D865E /* ConversationCell.xib */; };
 		A705DF8A1FF3D518001D865E /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF891FF3D518001D865E /* DateFormatter+Extensions.swift */; };
+		A705DF8D1FF3EC55001D865E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF8B1FF3EC55001D865E /* MessageCell.swift */; };
+		A705DF8E1FF3EC55001D865E /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A705DF8C1FF3EC55001D865E /* MessageCell.xib */; };
+		A705DF901FF3ECD0001D865E /* Persistence+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF8F1FF3ECCF001D865E /* Persistence+Messages.swift */; };
+		A705DF921FF3ED0A001D865E /* Message+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF911FF3ED0A001D865E /* Message+Properties.swift */; };
+		A705DF961FF3F53D001D865E /* RefreshMessagesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF951FF3F53D001D865E /* RefreshMessagesOperation.swift */; };
 		A7203E051FE23D20009558A7 /* StoryboardLoaded.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E031FE23D20009558A7 /* StoryboardLoaded.swift */; };
 		A7203E061FE23D20009558A7 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E041FE23D20009558A7 /* Storyboards.swift */; };
 		A7203E091FE23D50009558A7 /* CoreLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E081FE23D50009558A7 /* CoreLog.swift */; };
@@ -108,6 +113,11 @@
 		A705DF841FF3CF85001D865E /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		A705DF851FF3CF85001D865E /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		A705DF891FF3D518001D865E /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		A705DF8B1FF3EC55001D865E /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		A705DF8C1FF3EC55001D865E /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		A705DF8F1FF3ECCF001D865E /* Persistence+Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistence+Messages.swift"; sourceTree = "<group>"; };
+		A705DF911FF3ED0A001D865E /* Message+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+Properties.swift"; sourceTree = "<group>"; };
+		A705DF951FF3F53D001D865E /* RefreshMessagesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshMessagesOperation.swift; sourceTree = "<group>"; };
 		A7203E031FE23D20009558A7 /* StoryboardLoaded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardLoaded.swift; sourceTree = "<group>"; };
 		A7203E041FE23D20009558A7 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		A7203E081FE23D50009558A7 /* CoreLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLog.swift; sourceTree = "<group>"; };
@@ -256,6 +266,8 @@
 		A7203E1C1FE24355009558A7 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				A705DF8B1FF3EC55001D865E /* MessageCell.swift */,
+				A705DF8C1FF3EC55001D865E /* MessageCell.xib */,
 				A7203E1D1FE24365009558A7 /* Messages.storyboard */,
 				A7203E1F1FE2436B009558A7 /* MessagesViewController.swift */,
 			);
@@ -286,6 +298,7 @@
 			children = (
 				A7203E2A1FE24F6D009558A7 /* Application+Properties.swift */,
 				A705DF821FF3C756001D865E /* Conversation+Properties.swift */,
+				A705DF911FF3ED0A001D865E /* Message+Properties.swift */,
 				A7C0505C1FEAC8BF00F73B6B /* Setting+Properties.swift */,
 			);
 			path = _;
@@ -312,6 +325,7 @@
 			children = (
 				A7C050681FEB76C700F73B6B /* ConcurrentOperation.swift */,
 				A7C050661FEB75EB00F73B6B /* RefreshConversationsOperation.swift */,
+				A705DF951FF3F53D001D865E /* RefreshMessagesOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -440,6 +454,7 @@
 				A7C903B51FE119AD00FE921A /* Persistence.swift */,
 				A7203E271FE24ED5009558A7 /* Persistence+Applications.swift */,
 				A705DF801FF3C69D001D865E /* Persistence+Conversations.swift */,
+				A705DF8F1FF3ECCF001D865E /* Persistence+Messages.swift */,
 				A7C0505E1FEAC90600F73B6B /* Persistence+Settings.swift */,
 				A7C0505A1FEAC87B00F73B6B /* Setting.swift */,
 			);
@@ -630,6 +645,7 @@
 				A7203E361FE252D8009558A7 /* ApplicationCell.xib in Resources */,
 				A7203E161FE24276009558A7 /* Applications.storyboard in Resources */,
 				A7203E1E1FE24365009558A7 /* Messages.storyboard in Resources */,
+				A705DF8E1FF3EC55001D865E /* MessageCell.xib in Resources */,
 				A7203E191FE2431E009558A7 /* Conversations.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -743,6 +759,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A705DF921FF3ED0A001D865E /* Message+Properties.swift in Sources */,
+				A705DF961FF3F53D001D865E /* RefreshMessagesOperation.swift in Sources */,
 				A7203E091FE23D50009558A7 /* CoreLog.swift in Sources */,
 				A7C050651FEB750E00F73B6B /* AppQueueConsumer.swift in Sources */,
 				A7C903B01FE1193000FE921A /* Application.swift in Sources */,
@@ -760,6 +778,7 @@
 				A7C050671FEB75EB00F73B6B /* RefreshConversationsOperation.swift in Sources */,
 				A7C903B81FE119D200FE921A /* PersistenceConsumer.swift in Sources */,
 				A7C903B21FE1195F00FE921A /* Conversation.swift in Sources */,
+				A705DF901FF3ECD0001D865E /* Persistence+Messages.swift in Sources */,
 				A705DF831FF3C756001D865E /* Conversation+Properties.swift in Sources */,
 				A7C903A71FE1178500FE921A /* CoreInjector.swift in Sources */,
 				A7203E2B1FE24F6D009558A7 /* Application+Properties.swift in Sources */,
@@ -773,6 +792,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7203E061FE23D20009558A7 /* Storyboards.swift in Sources */,
+				A705DF8D1FF3EC55001D865E /* MessageCell.swift in Sources */,
 				A7203E261FE24527009558A7 /* UIView+Autolayout.swift in Sources */,
 				A7203E2E1FE25027009558A7 /* FetchedTableViewController.swift in Sources */,
 				A7203E301FE25084009558A7 /* UITableView+Dequeue.swift in Sources */,

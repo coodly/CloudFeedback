@@ -35,6 +35,7 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
     @IBOutlet private var conversationsContainer: UIView!
     private var conversationsController: ConversationsViewController?
     @IBOutlet private var messagesContainer: UIView!
+    private var messagesController: MessagesViewController?
     private lazy var activityIndicatorItem: UIBarButtonItem = {
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         indicator.startAnimating()
@@ -56,6 +57,7 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
         let conversations = Storyboards.loadFromStoryboard() as ConversationsViewController
         inject(into: conversations)
         conversationsController = conversations
+        conversations.delegate = self
         let conversationsNavigation = UINavigationController(rootViewController: conversations)
         addChildViewController(conversationsNavigation)
         conversationsContainer.addSubview(conversationsNavigation.view)
@@ -63,6 +65,7 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
         
         let messages = Storyboards.loadFromStoryboard() as MessagesViewController
         inject(into: messages)
+        messagesController = messages
         let messagesNavigation = UINavigationController(rootViewController: messages)
         addChildViewController(messagesNavigation)
         messagesContainer.addSubview(messagesNavigation.view)
@@ -91,5 +94,11 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
 extension MainViewController: ApplicationSelectionDelegate {
     func selected(application: Application) {
         conversationsController?.presentConversations(for: application)
+    }
+}
+
+extension MainViewController: ConversationSelectionDelegate {
+    func selected(conversation: Conversation) {
+        messagesController?.presentMessages(in: conversation)
     }
 }

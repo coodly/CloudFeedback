@@ -29,4 +29,15 @@ public class FeedbackManager: Dependencies, CoreInjector {
         }
         appQueue.addOperation(op)
     }
+    
+    public func checkMessages(for conversation: Conversation, completion: @escaping (() -> Void)) {
+        let op = RefreshMessagesOperation(conversation: conversation)
+        inject(into: op)
+        op.completionHandler = {
+            _, _ in
+            
+            completion()
+        }
+        appQueue.addOperation(op)
+    }
 }

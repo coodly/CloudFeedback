@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-import Foundation
-import CoreData
+import UIKit
 
-public class Message: NSManagedObject {
+internal class MessageCell: UITableViewCell {
 
 }
-

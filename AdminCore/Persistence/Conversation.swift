@@ -16,8 +16,11 @@
 
 import Foundation
 import CoreData
+import CloudFeedback
 
 public class Conversation: NSManagedObject {
-    
+    internal func toCloud() -> CloudFeedback.Conversation {
+        return CloudFeedback.Conversation(recordName: recordName, recordData: recordData)
+    }
 }
 
