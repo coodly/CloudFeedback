@@ -44,6 +44,7 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
         super.viewDidLoad()
         
         title = "Messages"
+        table.separatorStyle = .none
     }
     
     override func createFetchedController() -> NSFetchedResultsController<Message> {

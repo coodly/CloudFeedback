@@ -20,6 +20,21 @@ import AdminCore
 internal class MessageCell: UITableViewCell {
     @IBOutlet private var time: UILabel!
     @IBOutlet private var body: UILabel!
+    @IBOutlet private var sentBy: UILabel!
+    @IBOutlet private var bubble: UIView!
+    @IBOutlet private var left: NSLayoutConstraint! {
+        didSet {
+            originalLeft = left.constant
+        }
+    }
+    @IBOutlet private var right: NSLayoutConstraint! {
+        didSet {
+            originalRight = right.constant
+        }
+    }
+    private var originalLeft: CGFloat = 0
+    private var originalRight: CGFloat = 0
+    
     
     internal var message: Message? {
         didSet {
@@ -29,6 +44,18 @@ internal class MessageCell: UITableViewCell {
             
             time.text = DateFormatter.time.string(from: shown.postedAt)
             body.text = shown.body
+            sentBy.text = shown.sentBy
+            
+            bubble.layer.cornerRadius = 4
+            bubble.backgroundColor = UIColor.black.withAlphaComponent(0.05)
+            
+            if shown.sentBy?.hasValue() ?? false {
+                left.constant = originalLeft * 3
+                right.constant = originalRight
+            } else {
+                left.constant = originalLeft
+                right.constant = originalRight * 3
+            }
         }
     }
     

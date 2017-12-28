@@ -39,6 +39,7 @@
 		A7203E321FE250A2009558A7 /* UIView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E311FE250A2009558A7 /* UIView+Loading.swift */; };
 		A7203E351FE252D8009558A7 /* ApplicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E331FE252D8009558A7 /* ApplicationCell.swift */; };
 		A7203E361FE252D8009558A7 /* ApplicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7203E341FE252D8009558A7 /* ApplicationCell.xib */; };
+		A76836C51FF5423D00FD04CE /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76836C41FF5423D00FD04CE /* String+Extensions.swift */; };
 		A7C050521FEAC42300F73B6B /* FeedbackAdminConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050511FEAC42300F73B6B /* FeedbackAdminConsumer.swift */; };
 		A7C050571FEAC67600F73B6B /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050561FEAC67600F73B6B /* FeedbackManager.swift */; };
 		A7C050591FEAC69000F73B6B /* FeedbackManagerConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050581FEAC69000F73B6B /* FeedbackManagerConsumer.swift */; };
@@ -139,6 +140,7 @@
 		A7203E311FE250A2009558A7 /* UIView+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Loading.swift"; sourceTree = "<group>"; };
 		A7203E331FE252D8009558A7 /* ApplicationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCell.swift; sourceTree = "<group>"; };
 		A7203E341FE252D8009558A7 /* ApplicationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplicationCell.xib; sourceTree = "<group>"; };
+		A76836C41FF5423D00FD04CE /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		A7B30DF4D6215F25D8566D8E /* Pods-FeedbackAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedbackAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		A7C050511FEAC42300F73B6B /* FeedbackAdminConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAdminConsumer.swift; sourceTree = "<group>"; };
 		A7C050561FEAC67600F73B6B /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				A7203E2F1FE25084009558A7 /* UITableView+Dequeue.swift */,
 				A7203E251FE24527009558A7 /* UIView+Autolayout.swift */,
 				A7203E311FE250A2009558A7 /* UIView+Loading.swift */,
+				A76836C41FF5423D00FD04CE /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -803,6 +806,7 @@
 				A7203E051FE23D20009558A7 /* StoryboardLoaded.swift in Sources */,
 				A7203E0C1FE23F75009558A7 /* Log.swift in Sources */,
 				A7203E1B1FE24325009558A7 /* ConversationsViewController.swift in Sources */,
+				A76836C51FF5423D00FD04CE /* String+Extensions.swift in Sources */,
 				A7203E141FE2426F009558A7 /* ApplicationsViewController.swift in Sources */,
 				A7203E0F1FE23FCE009558A7 /* MainViewController.swift in Sources */,
 				A7203E231FE243D1009558A7 /* UIInjector.swift in Sources */,
