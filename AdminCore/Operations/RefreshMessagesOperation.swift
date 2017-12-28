@@ -15,6 +15,7 @@
  */
 
 import CloudFeedback
+import CoreDataPersistence
 
 private typealias Dependencies = PersistenceConsumer & FeedbackAdminConsumer
 
@@ -23,6 +24,8 @@ internal class RefreshMessagesOperation: ConcurrentOperation, Dependencies {
     var adminModule: FeedbackModule!
 
     private let conversation: Conversation
+    private let checkedAt = Date()
+    
     internal init(conversation: Conversation) {
         self.conversation = conversation
     }
@@ -42,12 +45,24 @@ internal class RefreshMessagesOperation: ConcurrentOperation, Dependencies {
     private func handle(progress: FetchMessagesProgress) {
         Log.debug("Progress: \(progress)")
         switch progress {
-        case .failure, .completed:
-            self.finish()
-        case .fetched(let conversations):
+        case .failure:
+            finish()
+        case .completed:
+            let save: ContextClosure = {
+                context in
+                
+                let conversation = context.inCurrentContext(entity: self.conversation)
+                conversation.messagesCheckedAt = self.checkedAt
+            }
+            persistence.performInBackground(task: save) {
+                self.finish()
+            }
+        case .fetched(let messages):
             persistence.performInBackground() {
                 context in
                 
+                let conversation = context.inCurrentContext(entity: self.conversation)
+                context.update(messages: messages, in: conversation)
             }
         }
     }

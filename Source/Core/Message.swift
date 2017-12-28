@@ -25,11 +25,11 @@ public struct Message: RemoteRecord {
         return "Message"
     }
     
-    var body: String?
+    public var body: String?
     var conversation: CKReference?
-    var postedAt: Date?
-    var sentBy: String?
-    var platform: String?
+    public var postedAt: Date?
+    public var sentBy: String?
+    public var platform: String?
     
     public mutating func loadFields(from record: CKRecord) -> Bool {
         body = record["body"] as? String

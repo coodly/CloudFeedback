@@ -20,10 +20,10 @@ extension Message {
     @NSManaged var recordName: String?
     @NSManaged var recordData: Data?
     
-    @NSManaged var body: String
-    @NSManaged var postedAt: Date
-    @NSManaged var sentBy: String?
-    @NSManaged var platform: String?
+    @NSManaged public var body: String
+    @NSManaged public var postedAt: Date
+    @NSManaged public var sentBy: String?
+    @NSManaged public var platform: String?
 
     @NSManaged var conversation: Conversation
 }

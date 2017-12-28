@@ -61,4 +61,8 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
             }
         }
     }
+    
+    override func configure(cell: MessageCell, with message: Message, at indexPath: IndexPath) {
+        cell.message = message
+    }
 }

@@ -15,7 +15,26 @@
  */
 
 import UIKit
+import AdminCore
 
 internal class MessageCell: UITableViewCell {
-
+    @IBOutlet private var time: UILabel!
+    @IBOutlet private var body: UILabel!
+    
+    internal var message: Message? {
+        didSet {
+            guard let shown = message else {
+                return
+            }
+            
+            time.text = DateFormatter.time.string(from: shown.postedAt)
+            body.text = shown.body
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        body.numberOfLines = 0
+    }
 }

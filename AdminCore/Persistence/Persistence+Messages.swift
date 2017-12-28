@@ -16,6 +16,7 @@
 
 import CoreData
 import CoreDataPersistence
+import CloudFeedback
 
 extension NSManagedObjectContext {
     public func emptyMessagesController() -> NSFetchedResultsController<Message> {
@@ -25,5 +26,26 @@ extension NSManagedObjectContext {
 
     public func messagesPredicate(for conversation: Conversation) -> NSPredicate {
         return NSPredicate(format: "conversation = %@", conversation)
+    }
+    
+    internal func update(messages: [CloudFeedback.Message], in conversation: Conversation) {
+        let names = messages.flatMap({ $0.recordName })
+        let predicate = NSPredicate(format: "recordName IN %@", names)
+        
+        let existing: [Message] = fetch(predicate: predicate)
+        
+        for message in messages {
+            let saved = existing.first(where: { $0.recordName == message.recordName }) ?? insertEntity()
+            
+            saved.recordName = message.recordName
+            saved.recordData = message.recordData
+            
+            saved.body = message.body!
+            saved.postedAt = message.postedAt!
+            saved.sentBy = message.sentBy
+            saved.platform = message.platform
+            
+            saved.conversation = conversation
+        }
     }
 }
