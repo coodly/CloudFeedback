@@ -81,6 +81,7 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
         }
         
         inputPlaceholder.isHidden = false
+        sendViewController.conversation = conversation
     }
     
     override func configure(cell: MessageCell, with message: Message, at indexPath: IndexPath) {

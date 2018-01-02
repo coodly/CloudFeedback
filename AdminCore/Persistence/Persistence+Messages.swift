@@ -48,4 +48,13 @@ extension NSManagedObjectContext {
             saved.conversation = conversation
         }
     }
+    
+    internal func add(message: String, by sender: String, to conversation: Conversation) {
+        let saved: Message = insertEntity()
+        
+        saved.sentBy = sender
+        saved.body = message
+        saved.postedAt = Date()
+        saved.conversation = conversation
+    }
 }

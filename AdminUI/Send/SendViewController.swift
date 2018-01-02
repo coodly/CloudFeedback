@@ -15,12 +15,14 @@
  */
 
 import UIKit
+import AdminCore
 
 private extension Selector {
     static let senderChanged = #selector(SendViewController.senderChanged(_:))
+    static let sendMessage = #selector(SendViewController.sendMessage)
 }
 
-internal class SendViewController: UIViewController, StoryboardLoaded {
+internal class SendViewController: UIViewController, StoryboardLoaded, UIInjector {
     static var storyboardName: String {
         return "Send"
     }
@@ -30,9 +32,16 @@ internal class SendViewController: UIViewController, StoryboardLoaded {
     @IBOutlet private var entryView: UITextView!
     
     private let viewModel = SendViewModel()
+    internal var conversation: Conversation? {
+        didSet {
+            viewModel.conversation = conversation
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        inject(into: viewModel)
         
         entryView.isScrollEnabled = false
         entryView.text = ""
@@ -54,10 +63,18 @@ internal class SendViewController: UIViewController, StoryboardLoaded {
         
         sender.addTarget(self, action: .senderChanged, for: .allEditingEvents)
         sender.delegate = self
+        
+        submit.addTarget(self, action: .sendMessage, for: .touchUpInside)
     }
     
     @objc fileprivate func senderChanged(_ field: UITextField) {
         viewModel.sender = field.text ?? ""
+    }
+    
+    @objc fileprivate func sendMessage() {
+        Log.debug("Send message")
+        
+        viewModel.submit()
     }
 }
 

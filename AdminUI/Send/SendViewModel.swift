@@ -17,7 +17,12 @@
 import Foundation
 import AdminCore
 
-internal class SendViewModel {
+private typealias Dependencies = PersistenceConsumer & FeedbackManagerConsumer
+
+internal class SendViewModel: Dependencies {
+    var persistence: Persistence!
+    var manager: FeedbackManager!
+    
     internal struct Status {
         var sender = ""
         var message = ""
@@ -53,5 +58,17 @@ internal class SendViewModel {
         set {
             status.message = newValue
         }
+    }
+    
+    internal var conversation: Conversation?
+    
+    internal func submit() {
+        guard let conversation = self.conversation, status.sender.hasValue(), status.message.hasValue() else {
+            return
+        }
+        
+        manager.send(message: message, by: sender, in: conversation)
+        
+        message = ""
     }
 }
