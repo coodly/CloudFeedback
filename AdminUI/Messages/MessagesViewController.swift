@@ -33,6 +33,8 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
             tableView = table
         }
     }
+    @IBOutlet private var inputPlaceholder: UIView!
+    private lazy var sendViewController: SendViewController = Storyboards.loadFromStoryboard()
     
     private lazy var activityIndicatorItem: UIBarButtonItem = {
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
@@ -45,6 +47,12 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
         
         title = "Messages"
         table.separatorStyle = .none
+        
+        addChildViewController(sendViewController)
+        inputPlaceholder.addSubview(sendViewController.view)
+        sendViewController.view.pinToSuperviewEdges()
+        
+        inputPlaceholder.isHidden = true
     }
     
     override func createFetchedController() -> NSFetchedResultsController<Message> {
@@ -61,6 +69,8 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
                 self.navigationItem.leftBarButtonItem = nil
             }
         }
+        
+        inputPlaceholder.isHidden = false
     }
     
     override func configure(cell: MessageCell, with message: Message, at indexPath: IndexPath) {

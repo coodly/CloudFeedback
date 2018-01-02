@@ -18,31 +18,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OzS-Yu-5mL">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yGL-MG-CU0">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Mbs-mr-rM1" id="mIm-aI-yfL"/>
-                                    <outlet property="delegate" destination="Mbs-mr-rM1" id="65a-pm-vQD"/>
-                                </connections>
-                            </tableView>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OzS-Yu-5mL">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="567"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Mbs-mr-rM1" id="mIm-aI-yfL"/>
+                                            <outlet property="delegate" destination="Mbs-mr-rM1" id="65a-pm-vQD"/>
+                                        </connections>
+                                    </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2YF-46-cdA">
+                                        <rect key="frame" x="0.0" y="567" width="375" height="100"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" placeholder="YES" id="k1M-CA-b1D"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="jNy-eu-6MV" firstAttribute="trailing" secondItem="OzS-Yu-5mL" secondAttribute="trailing" id="9bG-FG-Cr9"/>
-                            <constraint firstItem="OzS-Yu-5mL" firstAttribute="leading" secondItem="jNy-eu-6MV" secondAttribute="leading" id="Ov5-Uq-XNO"/>
-                            <constraint firstItem="jNy-eu-6MV" firstAttribute="bottom" secondItem="OzS-Yu-5mL" secondAttribute="bottom" id="cal-Sv-9Hq"/>
-                            <constraint firstItem="OzS-Yu-5mL" firstAttribute="top" secondItem="IxV-Tc-cxP" secondAttribute="top" id="lQE-MZ-89x"/>
+                            <constraint firstItem="yGL-MG-CU0" firstAttribute="leading" secondItem="IxV-Tc-cxP" secondAttribute="leading" id="KXq-7f-Pol"/>
+                            <constraint firstItem="yGL-MG-CU0" firstAttribute="top" secondItem="IxV-Tc-cxP" secondAttribute="top" id="QbB-a1-M98"/>
+                            <constraint firstAttribute="trailing" secondItem="yGL-MG-CU0" secondAttribute="trailing" id="nDo-kz-kwx"/>
+                            <constraint firstAttribute="bottom" secondItem="yGL-MG-CU0" secondAttribute="bottom" id="vsD-fN-Og3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jNy-eu-6MV"/>
                     </view>
                     <connections>
+                        <outlet property="inputPlaceholder" destination="2YF-46-cdA" id="UQn-jN-iu7"/>
                         <outlet property="table" destination="OzS-Yu-5mL" id="q6v-Iu-Pnx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EuG-Zr-zYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="161" y="188"/>
+            <point key="canvasLocation" x="160.80000000000001" y="187.55622188905548"/>
         </scene>
     </scenes>
 </document>

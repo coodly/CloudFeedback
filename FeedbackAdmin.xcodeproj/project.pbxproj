@@ -39,6 +39,9 @@
 		A7203E321FE250A2009558A7 /* UIView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E311FE250A2009558A7 /* UIView+Loading.swift */; };
 		A7203E351FE252D8009558A7 /* ApplicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7203E331FE252D8009558A7 /* ApplicationCell.swift */; };
 		A7203E361FE252D8009558A7 /* ApplicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7203E341FE252D8009558A7 /* ApplicationCell.xib */; };
+		A73B78B91FFB4C7F002333D9 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78B81FFB4C7F002333D9 /* SendViewController.swift */; };
+		A73B78BB1FFB4CB4002333D9 /* Send.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A73B78BA1FFB4CB4002333D9 /* Send.storyboard */; };
+		A73B78BE1FFB52B5002333D9 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A73B78BD1FFB52B5002333D9 /* Media.xcassets */; };
 		A76836C51FF5423D00FD04CE /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76836C41FF5423D00FD04CE /* String+Extensions.swift */; };
 		A7C050521FEAC42300F73B6B /* FeedbackAdminConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050511FEAC42300F73B6B /* FeedbackAdminConsumer.swift */; };
 		A7C050571FEAC67600F73B6B /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050561FEAC67600F73B6B /* FeedbackManager.swift */; };
@@ -140,6 +143,9 @@
 		A7203E311FE250A2009558A7 /* UIView+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Loading.swift"; sourceTree = "<group>"; };
 		A7203E331FE252D8009558A7 /* ApplicationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCell.swift; sourceTree = "<group>"; };
 		A7203E341FE252D8009558A7 /* ApplicationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplicationCell.xib; sourceTree = "<group>"; };
+		A73B78B81FFB4C7F002333D9 /* SendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
+		A73B78BA1FFB4CB4002333D9 /* Send.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Send.storyboard; sourceTree = "<group>"; };
+		A73B78BD1FFB52B5002333D9 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		A76836C41FF5423D00FD04CE /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		A7B30DF4D6215F25D8566D8E /* Pods-FeedbackAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedbackAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		A7C050511FEAC42300F73B6B /* FeedbackAdminConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAdminConsumer.swift; sourceTree = "<group>"; };
@@ -315,6 +321,23 @@
 			path = Fetched;
 			sourceTree = "<group>";
 		};
+		A73B78B71FFB4C5E002333D9 /* Send */ = {
+			isa = PBXGroup;
+			children = (
+				A73B78BA1FFB4CB4002333D9 /* Send.storyboard */,
+				A73B78B81FFB4C7F002333D9 /* SendViewController.swift */,
+			);
+			path = Send;
+			sourceTree = "<group>";
+		};
+		A73B78BC1FFB52A8002333D9 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				A73B78BD1FFB52B5002333D9 /* Media.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		A7C050551FEAC65C00F73B6B /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +416,7 @@
 		A7C903951FE112D300FE921A /* AdminUI */ = {
 			isa = PBXGroup;
 			children = (
+				A73B78BC1FFB52A8002333D9 /* Assets */,
 				A7203E121FE24257009558A7 /* Applications */,
 				A7203E171FE2430D009558A7 /* Conversations */,
 				A7203E241FE24513009558A7 /* Extensions */,
@@ -401,6 +425,7 @@
 				A7203E0A1FE23F6B009558A7 /* Log */,
 				A7203E0D1FE23FC1009558A7 /* Main */,
 				A7203E1C1FE24355009558A7 /* Messages */,
+				A73B78B71FFB4C5E002333D9 /* Send */,
 				A7203E021FE23D20009558A7 /* Storyboards */,
 				A7C903A31FE116D400FE921A /* Supporting files */,
 			);
@@ -643,12 +668,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A73B78BB1FFB4CB4002333D9 /* Send.storyboard in Resources */,
 				A705DF871FF3CF85001D865E /* ConversationCell.xib in Resources */,
 				A7203E111FE23FD9009558A7 /* Main.storyboard in Resources */,
 				A7203E361FE252D8009558A7 /* ApplicationCell.xib in Resources */,
 				A7203E161FE24276009558A7 /* Applications.storyboard in Resources */,
 				A7203E1E1FE24365009558A7 /* Messages.storyboard in Resources */,
 				A705DF8E1FF3EC55001D865E /* MessageCell.xib in Resources */,
+				A73B78BE1FFB52B5002333D9 /* Media.xcassets in Resources */,
 				A7203E191FE2431E009558A7 /* Conversations.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -796,6 +823,7 @@
 			files = (
 				A7203E061FE23D20009558A7 /* Storyboards.swift in Sources */,
 				A705DF8D1FF3EC55001D865E /* MessageCell.swift in Sources */,
+				A73B78B91FFB4C7F002333D9 /* SendViewController.swift in Sources */,
 				A7203E261FE24527009558A7 /* UIView+Autolayout.swift in Sources */,
 				A7203E2E1FE25027009558A7 /* FetchedTableViewController.swift in Sources */,
 				A7203E301FE25084009558A7 /* UITableView+Dequeue.swift in Sources */,
