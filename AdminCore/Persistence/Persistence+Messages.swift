@@ -50,11 +50,18 @@ extension NSManagedObjectContext {
     }
     
     internal func add(message: String, by sender: String, to conversation: Conversation) {
-        let saved: Message = insertEntity()
+        var saved: Message = insertEntity()
+        
+        let now = Date()
         
         saved.sentBy = sender
         saved.body = message
-        saved.postedAt = Date()
+        saved.postedAt = now
         saved.conversation = conversation
+        saved.markSyncNeeded()
+        
+        conversation.snippet = message.snippet()
+        conversation.lastMessageTime = now        
+        saved.conversation.markSyncNeeded()
     }
 }
