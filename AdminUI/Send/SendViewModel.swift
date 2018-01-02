@@ -60,7 +60,15 @@ internal class SendViewModel: Dependencies {
         }
     }
     
-    internal var conversation: Conversation?
+    internal var conversation: Conversation? {
+        didSet {
+            guard !sender.hasValue() else {
+                return
+            }
+            
+            sender = persistence.mainContext.submitter ?? ""
+        }
+    }
     
     internal func submit() {
         guard let conversation = self.conversation, status.sender.hasValue(), status.message.hasValue() else {

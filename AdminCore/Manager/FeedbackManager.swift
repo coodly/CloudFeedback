@@ -48,7 +48,8 @@ public class FeedbackManager: Dependencies, CoreInjector {
             
             let inContext = context.inCurrentContext(entity: conversation)
             
-            context.add(message: message, by: sender, to: conversation)
+            context.add(message: message, by: sender, to: inContext)
+            context.submitter = sender
         }
     }
 }

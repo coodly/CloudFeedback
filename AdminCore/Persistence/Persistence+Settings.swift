@@ -20,10 +20,11 @@ import CoreDataPersistence
 internal extension Setting {
     enum Key: String {
         case lastKnownConversationTime
+        case submitter
     }
 }
 
-internal extension NSManagedObjectContext {
+public extension NSManagedObjectContext {
     internal var lastKnownConversationTime: Date {
         get {
             return date(for: .lastKnownConversationTime)
@@ -32,9 +33,24 @@ internal extension NSManagedObjectContext {
             set(date: newValue, for: .lastKnownConversationTime)
         }
     }
+    
+    public var submitter: String? {
+        get {
+            return setting(for: .submitter)?.value
+        }
+        set {
+            set(string: newValue ?? "", for: .submitter)
+        }
+    }
 }
 
 private extension NSManagedObjectContext {
+    private func set(string: String, for key: Setting.Key) {
+        let saved: Setting = setting(for: key) ?? insertEntity()
+        saved.key = key
+        saved.value = string
+    }
+    
     private func date(for key: Setting.Key, fallback: Date = Date.distantPast) -> Date {
         return setting(for: key)?.dateValue ?? fallback
     }
