@@ -38,6 +38,7 @@
 		A527EBBD822EDD6EF0834C709EC39FCE /* Pods-AdminCore-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EE92C9E74F21A1FDACD1D51516040E66 /* Pods-AdminCore-dummy.m */; };
 		A705DF941FF3EE0C001D865E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF931FF3EE0C001D865E /* Message.swift */; };
 		A705DF981FF3F786001D865E /* FetchMessagesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF971FF3F786001D865E /* FetchMessagesOperation.swift */; };
+		A73B78CA1FFB706B002333D9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78C91FFB706B002333D9 /* String+Extensions.swift */; };
 		A7724A9AA31872542855E9DB5C55DD0B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B06AA33A967293736CB3F29F3342C /* Logging.swift */; };
 		B95FF6C62EA6CA26040737922A5351A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2311AC297A43250BC4357AD48EA70D2B /* Foundation.framework */; };
 		BB797FB29FE8D63B9F5E8DCB9C85C9A9 /* NSManagedObject+EnityDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8680E323CAF6187B6D72523910E9BE /* NSManagedObject+EnityDefinition.swift */; };
@@ -177,6 +178,7 @@
 		A40FC56CE060C91603042BCCAB147EC3 /* SWLogger.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SWLogger.modulemap; sourceTree = "<group>"; };
 		A705DF931FF3EE0C001D865E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Source/Core/Message.swift; sourceTree = "<group>"; };
 		A705DF971FF3F786001D865E /* FetchMessagesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FetchMessagesOperation.swift; path = Source/Core/FetchMessagesOperation.swift; sourceTree = "<group>"; };
+		A73B78C91FFB706B002333D9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+Extensions.swift"; path = "Source/Core/String+Extensions.swift"; sourceTree = "<group>"; };
 		AAD9B39BA5F1AA5B90CA2663534C5A7D /* ConcurrentOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConcurrentOperation.swift; path = Sources/ConcurrentOperation.swift; sourceTree = "<group>"; };
 		AB98A2D6804280CCA511D0096CEE7DB6 /* Pods_AdminCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdminCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD1CC8F1A698F1AE3FCF190A3DF95646 /* Pods-FeedbackAdmin-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FeedbackAdmin-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -446,6 +448,7 @@
 				751B06AA33A967293736CB3F29F3342C /* Logging.swift */,
 				A705DF931FF3EE0C001D865E /* Message.swift */,
 				A705DF971FF3F786001D865E /* FetchMessagesOperation.swift */,
+				A73B78C91FFB706B002333D9 /* String+Extensions.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				6D165DDBFE4EC89AE702181BC9D85BBF /* AdminModule.swift in Sources */,
 				DF980AB6C0D197E087DD6C30AF0DB8A3 /* CloudFeedback-dummy.m in Sources */,
 				917FAF4BA93856C237FCE6355873D2A4 /* ConcurrentOperation.swift in Sources */,
+				A73B78CA1FFB706B002333D9 /* String+Extensions.swift in Sources */,
 				6098846F63B24B76B89A1EA2E9CE647F /* Conversation.swift in Sources */,
 				1A1A022A4492AD3A0B8A7CB24A05CB0B /* Feedback+Admin.swift in Sources */,
 				8A18CEAB1CB4C30824C94C2A68FF8197 /* Feedback.swift in Sources */,
