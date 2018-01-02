@@ -16,6 +16,10 @@
 
 import UIKit
 
+private extension Selector {
+    static let senderChanged = #selector(SendViewController.senderChanged(_:))
+}
+
 internal class SendViewController: UIViewController, StoryboardLoaded {
     static var storyboardName: String {
         return "Send"
@@ -36,6 +40,7 @@ internal class SendViewController: UIViewController, StoryboardLoaded {
         entryView.layer.borderColor = UIColor.black.withAlphaComponent(0.1).cgColor
         entryView.layer.borderWidth = 1
         entryView.layer.cornerRadius = 5
+        entryView.delegate = self
         
         viewModel.callback = {
             [weak self]
@@ -46,5 +51,25 @@ internal class SendViewController: UIViewController, StoryboardLoaded {
             self?.entryView.text = status.message
             self?.submit.isEnabled = status.sendButtonEnabled
         }
+        
+        sender.addTarget(self, action: .senderChanged, for: .allEditingEvents)
+        sender.delegate = self
+    }
+    
+    @objc fileprivate func senderChanged(_ field: UITextField) {
+        viewModel.sender = field.text ?? ""
+    }
+}
+
+extension SendViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        viewModel.message = textView.text
+    }
+}
+
+extension SendViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        entryView.becomeFirstResponder()
+        return true
     }
 }

@@ -36,4 +36,22 @@ internal class SendViewModel {
             callback?(status)
         }
     }
+    
+    internal var sender: String {
+        get {
+            return status.sender
+        }
+        set {
+            status.sender = newValue
+        }
+    }
+    
+    internal var message: String {
+        get {
+            return status.message
+        }
+        set {
+            status.message = newValue
+        }
+    }
 }
