@@ -27,4 +27,5 @@ extension Conversation {
     
     @NSManaged var application: Application
     @NSManaged var messages: Set<Message>?
+    @NSManaged var syncStatus: SyncStatus?
 }

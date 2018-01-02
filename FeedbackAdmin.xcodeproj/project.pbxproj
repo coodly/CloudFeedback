@@ -43,6 +43,10 @@
 		A73B78BB1FFB4CB4002333D9 /* Send.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A73B78BA1FFB4CB4002333D9 /* Send.storyboard */; };
 		A73B78BE1FFB52B5002333D9 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A73B78BD1FFB52B5002333D9 /* Media.xcassets */; };
 		A73B78C01FFB56C6002333D9 /* SendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78BF1FFB56C6002333D9 /* SendViewModel.swift */; };
+		A73B78C21FFB6808002333D9 /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78C11FFB6808002333D9 /* SyncStatus.swift */; };
+		A73B78C41FFB6837002333D9 /* SyncStatus+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78C31FFB6837002333D9 /* SyncStatus+Properties.swift */; };
+		A73B78C61FFB6884002333D9 /* Syncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78C51FFB6884002333D9 /* Syncable.swift */; };
+		A73B78C81FFB69F5002333D9 /* Persistence+SyncStatuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78C71FFB69F5002333D9 /* Persistence+SyncStatuses.swift */; };
 		A76836C51FF5423D00FD04CE /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76836C41FF5423D00FD04CE /* String+Extensions.swift */; };
 		A7C050521FEAC42300F73B6B /* FeedbackAdminConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050511FEAC42300F73B6B /* FeedbackAdminConsumer.swift */; };
 		A7C050571FEAC67600F73B6B /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050561FEAC67600F73B6B /* FeedbackManager.swift */; };
@@ -148,6 +152,10 @@
 		A73B78BA1FFB4CB4002333D9 /* Send.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Send.storyboard; sourceTree = "<group>"; };
 		A73B78BD1FFB52B5002333D9 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		A73B78BF1FFB56C6002333D9 /* SendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewModel.swift; sourceTree = "<group>"; };
+		A73B78C11FFB6808002333D9 /* SyncStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatus.swift; sourceTree = "<group>"; };
+		A73B78C31FFB6837002333D9 /* SyncStatus+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncStatus+Properties.swift"; sourceTree = "<group>"; };
+		A73B78C51FFB6884002333D9 /* Syncable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncable.swift; sourceTree = "<group>"; };
+		A73B78C71FFB69F5002333D9 /* Persistence+SyncStatuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistence+SyncStatuses.swift"; sourceTree = "<group>"; };
 		A76836C41FF5423D00FD04CE /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		A7B30DF4D6215F25D8566D8E /* Pods-FeedbackAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedbackAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		A7C050511FEAC42300F73B6B /* FeedbackAdminConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAdminConsumer.swift; sourceTree = "<group>"; };
@@ -311,6 +319,7 @@
 				A705DF821FF3C756001D865E /* Conversation+Properties.swift */,
 				A705DF911FF3ED0A001D865E /* Message+Properties.swift */,
 				A7C0505C1FEAC8BF00F73B6B /* Setting+Properties.swift */,
+				A73B78C31FFB6837002333D9 /* SyncStatus+Properties.swift */,
 			);
 			path = _;
 			sourceTree = "<group>";
@@ -487,7 +496,10 @@
 				A705DF801FF3C69D001D865E /* Persistence+Conversations.swift */,
 				A705DF8F1FF3ECCF001D865E /* Persistence+Messages.swift */,
 				A7C0505E1FEAC90600F73B6B /* Persistence+Settings.swift */,
+				A73B78C71FFB69F5002333D9 /* Persistence+SyncStatuses.swift */,
 				A7C0505A1FEAC87B00F73B6B /* Setting.swift */,
+				A73B78C51FFB6884002333D9 /* Syncable.swift */,
+				A73B78C11FFB6808002333D9 /* SyncStatus.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -794,9 +806,11 @@
 			files = (
 				A705DF921FF3ED0A001D865E /* Message+Properties.swift in Sources */,
 				A705DF961FF3F53D001D865E /* RefreshMessagesOperation.swift in Sources */,
+				A73B78C21FFB6808002333D9 /* SyncStatus.swift in Sources */,
 				A7203E091FE23D50009558A7 /* CoreLog.swift in Sources */,
 				A7C050651FEB750E00F73B6B /* AppQueueConsumer.swift in Sources */,
 				A7C903B01FE1193000FE921A /* Application.swift in Sources */,
+				A73B78C81FFB69F5002333D9 /* Persistence+SyncStatuses.swift in Sources */,
 				A7C903AE1FE118D900FE921A /* Feedback.xcdatamodeld in Sources */,
 				A7C903A91FE117D300FE921A /* CoreInjection.swift in Sources */,
 				A7C903B61FE119AD00FE921A /* Persistence.swift in Sources */,
@@ -813,9 +827,11 @@
 				A7C903B21FE1195F00FE921A /* Conversation.swift in Sources */,
 				A705DF901FF3ECD0001D865E /* Persistence+Messages.swift in Sources */,
 				A705DF831FF3C756001D865E /* Conversation+Properties.swift in Sources */,
+				A73B78C41FFB6837002333D9 /* SyncStatus+Properties.swift in Sources */,
 				A7C903A71FE1178500FE921A /* CoreInjector.swift in Sources */,
 				A7203E2B1FE24F6D009558A7 /* Application+Properties.swift in Sources */,
 				A7C050591FEAC69000F73B6B /* FeedbackManagerConsumer.swift in Sources */,
+				A73B78C61FFB6884002333D9 /* Syncable.swift in Sources */,
 				A7C050571FEAC67600F73B6B /* FeedbackManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

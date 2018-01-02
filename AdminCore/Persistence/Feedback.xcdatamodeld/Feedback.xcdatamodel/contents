@@ -12,6 +12,7 @@
         <attribute name="snippet" attributeType="String" syncable="YES"/>
         <relationship name="application" maxCount="1" deletionRule="Nullify" destinationEntity="Application" inverseName="conversations" inverseEntity="Application" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Message" inverseName="conversation" inverseEntity="Message" syncable="YES"/>
+        <relationship name="syncStatus" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SyncStatus" inverseName="conversation" inverseEntity="SyncStatus" syncable="YES"/>
     </entity>
     <entity name="Message" representedClassName=".Message" syncable="YES">
         <attribute name="body" attributeType="String" syncable="YES"/>
@@ -21,15 +22,23 @@
         <attribute name="recordName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sentBy" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="conversation" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="messages" inverseEntity="Conversation" syncable="YES"/>
+        <relationship name="syncStatus" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SyncStatus" inverseName="message" inverseEntity="SyncStatus" syncable="YES"/>
     </entity>
     <entity name="Setting" representedClassName=".Setting" syncable="YES">
         <attribute name="internalKey" attributeType="String" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="SyncStatus" representedClassName=".SyncStatus" syncable="YES">
+        <attribute name="syncFailed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="syncNeeded" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="conversation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="syncStatus" inverseEntity="Conversation" syncable="YES"/>
+        <relationship name="message" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="syncStatus" inverseEntity="Message" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Application" positionX="-54" positionY="-9" width="128" height="75"/>
-        <element name="Conversation" positionX="-63" positionY="-18" width="128" height="150"/>
-        <element name="Message" positionX="-36" positionY="9" width="128" height="150"/>
+        <element name="Conversation" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="Message" positionX="-36" positionY="9" width="128" height="165"/>
         <element name="Setting" positionX="-36" positionY="9" width="128" height="75"/>
+        <element name="SyncStatus" positionX="-45" positionY="54" width="128" height="105"/>
     </elements>
 </model>

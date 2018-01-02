@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Coodly LLC
+ * Copyright 2018 Coodly LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,6 @@
 import Foundation
 import CoreData
 
-public class Message: NSManagedObject {
-
-}
-
-extension Message: Syncable {
+internal class SyncStatus: NSManagedObject {
     
 }

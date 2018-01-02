@@ -24,3 +24,6 @@ public class Conversation: NSManagedObject {
     }
 }
 
+extension Conversation: Syncable {
+    
+}
