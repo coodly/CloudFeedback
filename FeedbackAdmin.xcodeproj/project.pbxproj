@@ -42,6 +42,7 @@
 		A73B78B91FFB4C7F002333D9 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78B81FFB4C7F002333D9 /* SendViewController.swift */; };
 		A73B78BB1FFB4CB4002333D9 /* Send.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A73B78BA1FFB4CB4002333D9 /* Send.storyboard */; };
 		A73B78BE1FFB52B5002333D9 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A73B78BD1FFB52B5002333D9 /* Media.xcassets */; };
+		A73B78C01FFB56C6002333D9 /* SendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78BF1FFB56C6002333D9 /* SendViewModel.swift */; };
 		A76836C51FF5423D00FD04CE /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76836C41FF5423D00FD04CE /* String+Extensions.swift */; };
 		A7C050521FEAC42300F73B6B /* FeedbackAdminConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050511FEAC42300F73B6B /* FeedbackAdminConsumer.swift */; };
 		A7C050571FEAC67600F73B6B /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050561FEAC67600F73B6B /* FeedbackManager.swift */; };
@@ -146,6 +147,7 @@
 		A73B78B81FFB4C7F002333D9 /* SendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
 		A73B78BA1FFB4CB4002333D9 /* Send.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Send.storyboard; sourceTree = "<group>"; };
 		A73B78BD1FFB52B5002333D9 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		A73B78BF1FFB56C6002333D9 /* SendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewModel.swift; sourceTree = "<group>"; };
 		A76836C41FF5423D00FD04CE /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		A7B30DF4D6215F25D8566D8E /* Pods-FeedbackAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedbackAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		A7C050511FEAC42300F73B6B /* FeedbackAdminConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAdminConsumer.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				A73B78BA1FFB4CB4002333D9 /* Send.storyboard */,
 				A73B78B81FFB4C7F002333D9 /* SendViewController.swift */,
+				A73B78BF1FFB56C6002333D9 /* SendViewModel.swift */,
 			);
 			path = Send;
 			sourceTree = "<group>";
@@ -827,6 +830,7 @@
 				A7203E261FE24527009558A7 /* UIView+Autolayout.swift in Sources */,
 				A7203E2E1FE25027009558A7 /* FetchedTableViewController.swift in Sources */,
 				A7203E301FE25084009558A7 /* UITableView+Dequeue.swift in Sources */,
+				A73B78C01FFB56C6002333D9 /* SendViewModel.swift in Sources */,
 				A7203E351FE252D8009558A7 /* ApplicationCell.swift in Sources */,
 				A7203E201FE2436B009558A7 /* MessagesViewController.swift in Sources */,
 				A705DF861FF3CF85001D865E /* ConversationCell.swift in Sources */,

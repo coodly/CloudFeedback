@@ -49,6 +49,7 @@
                         <viewLayoutGuide key="safeArea" id="jNy-eu-6MV"/>
                     </view>
                     <connections>
+                        <outlet property="bottomContentConstraint" destination="vsD-fN-Og3" id="BVK-ER-Tan"/>
                         <outlet property="inputPlaceholder" destination="2YF-46-cdA" id="UQn-jN-iu7"/>
                         <outlet property="table" destination="OzS-Yu-5mL" id="q6v-Iu-Pnx"/>
                     </connections>

@@ -20,8 +20,12 @@ internal class SendViewController: UIViewController, StoryboardLoaded {
     static var storyboardName: String {
         return "Send"
     }
-    
+
+    @IBOutlet private var sender: UITextField!
+    @IBOutlet private var submit: UIButton!
     @IBOutlet private var entryView: UITextView!
+    
+    private let viewModel = SendViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,5 +36,15 @@ internal class SendViewController: UIViewController, StoryboardLoaded {
         entryView.layer.borderColor = UIColor.black.withAlphaComponent(0.1).cgColor
         entryView.layer.borderWidth = 1
         entryView.layer.cornerRadius = 5
+        
+        viewModel.callback = {
+            [weak self]
+            
+            status in
+            
+            self?.sender.text = status.sender
+            self?.entryView.text = status.message
+            self?.submit.isEnabled = status.sendButtonEnabled
+        }
     }
 }
