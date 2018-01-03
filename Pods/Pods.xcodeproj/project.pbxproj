@@ -40,6 +40,7 @@
 		9847AC23D84012439C691E6D42DCC9CA /* Pods-FeedbackAdmin-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F76ADA97D3587746482B04DBF9CCEBB /* Pods-FeedbackAdmin-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9A7D64040BD6940C03A2FF2EC66231B9 /* Pods-FeedbackAdmin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F29C1CF1F50411445102C5660870674 /* Pods-FeedbackAdmin-dummy.m */; };
 		A527EBBD822EDD6EF0834C709EC39FCE /* Pods-AdminCore-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EE92C9E74F21A1FDACD1D51516040E66 /* Pods-AdminCore-dummy.m */; };
+		A798A0481FFCA5270008A30A /* SaveConversationsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A798A0471FFCA5270008A30A /* SaveConversationsOperation.swift */; };
 		ACB0FE3BF8A3CACBE1CA728068F16D59 /* NSManagedObject+EnityDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8680E323CAF6187B6D72523910E9BE /* NSManagedObject+EnityDefinition.swift */; };
 		AE88B0CA0617B1993634ABCC92CC0669 /* CoreDataPersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F601870632A886A03B1490960741917 /* CoreDataPersistence.framework */; };
 		B95FF6C62EA6CA26040737922A5351A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2311AC297A43250BC4357AD48EA70D2B /* Foundation.framework */; };
@@ -181,6 +182,7 @@
 		9A790BAFF447C658F2CAC08958202EF6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3C3D8FC96C5AF7DC8BB53F8F84EA35C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A40FC56CE060C91603042BCCAB147EC3 /* SWLogger.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SWLogger.modulemap; sourceTree = "<group>"; };
+		A798A0471FFCA5270008A30A /* SaveConversationsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SaveConversationsOperation.swift; path = Source/Core/SaveConversationsOperation.swift; sourceTree = "<group>"; };
 		AAD9B39BA5F1AA5B90CA2663534C5A7D /* ConcurrentOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConcurrentOperation.swift; path = Sources/ConcurrentOperation.swift; sourceTree = "<group>"; };
 		AB98A2D6804280CCA511D0096CEE7DB6 /* Pods_AdminCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdminCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD1CC8F1A698F1AE3FCF190A3DF95646 /* Pods-FeedbackAdmin-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FeedbackAdmin-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				2E61AF727B04792624580FE3CE35BF79 /* FetchMessagesOperation.swift */,
 				C290E5D68884118DBD0B585840B72B39 /* Logging.swift */,
 				6C0F94758A1C7DECF63472719E48BC50 /* Message.swift */,
+				A798A0471FFCA5270008A30A /* SaveConversationsOperation.swift */,
 				D6716AEDE089ED711CE36C52F44DDB9A /* String+Extensions.swift */,
 			);
 			name = Core;
@@ -746,6 +749,7 @@
 				8EDEB99B76BC629024C6847094AF4EF6 /* Logging.swift in Sources */,
 				1AA9C0CA610BE98F08124F4965E02B50 /* Message.swift in Sources */,
 				FB208719272C63AFEC0CAD29D634DF60 /* String+Extensions.swift in Sources */,
+				A798A0481FFCA5270008A30A /* SaveConversationsOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,29 @@ import Foundation
 import CoreData
 import CoreDataPersistence
 
-internal extension NSManagedObject {
+internal extension NSPredicate {
+    internal static let syncFailed = NSPredicate(format: "syncFailed = YES")
+    internal static let needinsSync: NSPredicate = {
+        let syncNeeded = NSPredicate(format: "syncNeeded = YES")
+        let syncNotFailed = NSPredicate(format: "syncFailed = NO")
+        return NSCompoundPredicate(andPredicateWithSubpredicates: [syncNeeded, syncNotFailed])
+    }()
+}
 
+internal extension NSManagedObjectContext {
+    internal func resetFailedSync() {
+        Log.debug("Reset failed sync")
+        let failed: [SyncStatus] = fetch(predicate: .syncFailed)
+        Log.debug("Have \(failed.count) failed")
+        failed.forEach() {
+            status in
+            
+            status.syncFailed = false
+        }
+    }
+    
+    internal func fetchedControllerForStatusesNeedingSync() -> NSFetchedResultsController<SyncStatus> {
+        let sort = NSSortDescriptor(key: "syncNeeded", ascending: true)
+        return fetchedController(predicate: .needinsSync, sort: [sort])
+    }
 }

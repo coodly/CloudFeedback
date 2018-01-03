@@ -42,8 +42,11 @@ public struct Conversation: RemoteRecord {
         
     }
     
-    public init(recordName: String?, recordData: Data?) {
+    public init(recordName: String?, recordData: Data?, identifier: String, lastMessageTime: Date, snippet: String) {
         self.recordName = recordName
         self.recordData = recordData
+        self.appIdentifier = identifier
+        self.lastMessageTime = lastMessageTime
+        self.snippet = snippet
     }
 }

@@ -19,8 +19,9 @@ import AdminCore
 import AdminUI
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate, FeedbackManagerConsumer {
+    var manager: FeedbackManager!
+    
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -30,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         CoreInjection.sharedInstance.inject(into: controller)
         controller.afterLoad = {
+            CoreInjection.sharedInstance.inject(into: self)
+            
             let main = Storyboards.loadFromStoryboard() as MainViewController
 
             CoreInjection.sharedInstance.inject(into: main)
@@ -38,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.rootViewController = main
             }
             UIView.transition(with: self.window!, duration: 0.3, options: [], animations: animation, completion: nil)
+            
+            self.manager.startSync()
         }
         
         return true

@@ -47,7 +47,11 @@
 		A73B78C41FFB6837002333D9 /* SyncStatus+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78C31FFB6837002333D9 /* SyncStatus+Properties.swift */; };
 		A73B78C61FFB6884002333D9 /* Syncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78C51FFB6884002333D9 /* Syncable.swift */; };
 		A73B78C81FFB69F5002333D9 /* Persistence+SyncStatuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78C71FFB69F5002333D9 /* Persistence+SyncStatuses.swift */; };
+		A73B78CD1FFB78B7002333D9 /* FeedbackSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78CC1FFB78B7002333D9 /* FeedbackSync.swift */; };
+		A73B78CF1FFB78F0002333D9 /* SyncConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73B78CE1FFB78F0002333D9 /* SyncConsumer.swift */; };
 		A76836C51FF5423D00FD04CE /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76836C41FF5423D00FD04CE /* String+Extensions.swift */; };
+		A798A0421FFCA0410008A30A /* PushMessagesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A798A0411FFCA0410008A30A /* PushMessagesOperation.swift */; };
+		A798A0441FFCA0620008A30A /* PushConversationsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A798A0431FFCA0620008A30A /* PushConversationsOperation.swift */; };
 		A7C050521FEAC42300F73B6B /* FeedbackAdminConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050511FEAC42300F73B6B /* FeedbackAdminConsumer.swift */; };
 		A7C050571FEAC67600F73B6B /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050561FEAC67600F73B6B /* FeedbackManager.swift */; };
 		A7C050591FEAC69000F73B6B /* FeedbackManagerConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C050581FEAC69000F73B6B /* FeedbackManagerConsumer.swift */; };
@@ -156,7 +160,11 @@
 		A73B78C31FFB6837002333D9 /* SyncStatus+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncStatus+Properties.swift"; sourceTree = "<group>"; };
 		A73B78C51FFB6884002333D9 /* Syncable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncable.swift; sourceTree = "<group>"; };
 		A73B78C71FFB69F5002333D9 /* Persistence+SyncStatuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistence+SyncStatuses.swift"; sourceTree = "<group>"; };
+		A73B78CC1FFB78B7002333D9 /* FeedbackSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSync.swift; sourceTree = "<group>"; };
+		A73B78CE1FFB78F0002333D9 /* SyncConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncConsumer.swift; sourceTree = "<group>"; };
 		A76836C41FF5423D00FD04CE /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		A798A0411FFCA0410008A30A /* PushMessagesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushMessagesOperation.swift; sourceTree = "<group>"; };
+		A798A0431FFCA0620008A30A /* PushConversationsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushConversationsOperation.swift; sourceTree = "<group>"; };
 		A7B30DF4D6215F25D8566D8E /* Pods-FeedbackAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedbackAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		A7C050511FEAC42300F73B6B /* FeedbackAdminConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAdminConsumer.swift; sourceTree = "<group>"; };
 		A7C050561FEAC67600F73B6B /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
@@ -350,6 +358,16 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		A73B78CB1FFB789E002333D9 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				A73B78CC1FFB78B7002333D9 /* FeedbackSync.swift */,
+				A798A0431FFCA0620008A30A /* PushConversationsOperation.swift */,
+				A798A0411FFCA0410008A30A /* PushMessagesOperation.swift */,
+			);
+			path = Sync;
+			sourceTree = "<group>";
+		};
 		A7C050551FEAC65C00F73B6B /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +439,7 @@
 				A7C050631FEB74D200F73B6B /* Operations */,
 				A7C903AB1FE118C300FE921A /* Persistence */,
 				A7C903A41FE116E700FE921A /* Supporting files */,
+				A73B78CB1FFB789E002333D9 /* Sync */,
 			);
 			path = AdminCore;
 			sourceTree = "<group>";
@@ -479,6 +498,7 @@
 				A7C050511FEAC42300F73B6B /* FeedbackAdminConsumer.swift */,
 				A7C050581FEAC69000F73B6B /* FeedbackManagerConsumer.swift */,
 				A7C903B71FE119D200FE921A /* PersistenceConsumer.swift */,
+				A73B78CE1FFB78F0002333D9 /* SyncConsumer.swift */,
 			);
 			path = Injection;
 			sourceTree = "<group>";
@@ -813,6 +833,7 @@
 				A73B78C81FFB69F5002333D9 /* Persistence+SyncStatuses.swift in Sources */,
 				A7C903AE1FE118D900FE921A /* Feedback.xcdatamodeld in Sources */,
 				A7C903A91FE117D300FE921A /* CoreInjection.swift in Sources */,
+				A73B78CD1FFB78B7002333D9 /* FeedbackSync.swift in Sources */,
 				A7C903B61FE119AD00FE921A /* Persistence.swift in Sources */,
 				A7C0505F1FEAC90600F73B6B /* Persistence+Settings.swift in Sources */,
 				A7C0505B1FEAC87B00F73B6B /* Setting.swift in Sources */,
@@ -830,9 +851,12 @@
 				A73B78C41FFB6837002333D9 /* SyncStatus+Properties.swift in Sources */,
 				A7C903A71FE1178500FE921A /* CoreInjector.swift in Sources */,
 				A7203E2B1FE24F6D009558A7 /* Application+Properties.swift in Sources */,
+				A798A0441FFCA0620008A30A /* PushConversationsOperation.swift in Sources */,
+				A73B78CF1FFB78F0002333D9 /* SyncConsumer.swift in Sources */,
 				A7C050591FEAC69000F73B6B /* FeedbackManagerConsumer.swift in Sources */,
 				A73B78C61FFB6884002333D9 /* Syncable.swift in Sources */,
 				A7C050571FEAC67600F73B6B /* FeedbackManager.swift in Sources */,
+				A798A0421FFCA0410008A30A /* PushMessagesOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

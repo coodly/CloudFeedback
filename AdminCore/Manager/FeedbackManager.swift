@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-private typealias Dependencies = AppQueueConsumer & PersistenceConsumer
+private typealias Dependencies = AppQueueConsumer & PersistenceConsumer & SyncConsumer
 
 public class FeedbackManager: Dependencies, CoreInjector {
     var appQueue: OperationQueue!
     public var persistence: Persistence!
+    var sync: FeedbackSync!
     
     public func checkConversationUpdates(completion: @escaping (() -> Void)) {
         let op = RefreshConversationsOperation()
@@ -51,5 +52,9 @@ public class FeedbackManager: Dependencies, CoreInjector {
             context.add(message: message, by: sender, to: inContext)
             context.submitter = sender
         }
+    }
+    
+    public func startSync() {
+        sync.load()
     }
 }

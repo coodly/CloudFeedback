@@ -17,23 +17,23 @@
 import Foundation
 import CoreData
 
-internal protocol Syncable {
+internal protocol Syncable: class {
     var syncStatus: SyncStatus? { get set }
     
-    mutating func markSyncNeeded(_ needed: Bool)
-    mutating func markSyncFailed(_ failed: Bool)
+    func markSyncNeeded(_ needed: Bool)
+    func markSyncFailed(_ failed: Bool)
 }
 
 internal extension Syncable where Self: NSManagedObject {
-    mutating func markSyncNeeded(_ needed: Bool = true) {
+    func markSyncNeeded(_ needed: Bool = true) {
         status().syncNeeded = needed
     }
     
-    mutating func markSyncFailed(_ failed: Bool = true) {
+    func markSyncFailed(_ failed: Bool = true) {
         status().syncFailed = failed
     }
     
-    private mutating func status() -> SyncStatus {
+    private func status() -> SyncStatus {
         if let existing = syncStatus {
             return existing
         }

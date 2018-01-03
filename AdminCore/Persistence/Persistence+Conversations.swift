@@ -41,6 +41,8 @@ public extension NSManagedObjectContext {
             saved.snippet = conversation.snippet!
             
             saved.application = application(with: conversation.appIdentifier!)
+            
+            saved.syncStatus?.syncNeeded = false
         }
     }
     
@@ -51,5 +53,12 @@ public extension NSManagedObjectContext {
     
     public func conversationsPredicate(for application: Application) -> NSPredicate {
         return NSPredicate(format: "application = %@", application)
+    }
+    
+    internal func conversationsNeedingPush() -> [Conversation] {
+        let forConversation = NSPredicate(format: "conversation != NULL")
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [forConversation, .needinsSync])
+        let statuses: [SyncStatus] = fetch(predicate: predicate, limit: 100)
+        return statuses.flatMap({ $0.conversation })
     }
 }

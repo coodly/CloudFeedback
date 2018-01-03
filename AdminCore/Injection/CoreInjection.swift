@@ -35,6 +35,11 @@ public class CoreInjection {
         queue.qualityOfService = .utility
         return queue
     }()
+    private lazy var sync: FeedbackSync = {
+        let sync = FeedbackSync()
+        self.inject(into: sync)
+        return sync
+    }()
     
     public func inject(into object: AnyObject) {
         if var consumer = object as? PersistenceConsumer {
@@ -51,6 +56,10 @@ public class CoreInjection {
         
         if var consumer = object as? AppQueueConsumer {
             consumer.appQueue = appQueue
+        }
+        
+        if var consumer = object as? SyncConsumer {
+            consumer.sync = sync
         }
     }
 }
