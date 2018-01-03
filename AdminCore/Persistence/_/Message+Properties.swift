@@ -17,7 +17,7 @@
 import CoreData
 
 extension Message {
-    @NSManaged var recordName: String?
+    @NSManaged var recordName: String
     @NSManaged var recordData: Data?
     
     @NSManaged public var body: String

@@ -28,7 +28,7 @@ extension NSManagedObjectContext {
         return NSPredicate(format: "conversation = %@", conversation)
     }
     
-    internal func update(messages: [CloudFeedback.Message], in conversation: Conversation) {
+    internal func update(messages: [CloudFeedback.Message], in conversation: Conversation? = nil) {
         let names = messages.flatMap({ $0.recordName })
         let predicate = NSPredicate(format: "recordName IN %@", names)
         
@@ -37,23 +37,28 @@ extension NSManagedObjectContext {
         for message in messages {
             let saved = existing.first(where: { $0.recordName == message.recordName }) ?? insertEntity()
             
-            saved.recordName = message.recordName
-            saved.recordData = message.recordData
+            saved.recordName = message.recordName!
+            saved.recordData = message.recordData!
             
             saved.body = message.body!
             saved.postedAt = message.postedAt!
             saved.sentBy = message.sentBy
             saved.platform = message.platform
             
-            saved.conversation = conversation
+            if let conversation = conversation {
+                saved.conversation = conversation
+            }
+            
+            saved.syncStatus?.syncNeeded = false
         }
     }
     
     internal func add(message: String, by sender: String, to conversation: Conversation) {
-        var saved: Message = insertEntity()
+        let saved: Message = insertEntity()
         
         let now = Date()
         
+        saved.recordName = UUID().uuidString
         saved.sentBy = sender
         saved.body = message
         saved.postedAt = now
@@ -63,5 +68,12 @@ extension NSManagedObjectContext {
         conversation.snippet = message.snippet()
         conversation.lastMessageTime = now        
         saved.conversation.markSyncNeeded()
+    }
+    
+    internal func messagesNeedingPush() -> [Message] {
+        let forMessage = NSPredicate(format: "message != NULL")
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [forMessage, .needinsSync])
+        let statuses: [SyncStatus] = fetch(predicate: predicate, limit: 100)
+        return statuses.flatMap({ $0.message })
     }
 }

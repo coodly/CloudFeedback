@@ -43,4 +43,14 @@ public struct Message: RemoteRecord {
     public init() {
         
     }
+    
+    public init(recordName: String, recordData: Data?, body: String, conversation: Conversation, postedAt: Date, sentBy: String?, platform: String?) {
+        self.recordName = recordName
+        self.recordData = recordData
+        self.body = body
+        self.conversation = conversation.referenceRepresentation()
+        self.postedAt = postedAt
+        self.sentBy = sentBy
+        self.platform = platform
+    }
 }

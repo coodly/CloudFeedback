@@ -45,7 +45,7 @@ internal class PushConversationsOperation: ConcurrentOperation, Dependencies {
     }
     
     private func handle(result: SaveConversationsResult) {
-        Log.debug("Hansdle \(result)")
+        Log.debug("Handle \(result)")
         let save: ContextClosure = {
             context in
             

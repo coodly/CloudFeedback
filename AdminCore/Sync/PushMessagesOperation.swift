@@ -15,9 +15,53 @@
  */
 
 import Foundation
+import CloudFeedback
+import CoreDataPersistence
 
-internal class PushMessagesOperation: ConcurrentOperation {
+private typealias Dependencies = PersistenceConsumer & FeedbackAdminConsumer
+
+internal class PushMessagesOperation: ConcurrentOperation, Dependencies {
+    var persistence: Persistence!
+    var adminModule: FeedbackModule!
+    
+    private var pushed: [Message]?
+    
     override func main() {
-        finish()
+        persistence.performInBackground() {
+            context in
+            
+            let push = context.messagesNeedingPush()
+            Log.debug("Need to push \(push.count) messages")
+            guard push.count > 0 else {
+                self.finish()
+                return
+            }
+            
+            self.pushed = push
+            
+            let cloud = push.map({ $0.toCloud() })
+            self.adminModule.save(messages: cloud, completion: self.handle(result:))
+        }
+    }
+    
+    private func handle(result: SaveMessagesResult) {
+        Log.debug("Handle \(result)")
+        
+        let save: ContextClosure = {
+            context in
+                        
+            switch result {
+            case .failure:
+                Log.debug("Failure")
+                let pushed = context.inCurrentContext(entities: self.pushed!)
+                pushed.forEach({ $0.markSyncFailed() })
+            case .success(let saved):
+                context.update(messages: saved)
+            }
+        }
+        
+        persistence.performInBackground(task: save) {
+            self.finish()
+        }
     }
 }

@@ -33,6 +33,11 @@ public enum SaveConversationsResult {
     case success([Conversation])
 }
 
+public enum SaveMessagesResult {
+    case failure
+    case success([Message])
+}
+
 public class FeedbackModule {
     internal let container: CKContainer
     internal let queue: OperationQueue
@@ -73,6 +78,12 @@ public class FeedbackModule {
     
     public func save(conversations: [Conversation], completion: @escaping ((SaveConversationsResult) -> Void)) {
         let op = SaveConversationsOperation(conversations: conversations, container: container)
+        op.resultHandler = completion
+        queue.addOperation(op)
+    }
+
+    public func save(messages: [Message], completion: @escaping ((SaveMessagesResult) -> Void)) {
+        let op = SaveMessagesOperation(messages: messages, container: container)
         op.resultHandler = completion
         queue.addOperation(op)
     }

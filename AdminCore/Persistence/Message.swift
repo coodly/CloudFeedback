@@ -16,9 +16,12 @@
 
 import Foundation
 import CoreData
+import CloudFeedback
 
 public class Message: NSManagedObject {
-
+    internal func toCloud() -> CloudFeedback.Message {
+        return CloudFeedback.Message(recordName: recordName, recordData: recordData, body: body, conversation: conversation.toCloud(), postedAt: postedAt, sentBy: sentBy, platform: platform)
+    }
 }
 
 extension Message: Syncable {
