@@ -21,6 +21,7 @@ import CoreData
 private extension Selector {
     static let willChange = #selector(MessagesViewController.keyboardWillChange(notification:))
     static let willDisappear = #selector(MessagesViewController.keyboardWillDisappear(notification:))
+    static let refreshConversation = #selector(MessagesViewController.refreshConversation)
 }
 
 private typealias Dependencies = PersistenceConsumer & FeedbackManagerConsumer
@@ -41,6 +42,8 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
     @IBOutlet private var inputPlaceholder: UIView!
     @IBOutlet private var bottomContentConstraint: NSLayoutConstraint!
     private lazy var sendViewController: SendViewController = Storyboards.loadFromStoryboard()
+    private lazy var refresh = UIRefreshControl()
+    private var conversation: Conversation?
     
     private lazy var activityIndicatorItem: UIBarButtonItem = {
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
@@ -63,6 +66,9 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
         NotificationCenter.default.addObserver(self, selector: .willChange, name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
         NotificationCenter.default.addObserver(self, selector: .willChange, name: Notification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: .willDisappear, name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
+        tableView.refreshControl = refresh
+        refresh.addTarget(self, action: .refreshConversation, for: .valueChanged)
     }
     
     override func createFetchedController() -> NSFetchedResultsController<Message> {
@@ -70,6 +76,8 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
     }
     
     func presentMessages(in conversation: Conversation) {
+        self.conversation = conversation
+        
         let predicate = persistence.mainContext.messagesPredicate(for: conversation)
         updateFetch(predicate)
         
@@ -109,6 +117,19 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
         bottomContentConstraint.constant = 0
         UIView.animate(withDuration: duration.doubleValue) {
             self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc fileprivate func refreshConversation() {
+        guard let refreshed = conversation else {
+            refresh.endRefreshing()
+            return
+        }
+        
+        manager.checkMessages(for: refreshed, onlyUpdates: false) {
+            DispatchQueue.main.async {
+                self.refresh.endRefreshing()
+            }
         }
     }
 }

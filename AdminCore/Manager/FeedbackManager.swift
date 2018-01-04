@@ -32,8 +32,8 @@ public class FeedbackManager: Dependencies, CoreInjector {
         appQueue.addOperation(op)
     }
     
-    public func checkMessages(for conversation: Conversation, completion: @escaping (() -> Void)) {
-        let op = RefreshMessagesOperation(conversation: conversation)
+    public func checkMessages(for conversation: Conversation, onlyUpdates: Bool = true, completion: @escaping (() -> Void)) {
+        let op = RefreshMessagesOperation(conversation: conversation, onlyUpdates: onlyUpdates)
         inject(into: op)
         op.completionHandler = {
             _, _ in

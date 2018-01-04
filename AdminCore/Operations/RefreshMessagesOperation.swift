@@ -25,9 +25,11 @@ internal class RefreshMessagesOperation: ConcurrentOperation, Dependencies {
 
     private let conversation: Conversation
     private let checkedAt = Date()
+    private let onlyUpdates: Bool
     
-    internal init(conversation: Conversation) {
+    internal init(conversation: Conversation, onlyUpdates: Bool) {
         self.conversation = conversation
+        self.onlyUpdates = onlyUpdates
     }
     
     override func main() {
@@ -35,8 +37,9 @@ internal class RefreshMessagesOperation: ConcurrentOperation, Dependencies {
             context in
             
             let inCurrent = context.inCurrentContext(entity: self.conversation)
-            let lastCheckTime = inCurrent.messagesCheckedAt ?? Date.distantPast
+            let lastCheckTime = self.onlyUpdates ? (inCurrent.messagesCheckedAt ?? Date.distantPast) : Date.distantPast
             Log.debug("Last messages check time \(lastCheckTime)")
+            Log.debug("Checking only updates? - \(self.onlyUpdates)")
             
             self.adminModule.fetchMessages(in: inCurrent.toCloud(), since: lastCheckTime, progress: self.handle(progress:))
         }
