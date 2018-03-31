@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |core|
     core.source_files = 'Source/Core/*.swift'
     core.dependency 'CoreDataPersistence', '0.1.5'
-    core.dependency 'Puff', '0.1.0'
+    core.dependency 'Puff', '0.1.1'
   end
   
   s.subspec 'Client' do |client|
