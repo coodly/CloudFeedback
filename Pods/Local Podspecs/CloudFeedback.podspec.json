@@ -47,6 +47,15 @@
 
         ]
       }
+    },
+    {
+      "name": "iOS",
+      "source_files": "Sources/iOS",
+      "dependencies": {
+        "CloudFeedback/Core": [
+
+        ]
+      }
     }
   ]
 }

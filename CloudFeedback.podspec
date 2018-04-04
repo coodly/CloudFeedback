@@ -27,6 +27,11 @@ Pod::Spec.new do |s|
     admin.source_files = "Source/Admin"
     admin.dependency "CloudFeedback/Core"
   end
+  
+  s.subspec 'iOS' do |ios|
+      ios.source_files = "Sources/iOS"
+      ios.dependency "CloudFeedback/Core"
+  end
 
 
   s.source_files = 'Sources/*.swift'
