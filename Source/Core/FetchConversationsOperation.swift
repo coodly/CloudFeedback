@@ -17,7 +17,7 @@
 import CloudKit
 import Puff
 
-internal class FetchConversationsOperation: CloudKitRequest<Conversation> {
+internal class FetchConversationsOperation: CloudKitRequest<Cloud.Conversation> {
     internal var progress: ((FetchConversationsProgress) -> Void)!
     
     private let since: Date
@@ -37,7 +37,7 @@ internal class FetchConversationsOperation: CloudKitRequest<Conversation> {
         fetch(predicate: timePredicate, sort: [sort], pullAll: true, inDatabase: .public)
     }
     
-    override func handle(result: CloudResult<Conversation>, completion: @escaping () -> ()) {
+    override func handle(result: CloudResult<Cloud.Conversation>, completion: @escaping () -> ()) {
         switch result {
         case .failure:
             Logging.log("Fetch failed")

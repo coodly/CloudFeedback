@@ -18,11 +18,11 @@ import Foundation
 import Puff
 import CloudKit
 
-internal class SaveConversationsOperation: CloudKitRequest<Conversation> {
+internal class SaveConversationsOperation: CloudKitRequest<Cloud.Conversation> {
     internal var resultHandler: ((SaveConversationsResult) -> Void)?
     
-    private let conversations: [Conversation]
-    init(conversations: [Conversation], container: CKContainer) {
+    private let conversations: [Cloud.Conversation]
+    init(conversations: [Cloud.Conversation], container: CKContainer) {
         self.conversations = conversations
         
         super.init()
@@ -34,7 +34,7 @@ internal class SaveConversationsOperation: CloudKitRequest<Conversation> {
         save(records: conversations, inDatabase: .public)
     }
     
-    override func handle(result: CloudResult<Conversation>, completion: @escaping () -> ()) {
+    override func handle(result: CloudResult<Cloud.Conversation>, completion: @escaping () -> ()) {
         switch result {
         case .failure:
             Logging.log("Save failure")

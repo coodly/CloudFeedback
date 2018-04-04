@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Coodly LLC
+ * Copyright 2016 Coodly LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,43 +14,33 @@
  * limitations under the License.
  */
 
-import Puff
-import CloudKit
+import Foundation
+import CoreData
 
-public struct Message: RemoteRecord {
-    public var parent: CKRecordID?
-    public var recordData: Data?
-    public var recordName: String?
-    public static var recordType: String {
-        return "Message"
+@objc(Message)
+internal class Message: NSManagedObject {
+    override func awakeFromInsert() {
+        recordName = UUID().uuidString
     }
     
-    public var body: String?
-    var conversation: CKReference?
-    public var postedAt: Date?
-    public var sentBy: String?
-    public var platform: String?
-    
-    public mutating func loadFields(from record: CKRecord) -> Bool {
-        body = record["body"] as? String
-        conversation = record["conversation"] as? CKReference
-        postedAt = record["postedAt"] as? Date
-        sentBy = record["sentBy"] as? String
-        platform = record["platform"] as? String
-        return true
+    func toCloud() -> Cloud.Message {
+        var cloud = Cloud.Message()
+        cloud.recordName = recordName
+        cloud.recordData = recordData
+        cloud.body = body
+        cloud.postedAt = postedAt
+        cloud.conversation = conversation.toCloud().referenceRepresentation()
+        return cloud
     }
-    
-    public init() {
-        
-    }
-    
-    public init(recordName: String, recordData: Data?, body: String, conversation: Conversation, postedAt: Date, sentBy: String?, platform: String?) {
-        self.recordName = recordName
-        self.recordData = recordData
-        self.body = body
-        self.conversation = conversation.referenceRepresentation()
-        self.postedAt = postedAt
-        self.sentBy = sentBy
-        self.platform = platform
-    }
+}
+
+extension Message {
+    @NSManaged var body: String?
+    @NSManaged var conversation: Conversation
+    @NSManaged var postedAt: Date
+    @NSManaged var recordData: Data?
+    @NSManaged var recordName: String?
+    @NSManaged var syncNeeded: Bool
+    @NSManaged var syncFailed: Bool
+    @NSManaged var sentBy: String?
 }

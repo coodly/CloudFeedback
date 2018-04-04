@@ -18,24 +18,24 @@ import CloudKit
 
 public enum FetchConversationsProgress {
     case failure
-    case fetched([Conversation])
+    case fetched([Cloud.Conversation])
     case completed
 }
 
 public enum FetchMessagesProgress {
     case failure
-    case fetched([Message])
+    case fetched([Cloud.Message])
     case completed
 }
 
 public enum SaveConversationsResult {
     case failure
-    case success([Conversation])
+    case success([Cloud.Conversation])
 }
 
 public enum SaveMessagesResult {
     case failure
-    case success([Message])
+    case success([Cloud.Message])
 }
 
 public class FeedbackModule {
@@ -61,7 +61,7 @@ public class FeedbackModule {
         queue.addOperation(op)
     }
     
-    public func fetchMessages(in conversation: Conversation, since: Date = Date.distantPast, progress: @escaping ((FetchMessagesProgress) -> Void)) {
+    public func fetchMessages(in conversation: Cloud.Conversation, since: Date = Date.distantPast, progress: @escaping ((FetchMessagesProgress) -> Void)) {
         let op = FetchMessagesOperation(conversation: conversation, since: since, in: container)
         op.progress = progress
         op.completionHandler = {
@@ -76,13 +76,13 @@ public class FeedbackModule {
         queue.addOperation(op)
     }
     
-    public func save(conversations: [Conversation], completion: @escaping ((SaveConversationsResult) -> Void)) {
+    public func save(conversations: [Cloud.Conversation], completion: @escaping ((SaveConversationsResult) -> Void)) {
         let op = SaveConversationsOperation(conversations: conversations, container: container)
         op.resultHandler = completion
         queue.addOperation(op)
     }
 
-    public func save(messages: [Message], completion: @escaping ((SaveMessagesResult) -> Void)) {
+    public func save(messages: [Cloud.Message], completion: @escaping ((SaveMessagesResult) -> Void)) {
         let op = SaveMessagesOperation(messages: messages, container: container)
         op.resultHandler = completion
         queue.addOperation(op)

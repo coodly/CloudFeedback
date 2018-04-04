@@ -17,13 +17,13 @@
 import CloudKit
 import Puff
 
-internal class FetchMessagesOperation: CloudKitRequest<Message> {
+internal class FetchMessagesOperation: CloudKitRequest<Cloud.Message> {
     internal var progress: ((FetchMessagesProgress) -> Void)!
     
-    private let conversation: Conversation
+    private let conversation: Cloud.Conversation
     private let since: Date
     
-    init(conversation: Conversation, since: Date, in container: CKContainer) {
+    init(conversation: Cloud.Conversation, since: Date, in container: CKContainer) {
         self.conversation = conversation
         self.since = since
         
@@ -41,7 +41,7 @@ internal class FetchMessagesOperation: CloudKitRequest<Message> {
         fetch(predicate: predicate, sort: [sort], pullAll: true, inDatabase: .public)
     }
     
-    override func handle(result: CloudResult<Message>, completion: @escaping () -> ()) {
+    override func handle(result: CloudResult<Cloud.Message>, completion: @escaping () -> ()) {
         switch result {
         case .failure:
             Logging.log("Fetch failed")

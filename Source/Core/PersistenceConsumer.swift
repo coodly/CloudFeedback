@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Coodly LLC
+ * Copyright 2018 Coodly LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,8 @@
  */
 
 import Foundation
-import CoreData
-import CloudFeedback
+import CoreDataPersistence
 
-public class Message: NSManagedObject {
-    internal func toCloud() -> CloudFeedback.Cloud.Message {
-        return CloudFeedback.Cloud.Message(recordName: recordName, recordData: recordData, body: body, conversation: conversation.toCloud(), postedAt: postedAt, sentBy: sentBy, platform: platform)
-    }
-}
-
-extension Message: Syncable {
-    
+internal protocol PersistenceConsumer {
+    var persistence: CorePersistence! { get set }
 }

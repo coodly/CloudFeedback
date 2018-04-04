@@ -15,8 +15,13 @@
  */
 
 import CloudKit
+import CoreDataPersistence
 
-public final class Feedback {
+private typealias Dependencies = PersistenceConsumer
+
+public final class Feedback: Dependencies, FeedbackInjector {
+    var persistence: CorePersistence!
+    
     internal let container: CKContainer
     internal lazy var queue: OperationQueue = {
         let queue = OperationQueue()
@@ -27,5 +32,13 @@ public final class Feedback {
     public init(container: CKContainer = .default()) {
         Logging.log("Start with \(String(describing: container.containerIdentifier))")
         self.container = container
+    }
+    
+    public func load() {
+        inject(into: self)
+        
+        persistence.loadPersistentStores() {
+            
+        }
     }
 }

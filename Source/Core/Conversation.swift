@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Coodly LLC
+ * Copyright 2018 Coodly LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,39 +14,41 @@
  * limitations under the License.
  */
 
-import Puff
-import CloudKit
+import Foundation
+import CoreData
 
-public struct Conversation: RemoteRecord {
-    public static var recordType: String {
-        return "Conversation"
+@objc(Conversation)
+public class Conversation: NSManagedObject {
+    public override func awakeFromInsert() {
+        lastMessageTime = Date()
+        recordName = UUID().uuidString
     }
+    
+    func toCloud() -> Cloud.Conversation {
+        var cloud = Cloud.Conversation()
+        cloud.recordName = recordName
+        cloud.recordData = recordData
+        cloud.lastMessageTime = lastMessageTime
+        cloud.snippet = snippet
+        return cloud
+    }
+    
+    func shouldFetchMessages() -> Bool {
+        if hasUpdate {
+            return true
+        }
+        
+        return recordData != nil && messages?.count == 0
+    }
+}
 
-    public var recordName: String?
-    public var recordData: Data?
-    public var parent: CKRecordID?
-    
-    public var appIdentifier: String?
-    public var lastMessageTime: Date?
-    public var snippet: String?
-    
-    public mutating func loadFields(from record: CKRecord) -> Bool {
-        appIdentifier = record["appIdentifier"] as? String
-        lastMessageTime = record["lastMessageTime"] as? Date
-        snippet = record["snippet"] as? String
-        
-        return true
-    }
-    
-    public init() {
-        
-    }
-    
-    public init(recordName: String?, recordData: Data?, identifier: String, lastMessageTime: Date, snippet: String) {
-        self.recordName = recordName
-        self.recordData = recordData
-        self.appIdentifier = identifier
-        self.lastMessageTime = lastMessageTime
-        self.snippet = snippet
-    }
+extension Conversation {
+    @NSManaged var recordName: String?
+    @NSManaged var lastMessageTime: Date?
+    @NSManaged var messages: Set<Message>?
+    @NSManaged var snippet: String?
+    @NSManaged var recordData: Data?
+    @NSManaged var syncNeeded: Bool
+    @NSManaged var syncFailed: Bool
+    @NSManaged var hasUpdate: Bool
 }

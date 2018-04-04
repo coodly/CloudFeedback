@@ -25,8 +25,8 @@ internal extension NSPredicate {
 
 
 public extension NSManagedObjectContext {
-    internal func update(conversations: [CloudFeedback.Conversation]) {
-        let names = conversations.flatMap({ $0.recordName })
+    internal func update(conversations: [CloudFeedback.Cloud.Conversation]) {
+        let names = conversations.compactMap({ $0.recordName })
         
         let predicate = NSPredicate(format: "recordName IN %@", names)
         let existing: [Conversation] = fetch(predicate: predicate)
@@ -59,6 +59,6 @@ public extension NSManagedObjectContext {
         let forConversation = NSPredicate(format: "conversation != NULL")
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [forConversation, .needinsSync])
         let statuses: [SyncStatus] = fetch(predicate: predicate, limit: 100)
-        return statuses.flatMap({ $0.conversation })
+        return statuses.compactMap({ $0.conversation })
     }
 }
