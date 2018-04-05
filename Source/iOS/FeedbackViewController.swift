@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Coodly LLC
+ * Copyright 2018 Coodly LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,31 +14,22 @@
  * limitations under the License.
  */
 
-import CloudKit
+import UIKit
 import CoreDataPersistence
+import CoreData
 
 private typealias Dependencies = PersistenceConsumer
 
-public final class Feedback: Dependencies, FeedbackInjector {
+public class FeedbackViewController: FetchedTableViewController<Conversation, ConversationCell>, Dependencies {
     var persistence: CorePersistence!
     
-    internal let container: CKContainer
-    internal lazy var queue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.qualityOfService = .utility
-        return queue
-    }()
-    
-    public init(container: CKContainer = .default()) {
-        Logging.log("Start with \(String(describing: container.containerIdentifier))")
-        self.container = container
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
     }
     
-    public func load() {
-        inject(into: self)
-        
-        persistence.loadPersistentStores() {
-            Logging.log("Database loaded")
-        }
+    override func createFetchedController() -> NSFetchedResultsController<Conversation> {
+        return persistence.mainContext.fetchedControllerForConversations()
     }
 }

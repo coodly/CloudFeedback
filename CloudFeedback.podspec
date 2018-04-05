@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'iOS' do |ios|
-      ios.source_files = "Sources/iOS"
+      ios.source_files = "Source/iOS"
       ios.dependency "CloudFeedback/Core"
   end
 
