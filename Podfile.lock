@@ -27,7 +27,7 @@ CHECKOUT OPTIONS:
     :tag: 0.3.1
 
 SPEC CHECKSUMS:
-  CloudFeedback: a786d500daa2a55986e586b444b0fdf32ae8082e
+  CloudFeedback: 8d53b206b4a2be936dafdd82abf323fa120a1206
   CoreDataPersistence: 605a7fc5a96eeea8e27d0f02607b51627fe774bc
   Puff: 19eead0cba890c5daa01eb7a19591574c2e2b1a8
   SWLogger: 333135cadd381962c3667f5af500f7ae140c74a4

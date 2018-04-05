@@ -50,7 +50,7 @@
     },
     {
       "name": "iOS",
-      "source_files": "Sources/iOS",
+      "source_files": "Source/iOS",
       "dependencies": {
         "CloudFeedback/Core": [
 

@@ -32,6 +32,7 @@ public final class Feedback: Dependencies, FeedbackInjector {
     public init(container: CKContainer = .default()) {
         Logging.log("Start with \(String(describing: container.containerIdentifier))")
         self.container = container
+        FeedbackInjection.sharedInstance.feedbackContainer = container
     }
     
     public func load() {
@@ -39,6 +40,8 @@ public final class Feedback: Dependencies, FeedbackInjector {
         
         persistence.loadPersistentStores() {
             Logging.log("Database loaded")
+            
+            FeedbackInjection.sharedInstance.setUp()
         }
     }
 }

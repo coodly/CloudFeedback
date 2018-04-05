@@ -46,8 +46,6 @@ public class FetchedTableViewController<Model: NSManagedObject, Cell: UITableVie
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.registerCell(forType: Cell.self)
-        
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
@@ -152,13 +150,5 @@ public class FetchedTableViewController<Model: NSManagedObject, Cell: UITableVie
     
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
-    }
-    
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
-    
-    internal func sectionInfo(at index: Int) -> NSFetchedResultsSectionInfo? {
-        return elements?.sections?[index]
     }
 }

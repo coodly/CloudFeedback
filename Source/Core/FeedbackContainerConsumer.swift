@@ -14,18 +14,8 @@
  * limitations under the License.
  */
 
-import Foundation
+import CloudKit
 
-private let SnippetLength = 100
-
-public extension String {
-    public func snippet() -> String {
-        let snippetLength = min(100, count)
-        let endIndex = index(startIndex, offsetBy: snippetLength)
-        return String(self[..<endIndex])
-    }
-    
-    internal func hasValue() -> Bool {
-        return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count > 0
-    }
+internal protocol FeedbackContainerConsumer {
+    var feedbackContainer: CKContainer! { get set }
 }

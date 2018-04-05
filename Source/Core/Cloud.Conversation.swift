@@ -27,14 +27,16 @@ public extension Cloud {
         public var recordData: Data?
         public var parent: CKRecordID?
         
-        public var appIdentifier: String?
+        public var appIdentifier: String? // = Bundle.main.bundleIdentifier!
         public var lastMessageTime: Date?
         public var snippet: String?
+        public var modificationDate: Date?
         
         public mutating func loadFields(from record: CKRecord) -> Bool {
             appIdentifier = record["appIdentifier"] as? String
             lastMessageTime = record["lastMessageTime"] as? Date
             snippet = record["snippet"] as? String
+            modificationDate = record.modificationDate
             
             return true
         }
