@@ -25,16 +25,17 @@ private extension Selector {
     static let presentNotice = #selector(FeedbackViewController.presentNotice)
 }
 
-private typealias Dependencies = PersistenceConsumer & FeedbackContainerConsumer & CloudAvailabilityConsumer
+private typealias Dependencies = PersistenceConsumer & FeedbackContainerConsumer & CloudAvailabilityConsumer & TranslationConsumer
 
 public class FeedbackViewController: FetchedTableViewController<Conversation, ConversationCell>, FeedbackInjector, Dependencies {
     var persistence: CorePersistence!
     var feedbackContainer: CKContainer!
     var cloudAvailable: Bool!
+    var translation: Translation!
     
     private var refreshControl: UIRefreshControl!
     private var accountStatus: CKAccountStatus = .couldNotDetermine
-    private var headerLabel: UILabel!
+    private var headerLabel: UILabel?
     
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -54,7 +55,7 @@ public class FeedbackViewController: FetchedTableViewController<Conversation, Co
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = NSLocalizedString("coodly.feedback.controller.title", comment: "")
+        navigationItem.title = translation.conversations.title
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: .addPressed)
         navigationItem.rightBarButtonItem?.isEnabled = false
@@ -65,13 +66,19 @@ public class FeedbackViewController: FetchedTableViewController<Conversation, Co
         
         tableView.register(ConversationCell.self, forCellReuseIdentifier: ConversationCell.className)
         
+        tableView.tableFooterView = UIView()
+        
+        guard let notice = translation.conversations.notice else {
+            return
+        }
+        
         let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
         header.backgroundColor = UIColor(white: 0.95, alpha: 1)
         let label = UILabel(frame: CGRect(x: 16, y: 16, width: header.frame.width - 32, height: header.frame.height - 32))
         self.headerLabel = label
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.attributedText = NSAttributedString(string: NSLocalizedString("coodly.feedback.header.message", comment: ""), attributes: [NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleDouble.rawValue, NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)])
+        label.attributedText = NSAttributedString(string: notice, attributes: [NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleDouble.rawValue, NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)])
         label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         header.addSubview(label)
@@ -79,14 +86,16 @@ public class FeedbackViewController: FetchedTableViewController<Conversation, Co
         
         let tapHandler = UITapGestureRecognizer(target: self, action: .presentNotice)
         header.addGestureRecognizer(tapHandler)
-        
-        tableView.tableFooterView = UIView()
     }
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let height = headerLabel.sizeThatFits(CGSize(width: headerLabel.frame.width, height: 1000)).height
+        guard let label = headerLabel else {
+            return
+        }
+        
+        let height = label.sizeThatFits(CGSize(width: label.frame.width, height: 1000)).height
         tableView.tableHeaderView!.frame.size.height = height + 32
     }
     
@@ -97,7 +106,7 @@ public class FeedbackViewController: FetchedTableViewController<Conversation, Co
             navigationItem.rightBarButtonItem?.isEnabled = true
         } else {
             let message = FeedbackMessageView()
-            message.messageLabel.text = NSLocalizedString("coodly.feedback.sign.in.message", comment: "")
+            message.messageLabel.text = translation.conversations.loginMessage
             message.frame = self.view.bounds
             self.view.addSubview(message)
         }
@@ -160,6 +169,7 @@ public class FeedbackViewController: FetchedTableViewController<Conversation, Co
     
     @objc fileprivate func presentNotice() {
         let controller = FeedbackNoticeViewController()
+        inject(into: controller)
         let navigation = UINavigationController(rootViewController: controller)
         navigation.modalPresentationStyle = .formSheet
         present(navigation, animated: true, completion: nil)

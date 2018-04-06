@@ -120,6 +120,7 @@ internal class ConversationViewController: FetchedTableViewController<Message, M
     @objc fileprivate func addMessage() {
         showingCompose = true
         let compose = ComposeViewController()
+        inject(into: compose)
         compose.entryHandler = {
             message in
             

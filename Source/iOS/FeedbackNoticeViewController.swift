@@ -20,7 +20,9 @@ private extension Selector {
     static let dismiss = #selector(FeedbackNoticeViewController.dismissPressed)
 }
 
-class FeedbackNoticeViewController: UIViewController {
+class FeedbackNoticeViewController: UIViewController, TranslationConsumer {
+    var translation: Translation!
+    
     private var textView: UITextView!
     
     override func viewDidLoad() {
@@ -31,7 +33,7 @@ class FeedbackNoticeViewController: UIViewController {
         textView = UITextView(frame: view.bounds)
         textView.font = UIFont.preferredFont(forTextStyle: .body)
         textView.isEditable = false
-        textView.text = NSLocalizedString("coodly.feedback.response.notice", comment: "")
+        textView.text = translation.notice.content
         view.addSubview(textView)
         
         let views: [String: AnyObject] = ["text": textView]

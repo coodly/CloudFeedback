@@ -29,10 +29,13 @@ public final class Feedback: Dependencies, FeedbackInjector {
         return queue
     }()
     
-    public init(container: CKContainer = .default()) {
+    public init(container: CKContainer = .default(), translation: Translation? = nil) {
         Logging.log("Start with \(String(describing: container.containerIdentifier))")
         self.container = container
         FeedbackInjection.sharedInstance.feedbackContainer = container
+        if let translation = translation {
+            FeedbackInjection.sharedInstance.translation = translation
+        }
     }
     
     public func load() {

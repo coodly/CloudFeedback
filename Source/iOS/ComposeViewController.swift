@@ -22,7 +22,9 @@ private extension Selector {
     static let keyboardChanged = #selector(ComposeViewController.keyboardChanged(notification:))
 }
 
-internal class ComposeViewController: UIViewController {
+internal class ComposeViewController: UIViewController, TranslationConsumer {
+    var translation: Translation!
+    
     var entryHandler: ((String) -> ())!
     
     private var bottomSpacing: NSLayoutConstraint!
@@ -30,9 +32,9 @@ internal class ComposeViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        navigationItem.title = NSLocalizedString("coodly.feedback.message.compose.controller.title", comment: "")
+        navigationItem.title = translation.input.title
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: .cancelPressed)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("coodly.feedback.message.compose.controller.send.button", comment: ""), style: .plain, target: self, action: .sendPressed)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: translation.input.sendButton, style: .plain, target: self, action: .sendPressed)
         
         textView = UITextView(frame: view.bounds)
         textView.font = UIFont.preferredFont(forTextStyle: .body)
