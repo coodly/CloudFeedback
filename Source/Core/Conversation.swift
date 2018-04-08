@@ -25,12 +25,7 @@ public class Conversation: NSManagedObject {
     }
     
     func toCloud() -> Cloud.Conversation {
-        var cloud = Cloud.Conversation()
-        cloud.recordName = recordName
-        cloud.recordData = recordData
-        cloud.lastMessageTime = lastMessageTime
-        cloud.snippet = snippet
-        return cloud
+        return Cloud.Conversation(recordName: recordName, recordData: recordData, lastMessageTime: lastMessageTime!, snippet: snippet!)
     }
     
     func shouldFetchMessages() -> Bool {

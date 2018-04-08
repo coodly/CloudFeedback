@@ -27,7 +27,7 @@ public extension Cloud {
         public var recordData: Data?
         public var parent: CKRecordID?
         
-        public var appIdentifier: String? // = Bundle.main.bundleIdentifier!
+        public var appIdentifier: String?
         public var lastMessageTime: Date?
         public var snippet: String?
         public var modificationDate: Date?
@@ -45,10 +45,14 @@ public extension Cloud {
             
         }
         
-        public init(recordName: String?, recordData: Data?, identifier: String, lastMessageTime: Date, snippet: String) {
+        public init(recordName: String?, recordData: Data?, lastMessageTime: Date, snippet: String) {
             self.recordName = recordName
             self.recordData = recordData
-            self.appIdentifier = identifier
+            if recordData == nil {
+                // conversations can be created on client side
+                // when creating conversation (recordData missing), set client side app identifier
+                appIdentifier = Bundle.main.bundleIdentifier
+            }
             self.lastMessageTime = lastMessageTime
             self.snippet = snippet
         }
