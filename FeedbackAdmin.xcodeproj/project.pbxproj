@@ -576,7 +576,6 @@
 				A7C903621FE0EBC600FE921A /* Frameworks */,
 				A7C903631FE0EBC600FE921A /* Resources */,
 				DF3AFB32EC6A481DDBD85C89 /* [CP] Embed Pods Frameworks */,
-				8512D08B98DC6EABF177048A /* [CP] Copy Pods Resources */,
 				A7C9038E1FE112CA00FE921A /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -599,7 +598,6 @@
 				A7C9037E1FE112CA00FE921A /* Frameworks */,
 				A7C9037F1FE112CA00FE921A /* Headers */,
 				A7C903801FE112CA00FE921A /* Resources */,
-				7C810909B0FA008B4C3FFA0F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -734,36 +732,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7C810909B0FA008B4C3FFA0F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AdminCore/Pods-AdminCore-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8512D08B98DC6EABF177048A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DF3AFB32EC6A481DDBD85C89 /* [CP] Embed Pods Frameworks */ = {
