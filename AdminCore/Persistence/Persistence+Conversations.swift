@@ -25,7 +25,7 @@ internal extension NSPredicate {
 
 
 public extension NSManagedObjectContext {
-    internal func update(conversations: [CloudFeedback.Cloud.Conversation]) {
+    internal func update(conversations: [CloudFeedback.Cloud.Conversation], justMeta: Bool = false) {
         let names = conversations.compactMap({ $0.recordName })
         
         let predicate = NSPredicate(format: "recordName IN %@", names)
@@ -36,6 +36,10 @@ public extension NSManagedObjectContext {
             
             saved.recordName = conversation.recordName
             saved.recordData = conversation.recordData
+            
+            if justMeta {
+                continue
+            }
             
             saved.lastMessageTime = conversation.lastMessageTime!
             saved.snippet = conversation.snippet!

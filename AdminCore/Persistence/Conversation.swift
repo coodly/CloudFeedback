@@ -20,7 +20,7 @@ import CloudFeedback
 
 public class Conversation: NSManagedObject {
     internal func toCloud() -> CloudFeedback.Cloud.Conversation {
-        return CloudFeedback.Cloud.Conversation(recordName: recordName!, recordData: recordData!, identifier: application.identifier, lastMessageTime: lastMessageTime, snippet: snippet)
+        return CloudFeedback.Cloud.Conversation(recordName: recordName!, recordData: recordData!, lastMessageTime: lastMessageTime, snippet: snippet)
     }
 }
 

@@ -56,7 +56,7 @@ internal class PushConversationsOperation: ConcurrentOperation, Dependencies {
                 pushed.forEach({ $0.markSyncFailed() })
             case .success(let saved):
                 Log.debug("Saved \(saved.count)")
-                context.update(conversations: saved)
+                context.update(conversations: saved, justMeta: true)
             }
         }
         
