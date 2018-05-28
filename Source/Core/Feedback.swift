@@ -22,6 +22,16 @@ private typealias Dependencies = PersistenceConsumer
 public final class Feedback: Dependencies, FeedbackInjector {
     var persistence: CorePersistence!
     
+    public var hasUnreadMessages: Bool {
+        var hasUnread = false
+        persistence.write() {
+            context in
+            
+            hasUnread = context.hasUnseenConversations()
+        }
+        return hasUnread
+    }
+    
     internal let container: CKContainer
     internal lazy var queue: OperationQueue = {
         let queue = OperationQueue()
