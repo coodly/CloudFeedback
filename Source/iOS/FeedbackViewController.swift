@@ -78,7 +78,7 @@ public class FeedbackViewController: FetchedTableViewController<Conversation, Co
         self.headerLabel = label
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.attributedText = NSAttributedString(string: notice, attributes: [NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleDouble.rawValue, NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)])
+        label.attributedText = NSAttributedString(string: notice, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.double.rawValue, NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline)])
         label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         header.addSubview(label)

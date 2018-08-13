@@ -20,7 +20,7 @@ class FooterLoadingView: UIView {
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
         
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let indicator = UIActivityIndicatorView(style: .whiteLarge)
         indicator.color = .black
         indicator.startAnimating()
         indicator.translatesAutoresizingMaskIntoConstraints = false

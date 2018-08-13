@@ -19,7 +19,7 @@ import CloudKit
 
 public extension Cloud {
     public struct Message: RemoteRecord {
-        public var parent: CKRecordID?
+        public var parent: CKRecord.ID?
         public var recordData: Data?
         public var recordName: String?
         public static var recordType: String {
@@ -27,14 +27,14 @@ public extension Cloud {
         }
         
         public var body: String?
-        var conversation: CKReference?
+        var conversation: CKRecord.Reference?
         public var postedAt: Date?
         public var sentBy: String?
         public var platform: String?
         
         public mutating func loadFields(from record: CKRecord) -> Bool {
             body = record["body"] as? String
-            conversation = record["conversation"] as? CKReference
+            conversation = record["conversation"] as? CKRecord.Reference
             postedAt = record["postedAt"] as? Date
             sentBy = record["sentBy"] as? String
             platform = record["platform"] as? String

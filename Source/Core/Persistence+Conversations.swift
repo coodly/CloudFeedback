@@ -85,7 +85,7 @@ internal extension NSManagedObjectContext {
         }
     }
     
-    func conversation(for reference: CKReference) -> Conversation? {
+    func conversation(for reference: CKRecord.Reference) -> Conversation? {
         return fetchEntity(where: "recordName", hasValue: reference.recordID.recordName)
     }
     

@@ -25,7 +25,7 @@ public extension Cloud {
         
         public var recordName: String?
         public var recordData: Data?
-        public var parent: CKRecordID?
+        public var parent: CKRecord.ID?
         
         public var appIdentifier: String?
         public var lastMessageTime: Date?

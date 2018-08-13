@@ -57,7 +57,7 @@ internal class ComposeViewController: UIViewController, TranslationConsumer {
         
         bottomSpacing.constant = 0
         
-        NotificationCenter.default.addObserver(self, selector: .keyboardChanged, name: Notification.Name.UIKeyboardDidChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: .keyboardChanged, name: UIResponder.keyboardDidChangeFrameNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,7 +79,7 @@ internal class ComposeViewController: UIViewController, TranslationConsumer {
     }
     
     @objc fileprivate func keyboardChanged(notification: Notification) {
-        guard let info = notification.userInfo, let end = info[UIKeyboardFrameEndUserInfoKey] as? NSValue else {
+        guard let info = notification.userInfo, let end = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
             return
         }
         

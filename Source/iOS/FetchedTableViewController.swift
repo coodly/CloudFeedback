@@ -22,7 +22,7 @@ private typealias ConformsTo = UITableViewDataSource & UITableViewDelegate & NSF
 public class FetchedTableViewController<Model: NSManagedObject, Cell: UITableViewCell>: UIViewController, ConformsTo {
     private(set) var tableView: UITableView!
     
-    open var rowAnimation: UITableViewRowAnimation {
+    open var rowAnimation: UITableView.RowAnimation {
         return .automatic
     }
     
@@ -47,7 +47,7 @@ public class FetchedTableViewController<Model: NSManagedObject, Cell: UITableVie
         tableView.delegate = self
         
         tableView.estimatedRowHeight = 44
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
     }
     

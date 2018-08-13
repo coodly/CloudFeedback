@@ -76,7 +76,7 @@ class PullConversationsOperation: CloudKitRequest<Cloud.Conversation>, Persisten
         }
     }
     
-    private func fetchConversationsFor(_ userRecordId: CKRecordID) {
+    private func fetchConversationsFor(_ userRecordId: CKRecord.ID) {
         persistence.performInBackground() {
             context in
             

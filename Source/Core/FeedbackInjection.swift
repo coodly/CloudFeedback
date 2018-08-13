@@ -73,7 +73,7 @@ internal class FeedbackInjection {
         checkCloudAvailability()
         
         Logging.log("Add app life listener")
-        NotificationCenter.default.addObserver(self, selector: .checkForMessages, name: .UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: .checkForMessages, name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: .checkCloudAvailability, name: .CKAccountChanged, object: nil)
     }
     
