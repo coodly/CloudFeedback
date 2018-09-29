@@ -32,15 +32,14 @@ class PullConversationsOperation: CloudKitRequest<Cloud.Conversation>, Persisten
     }
     
     override func handle(result: CloudResult<Cloud.Conversation>, completion: @escaping () -> ()) {
-        switch result {
-        case .failure:
+        if result.error != nil {
             completion()
-        case .success(let conversations, _):
+        } else {
             let save: ContextClosure = {
                 context in
                 
                 var lastModifyTime: Date? = nil
-                for c in conversations {
+                for c in result.records {
                     context.update(c)
                     if lastModifyTime == nil {
                         lastModifyTime = c.modificationDate

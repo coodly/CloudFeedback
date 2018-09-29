@@ -35,13 +35,12 @@ internal class SaveMessagesOperation: CloudKitRequest<Cloud.Message> {
     }
     
     override func handle(result: CloudResult<Cloud.Message>, completion: @escaping () -> ()) {
-        switch result {
-        case .failure:
+        if result.error != nil {
             Logging.log("Save failure")
             resultHandler?(.failure)
-        case .success(let saved, _):
+        } else {
             Logging.log("Success")
-            resultHandler?(.success(saved))
+            resultHandler?(.success(result.records))
         }
         
         completion()

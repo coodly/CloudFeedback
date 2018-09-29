@@ -47,11 +47,10 @@ internal class PullMessagesOperation: CloudKitRequest<Cloud.Message>, Persistenc
         let save: ContextClosure = {
             context in
             
-            switch result {
-            case .failure:
+            if result.error != nil {
                 Logging.log("Pull masseges failed")
-            case .success(let messages, _):
-                for m in messages {
+            } else {
+                for m in result.records {
                     context.update(message: m)
                 }
                 

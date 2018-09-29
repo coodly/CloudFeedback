@@ -42,12 +42,11 @@ internal class FetchMessagesOperation: CloudKitRequest<Cloud.Message> {
     }
     
     override func handle(result: CloudResult<Cloud.Message>, completion: @escaping () -> ()) {
-        switch result {
-        case .failure:
+        if result.error != nil {
             Logging.log("Fetch failed")
-        case .success(let messages, _):
-            Logging.log("Pulled \(messages.count) messages")
-            progress(.fetched(messages))
+        } else {
+            Logging.log("Pulled \(result.records.count) messages")
+            progress(.fetched(result.records))
         }
         
         completion()

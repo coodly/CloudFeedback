@@ -59,13 +59,13 @@ internal class PushMessagesOperation: CloudKitRequest<Cloud.Message>, Persistenc
             context in
             
             let messages = context.inCurrentContext(entities: self.messages!)
-            switch result {
-            case .failure:
+            
+            if result.error != nil {
                 for m in messages {
                     m.syncFailed = true
                 }
-            case .success(let saved, _):
-                for m in saved {
+            } else {
+                for m in result.records {
                     context.update(message: m)
                 }
             }

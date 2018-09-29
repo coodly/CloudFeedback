@@ -57,12 +57,11 @@ internal class PushConversationsOperation: CloudKitRequest<Cloud.Conversation>, 
         let save: ContextClosure = {
             context in
             
-            switch result {
-            case .failure:
+            if result.error != nil {
                 context.markSyncFailureOn(conversations: self.names)
                 self.names = []
-            case .success(let conversations, _):
-                for c in conversations {
+            } else {
+                for c in result.records {
                     context.update(c)
                 }
             }
