@@ -37,7 +37,7 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
     @IBOutlet private var messagesContainer: UIView!
     private var messagesController: MessagesViewController?
     private lazy var activityIndicatorItem: UIBarButtonItem = {
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
         indicator.startAnimating()
         return UIBarButtonItem(customView: indicator)
     }()
@@ -50,7 +50,7 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
         applicationsController = applications
         applications.delegate = self
         let aoplicationsNavigation = UINavigationController(rootViewController: applications)
-        addChildViewController(aoplicationsNavigation)
+        addChild(aoplicationsNavigation)
         applicationsContainer.addSubview(aoplicationsNavigation.view)
         aoplicationsNavigation.view.pinToSuperviewEdges()
         
@@ -59,7 +59,7 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
         conversationsController = conversations
         conversations.delegate = self
         let conversationsNavigation = UINavigationController(rootViewController: conversations)
-        addChildViewController(conversationsNavigation)
+        addChild(conversationsNavigation)
         conversationsContainer.addSubview(conversationsNavigation.view)
         conversationsNavigation.view.pinToSuperviewEdges()
         
@@ -67,11 +67,11 @@ public class MainViewController: UIViewController, StoryboardLoaded, UIInjector,
         inject(into: messages)
         messagesController = messages
         let messagesNavigation = UINavigationController(rootViewController: messages)
-        addChildViewController(messagesNavigation)
+        addChild(messagesNavigation)
         messagesContainer.addSubview(messagesNavigation.view)
         messagesNavigation.view.pinToSuperviewEdges()
         
-        NotificationCenter.default.addObserver(self, selector: .checkConversations, name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: .checkConversations, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     public override func viewDidAppear(_ animated: Bool) {

@@ -32,7 +32,7 @@ internal class FetchedTableViewController<Model: NSManagedObject, Cell: UITableV
         tableView.registerCell(forType: Cell.self)
         
         tableView.estimatedRowHeight = 44
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         tableView.tableFooterView = UIView()
     }

@@ -37,7 +37,7 @@ internal class FeedbackSync: NSObject, Dependencies, CoreInjector {
     internal func load() {
         needingSync.delegate = self
         
-        NotificationCenter.default.addObserver(self, selector: .resetFailedSyncs, name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: .resetFailedSyncs, name: UIApplication.didBecomeActiveNotification, object: nil)
         
         resetFailedSyncs()
         checkPushNeeded()

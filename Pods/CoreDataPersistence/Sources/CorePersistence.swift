@@ -41,8 +41,8 @@ open class CorePersistence {
         }
     }
     
-    public init(modelName: String, storeType: String = NSSQLiteStoreType, identifier: String = Bundle.main.bundleIdentifier!, bundle: Bundle = Bundle.main, in directory: FileManager.SearchPathDirectory = .documentDirectory, wipeOnConflict: Bool = false) {
-        stack = LegacyDataStack(modelName: modelName, type: storeType, identifier: identifier, bundle: bundle, in: directory, wipeOnConflict: wipeOnConflict)
+    public init(modelName: String, storeType: String = NSSQLiteStoreType, identifier: String = Bundle.main.bundleIdentifier!, bundle: Bundle = Bundle.main, in directory: FileManager.SearchPathDirectory = .documentDirectory, wipeOnConflict: Bool = false, sharedBackgroundContext: Bool = false) {
+        stack = LegacyDataStack(modelName: modelName, type: storeType, identifier: identifier, bundle: bundle, in: directory, wipeOnConflict: wipeOnConflict, sharedBackgroundContext: sharedBackgroundContext)
 
         /*if #available(iOS 10, tvOS 10, *) {
             stack = CoreDataStack(modelName: modelName, type: storeType, identifier: identifier, in: directory, wipeOnConflict: wipeOnConflict)
@@ -159,6 +159,7 @@ private class CoreStack {
     private let directory: FileManager.SearchPathDirectory
     fileprivate let mergePolicy: NSMergePolicyType
     fileprivate let wipeOnConflict: Bool
+    fileprivate let sharedBackgroundContext: Bool
     fileprivate var managedObjectModel: NSManagedObjectModel?
     fileprivate var persistentStoreCoordinator: NSPersistentStoreCoordinator {
         fatalError()
@@ -167,7 +168,7 @@ private class CoreStack {
         fatalError()
     }
     
-    init(modelName: String, type: String = NSSQLiteStoreType, identifier: String, bundle: Bundle, in directory: FileManager.SearchPathDirectory = .documentDirectory, mergePolicy: NSMergePolicyType = .mergeByPropertyObjectTrumpMergePolicyType, wipeOnConflict: Bool) {
+    init(modelName: String, type: String = NSSQLiteStoreType, identifier: String, bundle: Bundle, in directory: FileManager.SearchPathDirectory = .documentDirectory, mergePolicy: NSMergePolicyType = .mergeByPropertyObjectTrumpMergePolicyType, wipeOnConflict: Bool, sharedBackgroundContext: Bool) {
         
         self.modelName = modelName
         self.type = type
@@ -176,6 +177,7 @@ private class CoreStack {
         self.directory = directory
         self.mergePolicy = mergePolicy
         self.wipeOnConflict = wipeOnConflict
+        self.sharedBackgroundContext = sharedBackgroundContext
     }
     
     fileprivate var databaseFilePath: URL? {
@@ -283,6 +285,7 @@ private class LegacyDataStack: CoreStack {
     }
     
     private var writingContext: NSManagedObjectContext?
+    private lazy var sharedWorkerContext: NSManagedObjectContext = self.createBackgroundContext()
 
     fileprivate override func loadPersistentStores(completion: @escaping (() -> ())) {
         DispatchQueue.main.async {
@@ -359,19 +362,21 @@ private class LegacyDataStack: CoreStack {
     
     private lazy var objectModel: NSManagedObjectModel = {
         let modelURL = self.bundle.url(forResource: self.modelName, withExtension: "momd")!
-        return makeOptional(NSManagedObjectModel(contentsOf: modelURL))!
+        return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
     override func newBackgroundContext() -> NSManagedObjectContext {
+        if sharedBackgroundContext {
+            return sharedWorkerContext
+        }
+        
+        return createBackgroundContext()
+    }
+    
+    private func createBackgroundContext() -> NSManagedObjectContext {
         let managedContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         managedContext.parent = managedObjectContext
         managedContext.mergePolicy = NSMergePolicy(merge: mergePolicy)
         return managedContext
     }
 }
-
-//TODO jaanus: remove this. Issue in Xcode9 b5
-private func makeOptional<T>(_ value: T?) -> T? {
-    return value
-}
-

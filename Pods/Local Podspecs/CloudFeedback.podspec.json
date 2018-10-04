@@ -1,6 +1,6 @@
 {
   "name": "CloudFeedback",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "Apache 2",
   "summary": "User feedback on top of CloudKit",
   "homepage": "https://github.com/coodly/CloudFeedback",
@@ -9,7 +9,7 @@
   },
   "source": {
     "git": "git@github.com:coodly/CloudFeedback.git",
-    "tag": "0.1.0"
+    "tag": "0.2.0"
   },
   "default_subspecs": "Client",
   "platforms": {
@@ -23,10 +23,10 @@
       "source_files": "Source/Core/*.swift",
       "dependencies": {
         "CoreDataPersistence": [
-          "0.1.5"
+          "0.1.6"
         ],
         "Puff": [
-          "0.1.1"
+          "0.4.0"
         ]
       }
     },

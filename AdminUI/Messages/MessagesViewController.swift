@@ -46,7 +46,7 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
     private var conversation: Conversation?
     
     private lazy var activityIndicatorItem: UIBarButtonItem = {
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
         indicator.startAnimating()
         return UIBarButtonItem(customView: indicator)
     }()
@@ -57,15 +57,15 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
         title = "Messages"
         table.separatorStyle = .none
         
-        addChildViewController(sendViewController)
+        addChild(sendViewController)
         inputPlaceholder.addSubview(sendViewController.view)
         sendViewController.view.pinToSuperviewEdges()
         
         inputPlaceholder.isHidden = true
         
-        NotificationCenter.default.addObserver(self, selector: .willChange, name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
-        NotificationCenter.default.addObserver(self, selector: .willChange, name: Notification.Name.UIKeyboardDidShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: .willDisappear, name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: .willChange, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: .willChange, name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: .willDisappear, name: UIResponder.keyboardWillHideNotification, object: nil)
         
         tableView.refreshControl = refresh
         refresh.addTarget(self, action: .refreshConversation, for: .valueChanged)
@@ -97,10 +97,10 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
     }
     
     @objc fileprivate func keyboardWillChange(notification: Notification) {
-        guard let info = notification.userInfo, let keyboardSize = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+        guard let info = notification.userInfo, let keyboardSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
-        let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber ?? NSNumber(value: 0.3)
+        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber ?? NSNumber(value: 0.3)
         
         let converted = view.convert(keyboardSize, from: UIApplication.shared.keyWindow!)
         let covering = view.frame.height - converted.origin.y
@@ -112,7 +112,7 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
     }
     
     @objc fileprivate func keyboardWillDisappear(notification: Notification) {
-        let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber ?? NSNumber(value: 0.3)
+        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber ?? NSNumber(value: 0.3)
         
         bottomContentConstraint.constant = 0
         UIView.animate(withDuration: duration.doubleValue) {
