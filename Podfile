@@ -16,5 +16,5 @@ target 'AdminCore' do
 
     pod 'CoreDataPersistence', '0.1.6'
     pod 'SWLogger', :git => 'git@github.com:coodly/swlogger.git', tag: '0.3.4'
-    pod 'Puff', '0.4.0'
+    pod 'Puff', '0.5.0'
 end
