@@ -28,21 +28,21 @@ class FeedbackNoticeViewController: UIViewController, TranslationConsumer {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor.white
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: .dismiss)
         
         textView = UITextView(frame: view.bounds)
         textView.font = UIFont.preferredFont(forTextStyle: .body)
         textView.isEditable = false
         textView.text = translation.notice.content
+        textView.textAlignment = .justified
         view.addSubview(textView)
-        
-        let views: [String: AnyObject] = ["text": textView]
-        
         textView.translatesAutoresizingMaskIntoConstraints = false
-        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[text]|", options: [], metrics: nil, views: views)
-        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|[text]|", options: [], metrics: nil, views: views)
-        
-        view.addConstraints(vertical + horizontal)
+        textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+        textView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        textView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     @objc fileprivate func dismissPressed() {

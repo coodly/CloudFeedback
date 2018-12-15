@@ -31,6 +31,9 @@ internal class ComposeViewController: UIViewController, TranslationConsumer {
     private var textView: UITextView!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.white
         
         navigationItem.title = translation.input.title
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: .cancelPressed)
@@ -39,24 +42,12 @@ internal class ComposeViewController: UIViewController, TranslationConsumer {
         textView = UITextView(frame: view.bounds)
         textView.font = UIFont.preferredFont(forTextStyle: .body)
         view.addSubview(textView)
-        
-        let views: [String: AnyObject] = ["text": textView]
-        
         textView.translatesAutoresizingMaskIntoConstraints = false
-        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[text]-(123)-|", options: [], metrics: nil, views: views)
-        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|[text]|", options: [], metrics: nil, views: views)
-        
-        view.addConstraints(vertical + horizontal)
-        
-        for c in view.constraints {
-            if c.constant == 123 {
-                bottomSpacing = c
-                break
-            }
-        }
-        
-        bottomSpacing.constant = 0
-        
+        textView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        bottomSpacing = textView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        bottomSpacing.isActive = true
+        textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         NotificationCenter.default.addObserver(self, selector: .keyboardChanged, name: UIResponder.keyboardDidChangeFrameNotification, object: nil)
     }
     
