@@ -79,6 +79,7 @@ internal class ComposeViewController: UIViewController, TranslationConsumer {
         let frame = end.cgRectValue
         let keyboardInScreen = keyWindow.convert(frame, from: keyWindow.rootViewController!.view)
         let intersection = meInScreen.intersection(keyboardInScreen)
-        bottomSpacing.constant = intersection.height
+        bottomSpacing.constant = -intersection.height
+        view.layoutIfNeeded()
     }
 }
