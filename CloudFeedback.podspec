@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'CloudFeedback'
-  s.version = '0.2.3'
+  s.version = '0.2.4'
   s.license = 'Apache 2'
   s.summary = 'User feedback on top of CloudKit'
   s.homepage = 'https://github.com/coodly/CloudFeedback'
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |core|
     core.source_files = 'Source/Core/*.swift'
-    core.dependency 'CoreDataPersistence', '0.1.7'
+    core.dependency 'CoreDataPersistence', '0.1.8'
     core.dependency 'Puff', '0.5.0'
   end
   
