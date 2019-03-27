@@ -18,7 +18,7 @@ import Puff
 import CloudKit
 
 public extension Cloud {
-    public struct Message: RemoteRecord {
+    struct Message: RemoteRecord {
         public var parent: CKRecord.ID?
         public var recordData: Data?
         public var recordName: String?

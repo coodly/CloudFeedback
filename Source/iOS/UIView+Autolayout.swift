@@ -18,7 +18,7 @@ import Foundation
 import UIKit
 
 internal extension UIView {
-    internal func pinToSuperviewEdges(insets: UIEdgeInsets = .zero) {
+    func pinToSuperviewEdges(insets: UIEdgeInsets = .zero) {
         guard let parent = superview else {
             return
         }
