@@ -17,7 +17,7 @@
 import CoreData
 
 internal extension NSManagedObjectModel {
-    internal static func createFeedbackV1() -> NSManagedObjectModel {
+    static func createFeedbackV1() -> NSManagedObjectModel {
         let model = NSManagedObjectModel()
         
         

@@ -20,7 +20,7 @@ import CoreData
 import CloudKit
 
 public extension Notification.Name {
-    public static let feedbackNewMessageReceived = Notification.Name(rawValue: "feedbackNewMessageReceived")
+    static let feedbackNewMessageReceived = Notification.Name(rawValue: "feedbackNewMessageReceived")
 }
 
 private extension Selector {

@@ -17,7 +17,7 @@
 import Foundation
 
 public extension FeedbackModule {
-    public func feedbackController() -> FeedbackViewController {
+    func feedbackController() -> FeedbackViewController {
         let controller = FeedbackViewController()
         inject(into: controller)
         return controller

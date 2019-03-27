@@ -19,7 +19,7 @@ import Foundation
 private let SnippetLength = 100
 
 public extension String {
-    public func snippet() -> String {
+    func snippet() -> String {
         let snippetLength = min(100, count)
         let endIndex = index(startIndex, offsetBy: snippetLength)
         return String(self[..<endIndex])

@@ -18,19 +18,19 @@ import Foundation
 import UIKit
 
 internal extension UITableView {
-    internal func registerCell<T: UITableViewCell>(forType type: T.Type) {
+    func registerCell<T: UITableViewCell>(forType type: T.Type) {
         register(T.viewNib(Bundle(for: T.self)), forCellReuseIdentifier: T.className)
     }
     
-    internal func dequeueReusableCell<T: UITableViewCell>(for indexPath: IndexPath) -> T {
+    func dequeueReusableCell<T: UITableViewCell>(for indexPath: IndexPath) -> T {
         return dequeueReusableCell(withIdentifier: T.className, for: indexPath) as! T
     }
     
-    internal func registerHeaderFooter<T: UITableViewHeaderFooterView>(for type: T.Type) {
+    func registerHeaderFooter<T: UITableViewHeaderFooterView>(for type: T.Type) {
         register(T.viewNib(Bundle(for: T.self)), forHeaderFooterViewReuseIdentifier: T.className)
     }
     
-    internal func dequeueHeaderFooter<T: UITableViewHeaderFooterView>() -> T {
+    func dequeueHeaderFooter<T: UITableViewHeaderFooterView>() -> T {
         return dequeueReusableHeaderFooterView(withIdentifier: T.className) as! T
     }
 }

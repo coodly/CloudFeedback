@@ -18,7 +18,7 @@ import Puff
 import CloudKit
 
 public extension Cloud {
-    public struct Conversation: RemoteRecord {
+    struct Conversation: RemoteRecord {
         public static var recordType: String {
             return "Conversation"
         }
