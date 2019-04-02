@@ -94,10 +94,10 @@ internal class MessageCell: UITableViewCell {
         contentView.addSubview(bubbleBackground)
         contentView.addSubview(stack)
         
-        contentView.addConstraint(NSLayoutConstraint(item: bubbleBackground, attribute: .right, relatedBy: .equal, toItem: stack, attribute: .right, multiplier: 1, constant: 5))
-        contentView.addConstraint(NSLayoutConstraint(item: bubbleBackground, attribute: .top, relatedBy: .equal, toItem: stack, attribute: .top, multiplier: 1, constant: -5))
-        contentView.addConstraint(NSLayoutConstraint(item: bubbleBackground, attribute: .left, relatedBy: .equal, toItem: stack, attribute: .left, multiplier: 1, constant: -5))
-        contentView.addConstraint(NSLayoutConstraint(item: bubbleBackground, attribute: .bottom, relatedBy: .equal, toItem: stack, attribute: .bottom, multiplier: 1, constant: 5))
+        bubbleBackground.leftAnchor.constraint(equalTo: stack.leftAnchor, constant: 5).isActive = true
+        bubbleBackground.topAnchor.constraint(equalTo: stack.topAnchor, constant: 5).isActive = true
+        bubbleBackground.rightAnchor.constraint(equalTo: stack.rightAnchor, constant: 5).isActive = true
+        bubbleBackground.bottomAnchor.constraint(equalTo: stack.bottomAnchor, constant: 5).isActive = true        
         
         let views: [String: AnyObject] = ["stack": stack, "time": timeLabel, "message": messageLabel]
         

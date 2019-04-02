@@ -126,6 +126,8 @@ public class FetchedTableViewController<Model: NSManagedObject, Cell: UITableVie
             tableView.deleteSections(IndexSet(integer: sectionIndex), with: .none)
         case .move:
             fatalError("Wut? \(sectionIndex)")
+        @unknown default:
+            Logging.log("Unknown \(type.rawValue)")
         }
     }
     
@@ -145,6 +147,8 @@ public class FetchedTableViewController<Model: NSManagedObject, Cell: UITableVie
         case NSFetchedResultsChangeType.move:
             tableView.deleteRows(at: [indexPath!], with: rowAnimation)
             tableView.insertRows(at: [newIndexPath!], with: rowAnimation)
+        @unknown default:
+            Logging.log("Unknown \(type.rawValue)")
         }
     }
     
