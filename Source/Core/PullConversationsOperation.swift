@@ -66,7 +66,7 @@ class PullConversationsOperation: CloudKitRequest<Cloud.Conversation>, Persisten
             
             if let error = error {
                 Logging.log("Fetch user record error \(error)")
-                self.finish(true)
+                self.finish(error)
             } else {
                 DispatchQueue.main.async {
                     self.fetchConversationsFor(recordId!)

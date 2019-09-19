@@ -147,13 +147,14 @@ public class FeedbackViewController: FetchedTableViewController<Conversation, Co
         
         let op = PullConversationsOperation()
         inject(into: op)
-        op.completionHandler = {
-            success, _ in
-            
+        let callback: ((Result<PullConversationsOperation, Error>) -> Void) = {
+            _ in
+
             DispatchQueue.main.async {
                 self.refreshControl.endRefreshing()
             }
         }
+        op.onCompletion(callback: callback)
         op.start()
     }
     

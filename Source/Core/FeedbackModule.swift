@@ -49,30 +49,36 @@ public class FeedbackModule {
     public func fetchConversations(since: Date = Date.distantPast, progress: @escaping ((FetchConversationsProgress) -> Void)) {
         let op = FetchConversationsOperation(since: since, in: container)
         op.progress = progress
-        op.completionHandler = {
-            success, _ in
+        let callback: ((Result<FetchConversationsOperation, Error>) -> Void) = {
+            result in
             
-            if success {
+            switch result {
+            case .success(_):
                 progress(.completed)
-            } else {
+            case .failure(_):
                 progress(.failure)
             }
+
         }
+        op.onCompletion(callback: callback)
         queue.addOperation(op)
     }
     
     public func fetchMessages(in conversation: Cloud.Conversation, since: Date = Date.distantPast, progress: @escaping ((FetchMessagesProgress) -> Void)) {
         let op = FetchMessagesOperation(conversation: conversation, since: since, in: container)
         op.progress = progress
-        op.completionHandler = {
-            success, _ in
+        let callback: ((Result<FetchMessagesOperation, Error>) -> Void) = {
+            result in
             
-            if success {
+            switch result {
+            case .success(_):
                 progress(.completed)
-            } else {
+            case .failure(_):
                 progress(.failure)
             }
+
         }
+        op.onCompletion(callback: callback)
         queue.addOperation(op)
     }
     

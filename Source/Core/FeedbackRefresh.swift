@@ -23,8 +23,8 @@ class FeedbackRefresh: FeedbackInjector, PersistenceConsumer {
     public func refresh(completion: @escaping ((Bool) -> ())) {
         let op = PullConversationsOperation()
         inject(into: op)
-        op.completionHandler = {
-            success, _ in
+        let callback: ((Result<PullConversationsOperation, Error>) -> Void) = {
+            _ in
             
             DispatchQueue.main.async {
                 self.persistence.performInBackground() {
@@ -35,6 +35,7 @@ class FeedbackRefresh: FeedbackInjector, PersistenceConsumer {
                 }
             }
         }
+        op.onCompletion(callback: callback)
         op.start()
     }
 }

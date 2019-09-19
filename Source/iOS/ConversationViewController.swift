@@ -138,13 +138,14 @@ internal class ConversationViewController: FetchedTableViewController<Message, M
     
     private func refreshMessages() {
         let request = PullMessagesOperation(for: presentedConversation)
-        request.completionHandler = {
-            success, op in
-            
+        let callback: ((Result<PullMessagesOperation, Error>) -> Void) = {
+            _ in
+
             DispatchQueue.main.async {
                 self.tableView.tableFooterView = UIView()
             }
         }
+        request.onCompletion(callback: callback)
         inject(into: request)
         request.start()
     }
