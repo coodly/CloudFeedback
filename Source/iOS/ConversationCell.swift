@@ -32,7 +32,7 @@ public class ConversationCell: UITableViewCell {
         timeLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         timeLabel.textAlignment = .right
-        timeLabel.textColor = .lightGray
+        timeLabel.textColor = .secondaryLabel
         
         snippetLabel = UILabel()
         snippetLabel.numberOfLines = 3

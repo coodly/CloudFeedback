@@ -1,20 +1,4 @@
 /*
- * Copyright 2018 Coodly LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/*
  * Copyright 2016 Coodly LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -69,7 +53,7 @@ internal class MessageCell: UITableViewCell {
         
         bubbleBackground = UIView()
         bubbleBackground.layer.cornerRadius = 5
-        bubbleBackground.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        bubbleBackground.backgroundColor = .secondarySystemBackground
         bubbleBackground.translatesAutoresizingMaskIntoConstraints = false
         
         timeLabel = UILabel()
@@ -94,9 +78,9 @@ internal class MessageCell: UITableViewCell {
         contentView.addSubview(bubbleBackground)
         contentView.addSubview(stack)
         
-        bubbleBackground.leftAnchor.constraint(equalTo: stack.leftAnchor, constant: 5).isActive = true
-        bubbleBackground.topAnchor.constraint(equalTo: stack.topAnchor, constant: 5).isActive = true
-        bubbleBackground.rightAnchor.constraint(equalTo: stack.rightAnchor, constant: 5).isActive = true
+        bubbleBackground.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: -5).isActive = true
+        bubbleBackground.topAnchor.constraint(equalTo: stack.topAnchor, constant: -5).isActive = true
+        bubbleBackground.trailingAnchor.constraint(equalTo: stack.trailingAnchor, constant: 5).isActive = true
         bubbleBackground.bottomAnchor.constraint(equalTo: stack.bottomAnchor, constant: 5).isActive = true        
         
         let views: [String: AnyObject] = ["stack": stack, "time": timeLabel, "message": messageLabel]

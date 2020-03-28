@@ -28,7 +28,7 @@ class FeedbackNoticeViewController: UIViewController, TranslationConsumer {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .systemBackground
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: .dismiss)
         

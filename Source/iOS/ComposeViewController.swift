@@ -33,7 +33,7 @@ internal class ComposeViewController: UIViewController, TranslationConsumer {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.systemBackground
         
         navigationItem.title = translation.input.title
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: .cancelPressed)

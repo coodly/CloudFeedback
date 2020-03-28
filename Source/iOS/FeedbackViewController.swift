@@ -73,7 +73,7 @@ public class FeedbackViewController: FetchedTableViewController<Conversation, Co
         }
         
         let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
-        header.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        header.backgroundColor = .secondarySystemBackground
         let label = UILabel(frame: CGRect(x: 16, y: 16, width: header.frame.width - 32, height: header.frame.height - 32))
         self.headerLabel = label
         label.numberOfLines = 0
