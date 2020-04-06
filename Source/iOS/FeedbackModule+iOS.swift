@@ -17,6 +17,7 @@
 import Foundation
 
 public extension FeedbackModule {
+    @available(iOS 13.0, *)
     func feedbackController() -> FeedbackViewController {
         let controller = FeedbackViewController()
         inject(into: controller)

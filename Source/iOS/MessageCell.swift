@@ -24,6 +24,7 @@ enum MessageAlignment {
     case right
 }
 
+@available(iOS 13.0, *)
 internal class MessageCell: UITableViewCell {
     private(set) var timeLabel: UILabel!
     private(set) var messageLabel: UILabel!

@@ -16,12 +16,14 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 private extension Selector {
     static let sendPressed = #selector(ComposeViewController.sendPressed)
     static let cancelPressed = #selector(ComposeViewController.cancelPressed)
     static let keyboardChanged = #selector(ComposeViewController.keyboardChanged(notification:))
 }
 
+@available(iOS 13.0, *)
 internal class ComposeViewController: UIViewController, TranslationConsumer {
     var translation: Translation!
     

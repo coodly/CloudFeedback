@@ -19,6 +19,7 @@ import CoreDataPersistence
 import CoreData
 import CloudKit
 
+@available(iOS 13.0, *)
 private extension Selector {
     static let addPressed = #selector(FeedbackViewController.addPressed)
     static let refreshConversations = #selector(FeedbackViewController.refresh)
@@ -27,6 +28,7 @@ private extension Selector {
 
 private typealias Dependencies = PersistenceConsumer & FeedbackContainerConsumer & CloudAvailabilityConsumer & TranslationConsumer
 
+@available(iOS 13.0, *)
 public class FeedbackViewController: FetchedTableViewController<Conversation, ConversationCell>, FeedbackInjector, Dependencies {
     var persistence: CorePersistence!
     var feedbackContainer: CKContainer!

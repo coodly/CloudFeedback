@@ -18,10 +18,12 @@ import UIKit
 import CoreData
 import CoreDataPersistence
 
+@available(iOS 13.0, *)
 private extension Selector {
     static let addMessage = #selector(ConversationViewController.addMessage)
 }
 
+@available(iOS 13.0, *)
 internal class ConversationViewController: FetchedTableViewController<Message, MessageCell>, FeedbackInjector, PersistenceConsumer {
     var persistence: CorePersistence!
     var conversation: Conversation?

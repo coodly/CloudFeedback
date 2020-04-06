@@ -16,6 +16,7 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 public class ConversationCell: UITableViewCell {
     private(set) var timeLabel: UILabel!
     private(set) var snippetLabel: UILabel!

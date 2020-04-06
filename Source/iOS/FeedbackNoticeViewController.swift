@@ -16,10 +16,12 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 private extension Selector {
     static let dismiss = #selector(FeedbackNoticeViewController.dismissPressed)
 }
 
+@available(iOS 13.0, *)
 class FeedbackNoticeViewController: UIViewController, TranslationConsumer {
     var translation: Translation!
     
