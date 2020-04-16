@@ -1,5 +1,5 @@
 /*
-* Copyright 2015 Coodly LLC
+* Copyright 2017 Coodly LLC
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -14,17 +14,20 @@
 * limitations under the License.
 */
 
-import Foundation
-import CoreData
-
-public extension NSManagedObject {
-    public class func entityName() -> String {
-        return NSStringFromClass(self).components(separatedBy: ".").last!
-    }    
+public protocol Logger {
+    func log<T>(_ object: T, file: String, function: String, line: Int)
 }
 
-extension NSFetchRequestResult {
-    public static func entityName() -> String {
-        return NSStringFromClass(self).components(separatedBy: ".").last!
+public class Logging {
+    private var logger: Logger?
+    
+    internal static let sharedInstance = Logging()
+    
+    public class func set(logger: Logger) {
+        sharedInstance.logger = logger
+    }
+    
+    public class func log<T>(_ object: T, file: String = #file, function: String = #function, line: Int = #line) {
+        sharedInstance.logger?.log(object, file: file, function: function, line: line)
     }
 }

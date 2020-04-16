@@ -740,7 +740,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CloudFeedback/CloudFeedback.framework",
 				"${BUILT_PRODUCTS_DIR}/CoreDataPersistence/CoreDataPersistence.framework",
 				"${BUILT_PRODUCTS_DIR}/Puff/Puff.framework",
@@ -755,7 +755,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E24D3624C0108DD6E7D38004 /* [CP] Check Pods Manifest.lock */ = {

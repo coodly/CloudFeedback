@@ -16,16 +16,20 @@
 
 import CloudKit
 
+#if canImport(PuffLogger)
+import PuffLogger
+#endif
+
 public protocol RemoteRecord {
     var recordName: String? { get set }
     var recordData: Data? { get set }
     var parent: CKRecord.ID? { get set }
-    static var recordType: String { get }
+    static var recordType: CKRecord.RecordType { get }
 
     init()
     
     mutating func loadFields(from record: CKRecord) -> Bool
-    func referenceRepresentation() -> CKRecord.Reference
+    func referenceRepresentation(action: CKRecord.Reference.Action) -> CKRecord.Reference
 }
 
 public extension RemoteRecord {
@@ -38,8 +42,8 @@ public extension RemoteRecord {
         return loadFields(from: record)
     }
     
-    func referenceRepresentation() -> CKRecord.Reference {
-        return CKRecord.Reference(recordID: CKRecord.ID(recordName: recordName!), action: .deleteSelf)
+    func referenceRepresentation(action: CKRecord.Reference.Action = .deleteSelf) -> CKRecord.Reference {
+        return CKRecord.Reference(recordID: CKRecord.ID(recordName: recordName!), action: action)
     }
     
     private func archive(record: CKRecord) -> NSMutableData {
@@ -61,14 +65,14 @@ public extension RemoteRecord {
         return CKRecord(coder: coder)
     }
     
-    internal func recordRepresentation() -> CKRecord {
+    internal func recordRepresentation(in zone: CKRecordZone = .default()) -> CKRecord {
         let modified: CKRecord
         if let existing = unarchiveRecord() {
             modified = existing
         } else if let name = recordName {
-            modified = CKRecord(recordType: Self.recordType, recordID: CKRecord.ID(recordName: name))
+            modified = CKRecord(recordType: Self.recordType, recordID: CKRecord.ID(recordName: name, zoneID: zone.zoneID))
         } else {
-            modified = CKRecord(recordType: Self.recordType)
+            modified = CKRecord(recordType: Self.recordType, recordID: CKRecord.ID(recordName: UUID().uuidString, zoneID: zone.zoneID))
         }
         
         let mirror = Mirror(reflecting: self)
@@ -99,11 +103,27 @@ public extension RemoteRecord {
                 modified[label] = value as CKRecordValue
             } else if let value = child.value as? [CKRecord.Reference] {
                 modified[label] = value as CKRecordValue
+            } else if let value = child.value as? Data, let file = createTempFile(with: value) {
+                modified[label] = CKAsset(fileURL: file)
             } else {
                 //Logging.log("Could not cast \(child) value")
             }
         }
 
         return modified
+    }
+    
+    private func createTempFile(with data: Data) -> URL? {
+        let tmpDir = URL(fileURLWithPath: NSTemporaryDirectory())
+        try? FileManager.default.createDirectory(at: tmpDir, withIntermediateDirectories: true)
+        
+        let file = tmpDir.appendingPathComponent(ProcessInfo().globallyUniqueString)
+        do {
+            try data.write(to: file, options: .atomic)
+            return file
+        } catch {
+            Logging.log("Asset file write failed: \(error)")
+            return nil
+        }
     }
 }
