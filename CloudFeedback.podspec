@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'CloudFeedback'
-  s.version = '0.2.10'
+  s.version = '0.2.11'
   s.license = 'Apache 2'
   s.summary = 'User feedback on top of CloudKit'
   s.homepage = 'https://github.com/coodly/CloudFeedback'
