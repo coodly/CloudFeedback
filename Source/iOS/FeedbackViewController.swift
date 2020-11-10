@@ -54,7 +54,9 @@ private class FeedbackViewModel: ObservableObject, Dependencies {
                     messages in
                     
                     self?.messages = messages
-                    self?.scrollToLast()
+                    DispatchQueue.main.async {
+                        self?.scrollToLast()
+                    }
                 }
                 .store(in: &disposeBag)
         }
@@ -66,7 +68,7 @@ private class FeedbackViewModel: ObservableObject, Dependencies {
     @Published var message = ""
     private lazy var disposeBag = Set<AnyCancellable>()
     
-    fileprivate func scrollToLast() {
+    private func scrollToLast() {
         scrolledTo = messages.last?.recordName
     }
     
@@ -100,7 +102,7 @@ private struct FeedbackView: View {
                         if !viewModel.cloudAvailable {
                             LoginNoticeView(styling: viewModel.styling)
                         }
-                        ForEach(viewModel.messages, id: \Message.recordName) {
+                        ForEach(viewModel.messages) {
                             message in
                             
                             Bubble(message: message)
@@ -122,7 +124,6 @@ private struct FeedbackView: View {
             }
             .lineLimit(nil)
         }
-        .onAppear(perform: viewModel.scrollToLast)
     }
 }
 
@@ -150,7 +151,11 @@ private struct Bubble: View {
     }
 }
 
-extension Message {
+extension Message: Identifiable {
+    var id: String {
+        recordName!
+    }
+    
     var fromMe: Bool {
         !(sentBy?.hasValue() ?? false)
     }

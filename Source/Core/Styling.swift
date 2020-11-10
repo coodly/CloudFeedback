@@ -17,7 +17,7 @@
 import Foundation
 
 public struct Styling {
-    public var mainColor = UIColor.systemIndigo
+    public var mainColor = UIColor.blue
     public var greetingTextColor = UIColor.white
     public var greetingTitle = "Hi there!"
     public var greetingMessage = "Every suggestion and feedback is welcome"

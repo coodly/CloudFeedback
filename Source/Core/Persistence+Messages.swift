@@ -60,6 +60,7 @@ internal extension NSManagedObjectContext {
         saved.sentBy = message.sentBy
     }
     
+    @available(iOS 13.0, *)
     var publisherForAllMessages: AnyPublisher<[Message], Never> {
         monitorEntities(of: Message.self, predicate: .truePredicate, sort: [NSSortDescriptor(keyPath: \Message.postedAt, ascending: true)])
     }
