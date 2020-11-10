@@ -95,31 +95,36 @@ private struct FeedbackView: View {
     @ObservedObject var viewModel: FeedbackViewModel
     
     var body: some View {
-        VStack {
-            ScrollView {
-                ScrollViewReader {
-                    proxy in
-                    
-                    FeedbackHeaderView(styling: viewModel.styling)
-                    ForEach(viewModel.messages) {
-                        message in
+        ZStack {
+            Color(UIColor.secondarySystemBackground)
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                ScrollView {
+                    ScrollViewReader {
+                        proxy in
                         
-                        Bubble(message: message)
-                    }
-                    .onChange(of: viewModel.scrolledTo) {
-                        target in
-                        
-                        if let target = target {
-                            withAnimation {
-                                proxy.scrollTo(target, anchor: .bottom)
+                        FeedbackHeaderView(styling: viewModel.styling)
+                        LoginNoticeView(styling: viewModel.styling)
+                        ForEach(viewModel.messages) {
+                            message in
+                            
+                            Bubble(message: message)
+                        }
+                        .onChange(of: viewModel.scrolledTo) {
+                            target in
+                            
+                            if let target = target {
+                                withAnimation {
+                                    proxy.scrollTo(target, anchor: .bottom)
+                                }
                             }
                         }
                     }
                 }
+                MessageEntryView(viewModel: viewModel)
             }
-            MessageEntryView(viewModel: viewModel)
+            .lineLimit(nil)
         }
-        .lineLimit(nil)
         .onAppear(perform: viewModel.scrollToLast)
     }
 }
@@ -138,7 +143,7 @@ private struct Bubble: View {
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Color(UIColor.secondarySystemBackground))
+                    .foregroundColor(Color(UIColor.systemBackground))
             )
             if !message.fromMe {
                 Spacer(minLength: 20)
@@ -203,5 +208,22 @@ private struct MessageEntryView: View {
             Color(UIColor.systemFill)
                 .edgesIgnoringSafeArea([Edge.Set.horizontal, Edge.Set.bottom])
         )
+    }
+}
+
+private struct LoginNoticeView: View {
+    let styling: Styling
+    
+    var body: some View {
+        Text(styling.loginNotice)
+            .font(.body)
+            .multilineTextAlignment(.center)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(Color(UIColor.systemBackground))
+            )
+            .padding(.horizontal)
     }
 }
