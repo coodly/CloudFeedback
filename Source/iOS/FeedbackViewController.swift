@@ -16,6 +16,8 @@
 
 import UIKit
 import SwiftUI
+import CoreDataPersistence
+import Combine
 
 public class FeedbackViewController: UIViewController {
     private lazy var viewModel = injected(FeedbackViewModel())
@@ -37,19 +39,35 @@ private struct FeedbackMessage: Identifiable {
     let fromMe: Bool
 }
 
-private typealias Dependencies = StylingConsumer & CloudAvailabilityConsumer
+private typealias Dependencies = StylingConsumer & CloudAvailabilityConsumer & PersistenceConsumer
 
 private class FeedbackViewModel: ObservableObject, Dependencies {
     var styling: Styling!
     var cloudAvailable: Bool!
+    var persistence: CorePersistence! {
+        didSet {
+            persistence.mainContext
+                .publisherForAllMessages
+                .sink() {
+                    [weak self]
+                    
+                    messages in
+                    
+                    self?.messages = messages
+                    self?.scrollToLast()
+                }
+                .store(in: &disposeBag)
+        }
+    }
     
-    @Published var messages: [FeedbackMessage] = []
+    @Published var messages: [Message] = []
     
-    @Published var scrolledTo: UUID? = nil
-    @Published var message = "LKsl kals klaskd löas"
+    @Published var scrolledTo: String? = nil
+    @Published var message = ""
+    private lazy var disposeBag = Set<AnyCancellable>()
     
     fileprivate func scrollToLast() {
-        scrolledTo = messages.last?.id
+        scrolledTo = messages.last?.recordName
     }
     
     fileprivate func send() {
@@ -57,9 +75,12 @@ private class FeedbackViewModel: ObservableObject, Dependencies {
             return
         }
         
-        messages.append(FeedbackMessage(message: message, fromMe: true))
+        persistence.write() {
+            context in
+            
+            context.addMessage(message, for: context.conversation)
+        }
         message = ""
-        scrollToLast()
     }
 }
 
@@ -79,7 +100,7 @@ private struct FeedbackView: View {
                         if !viewModel.cloudAvailable {
                             LoginNoticeView(styling: viewModel.styling)
                         }
-                        ForEach(viewModel.messages) {
+                        ForEach(viewModel.messages, id: \Message.recordName) {
                             message in
                             
                             Bubble(message: message)
@@ -106,7 +127,7 @@ private struct FeedbackView: View {
 }
 
 private struct Bubble: View {
-    let message: FeedbackMessage
+    let message: Message
     
     var body: some View {
         HStack {
@@ -114,7 +135,7 @@ private struct Bubble: View {
                 Spacer(minLength: 20)
             }
             VStack {
-                Text(message.message)
+                Text(message.body ?? "-")
             }
             .padding()
             .background(
@@ -126,6 +147,12 @@ private struct Bubble: View {
             }
         }
         .padding(.horizontal)
+    }
+}
+
+extension Message {
+    var fromMe: Bool {
+        !(sentBy?.hasValue() ?? false)
     }
 }
 
