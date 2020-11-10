@@ -33,12 +33,6 @@ public class FeedbackViewController: UIViewController {
     }
 }
 
-private struct FeedbackMessage: Identifiable {
-    let id = UUID()
-    let message: String
-    let fromMe: Bool
-}
-
 private typealias Dependencies = StylingConsumer & CloudAvailabilityConsumer & PersistenceConsumer
 
 private class FeedbackViewModel: ObservableObject, Dependencies {
@@ -105,7 +99,7 @@ private struct FeedbackView: View {
                         ForEach(viewModel.messages) {
                             message in
                             
-                            Bubble(message: message)
+                            MessageBubbleView(message: message)
                         }
                         .onChange(of: viewModel.scrolledTo) {
                             target in
@@ -127,7 +121,7 @@ private struct FeedbackView: View {
     }
 }
 
-private struct Bubble: View {
+private struct MessageBubbleView: View {
     let message: Message
     
     var body: some View {
