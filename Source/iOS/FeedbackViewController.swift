@@ -18,7 +18,7 @@ import UIKit
 import SwiftUI
 
 public class FeedbackViewController: UIViewController {
-    private lazy var viewModel = FeedbackViewModel()
+    private lazy var viewModel = injected(FeedbackViewModel())
     private lazy var feedbackView = FeedbackView(viewModel: viewModel)
     private lazy var hosting = UIHostingController(rootView: feedbackView)
     
@@ -37,7 +37,9 @@ private struct FeedbackMessage: Identifiable {
     let fromMe: Bool
 }
 
-private class FeedbackViewModel: ObservableObject {
+private class FeedbackViewModel: ObservableObject, StylingConsumer {
+    var styling: Styling!
+    
     @Published var messages = [
         FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
         FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
@@ -98,18 +100,7 @@ private struct FeedbackView: View {
                 ScrollViewReader {
                     proxy in
                     
-                    ZStack {
-                        Color(UIColor.systemIndigo)
-                            .edgesIgnoringSafeArea([Edge.Set.horizontal, Edge.Set.top])
-                        VStack {
-                            Text("JDKAjk sajdk sadk js")
-                                .font(.largeTitle)
-                            Text("Foiasdo iasod iaposdi opasid opsaidop isopdi posaid opsadop isaodi saopdi opsadiop asido pisaopd isaopdi opsaid opsaid opisaopd isaop")
-                                .font(.headline)
-                        }
-                        .padding()
-                        .foregroundColor(.white)
-                    }
+                    FeedbackHeaderView(styling: viewModel.styling)
                     ForEach(viewModel.messages) {
                         message in
                         
@@ -145,12 +136,36 @@ private struct Bubble: View {
                 Text(message.message)
             }
             .padding()
-            .background(Color(UIColor.secondarySystemBackground))
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(Color(UIColor.secondarySystemBackground))
+            )
             if !message.fromMe {
                 Spacer(minLength: 20)
             }
         }
         .padding(.horizontal)
+    }
+}
+
+private struct FeedbackHeaderView: View {
+    let styling: Styling
+    
+    var body: some View {
+        ZStack {
+            Color(styling.mainColor)
+                .edgesIgnoringSafeArea([Edge.Set.horizontal, Edge.Set.top])
+            VStack {
+                Text(styling.greetingTitle)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.largeTitle)
+                Text(styling.greetingMessage)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.headline)
+            }
+            .padding()
+            .foregroundColor(Color(styling.greetingTextColor))
+        }
     }
 }
 
@@ -171,11 +186,17 @@ private struct MessageEntryView: View {
             }
             VStack {
                 Button(action: viewModel.send) {
-                    Image(systemName: "arrow.up.circle.fill")
-                        .resizable()
-                        .frame(width: 32, height: 32, alignment: .center)
-                        .padding()
+                    ZStack {
+                        Circle()
+                            .frame(width: 32, height: 32, alignment: .center)
+                            .foregroundColor(.white)
+                        Image(systemName: "arrow.up.circle.fill")
+                            .resizable()
+                            .frame(width: 32, height: 32, alignment: .center)
+                            .padding()
+                    }
                 }
+                .foregroundColor(Color(viewModel.styling.mainColor))
             }
         }
         .background(
