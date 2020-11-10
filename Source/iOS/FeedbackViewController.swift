@@ -37,54 +37,26 @@ private struct FeedbackMessage: Identifiable {
     let fromMe: Bool
 }
 
-private class FeedbackViewModel: ObservableObject, StylingConsumer {
+private typealias Dependencies = StylingConsumer & CloudAvailabilityConsumer
+
+private class FeedbackViewModel: ObservableObject, Dependencies {
     var styling: Styling!
+    var cloudAvailable: Bool!
     
-    @Published var messages = [
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä sak laks lsaksdlö ksalökd lösakdlö kaslkd ", fromMe: true),
-        FeedbackMessage(message: "aösld öäsald öasödl öasldkaslö kaslöals  öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä sak laks lsaksdlö ksalökd lösakdlö kaslkd ", fromMe: true),
-        FeedbackMessage(message: "aösld öäsald öasödl öasldkaslö kaslöals  öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä sak laks lsaksdlö ksalökd lösakdlö kaslkd ", fromMe: true),
-        FeedbackMessage(message: "aösld öäsald öasödl öasldkaslö kaslöals  öä", fromMe: false),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: true),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: true),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: true),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: true),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: true),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: true),
-        FeedbackMessage(message: "aösld öäsald öasödl öasld öä", fromMe: true)
-    ]
+    @Published var messages: [FeedbackMessage] = []
     
     @Published var scrolledTo: UUID? = nil
     @Published var message = "LKsl kals klaskd löas"
     
     fileprivate func scrollToLast() {
-        scrolledTo = messages.last!.id
+        scrolledTo = messages.last?.id
     }
     
     fileprivate func send() {
+        guard message.hasValue() else {
+            return
+        }
+        
         messages.append(FeedbackMessage(message: message, fromMe: true))
         message = ""
         scrollToLast()
@@ -104,7 +76,9 @@ private struct FeedbackView: View {
                         proxy in
                         
                         FeedbackHeaderView(styling: viewModel.styling)
-                        LoginNoticeView(styling: viewModel.styling)
+                        if !viewModel.cloudAvailable {
+                            LoginNoticeView(styling: viewModel.styling)
+                        }
                         ForEach(viewModel.messages) {
                             message in
                             
@@ -121,7 +95,9 @@ private struct FeedbackView: View {
                         }
                     }
                 }
-                MessageEntryView(viewModel: viewModel)
+                if viewModel.cloudAvailable {
+                    MessageEntryView(viewModel: viewModel)
+                }
             }
             .lineLimit(nil)
         }
