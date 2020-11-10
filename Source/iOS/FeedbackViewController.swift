@@ -129,8 +129,14 @@ private struct MessageBubbleView: View {
             if message.fromMe {
                 Spacer(minLength: 20)
             }
-            VStack {
+            VStack(alignment: message.fromMe ? .trailing: .leading) {
+                if let from = message.sentBy {
+                    Text(from)
+                        .font(Font.subheadline.bold())
+                        .foregroundColor(Color(UIColor.secondaryLabel))
+                }
                 Text(message.body ?? "-")
+                    .font(.body)
             }
             .padding()
             .background(
