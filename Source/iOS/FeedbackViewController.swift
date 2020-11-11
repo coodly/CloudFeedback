@@ -197,6 +197,7 @@ private struct MessageEntryView: View {
                 TextEditor(text: $viewModel.message)
                     .padding([.vertical, .leading])
             }
+            .font(.body)
             VStack {
                 Button(action: viewModel.send) {
                     ZStack {
