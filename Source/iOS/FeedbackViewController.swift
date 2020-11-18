@@ -15,10 +15,13 @@
  */
 
 import UIKit
-import SwiftUI
 import CoreDataPersistence
+#if canImport(Combine)
+import SwiftUI
 import Combine
+#endif
 
+@available(iOS 14.0, *)
 public class FeedbackViewController: UIViewController {
     private lazy var viewModel = injected(FeedbackViewModel())
     private lazy var feedbackView = FeedbackView(viewModel: viewModel)
@@ -35,6 +38,7 @@ public class FeedbackViewController: UIViewController {
 
 private typealias Dependencies = StylingConsumer & CloudAvailabilityConsumer & PersistenceConsumer
 
+@available(iOS 14.0, *)
 private class FeedbackViewModel: ObservableObject, Dependencies {
     var styling: Styling!
     var cloudAvailable: Bool!
@@ -80,6 +84,7 @@ private class FeedbackViewModel: ObservableObject, Dependencies {
     }
 }
 
+@available(iOS 14.0, *)
 private struct FeedbackView: View {
     @ObservedObject var viewModel: FeedbackViewModel
     
@@ -121,6 +126,7 @@ private struct FeedbackView: View {
     }
 }
 
+@available(iOS 14.0, *)
 private struct MessageBubbleView: View {
     let message: Message
     
@@ -161,6 +167,7 @@ extension Message: Identifiable {
     }
 }
 
+@available(iOS 14.0, *)
 private struct FeedbackHeaderView: View {
     let styling: Styling
     
@@ -182,6 +189,7 @@ private struct FeedbackHeaderView: View {
     }
 }
 
+@available(iOS 14.0, *)
 private struct MessageEntryView: View {
     @ObservedObject var viewModel: FeedbackViewModel
     
@@ -220,6 +228,7 @@ private struct MessageEntryView: View {
     }
 }
 
+@available(iOS 14.0, *)
 private struct LoginNoticeView: View {
     let styling: Styling
     
