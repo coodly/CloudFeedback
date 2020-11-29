@@ -43,7 +43,7 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
     @IBOutlet private var bottomContentConstraint: NSLayoutConstraint!
     private lazy var sendViewController: SendViewController = Storyboards.loadFromStoryboard()
     private lazy var refresh = UIRefreshControl()
-    private var conversation: Conversation?
+    private var conversation: AdminConversation?
     
     private lazy var activityIndicatorItem: UIBarButtonItem = {
         let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
@@ -75,7 +75,7 @@ internal class MessagesViewController: FetchedTableViewController<Message, Messa
         return persistence.mainContext.emptyMessagesController()
     }
     
-    func presentMessages(in conversation: Conversation) {
+    func presentMessages(in conversation: AdminConversation) {
         self.conversation = conversation
         
         let predicate = persistence.mainContext.messagesPredicate(for: conversation)

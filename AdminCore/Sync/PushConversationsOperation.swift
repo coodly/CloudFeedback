@@ -24,7 +24,7 @@ internal class PushConversationsOperation: ConcurrentOperation, Dependencies {
     var persistence: Persistence!
     var adminModule: FeedbackModule!
     
-    private var pushed: [Conversation]?
+    private var pushed: [AdminConversation]?
     
     override func main() {
         persistence.performInBackground() {

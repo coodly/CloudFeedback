@@ -23,11 +23,11 @@ internal class RefreshMessagesOperation: ConcurrentOperation, Dependencies {
     var persistence: Persistence!
     var adminModule: FeedbackModule!
 
-    private let conversation: Conversation
+    private let conversation: AdminConversation
     private let checkedAt = Date()
     private let onlyUpdates: Bool
     
-    internal init(conversation: Conversation, onlyUpdates: Bool) {
+    internal init(conversation: AdminConversation, onlyUpdates: Bool) {
         self.conversation = conversation
         self.onlyUpdates = onlyUpdates
     }

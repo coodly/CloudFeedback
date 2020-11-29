@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		7E5CC45238E5136C5EEA1E25 /* Pods_AdminCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4811BD0DF26F2C2293C1AC15 /* Pods_AdminCore.framework */; };
 		A705DF811FF3C69D001D865E /* Persistence+Conversations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF801FF3C69D001D865E /* Persistence+Conversations.swift */; };
-		A705DF831FF3C756001D865E /* Conversation+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF821FF3C756001D865E /* Conversation+Properties.swift */; };
+		A705DF831FF3C756001D865E /* AdminConversation+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF821FF3C756001D865E /* AdminConversation+Properties.swift */; };
 		A705DF861FF3CF85001D865E /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF841FF3CF85001D865E /* ConversationCell.swift */; };
 		A705DF871FF3CF85001D865E /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A705DF851FF3CF85001D865E /* ConversationCell.xib */; };
 		A705DF8A1FF3D518001D865E /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705DF891FF3D518001D865E /* DateFormatter+Extensions.swift */; };
@@ -78,7 +78,7 @@
 		A7C903AA1FE118A900FE921A /* AdminCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C903821FE112CA00FE921A /* AdminCore.framework */; };
 		A7C903AE1FE118D900FE921A /* Feedback.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7C903AC1FE118D900FE921A /* Feedback.xcdatamodeld */; };
 		A7C903B01FE1193000FE921A /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C903AF1FE1193000FE921A /* Application.swift */; };
-		A7C903B21FE1195F00FE921A /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C903B11FE1195F00FE921A /* Conversation.swift */; };
+		A7C903B21FE1195F00FE921A /* AdminConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C903B11FE1195F00FE921A /* AdminConversation.swift */; };
 		A7C903B41FE1196E00FE921A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C903B31FE1196E00FE921A /* Message.swift */; };
 		A7C903B61FE119AD00FE921A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C903B51FE119AD00FE921A /* Persistence.swift */; };
 		A7C903B81FE119D200FE921A /* PersistenceConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C903B71FE119D200FE921A /* PersistenceConsumer.swift */; };
@@ -122,7 +122,7 @@
 		4811BD0DF26F2C2293C1AC15 /* Pods_AdminCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdminCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		719703010A62BE38279E846E /* Pods-FeedbackAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedbackAdmin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeedbackAdmin/Pods-FeedbackAdmin.debug.xcconfig"; sourceTree = "<group>"; };
 		A705DF801FF3C69D001D865E /* Persistence+Conversations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistence+Conversations.swift"; sourceTree = "<group>"; };
-		A705DF821FF3C756001D865E /* Conversation+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conversation+Properties.swift"; sourceTree = "<group>"; };
+		A705DF821FF3C756001D865E /* AdminConversation+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdminConversation+Properties.swift"; sourceTree = "<group>"; };
 		A705DF841FF3CF85001D865E /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		A705DF851FF3CF85001D865E /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		A705DF891FF3D518001D865E /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 		A7C903A81FE117D300FE921A /* CoreInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreInjection.swift; sourceTree = "<group>"; };
 		A7C903AD1FE118D900FE921A /* Feedback.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Feedback.xcdatamodel; sourceTree = "<group>"; };
 		A7C903AF1FE1193000FE921A /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
-		A7C903B11FE1195F00FE921A /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		A7C903B11FE1195F00FE921A /* AdminConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConversation.swift; sourceTree = "<group>"; };
 		A7C903B31FE1196E00FE921A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A7C903B51FE119AD00FE921A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		A7C903B71FE119D200FE921A /* PersistenceConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceConsumer.swift; sourceTree = "<group>"; };
@@ -324,7 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				A7203E2A1FE24F6D009558A7 /* Application+Properties.swift */,
-				A705DF821FF3C756001D865E /* Conversation+Properties.swift */,
+				A705DF821FF3C756001D865E /* AdminConversation+Properties.swift */,
 				A705DF911FF3ED0A001D865E /* Message+Properties.swift */,
 				A7C0505C1FEAC8BF00F73B6B /* Setting+Properties.swift */,
 				A73B78C31FFB6837002333D9 /* SyncStatus+Properties.swift */,
@@ -508,7 +508,7 @@
 			children = (
 				A7203E291FE24F63009558A7 /* _ */,
 				A7C903AF1FE1193000FE921A /* Application.swift */,
-				A7C903B11FE1195F00FE921A /* Conversation.swift */,
+				A7C903B11FE1195F00FE921A /* AdminConversation.swift */,
 				A7C903AC1FE118D900FE921A /* Feedback.xcdatamodeld */,
 				A7C903B31FE1196E00FE921A /* Message.swift */,
 				A7C903B51FE119AD00FE921A /* Persistence.swift */,
@@ -638,6 +638,7 @@
 				TargetAttributes = {
 					A7C903641FE0EBC600FE921A = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1220;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -650,11 +651,12 @@
 					};
 					A7C903811FE112CA00FE921A = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1220;
 						ProvisioningStyle = Automatic;
 					};
 					A7C903931FE112D300FE921A = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1220;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -813,9 +815,9 @@
 				A7C050691FEB76C700F73B6B /* ConcurrentOperation.swift in Sources */,
 				A7C050671FEB75EB00F73B6B /* RefreshConversationsOperation.swift in Sources */,
 				A7C903B81FE119D200FE921A /* PersistenceConsumer.swift in Sources */,
-				A7C903B21FE1195F00FE921A /* Conversation.swift in Sources */,
+				A7C903B21FE1195F00FE921A /* AdminConversation.swift in Sources */,
 				A705DF901FF3ECD0001D865E /* Persistence+Messages.swift in Sources */,
-				A705DF831FF3C756001D865E /* Conversation+Properties.swift in Sources */,
+				A705DF831FF3C756001D865E /* AdminConversation+Properties.swift in Sources */,
 				A73B78C41FFB6837002333D9 /* SyncStatus+Properties.swift in Sources */,
 				A7C903A71FE1178500FE921A /* CoreInjector.swift in Sources */,
 				A7203E2B1FE24F6D009558A7 /* Application+Properties.swift in Sources */,
@@ -1006,7 +1008,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coodly.feedback;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1025,7 +1027,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coodly.feedback;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -1051,7 +1053,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1078,7 +1080,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coodly.AdminCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1103,7 +1105,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coodly.AdminUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1128,7 +1130,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coodly.AdminUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

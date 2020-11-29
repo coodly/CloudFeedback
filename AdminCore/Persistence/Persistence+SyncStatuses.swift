@@ -18,7 +18,7 @@ import Foundation
 import CoreData
 import CoreDataPersistence
 
-internal extension NSPredicate {
+extension NSPredicate {
     internal static let syncFailed = NSPredicate(format: "syncFailed = YES")
     internal static let needinsSync: NSPredicate = {
         let syncNeeded = NSPredicate(format: "syncNeeded = YES")
@@ -27,7 +27,7 @@ internal extension NSPredicate {
     }()
 }
 
-internal extension NSManagedObjectContext {
+extension NSManagedObjectContext {
     internal func resetFailedSync() {
         Log.debug("Reset failed sync")
         let failed: [SyncStatus] = fetch(predicate: .syncFailed)

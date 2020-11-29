@@ -25,6 +25,6 @@ extension Message {
     @NSManaged public var sentBy: String?
     @NSManaged public var platform: String?
 
-    @NSManaged var conversation: Conversation
+    @NSManaged var conversation: AdminConversation
     @NSManaged var syncStatus: SyncStatus?
 }

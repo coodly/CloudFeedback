@@ -98,7 +98,7 @@ extension MainViewController: ApplicationSelectionDelegate {
 }
 
 extension MainViewController: ConversationSelectionDelegate {
-    func selected(conversation: Conversation) {
+    func selected(conversation: AdminConversation) {
         messagesController?.presentMessages(in: conversation)
     }
 }

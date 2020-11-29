@@ -18,12 +18,12 @@ import Foundation
 import CoreData
 import CloudFeedback
 
-public class Conversation: NSManagedObject {
+public class AdminConversation: NSManagedObject {
     internal func toCloud() -> CloudFeedback.Cloud.Conversation {
         return CloudFeedback.Cloud.Conversation(recordName: recordName!, recordData: recordData!, lastMessageTime: lastMessageTime, snippet: snippet)
     }
 }
 
-extension Conversation: Syncable {
+extension AdminConversation: Syncable {
     
 }

@@ -60,7 +60,7 @@ internal class SendViewModel: Dependencies {
         }
     }
     
-    internal var conversation: Conversation? {
+    internal var conversation: AdminConversation? {
         didSet {
             guard !sender.hasValue() else {
                 return

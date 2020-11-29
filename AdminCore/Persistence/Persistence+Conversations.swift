@@ -24,12 +24,12 @@ internal extension NSPredicate {
 }
 
 
-public extension NSManagedObjectContext {
+extension NSManagedObjectContext {
     internal func update(conversations: [CloudFeedback.Cloud.Conversation], justMeta: Bool = false) {
         let names = conversations.compactMap({ $0.recordName })
         
         let predicate = NSPredicate(format: "recordName IN %@", names)
-        let existing: [Conversation] = fetch(predicate: predicate)
+        let existing: [AdminConversation] = fetch(predicate: predicate)
         
         for conversation in conversations {
             let saved = existing.first(where: { $0.recordName == conversation.recordName }) ?? insertEntity()
@@ -50,7 +50,7 @@ public extension NSManagedObjectContext {
         }
     }
     
-    public func emptyConversationsController() -> NSFetchedResultsController<Conversation> {
+    public func emptyConversationsController() -> NSFetchedResultsController<AdminConversation> {
         let sort = NSSortDescriptor(key: "lastMessageTime", ascending: false)
         return fetchedController(predicate: .falsePredicate, sort: [sort])
     }
@@ -59,7 +59,7 @@ public extension NSManagedObjectContext {
         return NSPredicate(format: "application = %@", application)
     }
     
-    internal func conversationsNeedingPush() -> [Conversation] {
+    internal func conversationsNeedingPush() -> [AdminConversation] {
         let forConversation = NSPredicate(format: "conversation != NULL")
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [forConversation, .needinsSync])
         let statuses: [SyncStatus] = fetch(predicate: predicate, limit: 100)

@@ -21,6 +21,6 @@ internal extension SyncStatus {
     @NSManaged var syncNeeded: Bool
     @NSManaged var syncFailed: Bool
     
-    @NSManaged var conversation: Conversation?
+    @NSManaged var conversation: AdminConversation?
     @NSManaged var message: Message?
 }

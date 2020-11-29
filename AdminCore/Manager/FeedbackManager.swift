@@ -32,7 +32,7 @@ public class FeedbackManager: Dependencies, CoreInjector {
         appQueue.addOperation(op)
     }
     
-    public func checkMessages(for conversation: Conversation, onlyUpdates: Bool = true, completion: @escaping (() -> Void)) {
+    public func checkMessages(for conversation: AdminConversation, onlyUpdates: Bool = true, completion: @escaping (() -> Void)) {
         let op = RefreshMessagesOperation(conversation: conversation, onlyUpdates: onlyUpdates)
         inject(into: op)
         op.completionHandler = {
@@ -43,7 +43,7 @@ public class FeedbackManager: Dependencies, CoreInjector {
         appQueue.addOperation(op)
     }
     
-    public func send(message: String, by sender: String, in conversation: Conversation) {
+    public func send(message: String, by sender: String, in conversation: AdminConversation) {
         persistence.write() {
             context in
             

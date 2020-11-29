@@ -17,7 +17,7 @@
 import Foundation
 import CoreData
 
-extension Conversation {
+extension AdminConversation {
     @NSManaged var recordName: String?
     @NSManaged var recordData: Data?
     

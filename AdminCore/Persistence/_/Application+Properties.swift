@@ -20,5 +20,5 @@ import CoreData
 extension Application {
     @NSManaged public var identifier: String
     
-    @NSManaged var conversations: Set<Conversation>?
+    @NSManaged var conversations: Set<AdminConversation>?
 }

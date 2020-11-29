@@ -24,7 +24,7 @@ internal extension Setting {
     }
 }
 
-public extension NSManagedObjectContext {
+extension NSManagedObjectContext {
     internal var lastKnownConversationTime: Date {
         get {
             return date(for: .lastKnownConversationTime)

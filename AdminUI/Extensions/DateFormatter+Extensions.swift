@@ -16,7 +16,7 @@
 
 import Foundation
 
-internal extension DateFormatter {
+extension DateFormatter {
     internal static let time: DateFormatter = {
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("yyyyMMddHHmm")

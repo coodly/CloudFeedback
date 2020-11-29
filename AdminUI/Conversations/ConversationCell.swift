@@ -21,7 +21,7 @@ internal class ConversationCell: UITableViewCell {
     @IBOutlet private var date: UILabel!
     @IBOutlet private var snippet: UILabel!
     
-    internal var conversation: Conversation? {
+    internal var conversation: AdminConversation? {
         didSet {
             guard let shown = conversation else {
                 return

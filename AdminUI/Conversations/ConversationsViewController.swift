@@ -19,12 +19,12 @@ import AdminCore
 import CoreData
 
 internal protocol ConversationSelectionDelegate: class {
-    func selected(conversation: Conversation)
+    func selected(conversation: AdminConversation)
 }
 
 private typealias Dependencies = PersistenceConsumer
 
-internal class ConversationsViewController: FetchedTableViewController<Conversation, ConversationCell>, StoryboardLoaded, Dependencies {
+internal class ConversationsViewController: FetchedTableViewController<AdminConversation, ConversationCell>, StoryboardLoaded, Dependencies {
     static var storyboardName: String {
         return "Conversations"
     }
@@ -44,7 +44,7 @@ internal class ConversationsViewController: FetchedTableViewController<Conversat
         title = "Conversations"
     }
     
-    override func createFetchedController() -> NSFetchedResultsController<Conversation> {
+    override func createFetchedController() -> NSFetchedResultsController<AdminConversation> {
         return persistence.mainContext.emptyConversationsController()
     }
     
@@ -53,11 +53,11 @@ internal class ConversationsViewController: FetchedTableViewController<Conversat
         updateFetch(predicate)
     }
     
-    override func configure(cell: ConversationCell, with conversation: Conversation, at indexPath: IndexPath) {
+    override func configure(cell: ConversationCell, with conversation: AdminConversation, at indexPath: IndexPath) {
         cell.conversation = conversation
     }
     
-    override func tapped(_ conversation: Conversation, at indexPath: IndexPath) {
+    override func tapped(_ conversation: AdminConversation, at indexPath: IndexPath) {
         delegate?.selected(conversation: conversation)
     }
 }

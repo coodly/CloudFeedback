@@ -32,7 +32,7 @@ internal class SendViewController: UIViewController, StoryboardLoaded, UIInjecto
     @IBOutlet private var entryView: UITextView!
     
     private let viewModel = SendViewModel()
-    internal var conversation: Conversation? {
+    internal var conversation: AdminConversation? {
         didSet {
             viewModel.conversation = conversation
         }

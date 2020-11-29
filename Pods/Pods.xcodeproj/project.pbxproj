@@ -175,7 +175,7 @@
 		0728CCD1E3D3E490EA364767CFF9BA26 /* LocalModificationTimeChecked.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocalModificationTimeChecked.swift; path = Sources/PuffSerialization/LocalModificationTimeChecked.swift; sourceTree = "<group>"; };
 		09652B38696B9632E2EE61C46447CEC1 /* Logging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Logging.swift; path = Sources/PuffLogger/Logging.swift; sourceTree = "<group>"; };
 		0BCEAB2B318CFFF33CE850414A94D94F /* CloudKitRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CloudKitRequest.swift; path = Sources/Puff/CloudKitRequest.swift; sourceTree = "<group>"; };
-		1180C7AF75120CE325A19CD3A51ACB61 /* CoreDataPersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CoreDataPersistence.framework; path = CoreDataPersistence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1180C7AF75120CE325A19CD3A51ACB61 /* CoreDataPersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreDataPersistence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		11CBE6812461CAF316CAC07DC2319313 /* StringListItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StringListItem.swift; path = Sources/PuffSerialization/StringListItem.swift; sourceTree = "<group>"; };
 		1ABAAC2180DF8C57B6DA76A69FF69B7B /* Pods-FeedbackAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FeedbackAdmin.debug.xcconfig"; sourceTree = "<group>"; };
 		1AFA418068588605D0E491D9EC1744AF /* Pods-FeedbackAdmin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-FeedbackAdmin.modulemap"; sourceTree = "<group>"; };
@@ -205,23 +205,23 @@
 		4FB8242177224C3082CA9E5C67904574 /* Log.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Log.swift; path = Sources/Log.swift; sourceTree = "<group>"; };
 		505DF7D190DB15BDD6EF32763E87BA5B /* NSManagedObjectModel+Feedback.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSManagedObjectModel+Feedback.swift"; path = "Source/Core/NSManagedObjectModel+Feedback.swift"; sourceTree = "<group>"; };
 		50B909E3E81631EFFDFEF9DB172DCE5C /* String+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Extensions.swift"; path = "Source/Core/String+Extensions.swift"; sourceTree = "<group>"; };
-		52E2CA34526AC5BF7364977B6FD66CA4 /* Puff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Puff.framework; path = Puff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52E2CA34526AC5BF7364977B6FD66CA4 /* Puff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Puff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53D5925639E85354B6338D4D19C810AC /* NSManagedObject+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSManagedObject+Extensions.swift"; path = "Sources/PuffCoreData/NSManagedObject+Extensions.swift"; sourceTree = "<group>"; };
 		58DF06A4E4E92A4BBBBFFC394E49A794 /* FetchMessagesOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FetchMessagesOperation.swift; path = Source/Core/FetchMessagesOperation.swift; sourceTree = "<group>"; };
-		58EC9B59DBB024D65CD7A490CE288BEA /* CloudFeedback.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CloudFeedback.framework; path = CloudFeedback.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58EC9B59DBB024D65CD7A490CE288BEA /* CloudFeedback.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CloudFeedback.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AF13FDE5D251BCC4691E74C67ECFA64 /* CorePersistence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CorePersistence.swift; path = Sources/CoreDataPersistence/CorePersistence.swift; sourceTree = "<group>"; };
 		5B78421EB44CF72E6120FFD2CF9CD81C /* RecordSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecordSerialization.swift; path = Sources/PuffSerialization/RecordSerialization.swift; sourceTree = "<group>"; };
 		5C8C2020FD8FCFC739BD6DE27C06CBDE /* Logging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Logging.swift; path = Sources/CoreDataPersistence/Logging.swift; sourceTree = "<group>"; };
 		5D19AA5D74A1FE19FF6264563DBD7B33 /* Persistence+Messages.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Persistence+Messages.swift"; path = "Source/Core/Persistence+Messages.swift"; sourceTree = "<group>"; };
 		5D3C3638F7592AD8CAFBFE6FFF31ABC2 /* Pods-AdminCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AdminCore.release.xcconfig"; sourceTree = "<group>"; };
 		5D551E831274AB8011FAEFE7F10F2F70 /* CoreDataPersistence.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CoreDataPersistence.modulemap; sourceTree = "<group>"; };
-		5FE23AAB83040AA594631005E2019F94 /* SWLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SWLogger.framework; path = SWLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE23AAB83040AA594631005E2019F94 /* SWLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SWLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		603E8E5568A0E5415340A525FD979B6D /* CoreDataPersistence-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CoreDataPersistence-prefix.pch"; sourceTree = "<group>"; };
 		61E1398108B7460CAF25BF5450A09E4C /* Array+Predicate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Array+Predicate.swift"; path = "Sources/CoreDataPersistence/Array+Predicate.swift"; sourceTree = "<group>"; };
 		6290A4FC73B10BBD586320A761B37752 /* AdminModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdminModule.swift; path = Source/Admin/AdminModule.swift; sourceTree = "<group>"; };
 		659A7D6E3B7F7C40DFA327017A06549F /* Pods-AdminCore-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AdminCore-acknowledgements.markdown"; sourceTree = "<group>"; };
 		660EA0CD66072EA3933B0F228DDAF9FD /* Cloud.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cloud.swift; path = Source/Core/Cloud.swift; sourceTree = "<group>"; };
-		67732BDAF5A229BAE6E71683C18F7861 /* Pods_FeedbackAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_FeedbackAdmin.framework; path = "Pods-FeedbackAdmin.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67732BDAF5A229BAE6E71683C18F7861 /* Pods_FeedbackAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedbackAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		693576C6188B2886CE1B5C15415DC44E /* CoreDataPersistence-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CoreDataPersistence-Info.plist"; sourceTree = "<group>"; };
 		6E585E592FE37F72DD0CE8AB236F53CF /* CustomZoned.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomZoned.swift; path = Sources/PuffSerialization/CustomZoned.swift; sourceTree = "<group>"; };
 		6EA0258F31731EF5C1D46DB61356096F /* PushConversationsOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PushConversationsOperation.swift; path = Source/Core/PushConversationsOperation.swift; sourceTree = "<group>"; };
@@ -239,16 +239,16 @@
 		8BE4D52B66E3076014F0212AC1618B79 /* Styling.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Styling.swift; path = Source/Core/Styling.swift; sourceTree = "<group>"; };
 		8CDFE3525D715203C24BD66927F3F3F2 /* SWLogger-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SWLogger-dummy.m"; sourceTree = "<group>"; };
 		8CF87B2D393105FF807495A538B14509 /* RelationshipListLoading.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RelationshipListLoading.swift; path = Sources/PuffSerialization/RelationshipListLoading.swift; sourceTree = "<group>"; };
-		906924FFC29AB89A5FEA775715F507A3 /* Pods_AdminCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AdminCore.framework; path = "Pods-AdminCore.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		906924FFC29AB89A5FEA775715F507A3 /* Pods_AdminCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdminCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9220FF67CD050B94076EBAC60238D97A /* Puff-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Puff-Info.plist"; sourceTree = "<group>"; };
 		9292D7E5F6B6C448DC3D9270C98AD88A /* StandardSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StandardSerialization.swift; path = Sources/PuffSerialization/StandardSerialization.swift; sourceTree = "<group>"; };
-		96742B1403107350C7A9E613048EA044 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		96742B1403107350C7A9E613048EA044 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		984911E44A975E2B1CE39D4F957B8A62 /* CoreDataPersistence-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CoreDataPersistence-umbrella.h"; sourceTree = "<group>"; };
 		984D24E5646EE195F81F0E9B1ADFBF95 /* FileOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FileOutput.swift; path = Sources/FileOutput.swift; sourceTree = "<group>"; };
 		98A79DA1B4EDCB39066887B8A0398A9C /* CoreDataPersistence-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CoreDataPersistence-dummy.m"; sourceTree = "<group>"; };
 		99CF221F7E2D7EFFF2027BF434980052 /* Pods-FeedbackAdmin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FeedbackAdmin-dummy.m"; sourceTree = "<group>"; };
 		9B7AFF578CD1E363C86736D6ACCDFC3B /* CloudFeedback.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CloudFeedback.modulemap; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A01FAAFA30B94776E3CDFC8E49B7A64C /* Feedback+Admin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Feedback+Admin.swift"; path = "Source/Admin/Feedback+Admin.swift"; sourceTree = "<group>"; };
 		A5434C27B9E33F642DBA8DD1B6D6EDCE /* CoreDataSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreDataSerialization.swift; path = Sources/PuffCoreData/CoreDataSerialization.swift; sourceTree = "<group>"; };
 		A64E76D0FBD17021E00FB473663E85C4 /* CoreDataPersistence.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CoreDataPersistence.debug.xcconfig; sourceTree = "<group>"; };
@@ -289,7 +289,7 @@
 		F0CAF235ECBBFDF682DACD8C9779B0E5 /* LogsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LogsViewController.swift; path = Sources/LogsViewController.swift; sourceTree = "<group>"; };
 		F39AA146AB4E0798E9F73145E7612AAC /* Cloud.Message.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cloud.Message.swift; path = Source/Core/Cloud.Message.swift; sourceTree = "<group>"; };
 		F3A2D4799932CAEB9E0506B378EAFFFC /* CloudFeedback-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CloudFeedback-dummy.m"; sourceTree = "<group>"; };
-		F41383E7531695940DF64CEFB72053B8 /* CloudFeedback.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = CloudFeedback.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F41383E7531695940DF64CEFB72053B8 /* CloudFeedback.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = CloudFeedback.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F467D4D93E0C07D8E3DC60D51CC7F1FA /* NSManagedObjectContext+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSManagedObjectContext+Extensions.swift"; path = "Sources/CoreDataPersistence/NSManagedObjectContext+Extensions.swift"; sourceTree = "<group>"; };
 		F57509D71166E4E6E6C3D29681CB3CAE /* SWLogger.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SWLogger.modulemap; sourceTree = "<group>"; };
 		F75FFB6150647E5E0777597D3675797F /* ConsoleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConsoleOutput.swift; path = Sources/ConsoleOutput.swift; sourceTree = "<group>"; };
@@ -378,7 +378,6 @@
 				F467D4D93E0C07D8E3DC60D51CC7F1FA /* NSManagedObjectContext+Extensions.swift */,
 				2544A87354220C71C95385833516F5C0 /* Support Files */,
 			);
-			name = CoreDataPersistence;
 			path = CoreDataPersistence;
 			sourceTree = "<group>";
 		};
@@ -490,7 +489,6 @@
 				874E2FFAA1F46532B8AC57DB590FE2EB /* ShakeWindow.swift */,
 				1BF6564227656B50B3194405F4E9D33A /* Support Files */,
 			);
-			name = SWLogger;
 			path = SWLogger;
 			sourceTree = "<group>";
 		};
@@ -606,7 +604,6 @@
 				5BE9746A22290DBD52AA7F2285C89C1A /* Serialization */,
 				0B2A70673B2A1CD29845006FEAFD819B /* Support Files */,
 			);
-			name = Puff;
 			path = Puff;
 			sourceTree = "<group>";
 		};
@@ -856,7 +853,21 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					557A2843E58AF7BA5AF6254330B76C15 = {
+						LastSwiftMigration = 1220;
+					};
+					799550442E24E82DA9FC28EEC4D8EFE2 = {
+						LastSwiftMigration = 1220;
+					};
+					B507783521E69E3F0F98A75012C4B9FA = {
+						LastSwiftMigration = 1220;
+					};
+					BE66ECDAB04D7477E4301A04BC6D6EC7 = {
+						LastSwiftMigration = 1220;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 8.0";
@@ -1114,7 +1125,6 @@
 			baseConfigurationReference = FCAAF4FF11C49E1B8E6A5488B1209EE3 /* Pods-FeedbackAdmin.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1149,7 +1159,6 @@
 			baseConfigurationReference = 1ABAAC2180DF8C57B6DA76A69FF69B7B /* Pods-FeedbackAdmin.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1248,7 +1257,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB5CE53FE355365A09D55D0080F89B31 /* Puff.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1260,7 +1268,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Puff/Puff-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Puff/Puff-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Puff/Puff.modulemap";
 				PRODUCT_MODULE_NAME = Puff;
@@ -1279,7 +1287,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3FF10AAAD0249F37E8923C2EAABC4FAA /* SWLogger.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1291,7 +1298,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SWLogger/SWLogger-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SWLogger/SWLogger-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SWLogger/SWLogger.modulemap";
 				PRODUCT_MODULE_NAME = SWLogger;
@@ -1311,7 +1318,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D159CC20D502F3B0EBAF178F6C440C74 /* CoreDataPersistence.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1323,7 +1329,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CoreDataPersistence/CoreDataPersistence-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CoreDataPersistence/CoreDataPersistence-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CoreDataPersistence/CoreDataPersistence.modulemap";
 				PRODUCT_MODULE_NAME = CoreDataPersistence;
@@ -1344,7 +1350,6 @@
 			baseConfigurationReference = 5D3C3638F7592AD8CAFBFE6FFF31ABC2 /* Pods-AdminCore.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1378,7 +1383,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DE0EA4D7BB7A57495799655B906EF2A8 /* CloudFeedback.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1391,7 +1395,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CloudFeedback/CloudFeedback-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CloudFeedback/CloudFeedback-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CloudFeedback/CloudFeedback.modulemap";
 				PRODUCT_MODULE_NAME = CloudFeedback;
@@ -1410,7 +1414,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A64E76D0FBD17021E00FB473663E85C4 /* CoreDataPersistence.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1422,7 +1425,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CoreDataPersistence/CoreDataPersistence-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CoreDataPersistence/CoreDataPersistence-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CoreDataPersistence/CoreDataPersistence.modulemap";
 				PRODUCT_MODULE_NAME = CoreDataPersistence;
@@ -1492,8 +1495,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -1503,7 +1505,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4723F3B847EE4C9F8A3F1F4AED600D4A /* SWLogger.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1515,7 +1516,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SWLogger/SWLogger-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SWLogger/SWLogger-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SWLogger/SWLogger.modulemap";
 				PRODUCT_MODULE_NAME = SWLogger;
@@ -1535,7 +1536,6 @@
 			baseConfigurationReference = 4F4F89E5FB6A5DB8865BE05330EB8C9E /* Pods-AdminCore.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1568,7 +1568,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BA64D4E06E505B5F1D9AF4AD5C52D215 /* CloudFeedback.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1581,7 +1580,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CloudFeedback/CloudFeedback-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CloudFeedback/CloudFeedback-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CloudFeedback/CloudFeedback.modulemap";
 				PRODUCT_MODULE_NAME = CloudFeedback;
@@ -1601,7 +1600,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D262E2682548C9F8147C2B6FC2E9E566 /* Puff.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1613,7 +1611,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Puff/Puff-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Puff/Puff-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Puff/Puff.modulemap";
 				PRODUCT_MODULE_NAME = Puff;

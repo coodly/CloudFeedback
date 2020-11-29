@@ -24,11 +24,11 @@ extension NSManagedObjectContext {
         return fetchedController(predicate: .falsePredicate, sort: [sort])
     }
 
-    public func messagesPredicate(for conversation: Conversation) -> NSPredicate {
+    public func messagesPredicate(for conversation: AdminConversation) -> NSPredicate {
         return NSPredicate(format: "conversation = %@", conversation)
     }
     
-    internal func update(messages: [CloudFeedback.Cloud.Message], in conversation: Conversation? = nil) {
+    internal func update(messages: [CloudFeedback.Cloud.Message], in conversation: AdminConversation? = nil) {
         let names = messages.compactMap({ $0.recordName })
         let predicate = NSPredicate(format: "recordName IN %@", names)
         
@@ -53,7 +53,7 @@ extension NSManagedObjectContext {
         }
     }
     
-    internal func add(message: String, by sender: String, to conversation: Conversation) {
+    internal func add(message: String, by sender: String, to conversation: AdminConversation) {
         let saved: Message = insertEntity()
         
         let now = Date()
