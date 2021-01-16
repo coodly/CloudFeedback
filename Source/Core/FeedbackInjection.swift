@@ -64,7 +64,6 @@ internal class FeedbackInjection {
         let systemVersion = UIDevice.current.systemVersion
         return "\(device)|\(systemVersion)|\(appVersion)(\(appBuild))"
     }()
-    internal var translation = Translation()
     internal var styling = Styling()
     
     private init() {}
@@ -93,10 +92,6 @@ internal class FeedbackInjection {
         
         if var consumer = into as? CloudAvailabilityConsumer {
             consumer.cloudAvailable = cloudAvailable
-        }
-        
-        if var consumer = into as? TranslationConsumer {
-            consumer.translation = translation
         }
         
         if var consumer = into as? StylingConsumer {
