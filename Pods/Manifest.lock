@@ -1,7 +1,7 @@
 PODS:
-  - CloudFeedback/Admin (0.3.2):
+  - CloudFeedback/Admin (0.3.3):
     - CloudFeedback/Core
-  - CloudFeedback/Core (0.3.2):
+  - CloudFeedback/Core (0.3.3):
     - CoreDataPersistence (= 0.2.3)
     - Puff/Core (= 0.6.2)
     - Puff/CoreData (= 0.6.2)
@@ -41,7 +41,7 @@ CHECKOUT OPTIONS:
     :tag: 0.3.4
 
 SPEC CHECKSUMS:
-  CloudFeedback: f2e4847030af0d2a25366ceec6645b36319f7c6b
+  CloudFeedback: 07422853ee040559bda83340b82a0b2ddfa42f97
   CoreDataPersistence: 2379452444c3020b76f46b28e30903ec533c7b24
   Puff: 55e8b337d559cade0025ee287397ec18c2a5054b
   SWLogger: 1492feb53bc5c9c44de89683f25f598195165ef4

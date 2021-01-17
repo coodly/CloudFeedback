@@ -19,10 +19,6 @@ import CoreDataPersistence
 import CoreData
 import CloudKit
 
-public extension Notification.Name {
-    static let feedbackNewMessageReceived = Notification.Name(rawValue: "feedbackNewMessageReceived")
-}
-
 private extension Selector {
     static let checkForMessages = #selector(FeedbackInjection.checkForMessages)
     static let checkCloudAvailability = #selector(FeedbackInjection.checkCloudAvailability)
@@ -131,16 +127,7 @@ internal class FeedbackInjection {
         Logging.log("Check for feedback messages")
         let refresh = FeedbackRefresh()
         inject(into: refresh)
-        refresh.refresh() {
-            hasMessages in
-            
-            if hasMessages {
-                DispatchQueue.main.async {
-                    Logging.log("Post new messages notification")
-                    NotificationCenter.default.post(name: .feedbackNewMessageReceived, object: nil)
-                }
-            }
-        }
+        refresh.refresh() { _ in }
     }
 }
 
