@@ -14,7 +14,7 @@ end
 target 'AdminCore' do
     pod 'CloudFeedback/Admin', :path => '.'
 
-    pod 'CoreDataPersistence', '0.2.3'
+    pod 'CoreDataPersistence', '0.2.4'
     pod 'SWLogger', :git => 'git@github.com:coodly/swlogger.git', tag: '0.3.4'
     pod 'Puff', '0.6.2'
 end
