@@ -15,7 +15,6 @@
  */
 
 import Foundation
-import CoreDataPersistence
 import CoreData
 import CloudKit
 

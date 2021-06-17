@@ -16,7 +16,6 @@
 
 import Foundation
 import CloudKit
-import CoreDataPersistence
 import Puff
 
 class PullConversationsOperation: CloudKitRequest<Cloud.Conversation>, PersistenceConsumer, FeedbackContainerConsumer {

@@ -15,7 +15,6 @@
  */
 
 import CloudKit
-import CoreDataPersistence
 #if canImport(Combine)
 import Combine
 #endif

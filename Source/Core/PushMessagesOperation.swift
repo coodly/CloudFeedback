@@ -16,7 +16,6 @@
 
 import Foundation
 import CloudKit
-import CoreDataPersistence
 import Puff
 
 internal class PushMessagesOperation: CloudKitRequest<Cloud.Message>, PersistenceConsumer, FeedbackContainerConsumer, PlatformConsumer {

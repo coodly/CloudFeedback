@@ -15,7 +15,6 @@
  */
 
 import UIKit
-import CoreDataPersistence
 #if canImport(Combine)
 import SwiftUI
 import Combine

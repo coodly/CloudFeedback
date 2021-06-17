@@ -15,7 +15,6 @@
  */
 
 import Foundation
-import CoreDataPersistence
 
 internal protocol PersistenceConsumer {
     var persistence: CorePersistence! { get set }
