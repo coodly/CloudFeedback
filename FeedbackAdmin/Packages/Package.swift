@@ -51,7 +51,9 @@ let package = Package(
             name: "ConversationsFeature",
             dependencies: [
                 "ObjectModel",
-                "UIComponents"
+                "UIComponents",
+                
+                composable
             ]
         ),
         .target(
@@ -64,7 +66,9 @@ let package = Package(
             name: "MessagesFeature",
             dependencies: [
                 "ObjectModel",
-                "UIComponents"
+                "UIComponents",
+                
+                composable
             ]
         ),
         .target(
