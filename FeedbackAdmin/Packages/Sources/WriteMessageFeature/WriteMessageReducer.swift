@@ -10,5 +10,10 @@ private let reducer = Reducer<WriteMessageState, WriteMessageAction, WriteMessag
     switch action {
     case .cancel:
         return .none
+        
+    case .binding:
+        state.checkCanSend()
+        return .none
     }
 }
+.binding()

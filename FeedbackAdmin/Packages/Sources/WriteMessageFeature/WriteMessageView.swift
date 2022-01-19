@@ -11,18 +11,30 @@ public struct WriteMessageView: View {
     public var body: some View {
         WithViewStore(store) {
             viewStore in
-         
-            Text("Cake")
-                .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
+            
+            VStack {
+                HStack {
+                    Text("Sent by:")
+                        .foregroundColor(.secondary)
+                    TextField("", text: viewStore.binding(\.$sentBy))
+                }
+                Divider()
+                TextEditor(text: viewStore.binding(\.$message))
+            }
+            .padding()
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: { }) {
                         Image(systemName: "paperplane")
                     }
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button(action: { viewStore.send(.cancel) }) {
-                            Text("Cancel")
-                        }
+                    .disabled(viewStore.sendDisabled)
+                }
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(action: { viewStore.send(.cancel) }) {
+                        Text("Cancel")
                     }
                 }
+            }
         }
     }
 }
