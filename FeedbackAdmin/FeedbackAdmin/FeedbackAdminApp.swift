@@ -24,6 +24,8 @@ import SwiftUI
 
 @main
 struct FeedbackAdminApp: App {
+    private let persistence = Persistence()
+    
     var body: some Scene {
         WindowGroup {
             ApplicationView(
@@ -33,10 +35,11 @@ struct FeedbackAdminApp: App {
                     environment: ApplicationEnvironment(
                         cloudClient: .client(with: CKContainer(identifier: "iCloud.com.coodly.feedback")),
                         mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                        persistenceClient: .client(with: Persistence())
+                        persistenceClient: .client(with: persistence)
                     )
                 )
             )
+            .environment(\.managedObjectContext, persistence.viewContext)
         }
     }
 }

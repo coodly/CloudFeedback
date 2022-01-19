@@ -20,7 +20,7 @@ extension Message {
     @NSManaged var recordName: String?
     @NSManaged var modifiedAt: Date?
 
-    @NSManaged var body: String?
+    @NSManaged public var body: String?
     @NSManaged var platform: String?
     @NSManaged var postedAt: Date?
     @NSManaged var sentBy: String?

@@ -18,8 +18,8 @@ import CoreData
 
 extension Conversation {
     @NSManaged var recordName: String?
-    @NSManaged var modifiedAt: Date?
+    @NSManaged public var modifiedAt: Date?
         
-    @NSManaged var application: Application
+    @NSManaged public var application: Application
     @NSManaged var messages: Set<Message>?
 }

@@ -48,7 +48,11 @@ let package = Package(
             ]
         ),
         .target(
-            name: "ConversationsFeature"
+            name: "ConversationsFeature",
+            dependencies: [
+                "ObjectModel",
+                "UIComponents"
+            ]
         ),
         .target(
             name: "Logging",
@@ -57,7 +61,10 @@ let package = Package(
             ]
         ),
         .target(
-            name: "MessagesFeature"
+            name: "MessagesFeature",
+            dependencies: [
+                "UIComponents"
+            ]
         ),
         .target(
             name: "ObjectModel",
@@ -71,6 +78,9 @@ let package = Package(
             dependencies: [
                 "ObjectModel"
             ]
+        ),
+        .target(
+            name: "UIComponents"
         )
     ]
 )
