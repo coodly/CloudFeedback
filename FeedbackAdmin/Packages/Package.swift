@@ -22,9 +22,16 @@ let package = Package(
         .target(
             name: "Application",
             dependencies: [
+                "CloudClient",
                 "PersistenceClient",
                 
                 composable
+            ]
+        ),
+        .target(
+            name: "CloudClient",
+            dependencies: [
+                "Logging"
             ]
         ),
         .target(

@@ -1,4 +1,6 @@
 import Application
+import CloudClient
+import CloudKit
 import ComposableArchitecture
 import ObjectModel
 import PersistenceClient
@@ -13,6 +15,7 @@ struct FeedbackAdminApp: App {
                     initialState: ApplicationState(),
                     reducer: applicationReducer,
                     environment: ApplicationEnvironment(
+                        cloudClient: .client(with: CKContainer(identifier: "iCloud.com.coodly.feedback")),
                         mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
                         persistenceClient: .client(with: Persistence())
                     )

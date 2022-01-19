@@ -8,7 +8,9 @@ public class Log {
         return Log()
     }()
  
-    private lazy var db = Logging(name: "DB")
+    private let cloud = Logging(name: "Cloud")
+    private let db = Logging(name: "DB")
     
+    public static let cloud = shared.cloud
     public static let db = shared.db
 }
