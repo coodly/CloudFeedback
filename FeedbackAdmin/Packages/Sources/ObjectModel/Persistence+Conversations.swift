@@ -40,4 +40,9 @@ extension NSManagedObjectContext {
         saved.recordName = name
         return saved
     }
+    
+    public var lastKnownConversationTime: Date {
+        let last: Conversation? = fetchFirst(sort: [NSSortDescriptor(keyPath: \Conversation.modifiedAt, ascending: false)])
+        return last?.modifiedAt ?? Date.distantPast
+    }
 }

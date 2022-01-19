@@ -45,7 +45,8 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
             fulfill in
             
             Task {
-                let conversations = await env.cloudClient.pullConversations(since: Date.distantPast)
+                let lastKnown = env.persistenceClient.lastKnownConversationTime
+                let conversations = await env.cloudClient.pullConversations(since: lastKnown)
                 env.persistenceClient.save(conversations: conversations)
                 if conversations.count == 200 {
                     fulfill(.success(.loadConversations))
@@ -62,7 +63,8 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
             fulfill in
             
             Task {
-                let messages = await env.cloudClient.pullMessages(since: Date.distantPast)
+                let lastKnown = env.persistenceClient.lastKnownMessageTime
+                let messages = await env.cloudClient.pullMessages(since: lastKnown)
                 env.persistenceClient.save(messages: messages)
                 if messages.count == 200 {
                     fulfill(.success(.loadMessages))

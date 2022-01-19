@@ -72,6 +72,10 @@ public struct Persistence {
             fatalError()
         }
     }
+    
+    public var viewContext: NSManagedObjectContext {
+        container.viewContext
+    }
 }
 
 public extension NSPredicate {

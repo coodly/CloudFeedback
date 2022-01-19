@@ -41,4 +41,9 @@ extension NSManagedObjectContext {
             saved.modifiedAt = message.modificationDate
         }
     }
+    
+    public var lastKnownMessageTime: Date {
+        let last: Message? = fetchFirst(sort: [NSSortDescriptor(keyPath: \Message.modifiedAt, ascending: false)])
+        return last?.modifiedAt ?? Date.distantPast
+    }
 }

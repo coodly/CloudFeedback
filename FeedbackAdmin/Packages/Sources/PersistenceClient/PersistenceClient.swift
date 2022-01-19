@@ -19,36 +19,32 @@ import ObjectModel
 
 public struct PersistenceClient {
     public let persistence: Persistence
-    private let onSaveConversations: (([CKRecord]) -> Void)
-    private let onSaveMessages: (([CKRecord]) -> Void)
     
     public func loadStores() async {
         await persistence.loadStores()
     }
     
+    public var lastKnownConversationTime: Date {
+        persistence.viewContext.lastKnownConversationTime
+    }
+    
+    public var lastKnownMessageTime: Date {
+        persistence.viewContext.lastKnownMessageTime
+    }
+
     public func save(conversations: [CKRecord]) {
-        onSaveConversations(conversations)
+        persistence.write(closure: { $0.save(conversations: conversations) })
     }
     
     public func save(messages: [CKRecord]) {
-        onSaveMessages(messages)
+        persistence.write(closure: { $0.save(messages: messages) })
     }
 }
 
 extension PersistenceClient {
     public static func client(with persistence: Persistence) -> PersistenceClient {
         return PersistenceClient(
-            persistence: persistence,
-            onSaveConversations: {
-                records in
-                
-                persistence.write(closure: { $0.save(conversations: records) })
-            },
-            onSaveMessages: {
-                records in
-                
-                persistence.write(closure: { $0.save(messages: records) })
-            }
+            persistence: persistence
         )
     }
 }
