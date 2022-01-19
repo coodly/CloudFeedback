@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import ObjectModel
+
 public enum ConversationsAction {
-    
+    case tapped(Conversation)
 }

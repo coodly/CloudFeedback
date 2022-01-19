@@ -1,5 +1,14 @@
+import Foundation
+import ObjectModel
+
 public struct MessagesState: Equatable {
-    public init() {
-        
+    internal let conversation: Conversation
+    
+    internal var messagesPredicate: NSPredicate {
+        NSPredicate(format: "conversation = %@", conversation)
+    }
+    
+    public init(conversation: Conversation) {
+        self.conversation = conversation
     }
 }

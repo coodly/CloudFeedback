@@ -23,5 +23,8 @@ public let conversationsReducer = Reducer<ConversationsState, ConversationsActio
 private let reducer = Reducer<ConversationsState, ConversationsAction, ConversationsEnvironment>() {
     state, action, env in
     
-    return .none
+    switch action {
+    case .tapped(_):
+        return .none
+    }
 }

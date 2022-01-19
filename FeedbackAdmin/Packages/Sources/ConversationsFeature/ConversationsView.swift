@@ -14,27 +14,35 @@
  * limitations under the License.
  */
 
+import ComposableArchitecture
 import ObjectModel
 import SwiftUI
 import UIComponents
 
 public struct ConversationsView: View {
-    public init() {
-        
+    private let store: Store<ConversationsState, ConversationsAction>
+    public init(store: Store<ConversationsState, ConversationsAction>) {
+        self.store = store
     }
     public var body: some View {
-        List {
-            FilteredObjectsListView(predicate: .truePredicate, sort: [NSSortDescriptor(keyPath: \Conversation.modifiedAt, ascending: false)]) {
-                (conversation: Conversation) in
-                
-                VStack(alignment: .leading) {
-                    Text(conversation.lastMessage?.body ?? "-")
-                    Text(conversation.application.appIdentifier)
-                        .font(.subheadline)
+        WithViewStore(store) {
+            viewStore in
+
+            List {
+                FilteredObjectsListView(predicate: .truePredicate, sort: [NSSortDescriptor(keyPath: \Conversation.modifiedAt, ascending: false)]) {
+                    (conversation: Conversation) in
+                    
+                    Button(action: { viewStore.send(.tapped(conversation)) }) {
+                        VStack(alignment: .leading) {
+                            Text(conversation.lastMessage?.body ?? "-")
+                            Text(conversation.application.appIdentifier)
+                                .font(.subheadline)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                    }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
-                .padding(.vertical, 8)
             }
         }
     }

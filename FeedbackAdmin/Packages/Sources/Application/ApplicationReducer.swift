@@ -15,9 +15,13 @@
  */
 
 import ComposableArchitecture
+import ConversationsFeature
+import MessagesFeature
 
 public let applicationReducer = Reducer<ApplicationState, ApplicationAction, ApplicationEnvironment>.combine(
-    reducer
+    messagesReducer.optional().pullback(state: \.messagesState, action: /ApplicationAction.messages, environment: \.messagesEnvironment),
+    reducer,
+    conversationsReducer.pullback(state: \.conversationsState, action: /ApplicationAction.conversations, environment: \.conversationsEnvironment)
 )
 
 private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEnvironment>() {
@@ -77,6 +81,16 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
         .eraseToEffect()
 
     case .cloudLoaded:
+        return .none
+        
+    case .conversations(.tapped(let conversation)):
+        state.messagesState = MessagesState(conversation: conversation)
+        return .none
+        
+    case .conversations:
+        return .none
+        
+    case .messages:
         return .none
     }
 }

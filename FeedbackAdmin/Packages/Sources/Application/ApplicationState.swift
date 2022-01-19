@@ -14,10 +14,14 @@
  * limitations under the License.
  */
 
+import ConversationsFeature
 import Logging
+import MessagesFeature
 
 public struct ApplicationState: Equatable {
     internal var persistenceLoaded = false
+    internal var conversationsState = ConversationsState()
+    internal var messagesState: MessagesState?
     
     public init() {
         Log.app.debug("Start the logs :)")

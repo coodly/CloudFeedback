@@ -28,6 +28,6 @@ public class Conversation: NSManagedObject {
     }
     
     public var lastMessage: Message? {
-        messages?.sorted(by: { $0.modifiedAt! < $1.modifiedAt! }).first
+        messages?.sorted(by: { $0.modifiedAt! > $1.modifiedAt! }).first
     }
 }

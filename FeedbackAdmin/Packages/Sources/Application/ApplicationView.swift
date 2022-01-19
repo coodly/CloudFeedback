@@ -31,8 +31,12 @@ public struct ApplicationView: View {
             
             if viewStore.persistenceLoaded {
                 NavigationView {
-                    ConversationsView()
-                    MessagesView()
+                    ConversationsView(store: store.scope(state: \.conversationsState, action: ApplicationAction.conversations))
+                    IfLetStore(
+                        store.scope(state: \.messagesState, action: ApplicationAction.messages),
+                        then: MessagesView.init,
+                        else: { Text("No conversation selected") }
+                    )
                 }
             } else {
                 ProgressView()

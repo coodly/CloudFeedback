@@ -14,10 +14,16 @@
  * limitations under the License.
  */
 
+import ConversationsFeature
+import MessagesFeature
+
 public enum ApplicationAction {
     case loadPersistence
     case persistenceLoaded
     case loadConversations
     case loadMessages
     case cloudLoaded
+    
+    case conversations(ConversationsAction)
+    case messages(MessagesAction)
 }
