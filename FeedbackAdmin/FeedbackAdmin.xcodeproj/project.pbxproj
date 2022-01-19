@@ -8,15 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		EA4B8B642797DD450046B46F /* FeedbackAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4B8B632797DD450046B46F /* FeedbackAdminApp.swift */; };
-		EA4B8B662797DD450046B46F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4B8B652797DD450046B46F /* ContentView.swift */; };
 		EA4B8B682797DD450046B46F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA4B8B672797DD450046B46F /* Assets.xcassets */; };
 		EA4B8B6B2797DD450046B46F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA4B8B6A2797DD450046B46F /* Preview Assets.xcassets */; };
+		EA9E32A22797E39E00045F8D /* Application in Frameworks */ = {isa = PBXBuildFile; productRef = EA9E32A12797E39E00045F8D /* Application */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EA4B8B602797DD450046B46F /* FeedbackAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedbackAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4B8B632797DD450046B46F /* FeedbackAdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAdminApp.swift; sourceTree = "<group>"; };
-		EA4B8B652797DD450046B46F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EA4B8B672797DD450046B46F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA4B8B6A2797DD450046B46F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EA4B8B712797DD7A0046B46F /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
@@ -28,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA9E32A22797E39E00045F8D /* Application in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +40,7 @@
 				EA4B8B712797DD7A0046B46F /* Packages */,
 				EA4B8B622797DD450046B46F /* FeedbackAdmin */,
 				EA4B8B612797DD450046B46F /* Products */,
+				EA9E32A02797E39E00045F8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,7 +57,6 @@
 			children = (
 				EA4B8B722797DFC90046B46F /* FeedbackAdmin.entitlements */,
 				EA4B8B632797DD450046B46F /* FeedbackAdminApp.swift */,
-				EA4B8B652797DD450046B46F /* ContentView.swift */,
 				EA4B8B672797DD450046B46F /* Assets.xcassets */,
 				EA4B8B692797DD450046B46F /* Preview Content */,
 			);
@@ -69,6 +69,13 @@
 				EA4B8B6A2797DD450046B46F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EA9E32A02797E39E00045F8D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +94,9 @@
 			dependencies = (
 			);
 			name = FeedbackAdmin;
+			packageProductDependencies = (
+				EA9E32A12797E39E00045F8D /* Application */,
+			);
 			productName = FeedbackAdmin;
 			productReference = EA4B8B602797DD450046B46F /* FeedbackAdmin.app */;
 			productType = "com.apple.product-type.application";
@@ -141,7 +151,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA4B8B662797DD450046B46F /* ContentView.swift in Sources */,
 				EA4B8B642797DD450046B46F /* FeedbackAdminApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,6 +358,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EA9E32A12797E39E00045F8D /* Application */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Application;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EA4B8B582797DD450046B46F /* Project object */;
 }

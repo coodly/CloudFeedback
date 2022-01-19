@@ -1,17 +1,18 @@
-//
-//  FeedbackAdminApp.swift
-//  FeedbackAdmin
-//
-//  Created by Jaanus Siim on 19.01.2022.
-//
-
+import Application
+import ComposableArchitecture
 import SwiftUI
 
 @main
 struct FeedbackAdminApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ApplicationView(
+                store: Store(
+                    initialState: ApplicationState(),
+                    reducer: applicationReducer,
+                    environment: ApplicationEnvironment()
+                )
+            )
         }
     }
 }
