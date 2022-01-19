@@ -19,6 +19,26 @@ import CoreData
 
 extension NSManagedObjectContext {
     public func save(messages: [CKRecord]) {
-        
+        for message in messages {
+            guard let reference = message.value(forKey: "conversation") as? CKRecord.Reference else {
+                continue
+            }
+                
+            let conversation = self.conversation(with: reference.recordID.recordName)
+            let saved: Message
+            if let existing: Message = fetchEntity(where: "recordName", hasValue: message.recordID.recordName) {
+                saved = existing
+            } else {
+                saved = insertEntity()
+            }
+            
+            saved.recordName = message.recordID.recordName
+            saved.conversation = conversation
+            saved.body = message["body"] as? String
+            saved.platform = message["platform"] as? String
+            saved.postedAt = message["postedAt"] as? Date
+            saved.sentBy = message["sentBy"] as? String
+            saved.modifiedAt = message.modificationDate
+        }
     }
 }

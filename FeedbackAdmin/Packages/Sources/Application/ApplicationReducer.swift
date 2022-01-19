@@ -63,6 +63,7 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
             
             Task {
                 let messages = await env.cloudClient.pullMessages(since: Date.distantPast)
+                env.persistenceClient.save(messages: messages)
                 if messages.count == 200 {
                     fulfill(.success(.loadMessages))
                 } else {

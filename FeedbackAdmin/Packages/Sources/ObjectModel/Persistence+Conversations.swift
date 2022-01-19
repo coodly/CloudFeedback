@@ -27,10 +27,11 @@ extension NSManagedObjectContext {
             let application = self.application(with: appIdentifier)
             let saved = self.conversation(with: conversation.recordID.recordName)
             saved.application = application
+            saved.modifiedAt = conversation.modificationDate
         }
     }
     
-    private func conversation(with name: String) -> Conversation {
+    internal func conversation(with name: String) -> Conversation {
         if let existing: Conversation = fetchEntity(where: "recordName", hasValue: name) {
             return existing
         }
