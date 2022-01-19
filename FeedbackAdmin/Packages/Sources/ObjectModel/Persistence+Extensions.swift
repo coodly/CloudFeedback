@@ -14,20 +14,8 @@
  * limitations under the License.
  */
 
-import ObjectModel
+import CoreData
 
-public struct PersistenceClient {
-    public let persistence: Persistence
+extension NSManagedObjectContext {
     
-    public func loadStores() async {
-        await persistence.loadStores()
-    }
-}
-
-extension PersistenceClient {
-    public static func client(with persistence: Persistence) -> PersistenceClient {
-        PersistenceClient(
-            persistence: persistence
-        )
-    }
 }
