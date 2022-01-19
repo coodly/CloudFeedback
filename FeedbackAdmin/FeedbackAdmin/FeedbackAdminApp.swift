@@ -1,5 +1,7 @@
 import Application
 import ComposableArchitecture
+import ObjectModel
+import PersistenceClient
 import SwiftUI
 
 @main
@@ -10,7 +12,10 @@ struct FeedbackAdminApp: App {
                 store: Store(
                     initialState: ApplicationState(),
                     reducer: applicationReducer,
-                    environment: ApplicationEnvironment()
+                    environment: ApplicationEnvironment(
+                        mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                        persistenceClient: .client(with: Persistence())
+                    )
                 )
             )
         }

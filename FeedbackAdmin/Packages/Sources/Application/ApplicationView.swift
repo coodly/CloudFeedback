@@ -11,10 +11,16 @@ public struct ApplicationView: View {
         WithViewStore(store) {
             viewStore in
             
-            NavigationView {
-                Text("One")
-                Text("Two")
-                Text("Three")
+            if viewStore.persistenceLoaded {
+                NavigationView {
+                    Text("One")
+                    Text("Two")
+                    Text("Three")
+                }
+            } else {
+                ProgressView()
+                    .progressViewStyle(.automatic)
+                    .onAppear(perform: { viewStore.send(.loadPersistence) })
             }
         }
     }

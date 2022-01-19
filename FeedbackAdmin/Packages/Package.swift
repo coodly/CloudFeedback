@@ -22,7 +22,28 @@ let package = Package(
         .target(
             name: "Application",
             dependencies: [
+                "PersistenceClient",
+                
                 composable
+            ]
+        ),
+        .target(
+            name: "Logging",
+            dependencies: [
+                "SWLogger"
+            ]
+        ),
+        .target(
+            name: "ObjectModel",
+            dependencies: [
+                "Logging"
+            ],
+            resources: [.process("Resources")]
+        ),
+        .target(
+            name: "PersistenceClient",
+            dependencies: [
+                "ObjectModel"
             ]
         )
     ]
