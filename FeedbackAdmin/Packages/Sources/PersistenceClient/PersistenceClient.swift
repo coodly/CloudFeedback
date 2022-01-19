@@ -14,20 +14,41 @@
  * limitations under the License.
  */
 
+import CloudKit
 import ObjectModel
 
 public struct PersistenceClient {
     public let persistence: Persistence
+    private let onSaveConversations: (([CKRecord]) -> Void)
+    private let onSaveMessages: (([CKRecord]) -> Void)
     
     public func loadStores() async {
         await persistence.loadStores()
+    }
+    
+    public func save(conversations: [CKRecord]) {
+        onSaveConversations(conversations)
+    }
+    
+    public func save(messages: [CKRecord]) {
+        onSaveMessages(messages)
     }
 }
 
 extension PersistenceClient {
     public static func client(with persistence: Persistence) -> PersistenceClient {
-        PersistenceClient(
-            persistence: persistence
+        return PersistenceClient(
+            persistence: persistence,
+            onSaveConversations: {
+                records in
+                
+                persistence.write(closure: { $0.save(conversations: records) })
+            },
+            onSaveMessages: {
+                records in
+                
+                persistence.write(closure: { $0.save(messages: records) })
+            }
         )
     }
 }

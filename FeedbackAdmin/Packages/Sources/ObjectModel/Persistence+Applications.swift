@@ -17,5 +17,13 @@
 import CoreData
 
 extension NSManagedObjectContext {
-    
+    internal func application(with identifier: String) -> Application {
+        if let existing: Application = fetchEntity(where: "appIdentifier", hasValue: identifier) {
+            return existing
+        }
+        
+        let saved: Application = insertEntity()
+        saved.appIdentifier = identifier
+        return saved
+    }
 }
