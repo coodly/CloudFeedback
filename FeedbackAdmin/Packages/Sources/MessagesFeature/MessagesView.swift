@@ -2,6 +2,7 @@ import ComposableArchitecture
 import ObjectModel
 import SwiftUI
 import UIComponents
+import WriteMessageFeature
 
 public struct MessagesView: View {
     private let store: Store<MessagesState, MessagesAction>
@@ -20,6 +21,29 @@ public struct MessagesView: View {
                     Text(message.body ?? "-")
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: { viewStore.send(.respond) }) {
+                        Image(systemName: "square.and.pencil")
+                    }
+                }
+            }
+            .sheet(
+                isPresented: viewStore.binding(
+                    get: { $0.route == .respond },
+                    send: MessagesAction.clearRoute
+                ),
+                content: {
+                    NavigationView {
+                        IfLetStore(store.scope(state: \.writeMessageState, action: MessagesAction.writeMessage)) {
+                            store in
+                            
+                            WriteMessageView(store: store)
+                        }
+                        .interactiveDismissDisabled(true)
+                    }
+                }
+            )
         }
     }
 }

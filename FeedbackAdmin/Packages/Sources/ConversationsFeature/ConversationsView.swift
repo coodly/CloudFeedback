@@ -44,6 +44,7 @@ public struct ConversationsView: View {
                     }
                 }
             }
+            .navigationBarTitle("Conversations")
             #if !targetEnvironment(macCatalyst)
             .refreshable {
                 await viewStore.send(.refresh, while: \.refreshing)

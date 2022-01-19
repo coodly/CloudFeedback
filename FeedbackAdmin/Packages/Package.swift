@@ -67,6 +67,7 @@ let package = Package(
             dependencies: [
                 "ObjectModel",
                 "UIComponents",
+                "WriteMessageFeature",
                 
                 composable
             ]
@@ -86,6 +87,12 @@ let package = Package(
         ),
         .target(
             name: "UIComponents"
+        ),
+        .target(
+            name: "WriteMessageFeature",
+            dependencies: [
+                composable
+            ]
         )
     ]
 )
