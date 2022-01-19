@@ -10,6 +10,7 @@
 		EA4B8B642797DD450046B46F /* FeedbackAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4B8B632797DD450046B46F /* FeedbackAdminApp.swift */; };
 		EA4B8B682797DD450046B46F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA4B8B672797DD450046B46F /* Assets.xcassets */; };
 		EA4B8B6B2797DD450046B46F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA4B8B6A2797DD450046B46F /* Preview Assets.xcassets */; };
+		EA8AE95B2797EDA30039E9CE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8AE95A2797EDA30039E9CE /* CloudKit.framework */; };
 		EA9E32A22797E39E00045F8D /* Application in Frameworks */ = {isa = PBXBuildFile; productRef = EA9E32A12797E39E00045F8D /* Application */; };
 /* End PBXBuildFile section */
 
@@ -20,6 +21,7 @@
 		EA4B8B6A2797DD450046B46F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EA4B8B712797DD7A0046B46F /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
 		EA4B8B722797DFC90046B46F /* FeedbackAdmin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FeedbackAdmin.entitlements; sourceTree = "<group>"; };
+		EA8AE95A2797EDA30039E9CE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +30,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA9E32A22797E39E00045F8D /* Application in Frameworks */,
+				EA8AE95B2797EDA30039E9CE /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +77,7 @@
 		EA9E32A02797E39E00045F8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA8AE95A2797EDA30039E9CE /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
