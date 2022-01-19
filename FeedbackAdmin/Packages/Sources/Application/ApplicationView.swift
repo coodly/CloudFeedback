@@ -15,6 +15,8 @@
  */
 
 import ComposableArchitecture
+import ConversationsFeature
+import MessagesFeature
 import SwiftUI
 
 public struct ApplicationView: View {
@@ -29,9 +31,8 @@ public struct ApplicationView: View {
             
             if viewStore.persistenceLoaded {
                 NavigationView {
-                    Text("One")
-                    Text("Two")
-                    Text("Three")
+                    ConversationsView()
+                    MessagesView()
                 }
             } else {
                 ProgressView()

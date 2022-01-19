@@ -26,7 +26,9 @@ let package = Package(
             name: "Application",
             dependencies: [
                 "CloudClient",
+                "ConversationsFeature",
                 "Logging",
+                "MessagesFeature",
                 "PersistenceClient",
                 
                 composable
@@ -46,10 +48,16 @@ let package = Package(
             ]
         ),
         .target(
+            name: "ConversationsFeature"
+        ),
+        .target(
             name: "Logging",
             dependencies: [
                 "SWLogger"
             ]
+        ),
+        .target(
+            name: "MessagesFeature"
         ),
         .target(
             name: "ObjectModel",
