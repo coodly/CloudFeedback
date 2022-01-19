@@ -11,7 +11,10 @@ let package = Package(
     products: [
         .library(
             name: "Application",
-            targets: ["Application"]
+            targets: [
+                "Application",
+                "CloudClientLive"
+            ]
         )
     ],
     dependencies: [
@@ -23,6 +26,7 @@ let package = Package(
             name: "Application",
             dependencies: [
                 "CloudClient",
+                "Logging",
                 "PersistenceClient",
                 
                 composable
@@ -31,6 +35,13 @@ let package = Package(
         .target(
             name: "CloudClient",
             dependencies: [
+                "Logging"
+            ]
+        ),
+        .target(
+            name: "CloudClientLive",
+            dependencies: [
+                "CloudClient",
                 "Logging"
             ]
         ),

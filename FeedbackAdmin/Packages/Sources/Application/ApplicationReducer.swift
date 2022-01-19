@@ -22,6 +22,16 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
         
     case .persistenceLoaded:
         state.persistenceLoaded = true
-        return .none
+        return Effect(value: .loadMessages)
+        
+    case .loadMessages:
+        return Effect.future() {
+            fulfill in
+            
+            Task {
+                let messages = await env.cloudClient.pullMessages(since: Date.distantPast)
+                
+            }
+        }
     }
 }

@@ -8,9 +8,9 @@ public class Log {
         return Log()
     }()
  
-    private let cloud = Logging(name: "Cloud")
-    private let db = Logging(name: "DB")
+    private let app = Logging(name: "App")
     
-    public static let cloud = shared.cloud
-    public static let db = shared.db
+    public static let app = shared.app
+    public static let cloud = Logging(name: "Cloud")
+    public static let db = Logging(name: "DB")
 }
