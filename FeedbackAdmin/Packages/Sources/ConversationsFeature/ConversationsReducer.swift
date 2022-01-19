@@ -24,6 +24,14 @@ private let reducer = Reducer<ConversationsState, ConversationsAction, Conversat
     state, action, env in
     
     switch action {
+    case .refresh:
+        state.refreshing = true
+        return .none
+        
+    case .refreshed:
+        state.refreshing = false
+        return .none
+
     case .tapped(_):
         return .none
     }

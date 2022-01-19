@@ -15,6 +15,8 @@
  */
 
 public struct ConversationsState: Equatable {
+    public var refreshing = false
+    
     public init() {
         
     }

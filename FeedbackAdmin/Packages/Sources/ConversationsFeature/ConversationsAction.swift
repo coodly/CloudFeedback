@@ -17,5 +17,7 @@
 import ObjectModel
 
 public enum ConversationsAction {
+    case refresh
+    case refreshed
     case tapped(Conversation)
 }

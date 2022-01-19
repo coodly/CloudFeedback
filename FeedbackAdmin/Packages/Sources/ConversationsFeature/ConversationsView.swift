@@ -44,6 +44,11 @@ public struct ConversationsView: View {
                     }
                 }
             }
+            #if !targetEnvironment(macCatalyst)
+            .refreshable {
+                await viewStore.send(.refresh, while: \.refreshing)
+            }
+            #endif
         }
     }
 }

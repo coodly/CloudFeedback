@@ -81,11 +81,14 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
         .eraseToEffect()
 
     case .cloudLoaded:
-        return .none
+        return Effect(value: .conversations(.refreshed))
         
     case .conversations(.tapped(let conversation)):
         state.messagesState = MessagesState(conversation: conversation)
         return .none
+        
+    case .conversations(.refresh):
+        return Effect(value: .loadConversations)
         
     case .conversations:
         return .none
