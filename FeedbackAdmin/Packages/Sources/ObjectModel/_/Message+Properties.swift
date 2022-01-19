@@ -18,7 +18,7 @@ import CoreData
 
 extension Message {
     @NSManaged var recordName: String?
-    @NSManaged var modifiedAt: Date?
+    @NSManaged public var modifiedAt: Date?
 
     @NSManaged public var body: String?
     @NSManaged var platform: String?

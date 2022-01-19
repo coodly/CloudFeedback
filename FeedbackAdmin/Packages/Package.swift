@@ -63,6 +63,7 @@ let package = Package(
         .target(
             name: "MessagesFeature",
             dependencies: [
+                "ObjectModel",
                 "UIComponents"
             ]
         ),

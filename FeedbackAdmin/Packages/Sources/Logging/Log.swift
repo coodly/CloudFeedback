@@ -20,6 +20,7 @@ public class Log {
     private static let shared: Log = {
         SWLogger.Log.level = .debug
         SWLogger.Log.add(output: ConsoleOutput())
+        SWLogger.Log.add(output: FileOutput())
         
         return Log()
     }()

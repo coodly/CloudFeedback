@@ -16,6 +16,7 @@
 
 import CloudKit
 import CoreData
+import Logging
 
 extension NSManagedObjectContext {
     public func save(messages: [CKRecord]) {
@@ -24,7 +25,10 @@ extension NSManagedObjectContext {
                 continue
             }
                 
-            let conversation = self.conversation(with: reference.recordID.recordName)
+            guard let conversation: Conversation = fetchEntity(where: "recordName", hasValue: reference.recordID.recordName) else {
+                Log.db.debug("No conversation with name \(reference.recordID.recordName)")
+                continue
+            }
             let saved: Message
             if let existing: Message = fetchEntity(where: "recordName", hasValue: message.recordID.recordName) {
                 saved = existing

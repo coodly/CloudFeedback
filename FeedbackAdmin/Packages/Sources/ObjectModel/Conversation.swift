@@ -17,7 +17,17 @@
 import CoreData
 
 public class Conversation: NSManagedObject {
+    public override func willSave() {
+        guard let lastTime = lastMessage?.modifiedAt else {
+            return
+        }
+        
+        if modifiedAt != lastTime {
+            modifiedAt = lastTime
+        }
+    }
+    
     public var lastMessage: Message? {
-        messages?.sorted(by: { $0.modifiedAt! > $1.modifiedAt! }).first
+        messages?.sorted(by: { $0.modifiedAt! < $1.modifiedAt! }).first
     }
 }

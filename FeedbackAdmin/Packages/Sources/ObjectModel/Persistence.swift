@@ -69,7 +69,7 @@ public struct Persistence {
             save(context: saved.parent)
         } catch {
             Log.db.error(error)
-            fatalError()
+            fatalError(error.localizedDescription)
         }
     }
     
