@@ -24,6 +24,10 @@ public enum ApplicationAction {
     case loadMessages
     case cloudLoaded
     
+    case resetFailedMessages
+    case pushMessages
+    case messagesPushed
+    
     case conversations(ConversationsAction)
     case messages(MessagesAction)
 }

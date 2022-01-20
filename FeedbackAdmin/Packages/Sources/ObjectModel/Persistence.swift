@@ -87,6 +87,22 @@ extension NSManagedObjectContext {
         NSEntityDescription.insertNewObject(forEntityName: T.entityName, into: self) as! T
     }
     
+    public func fetch<T: NSManagedObject>(predicate: NSPredicate = .truePredicate, sort: [NSSortDescriptor]? = nil, limit: Int? = nil) -> [T] {
+        let request: NSFetchRequest<T> = NSFetchRequest(entityName: T.entityName)
+        request.predicate = predicate
+        if let limit = limit {
+            request.fetchLimit = limit
+        }
+        request.sortDescriptors = sort
+        
+        do {
+            return try fetch(request)
+        } catch {
+            Log.db.error("Fetch \(T.entityName) failure. Error \(error)")
+            return []
+        }
+    }
+    
     public func fetchFirst<T: NSManagedObject>(predicate: NSPredicate = .truePredicate, sort: [NSSortDescriptor] = []) -> T? {
         let request: NSFetchRequest<T> = NSFetchRequest(entityName: T.entityName)
         request.predicate = predicate

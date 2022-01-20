@@ -44,6 +44,7 @@ extension NSManagedObjectContext {
             saved.postedAt = message["postedAt"] as? Date
             saved.sentBy = message["sentBy"] as? String
             saved.modifiedAt = message.modificationDate
+            saved.pushStatus = .synced
             
             maxDate = max(maxDate, message.modificationDate!)
         }
@@ -61,5 +62,18 @@ extension NSManagedObjectContext {
         saved.postedAt = Date.now
         
         self.sentBy = sentBy
+    }
+    
+    public func resetFailedPushed() {
+        let predicate = NSPredicate(format: "internalPushStatus = %@", PushStatus.pushFailed.rawValue)
+        let failed: [Message] = fetch(predicate: predicate)
+        Log.db.debug("Have \(failed.count) failed pushes")
+        failed.forEach({ $0.pushStatus = .pushNeeded })
+    }
+    
+    public func messagesToPush() -> [Message] {
+        let predicate = NSPredicate(format: "internalPushStatus = %@", PushStatus.pushNeeded.rawValue)
+        let pushed: [Message] = fetch(predicate: predicate, limit: 100)
+        return pushed
     }
 }

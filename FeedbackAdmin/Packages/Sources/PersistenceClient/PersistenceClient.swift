@@ -43,6 +43,14 @@ public struct PersistenceClient {
     public func add(message: String, sentBy: String, in conversation: Conversation) {
         persistence.write(closure: { $0.add(message: message, sentBy: sentBy, to: conversation) })
     }
+    
+    public func resetFailedPushed() {
+        persistence.write(closure: { $0.resetFailedPushed() })
+    }
+    
+    public func messagesToPush() -> [Message] {
+        persistence.viewContext.messagesToPush()
+    }
 }
 
 extension PersistenceClient {

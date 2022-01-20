@@ -16,6 +16,7 @@
 
 import ComposableArchitecture
 import ConversationsFeature
+import Logging
 import MessagesFeature
 
 public let applicationReducer = Reducer<ApplicationState, ApplicationAction, ApplicationEnvironment>.combine(
@@ -81,7 +82,32 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
         .eraseToEffect()
 
     case .cloudLoaded:
-        return Effect(value: .conversations(.refreshed))
+        return Effect.concatenate(
+            Effect(value: .conversations(.refreshed)),
+            Effect(value: .resetFailedMessages)
+        )
+        
+    case .resetFailedMessages:
+        env.persistenceClient.resetFailedPushed()
+        return Effect(value: .pushMessages)
+        
+    case .pushMessages:
+        return Effect.future {
+            fulfill in
+            
+            let messages = env.persistenceClient.messagesToPush()
+            if messages.count == 0 {
+                Log.app.debug("No messages to push")
+                fulfill(.success(.messagesPushed))
+                return
+            }
+
+            Log.app.debug("Push \(messages.count) messages")
+            fulfill(.success(.messagesPushed))
+        }
+        
+    case .messagesPushed:
+        return .none
         
     case .conversations(.tapped(let conversation)):
         state.messagesState = MessagesState(conversation: conversation)
@@ -94,8 +120,9 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
         return .none
         
     case .messages(.send(let conversation, let sentBy, let message)):
-        return Effect.fireAndForget() {
+        return Effect.result {
             env.persistenceClient.add(message: message, sentBy: sentBy, in: conversation)
+            return .success(.pushMessages)
         }
         
     case .messages:
