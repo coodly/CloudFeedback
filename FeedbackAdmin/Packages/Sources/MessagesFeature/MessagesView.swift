@@ -37,6 +37,7 @@ public struct MessagesView: View {
                     
                     let chatMessage = ChatMessage(message: message)
                     MessageBubbleView(message: chatMessage)
+                        .overlay(MessageSatatusOverlay(message: message))
                 }
             }
             .background(Color(UIColor.secondarySystemBackground))
@@ -63,6 +64,27 @@ public struct MessagesView: View {
                     }
                 }
             )
+        }
+    }
+}
+
+private struct MessageSatatusOverlay: View {
+    private let color: Color
+    fileprivate init?(message: Message) {
+        switch message.pushStatus {
+        case .synced:
+            return nil
+        case .pushFailed:
+            color = .red
+        case .pushNeeded:
+            color = .blue
+        }
+    }
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            color.opacity(0.8).frame(width: 10)
         }
     }
 }
