@@ -22,8 +22,8 @@ extension Message {
 
     @NSManaged public var body: String?
     @NSManaged var platform: String?
-    @NSManaged var postedAt: Date?
-    @NSManaged var sentBy: String?
+    @NSManaged public var postedAt: Date?
+    @NSManaged public var sentBy: String?
     
     @NSManaged var conversation: Conversation
 }

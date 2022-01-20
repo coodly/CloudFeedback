@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EA4B8B602797DD450046B46F /* FeedbackAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedbackAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA4B8B602797DD450046B46F /* Feedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Feedback.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4B8B632797DD450046B46F /* FeedbackAdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAdminApp.swift; sourceTree = "<group>"; };
 		EA4B8B672797DD450046B46F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA4B8B6A2797DD450046B46F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		EA4B8B612797DD450046B46F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EA4B8B602797DD450046B46F /* FeedbackAdmin.app */,
+				EA4B8B602797DD450046B46F /* Feedback.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,7 +102,7 @@
 				EA9E32A12797E39E00045F8D /* Application */,
 			);
 			productName = FeedbackAdmin;
-			productReference = EA4B8B602797DD450046B46F /* FeedbackAdmin.app */;
+			productReference = EA4B8B602797DD450046B46F /* Feedback.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -301,7 +301,7 @@
 				);
 				MARKETING_VERSION = 2022.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coodly.feedback.admin;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Feedback;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -332,7 +332,7 @@
 				);
 				MARKETING_VERSION = 2022.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coodly.feedback.admin;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Feedback;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

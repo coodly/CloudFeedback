@@ -1,3 +1,20 @@
+/*
+ * Copyright 2022 Coodly LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import CloudFeedback
 import ComposableArchitecture
 import ObjectModel
 import SwiftUI
@@ -14,13 +31,15 @@ public struct MessagesView: View {
         WithViewStore(store) {
             viewStore in
             
-            List {
+            ScrollView {
                 FilteredObjectsListView(predicate: viewStore.messagesPredicate, sort: [NSSortDescriptor(keyPath: \Message.modifiedAt, ascending: true)]) {
                     (message: Message) in
                     
-                    Text(message.body ?? "-")
+                    let chatMessage = ChatMessage(message: message)
+                    MessageBubbleView(message: chatMessage)
                 }
             }
+            .background(Color(UIColor.secondarySystemBackground))
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: { viewStore.send(.respond) }) {
@@ -45,5 +64,16 @@ public struct MessagesView: View {
                 }
             )
         }
+    }
+}
+
+extension ChatMessage {
+    fileprivate init(message: Message) {
+        self = ChatMessage(
+            sentBy: message.sentBy,
+            body: message.body ?? "",
+            postedAt: message.postedAt ?? Date.distantPast,
+            sentByMe: (message.sentBy ?? "").hasValue
+        )
     }
 }

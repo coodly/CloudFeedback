@@ -35,6 +35,7 @@ public struct ConversationsView: View {
                     Button(action: { viewStore.send(.tapped(conversation)) }) {
                         VStack(alignment: .leading) {
                             Text(conversation.lastMessage?.body ?? "-")
+                                .lineLimit(3)
                             Text(conversation.application.appIdentifier)
                                 .font(.subheadline)
                         }

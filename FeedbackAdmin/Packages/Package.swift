@@ -20,6 +20,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", from: "0.33.1"),
         .package(name: "SWLogger", url: "https://github.com/coodly/swlogger.git", from: "0.4.3"),
+        .package(name: "CloudFeedback", path: "../../")
     ],
     targets: [
         .target(
@@ -57,6 +58,9 @@ let package = Package(
             ]
         ),
         .target(
+            name: "Extensions"
+        ),
+        .target(
             name: "Logging",
             dependencies: [
                 "SWLogger"
@@ -69,6 +73,7 @@ let package = Package(
                 "UIComponents",
                 "WriteMessageFeature",
                 
+                "CloudFeedback",
                 composable
             ]
         ),
@@ -91,6 +96,8 @@ let package = Package(
         .target(
             name: "WriteMessageFeature",
             dependencies: [
+                "Extensions",
+                
                 composable
             ]
         )

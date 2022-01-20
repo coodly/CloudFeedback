@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
-public struct WriteMessageEnvironment {
-    public init() {
-        
+import Foundation
+
+extension String {
+    public var hasValue: Bool {
+        !trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty
     }
 }
