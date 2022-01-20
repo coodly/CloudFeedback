@@ -44,6 +44,7 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
         .eraseToEffect()
         
     case .persistenceLoaded:
+        state.sentBy = env.persistenceClient.sentBy
         state.persistenceLoaded = true
         return Effect(value: .loadConversations)
         
@@ -121,7 +122,7 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
         return .none
         
     case .conversations(.tapped(let conversation)):
-        state.messagesState = MessagesState(conversation: conversation)
+        state.messagesState = MessagesState(conversation: conversation, sentBy: state.sentBy)
         return .none
         
     case .conversations(.refresh):
@@ -131,6 +132,7 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
         return .none
         
     case .messages(.send(let conversation, let sentBy, let message)):
+        state.sentBy = sentBy
         return Effect.result {
             env.persistenceClient.add(message: message, sentBy: sentBy, in: conversation)
             return .success(.pushMessages)

@@ -55,6 +55,10 @@ public struct PersistenceClient {
     public func markFailure(on names: [String]) {
         persistence.write(closure: { $0.markFailure(on: names) })
     }
+    
+    public var sentBy: String {
+        persistence.viewContext.sentBy
+    }
 }
 
 extension PersistenceClient {

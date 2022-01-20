@@ -22,6 +22,7 @@ public struct ApplicationState: Equatable {
     internal var persistenceLoaded = false
     internal var conversationsState = ConversationsState()
     internal var messagesState: MessagesState?
+    internal var sentBy = ""
     
     public init() {
         Log.app.debug("Start the logs :)")

@@ -24,8 +24,9 @@ public struct WriteMessageState: Equatable {
     
     internal var sendDisabled = true
     internal let conversation: Conversation
-    public init(conversation: Conversation) {
+    public init(conversation: Conversation, sentBy: String) {
         self.conversation = conversation
+        self.sentBy = sentBy
     }
     
     internal mutating func checkCanSend() {

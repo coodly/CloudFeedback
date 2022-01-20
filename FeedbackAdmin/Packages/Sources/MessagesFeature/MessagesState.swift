@@ -32,8 +32,9 @@ public struct MessagesState: Equatable {
     }
     
     internal var writeMessageState: WriteMessageState?
-    
-    public init(conversation: Conversation) {
+    internal let sentBy: String
+    public init(conversation: Conversation, sentBy: String) {
         self.conversation = conversation
+        self.sentBy = sentBy
     }
 }
