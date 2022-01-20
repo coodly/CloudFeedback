@@ -20,6 +20,7 @@ import Logging
 
 extension NSManagedObjectContext {
     public func save(messages: [CKRecord]) {
+        var maxDate = lastKnownMessageTime
         for message in messages {
             guard let reference = message.value(forKey: "conversation") as? CKRecord.Reference else {
                 continue
@@ -43,11 +44,10 @@ extension NSManagedObjectContext {
             saved.postedAt = message["postedAt"] as? Date
             saved.sentBy = message["sentBy"] as? String
             saved.modifiedAt = message.modificationDate
+            
+            maxDate = max(maxDate, message.modificationDate!)
         }
-    }
-    
-    public var lastKnownMessageTime: Date {
-        let last: Message? = fetchFirst(sort: [NSSortDescriptor(keyPath: \Message.modifiedAt, ascending: false)])
-        return last?.modifiedAt ?? Date.distantPast
+        
+        lastKnownMessageTime = maxDate
     }
 }

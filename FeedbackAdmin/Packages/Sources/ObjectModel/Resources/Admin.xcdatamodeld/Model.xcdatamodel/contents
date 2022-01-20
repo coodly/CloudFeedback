@@ -19,9 +19,14 @@
         <attribute name="sentBy" optional="YES" attributeType="String"/>
         <relationship name="conversation" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="messages" inverseEntity="Conversation"/>
     </entity>
+    <entity name="Setting" representedClassName="ObjectModel.Setting" syncable="YES">
+        <attribute name="key" attributeType="String"/>
+        <attribute name="value" attributeType="String" defaultValueString=""/>
+    </entity>
     <elements>
         <element name="Application" positionX="-45" positionY="0" width="128" height="59"/>
         <element name="Conversation" positionX="-18" positionY="27" width="128" height="89"/>
         <element name="Message" positionX="9" positionY="54" width="128" height="134"/>
+        <element name="Setting" positionX="-18" positionY="90" width="128" height="59"/>
     </elements>
 </model>

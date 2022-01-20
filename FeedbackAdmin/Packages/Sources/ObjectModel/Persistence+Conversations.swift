@@ -19,6 +19,7 @@ import CoreData
 
 extension NSManagedObjectContext {
     public func save(conversations: [CKRecord]) {
+        var maxDate = lastKnownConversationTime
         for conversation in conversations {
             guard let appIdentifier = conversation.value(forKey: "appIdentifier") as? String else {
                 continue
@@ -28,7 +29,10 @@ extension NSManagedObjectContext {
             let saved = self.conversation(with: conversation.recordID.recordName)
             saved.application = application
             saved.modifiedAt = conversation.modificationDate
+            maxDate = max(maxDate, conversation.modificationDate!)
         }
+        
+        lastKnownConversationTime = maxDate
     }
     
     internal func conversation(with name: String) -> Conversation {
@@ -39,10 +43,5 @@ extension NSManagedObjectContext {
         let saved: Conversation = insertEntity()
         saved.recordName = name
         return saved
-    }
-    
-    public var lastKnownConversationTime: Date {
-        let last: Conversation? = fetchFirst(sort: [NSSortDescriptor(keyPath: \Conversation.modifiedAt, ascending: false)])
-        return last?.modifiedAt ?? Date.distantPast
     }
 }
