@@ -39,6 +39,10 @@ public struct PersistenceClient {
     public func save(messages: [CKRecord]) {
         persistence.write(closure: { $0.save(messages: messages) })
     }
+    
+    public func add(message: String, sentBy: String, in conversation: Conversation) {
+        persistence.write(closure: { $0.add(message: message, sentBy: sentBy, to: conversation) })
+    }
 }
 
 extension PersistenceClient {

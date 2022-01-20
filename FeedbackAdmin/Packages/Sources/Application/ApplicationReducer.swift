@@ -94,7 +94,9 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
         return .none
         
     case .messages(.send(let conversation, let sentBy, let message)):
-        return .none
+        return Effect.fireAndForget() {
+            env.persistenceClient.add(message: message, sentBy: sentBy, in: conversation)
+        }
         
     case .messages:
         return .none

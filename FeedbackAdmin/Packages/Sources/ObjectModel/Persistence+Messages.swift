@@ -50,4 +50,16 @@ extension NSManagedObjectContext {
         
         lastKnownMessageTime = maxDate
     }
+    
+    public func add(message: String, sentBy: String, to conversation: Conversation) {
+        let saved: Message = insertEntity()
+        saved.pushStatus = .pushNeeded
+        saved.sentBy = sentBy
+        saved.body = message
+        saved.conversation = conversation
+        saved.modifiedAt = Date.now
+        saved.postedAt = Date.now
+        
+        self.sentBy = sentBy
+    }
 }
