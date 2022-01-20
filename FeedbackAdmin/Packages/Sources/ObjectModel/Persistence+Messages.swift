@@ -76,4 +76,11 @@ extension NSManagedObjectContext {
         let pushed: [Message] = fetch(predicate: predicate, limit: 100)
         return pushed
     }
+    
+    public func markFailure(on names: [String]) {
+        let predicate = NSPredicate(format: "recordName IN %@", names)
+        let failed: [Message] = fetch(predicate: predicate)
+        Log.db.debug("Mark failure on \(failed.count) messages")
+        failed.forEach({ $0.pushStatus = .pushFailed })
+    }
 }

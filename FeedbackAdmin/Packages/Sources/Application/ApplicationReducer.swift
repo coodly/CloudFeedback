@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
+import CloudKit
 import ComposableArchitecture
 import ConversationsFeature
 import Logging
 import MessagesFeature
+import ObjectModel
 
 public let applicationReducer = Reducer<ApplicationState, ApplicationAction, ApplicationEnvironment>.combine(
     messagesReducer.optional().pullback(state: \.messagesState, action: /ApplicationAction.messages, environment: \.messagesEnvironment),
@@ -95,16 +97,25 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
         return Effect.future {
             fulfill in
             
-            let messages = env.persistenceClient.messagesToPush()
-            if messages.count == 0 {
-                Log.app.debug("No messages to push")
-                fulfill(.success(.messagesPushed))
-                return
-            }
+            Task {
+                let messages = env.persistenceClient.messagesToPush()
+                if messages.count == 0 {
+                    Log.app.debug("No messages to push")
+                    fulfill(.success(.messagesPushed))
+                    return
+                }
 
-            Log.app.debug("Push \(messages.count) messages")
-            fulfill(.success(.messagesPushed))
+                Log.app.debug("Push \(messages.count) messages")
+                    
+                let pushed: [CKRecord] = messages.compactMap(CKRecord.with(message:))
+                let (saved, failed) = await env.cloudClient.save(messages: pushed)
+                env.persistenceClient.save(messages: saved)
+                env.persistenceClient.markFailure(on: failed.map(\.recordName))
+                fulfill(.success(.pushMessages))
+            }
         }
+        .receive(on: env.mainQueue)
+        .eraseToEffect()
         
     case .messagesPushed:
         return .none
@@ -130,3 +141,14 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
     }
 }
 .debug()
+
+extension CKRecord {
+    fileprivate static func with(message: Message) -> CKRecord? {
+        let record = CKRecord(recordType: "Message", recordID: CKRecord.ID(recordName: message.recordName!))
+        record["body"] = message.body
+        record["conversation"] = CKRecord.Reference(recordID: CKRecord.ID(recordName: message.conversation.recordName!), action: .none)
+        record["postedAt"] = message.postedAt
+        record["sentBy"] = message.sentBy
+        return record
+    }
+}

@@ -51,6 +51,10 @@ public struct PersistenceClient {
     public func messagesToPush() -> [Message] {
         persistence.viewContext.messagesToPush()
     }
+    
+    public func markFailure(on names: [String]) {
+        persistence.write(closure: { $0.markFailure(on: names) })
+    }
 }
 
 extension PersistenceClient {

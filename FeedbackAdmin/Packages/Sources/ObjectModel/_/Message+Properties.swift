@@ -17,7 +17,7 @@
 import CoreData
 
 extension Message {
-    @NSManaged var recordName: String?
+    @NSManaged public var recordName: String?
     @NSManaged public var modifiedAt: Date?
 
     @NSManaged public var body: String?
@@ -25,5 +25,5 @@ extension Message {
     @NSManaged public var postedAt: Date?
     @NSManaged public var sentBy: String?
     
-    @NSManaged var conversation: Conversation
+    @NSManaged public var conversation: Conversation
 }

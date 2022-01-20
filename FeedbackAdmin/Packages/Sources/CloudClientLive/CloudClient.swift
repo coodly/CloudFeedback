@@ -54,10 +54,34 @@ extension CloudClient {
             await pullRecords(named: "Message", since: date)
         }
         
+        func save(messages: [CKRecord]) async -> ([CKRecord], [CKRecord.ID]) {
+            do {
+                let (saveResults, deleted) = try await database.modifyRecords(saving: messages, deleting: [])
+                var saved: [CKRecord] = []
+                var failed: [CKRecord.ID] = []
+                
+                for (id, result) in saveResults{
+                    switch result {
+                    case .success(let record):
+                        saved.append(record)
+                    case .failure(let error):
+                        Log.cloud.error(error)
+                        failed.append(id)
+                    }
+                }
+                
+                return (saved, failed)
+            } catch {
+                Log.cloud.error(error)
+                fatalError()
+            }
+        }
+        
         return CloudClient(
             container: contrainer,
             onPullConversationsSince: pullConversations(since:),
-            onPullMessagesSince: pullMessages(since:)
+            onPullMessagesSince: pullMessages(since:),
+            onSaveMessages: save(messages:)
         )
     }
 }

@@ -20,15 +20,18 @@ public struct CloudClient {
     private let container: CKContainer
     private let onPullConversationsSince: ((Date) async -> [CKRecord])
     private let onPullMessagesSince: ((Date) async -> [CKRecord])
+    private let onSaveMessages: (([CKRecord]) async -> ([CKRecord], [CKRecord.ID]))
     
     public init(
         container: CKContainer,
         onPullConversationsSince: @escaping ((Date) async -> [CKRecord]),
-        onPullMessagesSince: @escaping ((Date) async -> [CKRecord])
+        onPullMessagesSince: @escaping ((Date) async -> [CKRecord]),
+        onSaveMessages: @escaping (([CKRecord]) async -> ([CKRecord], [CKRecord.ID]))
     ) {
         self.container = container
         self.onPullConversationsSince = onPullConversationsSince
         self.onPullMessagesSince = onPullMessagesSince
+        self.onSaveMessages = onSaveMessages
     }
 
     public func pullConversations(since date: Date) async -> [CKRecord] {
@@ -37,5 +40,9 @@ public struct CloudClient {
 
     public func pullMessages(since date: Date) async -> [CKRecord] {
         await onPullMessagesSince(date)
+    }
+    
+    public func save(messages: [CKRecord]) async -> ([CKRecord], [CKRecord.ID]) {
+        await onSaveMessages(messages)
     }
 }
