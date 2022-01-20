@@ -15,9 +15,13 @@
  */
 
 import ComposableArchitecture
+import ObjectModel
 
 public enum WriteMessageAction: BindableAction {
     case cancel
+    case post
+    
+    case send(Conversation, String, String)
     
     case binding(BindingAction<WriteMessageState>)
 }

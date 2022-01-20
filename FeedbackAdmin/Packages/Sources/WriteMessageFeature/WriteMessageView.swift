@@ -40,7 +40,7 @@ public struct WriteMessageView: View {
             .padding()
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    Button(action: { }) {
+                    Button(action: { viewStore.send(.post) }) {
                         Image(systemName: "paperplane")
                     }
                     .disabled(viewStore.sendDisabled)

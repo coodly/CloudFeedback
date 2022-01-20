@@ -16,15 +16,16 @@
 
 import ComposableArchitecture
 import Extensions
+import ObjectModel
 
 public struct WriteMessageState: Equatable {
     @BindableState internal var sentBy = ""
     @BindableState internal var message = ""
     
     internal var sendDisabled = true
-    
-    public init() {
-        
+    internal let conversation: Conversation
+    public init(conversation: Conversation) {
+        self.conversation = conversation
     }
     
     internal mutating func checkCanSend() {

@@ -27,7 +27,7 @@ private let reducer = Reducer<MessagesState, MessagesAction, MessagesEnvironment
     
     switch action {
     case .respond:
-        state.writeMessageState = WriteMessageState()
+        state.writeMessageState = WriteMessageState(conversation: state.conversation)
         state.route = .respond
         return .none
         
@@ -38,6 +38,14 @@ private let reducer = Reducer<MessagesState, MessagesAction, MessagesEnvironment
     case .writeMessage(.cancel):
         state.writeMessageState = nil
         return Effect(value: .clearRoute)
+        
+    case .send(_, _, _):
+        return .none
+        
+    case .writeMessage(.send(let conversation, let sentBy, let message)):
+        state.writeMessageState = nil
+        state.route = nil
+        return Effect(value: .send(conversation, sentBy, message))
         
     case .writeMessage:
         return .none

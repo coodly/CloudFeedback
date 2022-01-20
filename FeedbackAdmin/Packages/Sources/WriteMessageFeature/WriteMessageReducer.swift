@@ -27,6 +27,12 @@ private let reducer = Reducer<WriteMessageState, WriteMessageAction, WriteMessag
     case .cancel:
         return .none
         
+    case .post:
+        return Effect(value: .send(state.conversation, state.sentBy, state.message))
+        
+    case .send(_, _, _):
+        return .none
+        
     case .binding:
         state.checkCanSend()
         return .none

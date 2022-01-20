@@ -93,7 +93,11 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
     case .conversations:
         return .none
         
+    case .messages(.send(let conversation, let sentBy, let message)):
+        return .none
+        
     case .messages:
         return .none
     }
 }
+.debug()

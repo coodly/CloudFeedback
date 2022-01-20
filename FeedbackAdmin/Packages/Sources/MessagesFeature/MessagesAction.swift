@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
+import ObjectModel
 import WriteMessageFeature
 
 public enum MessagesAction {
     case respond
     case clearRoute
+    
+    case send(Conversation, String, String)
     
     case writeMessage(WriteMessageAction)
 }
