@@ -17,5 +17,9 @@
 import SwiftUI
 
 internal class FeedbackViewModel: ObservableObject {
+    @Published var message = ""
     
+    internal func send() {
+        
+    }
 }

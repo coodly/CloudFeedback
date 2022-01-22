@@ -27,8 +27,11 @@ internal struct FeedbackView: View {
                     proxi in
                     
                     FeedbackHeaderView(styling: styling)
+                    LoginNoticeView(styling: styling)
                 }
             }
+            MessageEntryView(viewModel: viewModel, styling: styling)
         }
+        .lineLimit(nil)
     }
 }
