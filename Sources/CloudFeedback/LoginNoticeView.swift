@@ -14,24 +14,22 @@
  * limitations under the License.
  */
 
-import CloudKit
-import Combine
-import Foundation
 import SwiftUI
-import UIKit
 
-public class Feedback {
-    private let container: CKContainer
-    private lazy var viewModel = FeedbackViewModel()
-    public var styling = Styling.instance
+internal struct LoginNoticeView: View {
+    let styling: Styling
     
-    public init(container: CKContainer = .default()) {
-        self.container = container
-    }
-    
-    public var controller: UIViewController {
-        let feedback = FeedbackView(viewModel: viewModel, styling: styling)
-        let hosting = UIHostingController(rootView: feedback)
-        return UINavigationController(rootViewController: hosting)
+    var body: some View {
+        Text(styling.loginNotice)
+            .font(.body)
+            .multilineTextAlignment(.center)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(Color(UIColor.systemBackground))
+            )
+            .padding(.horizontal)
     }
 }
+

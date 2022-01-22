@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Coodly LLC
+ * Copyright 2020 Coodly LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,16 @@
 
 import UIKit
 
-public class FeedbackViewController: UIViewController {
-    
+public struct Styling {
+    public var mainColor = UIColor.blue
+    public var greetingTextColor = UIColor.white
+    public var greetingTitle = "Hi there!"
+    public var greetingMessage = "Every suggestion and feedback is welcome"
+    public var loginNotice = "Please sign in to iCloud to send a message"
+}
+
+extension Styling {
+    public static var instance: Styling {
+        Styling()
+    }
 }
