@@ -25,7 +25,7 @@ public struct MessagesState: Equatable {
 
     internal var route: Route?
     
-    internal let conversation: Conversation
+    public let conversation: Conversation
     
     internal var messagesPredicate: NSPredicate {
         NSPredicate(format: "conversation = %@", conversation)

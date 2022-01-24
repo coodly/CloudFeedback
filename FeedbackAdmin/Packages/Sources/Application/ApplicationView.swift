@@ -16,7 +16,6 @@
 
 import ComposableArchitecture
 import ConversationsFeature
-import MessagesFeature
 import SwiftUI
 
 public struct ApplicationView: View {
@@ -32,11 +31,7 @@ public struct ApplicationView: View {
             if viewStore.persistenceLoaded {
                 NavigationView {
                     ConversationsView(store: store.scope(state: \.conversationsState, action: ApplicationAction.conversations))
-                    IfLetStore(
-                        store.scope(state: \.messagesState, action: ApplicationAction.messages),
-                        then: MessagesView.init,
-                        else: { Text("No conversation selected") }
-                    )
+                    Text("No conversation selected")                    
                 }
             } else {
                 ProgressView()

@@ -17,7 +17,6 @@
 import CloudClient
 import ComposableArchitecture
 import ConversationsFeature
-import MessagesFeature
 import PersistenceClient
 
 public struct ApplicationEnvironment {
@@ -36,9 +35,5 @@ public struct ApplicationEnvironment {
     
     internal var conversationsEnvironment: ConversationsEnvironment {
         ConversationsEnvironment()
-    }
-    
-    internal var messagesEnvironment: MessagesEnvironment {
-        MessagesEnvironment()
     }
 }

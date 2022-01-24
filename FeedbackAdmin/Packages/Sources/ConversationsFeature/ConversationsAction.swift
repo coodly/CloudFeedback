@@ -14,10 +14,15 @@
  * limitations under the License.
  */
 
+import MessagesFeature
 import ObjectModel
 
 public enum ConversationsAction {
     case refresh
     case refreshed
     case tapped(Conversation)
+    case activate(Conversation)
+    case noAction
+    
+    case messages(MessagesAction)
 }

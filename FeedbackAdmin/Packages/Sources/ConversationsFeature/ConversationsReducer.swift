@@ -15,8 +15,10 @@
  */
 
 import ComposableArchitecture
+import MessagesFeature
 
 public let conversationsReducer = Reducer<ConversationsState, ConversationsAction, ConversationsEnvironment>.combine(
+    messagesReducer.optional().pullback(state: \.activeMessagesState, action: /ConversationsAction.messages, environment: \.messagesEnv),
     reducer
 )
 
@@ -33,6 +35,15 @@ private let reducer = Reducer<ConversationsState, ConversationsAction, Conversat
         return .none
 
     case .tapped(_):
+        return .none
+        
+    case .activate(let conversation):
+        return Effect(value: .tapped(conversation))
+        
+    case .noAction:
+        return .none
+                
+    case .messages:
         return .none
     }
 }

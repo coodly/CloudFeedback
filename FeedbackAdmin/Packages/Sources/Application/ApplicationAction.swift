@@ -15,7 +15,6 @@
  */
 
 import ConversationsFeature
-import MessagesFeature
 
 public enum ApplicationAction {
     case loadPersistence
@@ -29,5 +28,4 @@ public enum ApplicationAction {
     case messagesPushed
     
     case conversations(ConversationsAction)
-    case messages(MessagesAction)
 }

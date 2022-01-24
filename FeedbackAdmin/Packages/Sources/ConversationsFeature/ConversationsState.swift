@@ -14,10 +14,19 @@
  * limitations under the License.
  */
 
+import MessagesFeature
+import ObjectModel
+
 public struct ConversationsState: Equatable {
     public var refreshing = false
     
+    public var activeMessagesState: MessagesState?
+    
     public init() {
         
+    }
+    
+    internal func isActive(_ conversation: Conversation) -> Bool {
+        activeMessagesState?.conversation == conversation
     }
 }

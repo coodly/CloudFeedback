@@ -51,6 +51,7 @@ let package = Package(
         .target(
             name: "ConversationsFeature",
             dependencies: [
+                "MessagesFeature",
                 "ObjectModel",
                 "UIComponents",
                 

@@ -22,7 +22,6 @@ import MessagesFeature
 import ObjectModel
 
 public let applicationReducer = Reducer<ApplicationState, ApplicationAction, ApplicationEnvironment>.combine(
-    messagesReducer.optional().pullback(state: \.messagesState, action: /ApplicationAction.messages, environment: \.messagesEnvironment),
     reducer,
     conversationsReducer.pullback(state: \.conversationsState, action: /ApplicationAction.conversations, environment: \.conversationsEnvironment)
 )
@@ -122,23 +121,20 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
         return .none
         
     case .conversations(.tapped(let conversation)):
-        state.messagesState = MessagesState(conversation: conversation, sentBy: state.sentBy)
+        state.conversationsState.activeMessagesState = MessagesState(conversation: conversation, sentBy: state.sentBy)
         return .none
         
     case .conversations(.refresh):
         return Effect(value: .loadConversations)
         
-    case .conversations:
-        return .none
-        
-    case .messages(.send(let conversation, let sentBy, let message)):
+    case .conversations(.messages(.send(let conversation, let sentBy, let message))):
         state.sentBy = sentBy
         return Effect.result {
             env.persistenceClient.add(message: message, sentBy: sentBy, in: conversation)
             return .success(.pushMessages)
         }
-        
-    case .messages:
+
+    case .conversations:
         return .none
     }
 }
