@@ -13,6 +13,8 @@
 		EA197063279E73020052478C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA197061279E73020052478C /* Main.storyboard */; };
 		EA197065279E73030052478C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA197064279E73030052478C /* Assets.xcassets */; };
 		EA197068279E73030052478C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA197066279E73030052478C /* LaunchScreen.storyboard */; };
+		EA19706E279E741C0052478C /* DemoPackages in Frameworks */ = {isa = PBXBuildFile; productRef = EA19706D279E741C0052478C /* DemoPackages */; };
+		EA197070279E74F80052478C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8AE95A2797EDA30039E9CE /* CloudKit.framework */; };
 		EA4B8B642797DD450046B46F /* FeedbackAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4B8B632797DD450046B46F /* FeedbackAdminApp.swift */; };
 		EA4B8B682797DD450046B46F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA4B8B672797DD450046B46F /* Assets.xcassets */; };
 		EA4B8B6B2797DD450046B46F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA4B8B6A2797DD450046B46F /* Preview Assets.xcassets */; };
@@ -29,6 +31,7 @@
 		EA197064279E73030052478C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA197067279E73030052478C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA197069279E73030052478C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA19706F279E74F50052478C /* FeedbackDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FeedbackDemo.entitlements; sourceTree = "<group>"; };
 		EA4B8B602797DD450046B46F /* Feedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Feedback.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4B8B632797DD450046B46F /* FeedbackAdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAdminApp.swift; sourceTree = "<group>"; };
 		EA4B8B672797DD450046B46F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -43,6 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA19706E279E741C0052478C /* DemoPackages in Frameworks */,
+				EA197070279E74F80052478C /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +66,7 @@
 		EA19705A279E73020052478C /* FeedbackDemo */ = {
 			isa = PBXGroup;
 			children = (
+				EA19706F279E74F50052478C /* FeedbackDemo.entitlements */,
 				EA19705B279E73020052478C /* AppDelegate.swift */,
 				EA19705D279E73020052478C /* SceneDelegate.swift */,
 				EA19705F279E73020052478C /* ViewController.swift */,
@@ -135,6 +141,9 @@
 			dependencies = (
 			);
 			name = FeedbackDemo;
+			packageProductDependencies = (
+				EA19706D279E741C0052478C /* DemoPackages */,
+			);
 			productName = FeedbackDemo;
 			productReference = EA197059279E73020052478C /* FeedbackDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -264,6 +273,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FeedbackDemo/FeedbackDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5T8DRBFCBP;
@@ -293,6 +303,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FeedbackDemo/FeedbackDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5T8DRBFCBP;
@@ -528,6 +539,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EA19706D279E741C0052478C /* DemoPackages */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DemoPackages;
+		};
 		EA9E32A12797E39E00045F8D /* Application */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Application;

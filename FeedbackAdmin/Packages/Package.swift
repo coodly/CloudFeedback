@@ -15,6 +15,12 @@ let package = Package(
                 "Application",
                 "CloudClientLive"
             ]
+        ),
+        .library(
+            name: "DemoPackages",
+            targets: [
+                "Demo"
+            ]
         )
     ],
     dependencies: [
@@ -56,6 +62,12 @@ let package = Package(
                 "UIComponents",
                 
                 composable
+            ]
+        ),
+        .target(
+            name: "Demo",
+            dependencies: [
+                "CloudFeedback"
             ]
         ),
         .target(
