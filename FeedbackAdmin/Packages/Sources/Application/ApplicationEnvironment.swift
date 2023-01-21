@@ -17,6 +17,7 @@
 import CloudClient
 import ComposableArchitecture
 import ConversationsFeature
+import Foundation
 import PersistenceClient
 
 public struct ApplicationEnvironment {

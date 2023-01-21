@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.7
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -24,8 +24,8 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", from: "0.33.1"),
-        .package(name: "SWLogger", url: "https://github.com/coodly/swlogger.git", from: "0.4.3"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", exact: "0.49.2"),
+        .package(url: "https://github.com/coodly/swlogger.git", exact: "0.4.3"),
         .package(name: "CloudFeedback", path: "../../")
     ],
     targets: [
@@ -76,7 +76,7 @@ let package = Package(
         .target(
             name: "Logging",
             dependencies: [
-                "SWLogger"
+                .product(name: "SWLogger", package: "swlogger")
             ]
         ),
         .target(
