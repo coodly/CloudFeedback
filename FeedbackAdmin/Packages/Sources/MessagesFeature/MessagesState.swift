@@ -31,7 +31,7 @@ public struct MessagesState: Equatable {
         NSPredicate(format: "conversation = %@", conversation)
     }
     
-    internal var writeMessageState: WriteMessageState?
+    internal var writeMessageState: WriteMessage.State?
     internal let sentBy: String
     public init(conversation: Conversation, sentBy: String) {
         self.conversation = conversation

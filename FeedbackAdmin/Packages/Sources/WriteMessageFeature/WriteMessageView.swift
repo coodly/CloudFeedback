@@ -18,9 +18,9 @@ import ComposableArchitecture
 import SwiftUI
 
 public struct WriteMessageView: View {
-    private let store: Store<WriteMessageState, WriteMessageAction>
+    private let store: StoreOf<WriteMessage>
     
-    public init(store: Store<WriteMessageState, WriteMessageAction>) {
+    public init(store: StoreOf<WriteMessage>) {
         self.store = store
     }
     

@@ -23,5 +23,5 @@ public enum MessagesAction {
     
     case send(Conversation, String, String)
     
-    case writeMessage(WriteMessageAction)
+    case writeMessage(WriteMessage.Action)
 }

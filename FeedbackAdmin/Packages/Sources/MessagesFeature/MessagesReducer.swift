@@ -18,7 +18,13 @@ import ComposableArchitecture
 import WriteMessageFeature
 
 public let messagesReducer = Reducer<MessagesState, MessagesAction, MessagesEnvironment>.combine(
-    writeMessageReducer.optional().pullback(state: \.writeMessageState, action: /MessagesAction.writeMessage, environment: \.writeMessageEnvironment),
+    AnyReducer {
+        env in
+        
+        WriteMessage()
+    }
+    .optional()
+    .pullback(state: \.writeMessageState, action: /MessagesAction.writeMessage, environment: { $0 }),
     reducer
 )
 
@@ -27,7 +33,7 @@ private let reducer = Reducer<MessagesState, MessagesAction, MessagesEnvironment
     
     switch action {
     case .respond:
-        state.writeMessageState = WriteMessageState(conversation: state.conversation, sentBy: state.sentBy)
+        state.writeMessageState = WriteMessage.State(conversation: state.conversation, sentBy: state.sentBy)
         state.route = .respond
         return .none
         
