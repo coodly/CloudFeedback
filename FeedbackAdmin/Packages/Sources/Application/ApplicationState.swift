@@ -20,7 +20,7 @@ import MessagesFeature
 
 public struct ApplicationState: Equatable {
     internal var persistenceLoaded = false
-    internal var conversationsState = ConversationsState()
+    internal var conversationsState = Conversations.State()
     internal var sentBy = ""
     
     public init() {

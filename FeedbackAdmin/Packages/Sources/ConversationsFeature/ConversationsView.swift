@@ -21,8 +21,8 @@ import SwiftUI
 import UIComponents
 
 public struct ConversationsView: View {
-    private let store: Store<ConversationsState, ConversationsAction>
-    public init(store: Store<ConversationsState, ConversationsAction>) {
+    private let store: StoreOf<Conversations>
+    public init(store: StoreOf<Conversations>) {
         self.store = store
     }
     public var body: some View {
@@ -40,7 +40,7 @@ public struct ConversationsView: View {
                         ),
                         destination: {
                             IfLetStore(
-                                store.scope(state: \.activeMessagesState, action: ConversationsAction.messages),
+                                store.scope(state: \.activeMessagesState, action: Conversations.Action.messages),
                                 then: MessagesView.init(store:)
                             )
                         },

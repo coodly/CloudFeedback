@@ -23,7 +23,12 @@ import ObjectModel
 
 public let applicationReducer = Reducer<ApplicationState, ApplicationAction, ApplicationEnvironment>.combine(
     reducer,
-    conversationsReducer.pullback(state: \.conversationsState, action: /ApplicationAction.conversations, environment: \.conversationsEnvironment)
+    AnyReducer {
+        env in
+        
+        Conversations()
+    }
+    .pullback(state: \.conversationsState, action: /ApplicationAction.conversations, environment: { $0 })
 )
 
 private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEnvironment>() {

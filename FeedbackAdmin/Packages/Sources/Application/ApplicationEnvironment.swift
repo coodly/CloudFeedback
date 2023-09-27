@@ -33,8 +33,4 @@ public struct ApplicationEnvironment {
         self.mainQueue = mainQueue
         self.persistenceClient = persistenceClient
     }
-    
-    internal var conversationsEnvironment: ConversationsEnvironment {
-        ConversationsEnvironment()
-    }
 }

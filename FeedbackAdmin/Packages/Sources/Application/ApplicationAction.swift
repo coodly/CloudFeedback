@@ -27,5 +27,5 @@ public enum ApplicationAction {
     case pushMessages
     case messagesPushed
     
-    case conversations(ConversationsAction)
+    case conversations(Conversations.Action)
 }
