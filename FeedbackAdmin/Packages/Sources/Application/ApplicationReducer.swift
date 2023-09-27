@@ -121,7 +121,7 @@ private let reducer = Reducer<ApplicationState, ApplicationAction, ApplicationEn
         return .none
         
     case .conversations(.tapped(let conversation)):
-        state.conversationsState.activeMessagesState = MessagesState(conversation: conversation, sentBy: state.sentBy)
+        state.conversationsState.activeMessagesState = Messages.State(conversation: conversation, sentBy: state.sentBy)
         return .none
         
     case .conversations(.refresh):

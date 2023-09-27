@@ -20,8 +20,4 @@ public struct ConversationsEnvironment {
     public init() {
         
     }
-    
-    internal var messagesEnv: MessagesEnvironment {
-        MessagesEnvironment()
-    }
 }

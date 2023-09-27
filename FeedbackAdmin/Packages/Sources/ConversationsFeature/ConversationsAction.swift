@@ -24,5 +24,5 @@ public enum ConversationsAction {
     case activate(Conversation)
     case noAction
     
-    case messages(MessagesAction)
+    case messages(Messages.Action)
 }

@@ -18,7 +18,12 @@ import ComposableArchitecture
 import MessagesFeature
 
 public let conversationsReducer = Reducer<ConversationsState, ConversationsAction, ConversationsEnvironment>.combine(
-    messagesReducer.optional().pullback(state: \.activeMessagesState, action: /ConversationsAction.messages, environment: \.messagesEnv),
+    AnyReducer {
+        env in
+        
+        Messages()
+    }
+    .optional().pullback(state: \.activeMessagesState, action: /ConversationsAction.messages, environment: { $0 }),
     reducer
 )
 

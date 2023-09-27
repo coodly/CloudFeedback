@@ -22,8 +22,8 @@ import UIComponents
 import WriteMessageFeature
 
 public struct MessagesView: View {
-    private let store: Store<MessagesState, MessagesAction>
-    public init(store: Store<MessagesState, MessagesAction>) {
+    private let store: StoreOf<Messages>
+    public init(store: StoreOf<Messages>) {
         self.store = store
     }
     
@@ -51,11 +51,11 @@ public struct MessagesView: View {
             .sheet(
                 isPresented: viewStore.binding(
                     get: { $0.route == .respond },
-                    send: MessagesAction.clearRoute
+                    send: Messages.Action.clearRoute
                 ),
                 content: {
                     NavigationView {
-                        IfLetStore(store.scope(state: \.writeMessageState, action: MessagesAction.writeMessage)) {
+                        IfLetStore(store.scope(state: \.writeMessageState, action: Messages.Action.writeMessage)) {
                             store in
                             
                             WriteMessageView(store: store)

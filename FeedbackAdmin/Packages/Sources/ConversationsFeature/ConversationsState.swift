@@ -20,7 +20,7 @@ import ObjectModel
 public struct ConversationsState: Equatable {
     public var refreshing = false
     
-    public var activeMessagesState: MessagesState?
+    public var activeMessagesState: Messages.State?
     
     public init() {
         
