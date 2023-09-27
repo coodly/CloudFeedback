@@ -51,3 +51,9 @@ extension CloudClient: DependencyKey {
         .client(with: CKContainer(identifier: "iCloud.com.coodly.feedback"))
     }
 }
+
+extension PersistenceClient: DependencyKey {
+    public static var liveValue: PersistenceClient {
+        return .client(with: Persistence())
+    }
+}

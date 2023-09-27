@@ -108,7 +108,10 @@ let package = Package(
         .target(
             name: "PersistenceClient",
             dependencies: [
-                "ObjectModel"
+                "ObjectModel",
+                
+                dependencies,
+                testOverlay
             ]
         ),
         .target(

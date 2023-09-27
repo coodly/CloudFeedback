@@ -19,8 +19,8 @@ import Logging
 
 public struct Persistence {
     private let container: NSPersistentContainer
-    public init(inMemory: Bool = false) {
-        let modelPath = Bundle.module.url(forResource: "Admin", withExtension: "momd")!
+    public init(inMemory: Bool = false, model: String = "Admin") {
+        let modelPath = Bundle.module.url(forResource: model, withExtension: "momd")!
         let model = NSManagedObjectModel(contentsOf: modelPath)!
         let suffix: String
         #if DEBUG
@@ -28,7 +28,7 @@ public struct Persistence {
         #else
         suffix = ""
         #endif
-        container = NSPersistentContainer(name: "Admin\(suffix)", managedObjectModel: model)
+        container = NSPersistentContainer(name: "\(model)\(suffix)", managedObjectModel: model)
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

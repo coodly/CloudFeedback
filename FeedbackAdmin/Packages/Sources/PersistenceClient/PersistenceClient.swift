@@ -15,7 +15,9 @@
  */
 
 import CloudKit
+import Dependencies
 import ObjectModel
+import XCTestDynamicOverlay
 
 public struct PersistenceClient {
     public let persistence: Persistence
@@ -66,5 +68,20 @@ extension PersistenceClient {
         return PersistenceClient(
             persistence: persistence
         )
+    }
+}
+
+extension PersistenceClient: TestDependencyKey {
+    public static var testValue: PersistenceClient {
+        PersistenceClient(
+            persistence: Persistence(model: "Failing")
+        )
+    }
+}
+
+extension DependencyValues {
+    public var persistenceClient: PersistenceClient {
+        get { self[PersistenceClient.self] }
+        set { self[PersistenceClient.self] = newValue }
     }
 }
