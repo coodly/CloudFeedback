@@ -15,9 +15,11 @@
  */
 
 import Application
+import CloudClient
 import CloudClientLive
 import CloudKit
 import ComposableArchitecture
+import Dependencies
 import ObjectModel
 import PersistenceClient
 import SwiftUI
@@ -41,5 +43,11 @@ struct FeedbackAdminApp: App {
             )
             .environment(\.managedObjectContext, persistence.viewContext)
         }
+    }
+}
+
+extension CloudClient: DependencyKey {
+    public static var liveValue: CloudClient {
+        .client(with: CKContainer(identifier: "iCloud.com.coodly.feedback"))
     }
 }

@@ -3,7 +3,9 @@
 
 import PackageDescription
 
-let composable = Target.Dependency.product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+private let composable = Target.Dependency.product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+private let dependencies = Target.Dependency.product(name: "Dependencies", package: "swift-dependencies")
+private let testOverlay = Target.Dependency.product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay")
 
 let package = Package(
     name: "Packages",
@@ -25,6 +27,9 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", exact: "0.56.0"),
+        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "0.6.0"),
+        .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "0.8.4"),
+        
         .package(url: "https://github.com/coodly/swlogger.git", exact: "0.4.3"),
         .package(name: "CloudFeedback", path: "../../")
     ],
@@ -44,7 +49,10 @@ let package = Package(
         .target(
             name: "CloudClient",
             dependencies: [
-                "Logging"
+                "Logging",
+                
+                dependencies,
+                testOverlay
             ]
         ),
         .target(

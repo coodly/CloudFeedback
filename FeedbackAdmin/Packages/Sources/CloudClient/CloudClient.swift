@@ -15,6 +15,8 @@
  */
 
 import CloudKit
+import Dependencies
+import XCTestDynamicOverlay
 
 public struct CloudClient {
     private let container: CKContainer
@@ -44,5 +46,23 @@ public struct CloudClient {
     
     public func save(messages: [CKRecord]) async -> ([CKRecord], [CKRecord.ID]) {
         await onSaveMessages(messages)
+    }
+}
+
+extension CloudClient: TestDependencyKey {
+    public static var testValue: CloudClient {
+        CloudClient(
+            container: CKContainer.default(),
+            onPullConversationsSince: unimplemented("\(Self.self).onPullConversationsSince"),
+            onPullMessagesSince: unimplemented("\(Self.self).onPullMessagesSince"),
+            onSaveMessages: unimplemented("\(Self.self).onSaveMessages")
+        )
+    }
+}
+
+extension DependencyValues {
+    public var cloudClient: CloudClient {
+        get { self[CloudClient.self] }
+        set { self[CloudClient.self] = newValue }
     }
 }
