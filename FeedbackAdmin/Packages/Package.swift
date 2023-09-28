@@ -1,4 +1,4 @@
-// swift-tools-version:5.7
+// swift-tools-version:5.9
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,6 +6,27 @@ import PackageDescription
 private let composable = Target.Dependency.product(name: "ComposableArchitecture", package: "swift-composable-architecture")
 private let dependencies = Target.Dependency.product(name: "Dependencies", package: "swift-dependencies")
 private let testOverlay = Target.Dependency.product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay")
+
+private let withConcurrencyFlags = [
+    .enableUpcomingFeature("BareSlashRegexLiterals"),
+    .enableUpcomingFeature("ConciseMagicFile"),
+    .enableUpcomingFeature("ExistentialAny"),
+    .enableUpcomingFeature("ForwardTrailingClosures"),
+    .enableUpcomingFeature("ImplicitOpenExistentials"),
+    .enableUpcomingFeature("StrictConcurrency"),
+    SwiftSetting.unsafeFlags(
+        [
+            "-Xfrontend",
+            "-warn-long-function-bodies=100",
+            "-Xfrontend",
+            "-warn-long-expression-type-checking=100",
+            "-Xfrontend",
+            "-warn-concurrency",
+            "-Xfrontend",
+            "-enable-actor-data-race-checks"
+        ]
+    )
+]
 
 let package = Package(
     name: "Packages",
@@ -126,4 +147,12 @@ let package = Package(
             ]
         )
     ]
+    .map { (target: Target) in
+        guard target.swiftSettings == nil else {
+            return target
+        }
+        
+        target.swiftSettings = withConcurrencyFlags
+        return target
+    }
 )

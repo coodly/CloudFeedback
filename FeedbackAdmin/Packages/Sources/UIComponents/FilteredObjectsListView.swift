@@ -17,6 +17,7 @@
 import CoreData
 import SwiftUI
 
+@MainActor
 public struct FilteredObjectsListView<T: NSManagedObject, Content: View>: View {
     var fetchRequest: FetchRequest<T>
     let content: (T) -> Content
