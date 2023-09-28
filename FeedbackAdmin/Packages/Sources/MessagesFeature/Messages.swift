@@ -19,7 +19,7 @@ import Foundation
 import ObjectModel
 import WriteMessageFeature
 
-public struct Messages: ReducerProtocol {
+public struct Messages: Reducer {
     public struct State: Equatable {
         enum Route: Equatable {
             case respond
@@ -54,7 +54,7 @@ public struct Messages: ReducerProtocol {
         
     }
     
-    public var body: some ReducerProtocolOf<Self> {
+    public var body: some ReducerOf<Self> {
         Reduce {
             state, action in
             
@@ -70,7 +70,7 @@ public struct Messages: ReducerProtocol {
                 
             case .writeMessage(.cancel):
                 state.writeMessageState = nil
-                return EffectTask.send(.clearRoute)
+                return Effect.send(.clearRoute)
                 
             case .send(_, _, _):
                 return .none
@@ -78,7 +78,7 @@ public struct Messages: ReducerProtocol {
             case .writeMessage(.send(let conversation, let sentBy, let message)):
                 state.writeMessageState = nil
                 state.route = nil
-                return EffectTask.send(.send(conversation, sentBy, message))
+                return Effect.send(.send(conversation, sentBy, message))
                 
             case .writeMessage:
                 return .none

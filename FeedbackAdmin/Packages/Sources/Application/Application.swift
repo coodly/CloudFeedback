@@ -23,7 +23,7 @@ import MessagesFeature
 import ObjectModel
 import PersistenceClient
 
-public struct Application: ReducerProtocol {
+public struct Application: Reducer {
     public struct State: Equatable {
         internal var persistenceLoaded = false
         internal var conversationsState = Conversations.State()
@@ -56,13 +56,13 @@ public struct Application: ReducerProtocol {
     @Dependency(\.mainQueue) var mainQueue
     @Dependency(\.persistenceClient) var persistence
     
-    public var body: some ReducerProtocolOf<Self> {
+    public var body: some ReducerOf<Self> {
         Reduce {
             state, action in
             
             switch action {
             case .loadPersistence:
-                return EffectTask.run {
+                return Effect.run {
                     send in
                     
                     await persistence.loadStores()
@@ -72,10 +72,10 @@ public struct Application: ReducerProtocol {
             case .persistenceLoaded:
                 state.sentBy = persistence.sentBy
                 state.persistenceLoaded = true
-                return EffectTask.send(.loadConversations)
+                return Effect.send(.loadConversations)
                 
             case .loadConversations:
-                return EffectTask.run {
+                return Effect.run {
                     send in
                     
                     let lastKnown = persistence.lastKnownConversationTime
@@ -89,7 +89,7 @@ public struct Application: ReducerProtocol {
                 }
 
             case .loadMessages:
-                return EffectTask.run {
+                return Effect.run {
                     send in
                     
                     let lastKnown = persistence.lastKnownMessageTime
@@ -103,17 +103,17 @@ public struct Application: ReducerProtocol {
                 }
 
             case .cloudLoaded:
-                return EffectTask.concatenate(
-                    EffectTask.send(.conversations(.refreshed)),
-                    EffectTask.send(.resetFailedMessages)
+                return Effect.concatenate(
+                    Effect.send(.conversations(.refreshed)),
+                    Effect.send(.resetFailedMessages)
                 )
                 
             case .resetFailedMessages:
                 persistence.resetFailedPushed()
-                return EffectTask.send(.pushMessages)
+                return Effect.send(.pushMessages)
                 
             case .pushMessages:
-                return EffectTask.run {
+                return Effect.run {
                     send in
                     
                     let messages = persistence.messagesToPush()
@@ -140,11 +140,11 @@ public struct Application: ReducerProtocol {
                 return .none
                 
             case .conversations(.refresh):
-                return EffectTask.send(.loadConversations)
+                return Effect.send(.loadConversations)
                 
             case .conversations(.messages(.send(let conversation, let sentBy, let message))):
                 state.sentBy = sentBy
-                return EffectTask.run {
+                return Effect.run {
                     send in
                     
                     persistence.add(message: message, sentBy: sentBy, in: conversation)

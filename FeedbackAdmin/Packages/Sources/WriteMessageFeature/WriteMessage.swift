@@ -18,7 +18,7 @@ import ComposableArchitecture
 import Extensions
 import ObjectModel
 
-public struct WriteMessage: ReducerProtocol {
+public struct WriteMessage: Reducer {
     public struct State: Equatable {
         @BindingState internal var sentBy = ""
         @BindingState internal var message = ""
@@ -48,7 +48,7 @@ public struct WriteMessage: ReducerProtocol {
         
     }
     
-    public var body: some ReducerProtocolOf<Self> {
+    public var body: some ReducerOf<Self> {
         BindingReducer()
         Reduce {
             state, action in
@@ -58,7 +58,7 @@ public struct WriteMessage: ReducerProtocol {
                 return .none
                 
             case .post:
-                return EffectTask.send(.send(state.conversation, state.sentBy, state.message))
+                return Effect.send(.send(state.conversation, state.sentBy, state.message))
                 
             case .send(_, _, _):
                 return .none

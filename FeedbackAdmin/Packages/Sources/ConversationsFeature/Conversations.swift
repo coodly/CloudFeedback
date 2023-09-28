@@ -18,7 +18,7 @@ import ComposableArchitecture
 import MessagesFeature
 import ObjectModel
 
-public struct Conversations: ReducerProtocol {
+public struct Conversations: Reducer {
     public struct State: Equatable {
         public var refreshing = false
         
@@ -47,7 +47,7 @@ public struct Conversations: ReducerProtocol {
         
     }
     
-    public var body: some ReducerProtocolOf<Self> {
+    public var body: some ReducerOf<Self> {
         Reduce {
             state, action in
             
@@ -64,7 +64,7 @@ public struct Conversations: ReducerProtocol {
                 return .none
                 
             case .activate(let conversation):
-                return EffectTask.send(.tapped(conversation))
+                return Effect.send(.tapped(conversation))
                 
             case .noAction:
                 return .none

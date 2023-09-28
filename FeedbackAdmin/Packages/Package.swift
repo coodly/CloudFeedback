@@ -26,9 +26,9 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", exact: "0.59.0"),
-        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "0.6.0"),
-        .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "0.8.4"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", exact: "1.2.0"),
+        .package(url: "https://github.com/pointfreeco/swift-dependencies", exact: "1.0.0"),
+        .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", exact: "1.0.2"),
         
         .package(url: "https://github.com/coodly/swlogger.git", exact: "0.4.3"),
         .package(name: "CloudFeedback", path: "../../")
