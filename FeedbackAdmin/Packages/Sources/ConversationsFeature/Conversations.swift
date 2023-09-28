@@ -64,7 +64,7 @@ public struct Conversations: ReducerProtocol {
                 return .none
                 
             case .activate(let conversation):
-                return Effect(value: .tapped(conversation))
+                return EffectTask.send(.tapped(conversation))
                 
             case .noAction:
                 return .none

@@ -62,91 +62,75 @@ public struct Application: ReducerProtocol {
             
             switch action {
             case .loadPersistence:
-                return Effect.future {
-                    fulfill in
+                return EffectTask.run {
+                    send in
                     
-                    Task {
-                        await persistence.loadStores()
-                        fulfill(.success(.persistenceLoaded))
-                    }
+                    await persistence.loadStores()
+                    await send(.persistenceLoaded)
                 }
-                .receive(on: mainQueue)
-                .eraseToEffect()
                 
             case .persistenceLoaded:
                 state.sentBy = persistence.sentBy
                 state.persistenceLoaded = true
-                return Effect(value: .loadConversations)
+                return EffectTask.send(.loadConversations)
                 
             case .loadConversations:
-                return Effect.future() {
-                    fulfill in
+                return EffectTask.run {
+                    send in
                     
-                    Task {
-                        let lastKnown = persistence.lastKnownConversationTime
-                        let conversations = await cloud.pullConversations(since: lastKnown)
-                        persistence.save(conversations: conversations)
-                        if conversations.count == 100 {
-                            fulfill(.success(.loadConversations))
-                        } else {
-                            fulfill(.success(.loadMessages))
-                        }
+                    let lastKnown = persistence.lastKnownConversationTime
+                    let conversations = await cloud.pullConversations(since: lastKnown)
+                    persistence.save(conversations: conversations)
+                    if conversations.count == 100 {
+                        await send(.loadConversations)
+                    } else {
+                        await send(.loadMessages)
                     }
                 }
-                .receive(on: mainQueue)
-                .eraseToEffect()
 
             case .loadMessages:
-                return Effect.future() {
-                    fulfill in
+                return EffectTask.run {
+                    send in
                     
-                    Task {
-                        let lastKnown = persistence.lastKnownMessageTime
-                        let messages = await cloud.pullMessages(since: lastKnown)
-                        persistence.save(messages: messages)
-                        if messages.count == 100 {
-                            fulfill(.success(.loadMessages))
-                        } else {
-                            fulfill(.success(.cloudLoaded))
-                        }
+                    let lastKnown = persistence.lastKnownMessageTime
+                    let messages = await cloud.pullMessages(since: lastKnown)
+                    persistence.save(messages: messages)
+                    if messages.count == 100 {
+                        await send(.loadMessages)
+                    } else {
+                        await send(.cloudLoaded)
                     }
                 }
-                .receive(on: mainQueue)
-                .eraseToEffect()
 
             case .cloudLoaded:
-                return Effect.concatenate(
-                    Effect(value: .conversations(.refreshed)),
-                    Effect(value: .resetFailedMessages)
+                return EffectTask.concatenate(
+                    EffectTask.send(.conversations(.refreshed)),
+                    EffectTask.send(.resetFailedMessages)
                 )
                 
             case .resetFailedMessages:
                 persistence.resetFailedPushed()
-                return Effect(value: .pushMessages)
+                return EffectTask.send(.pushMessages)
                 
             case .pushMessages:
-                return Effect.future {
-                    fulfill in
+                return EffectTask.run {
+                    send in
                     
-                    Task {
-                        let messages = persistence.messagesToPush()
-                        if messages.count == 0 {
-                            Log.app.debug("No messages to push")
-                            fulfill(.success(.messagesPushed))
-                            return
-                        }
-
-                        Log.app.debug("Push \(messages.count) messages")
-                            
-                        let pushed: [CKRecord] = messages.compactMap(CKRecord.with(message:))
-                        let (saved, failed) = await cloud.save(messages: pushed)
-                        persistence.save(messages: saved)
-                        persistence.markFailure(on: failed.map(\.recordName))
-                        fulfill(.success(.pushMessages))
+                    let messages = persistence.messagesToPush()
+                    if messages.count == 0 {
+                        Log.app.debug("No messages to push")
+                        await send(.messagesPushed)
+                        return
                     }
+
+                    Log.app.debug("Push \(messages.count) messages")
+                        
+                    let pushed: [CKRecord] = messages.compactMap(CKRecord.with(message:))
+                    let (saved, failed) = await cloud.save(messages: pushed)
+                    persistence.save(messages: saved)
+                    persistence.markFailure(on: failed.map(\.recordName))
+                    await send(.pushMessages)
                 }
-                .receive(on: mainQueue)
-                .eraseToEffect()
                 
             case .messagesPushed:
                 return .none
@@ -156,13 +140,15 @@ public struct Application: ReducerProtocol {
                 return .none
                 
             case .conversations(.refresh):
-                return Effect(value: .loadConversations)
+                return EffectTask.send(.loadConversations)
                 
             case .conversations(.messages(.send(let conversation, let sentBy, let message))):
                 state.sentBy = sentBy
-                return Effect.result {
+                return EffectTask.run {
+                    send in
+                    
                     persistence.add(message: message, sentBy: sentBy, in: conversation)
-                    return .success(.pushMessages)
+                    await send(.pushMessages)
                 }
 
             case .conversations:

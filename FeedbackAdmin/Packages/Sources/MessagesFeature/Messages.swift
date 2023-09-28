@@ -70,7 +70,7 @@ public struct Messages: ReducerProtocol {
                 
             case .writeMessage(.cancel):
                 state.writeMessageState = nil
-                return Effect(value: .clearRoute)
+                return EffectTask.send(.clearRoute)
                 
             case .send(_, _, _):
                 return .none
@@ -78,7 +78,7 @@ public struct Messages: ReducerProtocol {
             case .writeMessage(.send(let conversation, let sentBy, let message)):
                 state.writeMessageState = nil
                 state.route = nil
-                return Effect(value: .send(conversation, sentBy, message))
+                return EffectTask.send(.send(conversation, sentBy, message))
                 
             case .writeMessage:
                 return .none
