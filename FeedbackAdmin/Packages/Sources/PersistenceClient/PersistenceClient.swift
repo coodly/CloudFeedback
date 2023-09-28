@@ -74,7 +74,7 @@ extension PersistenceClient {
 extension PersistenceClient: TestDependencyKey {
     public static var testValue: PersistenceClient {
         PersistenceClient(
-            persistence: Persistence(model: "Failing")
+            persistence: Persistence(application: "Failing")
         )
     }
 }
