@@ -26,7 +26,7 @@ public struct ConversationsView: View {
         self.store = store
     }
     public var body: some View {
-        WithViewStore(store) {
+        WithViewStore(store, observe: { $0 }) {
             viewStore in
 
             List {

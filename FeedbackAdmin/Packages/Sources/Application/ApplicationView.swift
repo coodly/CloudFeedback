@@ -25,10 +25,10 @@ public struct ApplicationView: View {
     }
     
     public var body: some View {
-        WithViewStore(store) {
+        WithViewStore(store, observe: \.persistenceLoaded) {
             viewStore in
             
-            if viewStore.persistenceLoaded {
+            if viewStore.state {
                 NavigationView {
                     ConversationsView(store: store.scope(state: \.conversationsState, action: Application.Action.conversations))
                     Text("No conversation selected")                    
@@ -36,7 +36,7 @@ public struct ApplicationView: View {
             } else {
                 ProgressView()
                     .progressViewStyle(.automatic)
-                    .onAppear(perform: { viewStore.send(.loadPersistence) })
+                    .onAppear(perform: { store.send(.loadPersistence) })
             }
         }
     }

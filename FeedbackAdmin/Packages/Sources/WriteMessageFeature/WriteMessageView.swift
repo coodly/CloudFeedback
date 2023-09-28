@@ -25,7 +25,7 @@ public struct WriteMessageView: View {
     }
     
     public var body: some View {
-        WithViewStore(store) {
+        WithViewStore(store, observe: { $0 }) {
             viewStore in
             
             VStack {

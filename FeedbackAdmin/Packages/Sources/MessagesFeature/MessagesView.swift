@@ -28,7 +28,7 @@ public struct MessagesView: View {
     }
     
     public var body: some View {
-        WithViewStore(store) {
+        WithViewStore(store, observe: { $0 }) {
             viewStore in
             
             ScrollView {
