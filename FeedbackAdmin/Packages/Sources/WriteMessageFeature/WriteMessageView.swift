@@ -32,10 +32,10 @@ public struct WriteMessageView: View {
                 HStack {
                     Text("Sent by:")
                         .foregroundColor(.secondary)
-                    TextField("", text: viewStore.binding(\.$sentBy))
+                    TextField("", text: viewStore.$sentBy)
                 }
                 Divider()
-                TextEditor(text: viewStore.binding(\.$message))
+                TextEditor(text: viewStore.$message)
             }
             .padding()
             .toolbar {

@@ -33,7 +33,7 @@ struct FeedbackAdminApp: App {
             ApplicationView(
                 store: Store(
                     initialState: Application.State(),
-                    reducer: Application()
+                    reducer: Application.init
                 )
             )
             .environment(\.managedObjectContext, persistence.viewContext)
