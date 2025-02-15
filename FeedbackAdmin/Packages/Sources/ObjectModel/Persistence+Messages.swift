@@ -19,68 +19,68 @@ import CoreData
 import Logging
 
 extension NSManagedObjectContext {
-    public func save(messages: [CKRecord]) {
-        var maxDate = lastKnownMessageTime
-        for message in messages {
-            guard let reference = message.value(forKey: "conversation") as? CKRecord.Reference else {
-                continue
-            }
+  public func save(messages: [CKRecord]) {
+    var maxDate = lastKnownMessageTime
+    for message in messages {
+      guard let reference = message.value(forKey: "conversation") as? CKRecord.Reference else {
+        continue
+      }
                 
-            guard let conversation: Conversation = fetchEntity(where: "recordName", hasValue: reference.recordID.recordName) else {
-                Log.db.debug("No conversation with name \(reference.recordID.recordName)")
-                continue
-            }
-            let saved: Message
-            if let existing: Message = fetchEntity(where: "recordName", hasValue: message.recordID.recordName) {
-                saved = existing
-            } else {
-                saved = insertEntity()
-            }
+      guard let conversation: Conversation = fetchEntity(where: "recordName", hasValue: reference.recordID.recordName) else {
+        Log.db.debug("No conversation with name \(reference.recordID.recordName)")
+        continue
+      }
+      let saved: Message
+      if let existing: Message = fetchEntity(where: "recordName", hasValue: message.recordID.recordName) {
+        saved = existing
+      } else {
+        saved = insertEntity()
+      }
             
-            saved.recordName = message.recordID.recordName
-            saved.conversation = conversation
-            saved.body = message["body"] as? String
-            saved.platform = message["platform"] as? String
-            saved.postedAt = message["postedAt"] as? Date
-            saved.sentBy = message["sentBy"] as? String
-            saved.modifiedAt = message.modificationDate
-            saved.pushStatus = .synced
+      saved.recordName = message.recordID.recordName
+      saved.conversation = conversation
+      saved.body = message["body"] as? String
+      saved.platform = message["platform"] as? String
+      saved.postedAt = message["postedAt"] as? Date
+      saved.sentBy = message["sentBy"] as? String
+      saved.modifiedAt = message.modificationDate
+      saved.pushStatus = .synced
             
-            maxDate = max(maxDate, message.modificationDate!)
-        }
+      maxDate = max(maxDate, message.modificationDate!)
+    }
         
-        lastKnownMessageTime = maxDate
-    }
+    lastKnownMessageTime = maxDate
+  }
     
-    public func add(message: String, sentBy: String, to conversation: Conversation) {
-        let saved: Message = insertEntity()
-        saved.pushStatus = .pushNeeded
-        saved.sentBy = sentBy
-        saved.body = message
-        saved.conversation = conversation
-        saved.modifiedAt = Date.now
-        saved.postedAt = Date.now
+  public func add(message: String, sentBy: String, to conversation: Conversation) {
+    let saved: Message = insertEntity()
+    saved.pushStatus = .pushNeeded
+    saved.sentBy = sentBy
+    saved.body = message
+    saved.conversation = conversation
+    saved.modifiedAt = Date.now
+    saved.postedAt = Date.now
         
-        self.sentBy = sentBy
-    }
+    self.sentBy = sentBy
+  }
     
-    public func resetFailedPushed() {
-        let predicate = NSPredicate(format: "internalPushStatus = %@", PushStatus.pushFailed.rawValue)
-        let failed: [Message] = fetch(predicate: predicate)
-        Log.db.debug("Have \(failed.count) failed pushes")
-        failed.forEach({ $0.pushStatus = .pushNeeded })
-    }
+  public func resetFailedPushed() {
+    let predicate = NSPredicate(format: "internalPushStatus = %@", PushStatus.pushFailed.rawValue)
+    let failed: [Message] = fetch(predicate: predicate)
+    Log.db.debug("Have \(failed.count) failed pushes")
+    failed.forEach({ $0.pushStatus = .pushNeeded })
+  }
     
-    public func messagesToPush() -> [Message] {
-        let predicate = NSPredicate(format: "internalPushStatus = %@", PushStatus.pushNeeded.rawValue)
-        let pushed: [Message] = fetch(predicate: predicate, limit: 100)
-        return pushed
-    }
+  public func messagesToPush() -> [Message] {
+    let predicate = NSPredicate(format: "internalPushStatus = %@", PushStatus.pushNeeded.rawValue)
+    let pushed: [Message] = fetch(predicate: predicate, limit: 100)
+    return pushed
+  }
     
-    public func markFailure(on names: [String]) {
-        let predicate = NSPredicate(format: "recordName IN %@", names)
-        let failed: [Message] = fetch(predicate: predicate)
-        Log.db.debug("Mark failure on \(failed.count) messages")
-        failed.forEach({ $0.pushStatus = .pushFailed })
-    }
+  public func markFailure(on names: [String]) {
+    let predicate = NSPredicate(format: "recordName IN %@", names)
+    let failed: [Message] = fetch(predicate: predicate)
+    Log.db.debug("Mark failure on \(failed.count) messages")
+    failed.forEach({ $0.pushStatus = .pushFailed })
+  }
 }

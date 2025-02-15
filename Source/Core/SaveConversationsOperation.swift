@@ -19,30 +19,30 @@ import Puff
 import CloudKit
 
 internal class SaveConversationsOperation: CloudKitRequest<Cloud.Conversation> {
-    internal var resultHandler: ((SaveConversationsResult) -> Void)?
+  internal var resultHandler: ((SaveConversationsResult) -> Void)?
     
-    private let conversations: [Cloud.Conversation]
-    init(conversations: [Cloud.Conversation], container: CKContainer) {
-        self.conversations = conversations
+  private let conversations: [Cloud.Conversation]
+  init(conversations: [Cloud.Conversation], container: CKContainer) {
+    self.conversations = conversations
         
-        super.init()
+    super.init()
         
-        self.container = container
-    }
+    self.container = container
+  }
     
-    override func performRequest() {
-        save(records: conversations, inDatabase: .public)
-    }
+  override func performRequest() {
+    save(records: conversations, inDatabase: .public)
+  }
     
-    override func handle(result: CloudResult<Cloud.Conversation>, completion: @escaping () -> ()) {
-        if result.error != nil {
-            Logging.log("Save failure")
-            resultHandler?(.failure)
-        } else {
-            Logging.log("Success")
-            resultHandler?(.success(result.records))
-        }
-        
-        completion()
+  override func handle(result: CloudResult<Cloud.Conversation>, completion: @escaping () -> ()) {
+    if result.error != nil {
+      Logging.log("Save failure")
+      resultHandler?(.failure)
+    } else {
+      Logging.log("Success")
+      resultHandler?(.success(result.records))
     }
+        
+    completion()
+  }
 }

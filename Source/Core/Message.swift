@@ -19,28 +19,28 @@ import CoreData
 
 @objc(Message)
 internal class Message: NSManagedObject {
-    override func awakeFromInsert() {
-        recordName = UUID().uuidString
-    }
-    
-    func toCloud() -> Cloud.Message {
-        var cloud = Cloud.Message()
-        cloud.recordName = recordName
-        cloud.recordData = recordData
-        cloud.body = body
-        cloud.postedAt = postedAt
-        cloud.conversation = conversation.toCloud().referenceRepresentation()
-        return cloud
-    }
+  override func awakeFromInsert() {
+    recordName = UUID().uuidString
+  }
+
+  func toCloud() -> Cloud.Message {
+    var cloud = Cloud.Message()
+    cloud.recordName = recordName
+    cloud.recordData = recordData
+    cloud.body = body
+    cloud.postedAt = postedAt
+    cloud.conversation = conversation.toCloud().referenceRepresentation()
+    return cloud
+  }
 }
 
 extension Message {
-    @NSManaged var body: String?
-    @NSManaged var conversation: Conversation
-    @NSManaged var postedAt: Date
-    @NSManaged var recordData: Data?
-    @NSManaged var recordName: String?
-    @NSManaged var syncNeeded: Bool
-    @NSManaged var syncFailed: Bool
-    @NSManaged var sentBy: String?
+  @NSManaged var body: String?
+  @NSManaged var conversation: Conversation
+  @NSManaged var postedAt: Date
+  @NSManaged var recordData: Data?
+  @NSManaged var recordName: String?
+  @NSManaged var syncNeeded: Bool
+  @NSManaged var syncFailed: Bool
+  @NSManaged var sentBy: String?
 }

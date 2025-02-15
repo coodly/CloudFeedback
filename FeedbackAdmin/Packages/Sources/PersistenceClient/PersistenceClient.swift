@@ -20,68 +20,68 @@ import ObjectModel
 import XCTestDynamicOverlay
 
 public struct PersistenceClient {
-    public let persistence: Persistence
+  public let persistence: Persistence
     
-    public func loadStores() async {
-        await persistence.loadStores()
-    }
+  public func loadStores() async {
+    await persistence.loadStores()
+  }
     
-    public var lastKnownConversationTime: Date {
-        persistence.viewContext.lastKnownConversationTime
-    }
+  public var lastKnownConversationTime: Date {
+    persistence.viewContext.lastKnownConversationTime
+  }
     
-    public var lastKnownMessageTime: Date {
-        persistence.viewContext.lastKnownMessageTime
-    }
+  public var lastKnownMessageTime: Date {
+    persistence.viewContext.lastKnownMessageTime
+  }
 
-    public func save(conversations: [CKRecord]) {
-        persistence.write(closure: { $0.save(conversations: conversations) })
-    }
+  public func save(conversations: [CKRecord]) {
+    persistence.write(closure: { $0.save(conversations: conversations) })
+  }
     
-    public func save(messages: [CKRecord]) {
-        persistence.write(closure: { $0.save(messages: messages) })
-    }
+  public func save(messages: [CKRecord]) {
+    persistence.write(closure: { $0.save(messages: messages) })
+  }
     
-    public func add(message: String, sentBy: String, in conversation: Conversation) {
-        persistence.write(closure: { $0.add(message: message, sentBy: sentBy, to: conversation) })
-    }
+  public func add(message: String, sentBy: String, in conversation: Conversation) {
+    persistence.write(closure: { $0.add(message: message, sentBy: sentBy, to: conversation) })
+  }
     
-    public func resetFailedPushed() {
-        persistence.write(closure: { $0.resetFailedPushed() })
-    }
+  public func resetFailedPushed() {
+    persistence.write(closure: { $0.resetFailedPushed() })
+  }
     
-    public func messagesToPush() -> [Message] {
-        persistence.viewContext.messagesToPush()
-    }
+  public func messagesToPush() -> [Message] {
+    persistence.viewContext.messagesToPush()
+  }
     
-    public func markFailure(on names: [String]) {
-        persistence.write(closure: { $0.markFailure(on: names) })
-    }
+  public func markFailure(on names: [String]) {
+    persistence.write(closure: { $0.markFailure(on: names) })
+  }
     
-    public var sentBy: String {
-        persistence.viewContext.sentBy
-    }
+  public var sentBy: String {
+    persistence.viewContext.sentBy
+  }
 }
 
 extension PersistenceClient {
-    public static func client(with persistence: Persistence) -> PersistenceClient {
-        return PersistenceClient(
-            persistence: persistence
-        )
-    }
+  public static func client(with persistence: Persistence) -> PersistenceClient {
+    return PersistenceClient(
+      persistence: persistence
+    )
+  }
 }
 
 extension PersistenceClient: TestDependencyKey {
-    public static var testValue: PersistenceClient {
-        PersistenceClient(
-            persistence: Persistence(application: "Failing")
-        )
-    }
+  public static var testValue: PersistenceClient {
+    PersistenceClient(
+      persistence: Persistence(application: "Failing")
+    )
+  }
 }
 
 extension DependencyValues {
-    public var persistenceClient: PersistenceClient {
-        get { self[PersistenceClient.self] }
-        set { self[PersistenceClient.self] = newValue }
-    }
+  public var persistenceClient: PersistenceClient {
+    get { self[PersistenceClient.self] }
+    set { self[PersistenceClient.self] = newValue }
+  }
 }

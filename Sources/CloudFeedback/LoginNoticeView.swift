@@ -17,19 +17,19 @@
 import SwiftUI
 
 internal struct LoginNoticeView: View {
-    let styling: Styling
-    
-    var body: some View {
-        Text(styling.loginNotice)
-            .font(.body)
-            .multilineTextAlignment(.center)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Color(UIColor.systemBackground))
-            )
-            .padding(.horizontal)
-    }
+  let styling: Styling
+
+  var body: some View {
+    Text(styling.loginNotice)
+      .font(.body)
+      .multilineTextAlignment(.center)
+      .frame(maxWidth: .infinity, alignment: .center)
+      .padding()
+      .background(
+        RoundedRectangle(cornerRadius: 10)
+          .foregroundColor(Color(UIColor.systemBackground))
+      )
+      .padding(.horizontal)
+  }
 }
 

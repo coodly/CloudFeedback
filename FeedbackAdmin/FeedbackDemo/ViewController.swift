@@ -19,16 +19,16 @@ import UIKit
 import CloudKit
 
 class ViewController: UIViewController {
-    private lazy var feedback: Feedback = {
-        let demo = Feedback(container: CKContainer(identifier: "iCloud.com.coodly.feedback"))
-        demo.styling.mainColor = UIColor.systemIndigo
-        demo.styling.greetingTextColor = .white
-        return demo
-    }()
-    
-    @IBAction private func launchFeedback() {
-        let controller = feedback.controller
-        present(controller, animated: true)
-    }
+  private lazy var feedback: Feedback = {
+    let demo = Feedback(container: CKContainer(identifier: "iCloud.com.coodly.feedback"))
+    demo.styling.mainColor = UIColor.systemIndigo
+    demo.styling.greetingTextColor = .white
+    return demo
+  }()
+
+  @IBAction private func launchFeedback() {
+    let controller = feedback.controller
+    present(controller, animated: true)
+  }
 }
 

@@ -17,21 +17,21 @@
 import SwiftUI
 
 internal struct FeedbackView: View {
-    @ObservedObject var viewModel: FeedbackViewModel
-    let styling: Styling
-    
-    var body: some View {
-        VStack {
-            ScrollView {
-                ScrollViewReader {
-                    proxi in
-                    
-                    FeedbackHeaderView(styling: styling)
-                    LoginNoticeView(styling: styling)
-                }
-            }
-            MessageEntryView(viewModel: viewModel, styling: styling)
+  @ObservedObject var viewModel: FeedbackViewModel
+  let styling: Styling
+
+  var body: some View {
+    VStack {
+      ScrollView {
+        ScrollViewReader {
+          proxi in
+
+          FeedbackHeaderView(styling: styling)
+          LoginNoticeView(styling: styling)
         }
-        .lineLimit(nil)
+      }
+      MessageEntryView(viewModel: viewModel, styling: styling)
     }
+    .lineLimit(nil)
+  }
 }

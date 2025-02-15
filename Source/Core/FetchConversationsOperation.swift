@@ -18,33 +18,33 @@ import CloudKit
 import Puff
 
 internal class FetchConversationsOperation: CloudKitRequest<Cloud.Conversation> {
-    internal var progress: ((FetchConversationsProgress) -> Void)!
+  internal var progress: ((FetchConversationsProgress) -> Void)!
     
-    private let since: Date
+  private let since: Date
     
-    init(since: Date, in container: CKContainer) {
-        self.since = since
+  init(since: Date, in container: CKContainer) {
+    self.since = since
         
-        super.init()
+    super.init()
         
-        self.container = container
+    self.container = container
+  }
+    
+  override func performRequest() {
+    let sort = NSSortDescriptor(key: "modificationDate", ascending: true)
+    let timePredicate = NSPredicate(format: "modificationDate >= %@", since as NSDate)
+        
+    fetch(predicate: timePredicate, sort: [sort], pullAll: true, inDatabase: .public)
+  }
+    
+  override func handle(result: CloudResult<Cloud.Conversation>, completion: @escaping () -> ()) {
+    if result.error != nil {
+      Logging.log("Fetch failed")
+    } else {
+      Logging.log("Pulled \(result.records.count) conversations")
+      progress(.fetched(result.records))
     }
-    
-    override func performRequest() {
-        let sort = NSSortDescriptor(key: "modificationDate", ascending: true)
-        let timePredicate = NSPredicate(format: "modificationDate >= %@", since as NSDate)
         
-        fetch(predicate: timePredicate, sort: [sort], pullAll: true, inDatabase: .public)
-    }
-    
-    override func handle(result: CloudResult<Cloud.Conversation>, completion: @escaping () -> ()) {
-        if result.error != nil {
-            Logging.log("Fetch failed")
-        } else {
-            Logging.log("Pulled \(result.records.count) conversations")
-            progress(.fetched(result.records))
-        }
-        
-        completion()
-    }
+    completion()
+  }
 }

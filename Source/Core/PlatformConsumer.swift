@@ -17,5 +17,5 @@
 import Foundation
 
 internal protocol PlatformConsumer {
-    var platform: String! { get set }
+  var platform: String! { get set }
 }

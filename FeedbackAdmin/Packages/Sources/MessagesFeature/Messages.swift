@@ -20,72 +20,72 @@ import ObjectModel
 import WriteMessageFeature
 
 public struct Messages: Reducer {
-    public struct State: Equatable {
-        enum Route: Equatable {
-            case respond
-        }
+  public struct State: Equatable {
+    enum Route: Equatable {
+      case respond
+    }
 
-        internal var route: Route?
+    internal var route: Route?
         
-        public let conversation: Conversation
+    public let conversation: Conversation
         
-        internal var messagesPredicate: NSPredicate {
-            NSPredicate(format: "conversation = %@", conversation)
-        }
-        
-        internal var writeMessageState: WriteMessage.State?
-        internal let sentBy: String
-        public init(conversation: Conversation, sentBy: String) {
-            self.conversation = conversation
-            self.sentBy = sentBy
-        }
+    internal var messagesPredicate: NSPredicate {
+      NSPredicate(format: "conversation = %@", conversation)
     }
-    
-    public enum Action {
-        case respond
-        case clearRoute
         
-        case send(Conversation, String, String)
-        
-        case writeMessage(WriteMessage.Action)
+    internal var writeMessageState: WriteMessage.State?
+    internal let sentBy: String
+    public init(conversation: Conversation, sentBy: String) {
+      self.conversation = conversation
+      self.sentBy = sentBy
     }
+  }
     
-    public init() {
+  public enum Action {
+    case respond
+    case clearRoute
         
-    }
+    case send(Conversation, String, String)
+        
+    case writeMessage(WriteMessage.Action)
+  }
     
-    public var body: some ReducerOf<Self> {
-        Reduce {
-            state, action in
+  public init() {
+        
+  }
+    
+  public var body: some ReducerOf<Self> {
+    Reduce {
+      state, action in
             
-            switch action {
-            case .respond:
-                state.writeMessageState = WriteMessage.State(conversation: state.conversation, sentBy: state.sentBy)
-                state.route = .respond
-                return .none
+      switch action {
+      case .respond:
+        state.writeMessageState = WriteMessage.State(conversation: state.conversation, sentBy: state.sentBy)
+        state.route = .respond
+        return .none
                 
-            case .clearRoute:
-                state.route = nil
-                return .none
+      case .clearRoute:
+        state.route = nil
+        return .none
                 
-            case .writeMessage(.cancel):
-                state.writeMessageState = nil
-                return Effect.send(.clearRoute)
+      case .writeMessage(.cancel):
+        state.writeMessageState = nil
+        return Effect.send(.clearRoute)
                 
-            case .send(_, _, _):
-                return .none
+      case .send(_, _, _):
+        return .none
                 
-            case .writeMessage(.send(let conversation, let sentBy, let message)):
-                state.writeMessageState = nil
-                state.route = nil
-                return Effect.send(.send(conversation, sentBy, message))
+      case .writeMessage(.send(let conversation, let sentBy, let message)):
+        state.writeMessageState = nil
+        state.route = nil
+        return Effect.send(.send(conversation, sentBy, message))
                 
-            case .writeMessage:
-                return .none
-            }
-        }
-        .ifLet(\.writeMessageState, action: /Action.writeMessage) {
-            WriteMessage()
-        }
+      case .writeMessage:
+        return .none
+      }
     }
+    .ifLet(\.writeMessageState, action: /Action.writeMessage) {
+      WriteMessage()
+    }
+  }
 }

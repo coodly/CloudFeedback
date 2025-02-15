@@ -17,42 +17,42 @@
 import SwiftUI
 
 internal struct MessageEntryView: View {
-    @ObservedObject var viewModel: FeedbackViewModel
-    let styling: Styling
-    
-    var body: some View {
-        HStack(alignment: .top, spacing: 0) {
-            ZStack {
-                Text(viewModel.message)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .opacity(0)
-                    .padding(.all, 8)
-                    .padding([.vertical, .leading])
-                    .layoutPriority(1)
-                TextEditor(text: $viewModel.message)
-                    .padding([.vertical, .leading])
-            }
-            .font(.body)
-            VStack {
-                Button(action: viewModel.send) {
-                    ZStack {
-                        Circle()
-                            .padding(2)
-                            .frame(width: 32, height: 32, alignment: .center)
-                            .foregroundColor(.white)
-                        Image(systemName: "arrow.up.circle.fill")
-                            .resizable()
-                            .frame(width: 32, height: 32, alignment: .center)
-                            .padding()
-                    }
-                }
-                .foregroundColor(Color(styling.mainColor))
-            }
+  @ObservedObject var viewModel: FeedbackViewModel
+  let styling: Styling
+
+  var body: some View {
+    HStack(alignment: .top, spacing: 0) {
+      ZStack {
+        Text(viewModel.message)
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .opacity(0)
+          .padding(.all, 8)
+          .padding([.vertical, .leading])
+          .layoutPriority(1)
+        TextEditor(text: $viewModel.message)
+          .padding([.vertical, .leading])
+      }
+      .font(.body)
+      VStack {
+        Button(action: viewModel.send) {
+          ZStack {
+            Circle()
+              .padding(2)
+              .frame(width: 32, height: 32, alignment: .center)
+              .foregroundColor(.white)
+            Image(systemName: "arrow.up.circle.fill")
+              .resizable()
+              .frame(width: 32, height: 32, alignment: .center)
+              .padding()
+          }
         }
-        .background(
-            Color(UIColor.systemFill)
-                .edgesIgnoringSafeArea([Edge.Set.horizontal, Edge.Set.bottom])
-        )
+        .foregroundColor(Color(styling.mainColor))
+      }
     }
+    .background(
+      Color(UIColor.systemFill)
+        .edgesIgnoringSafeArea([Edge.Set.horizontal, Edge.Set.bottom])
+    )
+  }
 }
 

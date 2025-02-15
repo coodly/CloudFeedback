@@ -18,38 +18,38 @@ import CloudKit
 import Puff
 
 internal class FetchMessagesOperation: CloudKitRequest<Cloud.Message> {
-    internal var progress: ((FetchMessagesProgress) -> Void)!
+  internal var progress: ((FetchMessagesProgress) -> Void)!
     
-    private let conversation: Cloud.Conversation
-    private let since: Date
+  private let conversation: Cloud.Conversation
+  private let since: Date
     
-    init(conversation: Cloud.Conversation, since: Date, in container: CKContainer) {
-        self.conversation = conversation
-        self.since = since
+  init(conversation: Cloud.Conversation, since: Date, in container: CKContainer) {
+    self.conversation = conversation
+    self.since = since
         
-        super.init()
+    super.init()
         
-        self.container = container
+    self.container = container
+  }
+    
+  override func performRequest() {
+    let sort = NSSortDescriptor(key: "modificationDate", ascending: true)
+    let timePredicate = NSPredicate(format: "modificationDate >= %@", since as NSDate)
+    let conversationPredicate = NSPredicate(format: "conversation = %@", conversation.referenceRepresentation())
+    let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [timePredicate, conversationPredicate])
+        
+    fetch(predicate: predicate, sort: [sort], pullAll: true, inDatabase: .public)
+  }
+    
+  override func handle(result: CloudResult<Cloud.Message>, completion: @escaping () -> ()) {
+    if result.error != nil {
+      Logging.log("Fetch failed")
+    } else {
+      Logging.log("Pulled \(result.records.count) messages")
+      progress(.fetched(result.records))
     }
-    
-    override func performRequest() {
-        let sort = NSSortDescriptor(key: "modificationDate", ascending: true)
-        let timePredicate = NSPredicate(format: "modificationDate >= %@", since as NSDate)
-        let conversationPredicate = NSPredicate(format: "conversation = %@", conversation.referenceRepresentation())
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [timePredicate, conversationPredicate])
         
-        fetch(predicate: predicate, sort: [sort], pullAll: true, inDatabase: .public)
-    }
-    
-    override func handle(result: CloudResult<Cloud.Message>, completion: @escaping () -> ()) {
-        if result.error != nil {
-            Logging.log("Fetch failed")
-        } else {
-            Logging.log("Pulled \(result.records.count) messages")
-            progress(.fetched(result.records))
-        }
-        
-        completion()
-    }
+    completion()
+  }
 }
 

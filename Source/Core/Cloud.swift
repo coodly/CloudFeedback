@@ -17,5 +17,5 @@
 import Foundation
 
 public class Cloud {
-    
+
 }

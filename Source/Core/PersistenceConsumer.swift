@@ -17,5 +17,5 @@
 import Foundation
 
 internal protocol PersistenceConsumer {
-    var persistence: CorePersistence! { get set }
+  var persistence: CorePersistence! { get set }
 }

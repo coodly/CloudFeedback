@@ -18,43 +18,43 @@ import Puff
 import CloudKit
 
 public extension Cloud {
-    struct Conversation: RemoteRecord {
-        public static var recordType: String {
-            return "Conversation"
-        }
-        
-        public var recordName: String?
-        public var recordData: Data?
-        public var parent: CKRecord.ID?
-        
-        public var appIdentifier: String?
-        public var lastMessageTime: Date?
-        public var snippet: String?
-        public var modificationDate: Date?
-        
-        public mutating func loadFields(from record: CKRecord) -> Bool {
-            appIdentifier = record["appIdentifier"] as? String
-            lastMessageTime = record["lastMessageTime"] as? Date
-            snippet = record["snippet"] as? String
-            modificationDate = record.modificationDate
-            
-            return true
-        }
-        
-        public init() {
-            
-        }
-        
-        public init(recordName: String?, recordData: Data?, lastMessageTime: Date, snippet: String) {
-            self.recordName = recordName
-            self.recordData = recordData
-            if recordData == nil {
-                // conversations can be created on client side
-                // when creating conversation (recordData missing), set client side app identifier
-                appIdentifier = Bundle.main.bundleIdentifier
-            }
-            self.lastMessageTime = lastMessageTime
-            self.snippet = snippet
-        }
+  struct Conversation: RemoteRecord {
+    public static var recordType: String {
+      return "Conversation"
     }
+        
+    public var recordName: String?
+    public var recordData: Data?
+    public var parent: CKRecord.ID?
+        
+    public var appIdentifier: String?
+    public var lastMessageTime: Date?
+    public var snippet: String?
+    public var modificationDate: Date?
+        
+    public mutating func loadFields(from record: CKRecord) -> Bool {
+      appIdentifier = record["appIdentifier"] as? String
+      lastMessageTime = record["lastMessageTime"] as? Date
+      snippet = record["snippet"] as? String
+      modificationDate = record.modificationDate
+            
+      return true
+    }
+        
+    public init() {
+            
+    }
+        
+    public init(recordName: String?, recordData: Data?, lastMessageTime: Date, snippet: String) {
+      self.recordName = recordName
+      self.recordData = recordData
+      if recordData == nil {
+        // conversations can be created on client side
+        // when creating conversation (recordData missing), set client side app identifier
+        appIdentifier = Bundle.main.bundleIdentifier
+      }
+      self.lastMessageTime = lastMessageTime
+      self.snippet = snippet
+    }
+  }
 }

@@ -19,52 +19,52 @@ import CloudKit
 import Puff
 
 internal class PushConversationsOperation: CloudKitRequest<Cloud.Conversation>, PersistenceConsumer, FeedbackContainerConsumer {
-    var persistence: CorePersistence!
-    var feedbackContainer: CKContainer! {
-        didSet {
-            container = feedbackContainer
-        }
+  var persistence: CorePersistence!
+  var feedbackContainer: CKContainer! {
+    didSet {
+      container = feedbackContainer
     }
+  }
     
-    private var names: [String]!
+  private var names: [String]!
     
-    override func performRequest() {
-        persistence.performInBackground() {
-            context in
+  override func performRequest() {
+    persistence.performInBackground() {
+      context in
             
-            let toPush = context.conversationsNeedingSync()
-            if toPush.count == 0 {
-                Logging.log("No conversations to push")
-                self.finish()
-                return
-            }
+      let toPush = context.conversationsNeedingSync()
+      if toPush.count == 0 {
+        Logging.log("No conversations to push")
+        self.finish()
+        return
+      }
             
-            var pushed = [Cloud.Conversation]()
-            for c in toPush {
-                pushed.append(c.toCloud())
-            }
+      var pushed = [Cloud.Conversation]()
+      for c in toPush {
+        pushed.append(c.toCloud())
+      }
             
-            self.names = pushed.map({ $0.recordName! })
+      self.names = pushed.map({ $0.recordName! })
             
-            Logging.log("Will push \(pushed.count) conversations")
+      Logging.log("Will push \(pushed.count) conversations")
             
-            self.save(records: pushed, inDatabase: .public)
-        }
+      self.save(records: pushed, inDatabase: .public)
     }
+  }
     
-    override func handle(result: CloudResult<Cloud.Conversation>, completion: @escaping () -> ()) {
-        let save: ContextClosure = {
-            context in
+  override func handle(result: CloudResult<Cloud.Conversation>, completion: @escaping () -> ()) {
+    let save: ContextClosure = {
+      context in
             
-            if result.error != nil {
-                context.markSyncFailureOn(conversations: self.names)
-                self.names = []
-            } else {
-                for c in result.records {
-                    context.update(c)
-                }
-            }
+      if result.error != nil {
+        context.markSyncFailureOn(conversations: self.names)
+        self.names = []
+      } else {
+        for c in result.records {
+          context.update(c)
         }
-        persistence.performInBackground(task: save, completion: completion)
+      }
     }
+    persistence.performInBackground(task: save, completion: completion)
+  }
 }

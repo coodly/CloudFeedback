@@ -17,6 +17,6 @@
 import CoreData
 
 extension Setting {
-    @NSManaged var key: String
-    @NSManaged var value: String
+  @NSManaged var key: String
+  @NSManaged var value: String
 }

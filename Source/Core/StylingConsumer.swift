@@ -17,5 +17,5 @@
 import Foundation
 
 internal protocol StylingConsumer {
-    var styling: Styling! { get set }
+  var styling: Styling! { get set }
 }

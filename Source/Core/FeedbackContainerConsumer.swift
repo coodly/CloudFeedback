@@ -17,5 +17,5 @@
 import CloudKit
 
 internal protocol FeedbackContainerConsumer {
-    var feedbackContainer: CKContainer! { get set }
+  var feedbackContainer: CKContainer! { get set }
 }

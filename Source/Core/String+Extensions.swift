@@ -19,13 +19,13 @@ import Foundation
 private let SnippetLength = 100
 
 public extension String {
-    func snippet() -> String {
-        let snippetLength = min(100, count)
-        let endIndex = index(startIndex, offsetBy: snippetLength)
-        return String(self[..<endIndex])
-    }
-    
-    internal func hasValue() -> Bool {
-        return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count > 0
-    }
+  func snippet() -> String {
+    let snippetLength = min(100, count)
+    let endIndex = index(startIndex, offsetBy: snippetLength)
+    return String(self[..<endIndex])
+  }
+
+  internal func hasValue() -> Bool {
+    return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count > 0
+  }
 }

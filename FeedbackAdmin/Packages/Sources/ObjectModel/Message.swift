@@ -17,28 +17,28 @@
 import CoreData
 
 public enum PushStatus: String {
-    case synced = ""
-    case pushNeeded
-    case pushFailed
+  case synced = ""
+  case pushNeeded
+  case pushFailed
 }
 
 extension Message {
-    @NSManaged private var internalPushStatus: String
+  @NSManaged private var internalPushStatus: String
 }
 
 public class Message: NSManagedObject {
-    public override func willSave() {
-        if recordName == nil {
-            recordName = UUID().uuidString
-        }
+  public override func willSave() {
+    if recordName == nil {
+      recordName = UUID().uuidString
     }
-    
-    public var pushStatus: PushStatus {
-        get {
-            PushStatus(rawValue: internalPushStatus) ?? .synced
-        }
-        set {
-            internalPushStatus = newValue.rawValue
-        }
+  }
+
+  public var pushStatus: PushStatus {
+    get {
+      PushStatus(rawValue: internalPushStatus) ?? .synced
     }
+    set {
+      internalPushStatus = newValue.rawValue
+    }
+  }
 }

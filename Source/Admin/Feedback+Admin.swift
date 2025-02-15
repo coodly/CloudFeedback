@@ -17,7 +17,7 @@
 import Foundation
 
 extension Feedback {
-    public var admin: FeedbackModule {
-        return AdminModule(container: container, queue: queue)
-    }
+  public var admin: FeedbackModule {
+    return AdminModule(container: container, queue: queue)
+  }
 }

@@ -18,39 +18,39 @@ import ComposableArchitecture
 import SwiftUI
 
 public struct WriteMessageView: View {
-    private let store: StoreOf<WriteMessage>
-    
-    public init(store: StoreOf<WriteMessage>) {
-        self.store = store
-    }
-    
-    public var body: some View {
-        WithViewStore(store, observe: { $0 }) {
-            viewStore in
-            
-            VStack {
-                HStack {
-                    Text("Sent by:")
-                        .foregroundColor(.secondary)
-                    TextField("", text: viewStore.$sentBy)
-                }
-                Divider()
-                TextEditor(text: viewStore.$message)
-            }
-            .padding()
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button(action: { viewStore.send(.post) }) {
-                        Image(systemName: "paperplane")
-                    }
-                    .disabled(viewStore.sendDisabled)
-                }
-                ToolbarItem(placement: .cancellationAction) {
-                    Button(action: { viewStore.send(.cancel) }) {
-                        Text("Cancel")
-                    }
-                }
-            }
+  private let store: StoreOf<WriteMessage>
+
+  public init(store: StoreOf<WriteMessage>) {
+    self.store = store
+  }
+
+  public var body: some View {
+    WithViewStore(store, observe: { $0 }) {
+      viewStore in
+
+      VStack {
+        HStack {
+          Text("Sent by:")
+            .foregroundColor(.secondary)
+          TextField("", text: viewStore.$sentBy)
         }
+        Divider()
+        TextEditor(text: viewStore.$message)
+      }
+      .padding()
+      .toolbar {
+        ToolbarItem(placement: .primaryAction) {
+          Button(action: { viewStore.send(.post) }) {
+            Image(systemName: "paperplane")
+          }
+          .disabled(viewStore.sendDisabled)
+        }
+        ToolbarItem(placement: .cancellationAction) {
+          Button(action: { viewStore.send(.cancel) }) {
+            Text("Cancel")
+          }
+        }
+      }
     }
+  }
 }

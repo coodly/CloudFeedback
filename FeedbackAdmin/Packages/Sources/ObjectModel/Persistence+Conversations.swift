@@ -18,30 +18,30 @@ import CloudKit
 import CoreData
 
 extension NSManagedObjectContext {
-    public func save(conversations: [CKRecord]) {
-        var maxDate = lastKnownConversationTime
-        for conversation in conversations {
-            guard let appIdentifier = conversation.value(forKey: "appIdentifier") as? String else {
-                continue
-            }
+  public func save(conversations: [CKRecord]) {
+    var maxDate = lastKnownConversationTime
+    for conversation in conversations {
+      guard let appIdentifier = conversation.value(forKey: "appIdentifier") as? String else {
+        continue
+      }
             
-            let application = self.application(with: appIdentifier)
-            let saved = self.conversation(with: conversation.recordID.recordName)
-            saved.application = application
-            saved.modifiedAt = conversation.modificationDate
-            maxDate = max(maxDate, conversation.modificationDate!)
-        }
-        
-        lastKnownConversationTime = maxDate
+      let application = self.application(with: appIdentifier)
+      let saved = self.conversation(with: conversation.recordID.recordName)
+      saved.application = application
+      saved.modifiedAt = conversation.modificationDate
+      maxDate = max(maxDate, conversation.modificationDate!)
     }
+        
+    lastKnownConversationTime = maxDate
+  }
     
-    internal func conversation(with name: String) -> Conversation {
-        if let existing: Conversation = fetchEntity(where: "recordName", hasValue: name) {
-            return existing
-        }
-        
-        let saved: Conversation = insertEntity()
-        saved.recordName = name
-        return saved
+  internal func conversation(with name: String) -> Conversation {
+    if let existing: Conversation = fetchEntity(where: "recordName", hasValue: name) {
+      return existing
     }
+        
+    let saved: Conversation = insertEntity()
+    saved.recordName = name
+    return saved
+  }
 }

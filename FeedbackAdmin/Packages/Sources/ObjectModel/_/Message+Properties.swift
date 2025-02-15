@@ -17,13 +17,13 @@
 import CoreData
 
 extension Message {
-    @NSManaged public var recordName: String?
-    @NSManaged public var modifiedAt: Date?
+  @NSManaged public var recordName: String?
+  @NSManaged public var modifiedAt: Date?
 
-    @NSManaged public var body: String?
-    @NSManaged var platform: String?
-    @NSManaged public var postedAt: Date?
-    @NSManaged public var sentBy: String?
-    
-    @NSManaged public var conversation: Conversation
+  @NSManaged public var body: String?
+  @NSManaged var platform: String?
+  @NSManaged public var postedAt: Date?
+  @NSManaged public var sentBy: String?
+
+  @NSManaged public var conversation: Conversation
 }

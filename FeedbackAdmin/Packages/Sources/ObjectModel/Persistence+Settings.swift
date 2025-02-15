@@ -17,40 +17,40 @@
 import CoreData
 
 extension NSManagedObjectContext {
-    public var sentBy: String {
-        get {
-            setting(for: #function).value
-        }
-        set {
-            let saved = setting(for: #function)
-            saved.value = newValue
-        }
+  public var sentBy: String {
+    get {
+      setting(for: #function).value
     }
-    
-    public var lastKnownConversationTime: Date {
-        get {
-            setting(for: #function).dateValue
-        }
-        set {
-            setting(for: #function).dateValue = newValue
-        }
+    set {
+      let saved = setting(for: #function)
+      saved.value = newValue
     }
-    public var lastKnownMessageTime: Date {
-        get {
-            setting(for: #function).dateValue
-        }
-        set {
-            setting(for: #function).dateValue = newValue
-        }
+  }
+
+  public var lastKnownConversationTime: Date {
+    get {
+      setting(for: #function).dateValue
+    }
+    set {
+      setting(for: #function).dateValue = newValue
+    }
+  }
+  public var lastKnownMessageTime: Date {
+    get {
+      setting(for: #function).dateValue
+    }
+    set {
+      setting(for: #function).dateValue = newValue
+    }
+  }
+
+  private func setting(for key: String) -> Setting {
+    if let existing: Setting = fetchEntity(where: "key", hasValue: key) {
+      return existing
     }
 
-    private func setting(for key: String) -> Setting {
-        if let existing: Setting = fetchEntity(where: "key", hasValue: key) {
-            return existing
-        }
-        
-        let saved: Setting = insertEntity()
-        saved.key = key
-        return saved
-    }
+    let saved: Setting = insertEntity()
+    saved.key = key
+    return saved
+  }
 }

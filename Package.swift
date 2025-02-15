@@ -4,29 +4,29 @@
 import PackageDescription
 
 let package = Package(
-    name: "CloudFeedback",
-    platforms: [.iOS(.v14), .macOS(.v11)],
-    products: [
-        .library(
-            name: "CloudFeedback",
-            targets: [
-                "CloudFeedback"
-            ]
-        ),
-    ],
-    dependencies: [
+  name: "CloudFeedback",
+  platforms: [.iOS(.v14), .macOS(.v11)],
+  products: [
+    .library(
+      name: "CloudFeedback",
+      targets: [
+        "CloudFeedback"
+      ]
+    ),
+  ],
+  dependencies: [
 
-    ],
-    targets: [
-        .target(
-            name: "CloudFeedback"
-        ),
-        
-        .testTarget(
-            name: "CloudFeedbackTests",
-            dependencies: [
-                "CloudFeedback"
-            ]
-        ),
-    ]
+  ],
+  targets: [
+    .target(
+      name: "CloudFeedback"
+    ),
+
+    .testTarget(
+      name: "CloudFeedbackTests",
+      dependencies: [
+        "CloudFeedback"
+      ]
+    ),
+  ]
 )

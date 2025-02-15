@@ -15,5 +15,5 @@
  */
 
 public final class ClientModule: FeedbackModule {
-    
+
 }

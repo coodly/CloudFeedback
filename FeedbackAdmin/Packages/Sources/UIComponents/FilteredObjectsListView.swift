@@ -19,19 +19,19 @@ import SwiftUI
 
 @MainActor
 public struct FilteredObjectsListView<T: NSManagedObject, Content: View>: View {
-    var fetchRequest: FetchRequest<T>
-    let content: (T) -> Content
-    
-    public init(predicate: NSPredicate, sort: [NSSortDescriptor], @ViewBuilder content: @escaping (T) -> Content) {
-        fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: sort, predicate: predicate, animation: .default)
-        self.content = content
-    }
+  var fetchRequest: FetchRequest<T>
+  let content: (T) -> Content
 
-    public var body: some View {
-        ForEach(fetchRequest.wrappedValue, id: \.self) {
-            entity in
-            
-            self.content(entity)
-        }
+  public init(predicate: NSPredicate, sort: [NSSortDescriptor], @ViewBuilder content: @escaping (T) -> Content) {
+    fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: sort, predicate: predicate, animation: .default)
+    self.content = content
+  }
+
+  public var body: some View {
+    ForEach(fetchRequest.wrappedValue, id: \.self) {
+      entity in
+
+      self.content(entity)
     }
+  }
 }

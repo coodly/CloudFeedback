@@ -19,55 +19,55 @@ import Extensions
 import ObjectModel
 
 public struct WriteMessage: Reducer {
-    public struct State: Equatable {
-        @BindingState internal var sentBy = ""
-        @BindingState internal var message = ""
+  public struct State: Equatable {
+    @BindingState internal var sentBy = ""
+    @BindingState internal var message = ""
         
-        internal var sendDisabled = true
-        internal let conversation: Conversation
-        public init(conversation: Conversation, sentBy: String) {
-            self.conversation = conversation
-            self.sentBy = sentBy
-        }
-        
-        internal mutating func checkCanSend() {
-            sendDisabled = !(sentBy.hasValue && message.hasValue)
-        }
+    internal var sendDisabled = true
+    internal let conversation: Conversation
+    public init(conversation: Conversation, sentBy: String) {
+      self.conversation = conversation
+      self.sentBy = sentBy
     }
-    
-    public enum Action: BindableAction {
-        case cancel
-        case post
         
-        case send(Conversation, String, String)
-        
-        case binding(BindingAction<State>)
+    internal mutating func checkCanSend() {
+      sendDisabled = !(sentBy.hasValue && message.hasValue)
     }
+  }
     
-    public init() {
+  public enum Action: BindableAction {
+    case cancel
+    case post
         
-    }
+    case send(Conversation, String, String)
+        
+    case binding(BindingAction<State>)
+  }
     
-    public var body: some ReducerOf<Self> {
-        BindingReducer()
-        Reduce {
-            state, action in
+  public init() {
+        
+  }
+    
+  public var body: some ReducerOf<Self> {
+    BindingReducer()
+    Reduce {
+      state, action in
             
-            switch action {
-            case .cancel:
-                return .none
+      switch action {
+      case .cancel:
+        return .none
                 
-            case .post:
-                return Effect.send(.send(state.conversation, state.sentBy, state.message))
+      case .post:
+        return Effect.send(.send(state.conversation, state.sentBy, state.message))
                 
-            case .send(_, _, _):
-                return .none
+      case .send(_, _, _):
+        return .none
                 
-            case .binding:
-                state.checkCanSend()
-                return .none
-            }
+      case .binding:
+        state.checkCanSend()
+        return .none
+      }
 
-        }
     }
+  }
 }

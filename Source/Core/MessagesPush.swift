@@ -18,34 +18,34 @@ import Foundation
 import CoreData
 
 class MessagesPush: NSObject, PersistenceConsumer, NSFetchedResultsControllerDelegate, FeedbackInjector {
-    private lazy var queue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.name = "Message push queue"
-        queue.maxConcurrentOperationCount = 1
-        return queue
-    }()
-    var persistence: CorePersistence! {
-        didSet {
-            messagesController = persistence.mainContext.fetchedControllerForConversationsNeedingSync()
-        }
+  private lazy var queue: OperationQueue = {
+    let queue = OperationQueue()
+    queue.name = "Message push queue"
+    queue.maxConcurrentOperationCount = 1
+    return queue
+  }()
+  var persistence: CorePersistence! {
+    didSet {
+      messagesController = persistence.mainContext.fetchedControllerForConversationsNeedingSync()
     }
-    private var messagesController: NSFetchedResultsController<Conversation>! {
-        didSet {
-            messagesController.delegate = self
-        }
+  }
+  private var messagesController: NSFetchedResultsController<Conversation>! {
+    didSet {
+      messagesController.delegate = self
     }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        queue.addOperation {
-            Logging.log("Changes in conversations")
-            let pushConversation = PushConversationsOperation()
-            self.inject(into: pushConversation)
-            
-            let pushMessages = PushMessagesOperation()
-            self.inject(into: pushMessages)
-            pushMessages.addDependency(pushConversation)
-            
-            self.queue.addOperations([pushConversation, pushMessages], waitUntilFinished: false)
-        }
+  }
+
+  func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    queue.addOperation {
+      Logging.log("Changes in conversations")
+      let pushConversation = PushConversationsOperation()
+      self.inject(into: pushConversation)
+
+      let pushMessages = PushMessagesOperation()
+      self.inject(into: pushMessages)
+      pushMessages.addDependency(pushConversation)
+
+      self.queue.addOperations([pushConversation, pushMessages], waitUntilFinished: false)
     }
+  }
 }

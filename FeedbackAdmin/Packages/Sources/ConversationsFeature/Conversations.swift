@@ -19,62 +19,62 @@ import MessagesFeature
 import ObjectModel
 
 public struct Conversations: Reducer {
-    public struct State: Equatable {
-        public var refreshing = false
+  public struct State: Equatable {
+    public var refreshing = false
         
-        public var activeMessagesState: Messages.State?
+    public var activeMessagesState: Messages.State?
         
-        public init() {
-            
-        }
-        
-        internal func isActive(_ conversation: Conversation) -> Bool {
-            activeMessagesState?.conversation == conversation
-        }
-    }
-    
-    public enum Action {
-        case refresh
-        case refreshed
-        case tapped(Conversation)
-        case activate(Conversation)
-        case noAction
-        
-        case messages(Messages.Action)
-    }
-    
     public init() {
-        
-    }
-    
-    public var body: some ReducerOf<Self> {
-        Reduce {
-            state, action in
             
-            switch action {
-            case .refresh:
-                state.refreshing = true
-                return .none
-                
-            case .refreshed:
-                state.refreshing = false
-                return .none
-
-            case .tapped(_):
-                return .none
-                
-            case .activate(let conversation):
-                return Effect.send(.tapped(conversation))
-                
-            case .noAction:
-                return .none
-                        
-            case .messages:
-                return .none
-            }
-        }
-        .ifLet(\.activeMessagesState, action: /Action.messages) {
-            Messages()
-        }
     }
+        
+    internal func isActive(_ conversation: Conversation) -> Bool {
+      activeMessagesState?.conversation == conversation
+    }
+  }
+    
+  public enum Action {
+    case refresh
+    case refreshed
+    case tapped(Conversation)
+    case activate(Conversation)
+    case noAction
+        
+    case messages(Messages.Action)
+  }
+    
+  public init() {
+        
+  }
+    
+  public var body: some ReducerOf<Self> {
+    Reduce {
+      state, action in
+            
+      switch action {
+      case .refresh:
+        state.refreshing = true
+        return .none
+                
+      case .refreshed:
+        state.refreshing = false
+        return .none
+
+      case .tapped(_):
+        return .none
+                
+      case .activate(let conversation):
+        return Effect.send(.tapped(conversation))
+                
+      case .noAction:
+        return .none
+                        
+      case .messages:
+        return .none
+      }
+    }
+    .ifLet(\.activeMessagesState, action: /Action.messages) {
+      Messages()
+    }
+  }
 }

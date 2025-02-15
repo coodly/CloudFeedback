@@ -26,29 +26,29 @@ import SwiftUI
 
 @main
 struct FeedbackAdminApp: App {
-    @Dependency(\.persistenceClient.persistence) var persistence
-    
-    var body: some Scene {
-        WindowGroup {
-            ApplicationView(
-                store: Store(
-                    initialState: Application.State(),
-                    reducer: Application.init
-                )
-            )
-            .environment(\.managedObjectContext, persistence.viewContext)
-        }
+  @Dependency(\.persistenceClient.persistence) var persistence
+
+  var body: some Scene {
+    WindowGroup {
+      ApplicationView(
+        store: Store(
+          initialState: Application.State(),
+          reducer: Application.init
+        )
+      )
+      .environment(\.managedObjectContext, persistence.viewContext)
     }
+  }
 }
 
 extension CloudClient: DependencyKey {
-    public static var liveValue: CloudClient {
-        .client(with: CKContainer(identifier: "iCloud.com.coodly.feedback"))
-    }
+  public static var liveValue: CloudClient {
+    .client(with: CKContainer(identifier: "iCloud.com.coodly.feedback"))
+  }
 }
 
 extension PersistenceClient: DependencyKey {
-    public static var liveValue: PersistenceClient {
-        return .client(with: Persistence())
-    }
+  public static var liveValue: PersistenceClient {
+    return .client(with: Persistence())
+  }
 }

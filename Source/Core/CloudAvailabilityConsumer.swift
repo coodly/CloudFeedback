@@ -17,5 +17,5 @@
 import Foundation
 
 internal protocol CloudAvailabilityConsumer {
-    var cloudAvailable: Bool! { get set }
+  var cloudAvailable: Bool! { get set }
 }

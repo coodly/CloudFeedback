@@ -21,17 +21,17 @@ import SwiftUI
 import UIKit
 
 public class Feedback {
-    private let container: CKContainer
-    private lazy var viewModel = FeedbackViewModel()
-    public var styling = Styling.instance
-    
-    public init(container: CKContainer = .default()) {
-        self.container = container
-    }
-    
-    public var controller: UIViewController {
-        let feedback = FeedbackView(viewModel: viewModel, styling: styling)
-        let hosting = UIHostingController(rootView: feedback)
-        return UINavigationController(rootViewController: hosting)
-    }
+  private let container: CKContainer
+  private lazy var viewModel = FeedbackViewModel()
+  public var styling = Styling.instance
+
+  public init(container: CKContainer = .default()) {
+    self.container = container
+  }
+
+  public var controller: UIViewController {
+    let feedback = FeedbackView(viewModel: viewModel, styling: styling)
+    let hosting = UIHostingController(rootView: feedback)
+    return UINavigationController(rootViewController: hosting)
+  }
 }

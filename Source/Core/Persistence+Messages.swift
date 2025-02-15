@@ -19,49 +19,49 @@ import CoreData
 import Combine
 
 internal extension NSManagedObjectContext {
-    func fetchedControllerForMessages(in conversation: Conversation) -> NSFetchedResultsController<Message> {
-        let sort = NSSortDescriptor(key: "postedAt", ascending: true)
-        let inConversation = NSPredicate(format: "conversation = %@", conversation)
-        return fetchedController(predicate: inConversation, sort: [sort])
-    }
+  func fetchedControllerForMessages(in conversation: Conversation) -> NSFetchedResultsController<Message> {
+    let sort = NSSortDescriptor(key: "postedAt", ascending: true)
+    let inConversation = NSPredicate(format: "conversation = %@", conversation)
+    return fetchedController(predicate: inConversation, sort: [sort])
+  }
     
-    func addMessage(_ message: String, for conversation: Conversation) {
-        let now = Date()
+  func addMessage(_ message: String, for conversation: Conversation) {
+    let now = Date()
         
-        let saved: Message = insertEntity()
-        saved.body = message.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        saved.conversation = conversation
-        saved.postedAt = now
-        saved.syncNeeded = true
-        saved.recordName = UUID().uuidString
-        conversation.lastMessageTime = now
-        conversation.snippet = message.snippet()
-        conversation.syncNeeded = true
-    }
+    let saved: Message = insertEntity()
+    saved.body = message.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    saved.conversation = conversation
+    saved.postedAt = now
+    saved.syncNeeded = true
+    saved.recordName = UUID().uuidString
+    conversation.lastMessageTime = now
+    conversation.snippet = message.snippet()
+    conversation.syncNeeded = true
+  }
     
-    func messagesNeedingPush() -> [Message] {
-        let needingSync = NSPredicate(format: "syncNeeded = YES")
-        let syncNotFailed = NSPredicate(format: "syncFailed = NO")
-        let conversationSynced = NSPredicate(format: "conversation.syncNeeded = NO")
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [needingSync, syncNotFailed, conversationSynced])
-        return fetch(predicate: predicate, limit: nil)
-    }
+  func messagesNeedingPush() -> [Message] {
+    let needingSync = NSPredicate(format: "syncNeeded = YES")
+    let syncNotFailed = NSPredicate(format: "syncFailed = NO")
+    let conversationSynced = NSPredicate(format: "conversation.syncNeeded = NO")
+    let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [needingSync, syncNotFailed, conversationSynced])
+    return fetch(predicate: predicate, limit: nil)
+  }
     
-    func update(message: Cloud.Message) {
-        let saved: Message = fetchEntity(where: "recordName", hasValue: message.recordName!) ?? insertEntity()
+  func update(message: Cloud.Message) {
+    let saved: Message = fetchEntity(where: "recordName", hasValue: message.recordName!) ?? insertEntity()
         
-        saved.recordName = message.recordName
-        saved.recordData = message.recordData
+    saved.recordName = message.recordName
+    saved.recordData = message.recordData
         
-        saved.body = message.body
-        saved.postedAt = message.postedAt!
-        saved.syncNeeded = false
-        saved.conversation = conversation(for: message.conversation!)!
-        saved.sentBy = message.sentBy
-    }
+    saved.body = message.body
+    saved.postedAt = message.postedAt!
+    saved.syncNeeded = false
+    saved.conversation = conversation(for: message.conversation!)!
+    saved.sentBy = message.sentBy
+  }
     
-    @available(iOS 13.0, *)
-    var publisherForAllMessages: AnyPublisher<[Message], Never> {
-        monitorEntities(of: Message.self, predicate: .truePredicate, sort: [NSSortDescriptor(keyPath: \Message.postedAt, ascending: true)])
-    }
+  @available(iOS 13.0, *)
+  var publisherForAllMessages: AnyPublisher<[Message], Never> {
+    monitorEntities(of: Message.self, predicate: .truePredicate, sort: [NSSortDescriptor(keyPath: \Message.postedAt, ascending: true)])
+  }
 }

@@ -18,34 +18,34 @@ import SwiftUI
 
 @available(iOS 14.0, *)
 public struct MessageBubbleView: View {
-    private let message: ChatMessage
-    public init(message: ChatMessage) {
-        self.message = message
-    }
-    
-    public var body: some View {
-        HStack {
-            if message.sentByMe {
-                Spacer(minLength: 20)
-            }
-            VStack(alignment: message.sentByMe ? .trailing: .leading) {
-                if let from = message.sentBy {
-                    Text(from)
-                        .font(Font.subheadline.bold())
-                        .foregroundColor(Color(UIColor.secondaryLabel))
-                }
-                Text(message.body)
-                    .font(.body)
-            }
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Color(UIColor.systemBackground))
-            )
-            if !message.sentByMe {
-                Spacer(minLength: 20)
-            }
+  private let message: ChatMessage
+  public init(message: ChatMessage) {
+    self.message = message
+  }
+
+  public var body: some View {
+    HStack {
+      if message.sentByMe {
+        Spacer(minLength: 20)
+      }
+      VStack(alignment: message.sentByMe ? .trailing: .leading) {
+        if let from = message.sentBy {
+          Text(from)
+            .font(Font.subheadline.bold())
+            .foregroundColor(Color(UIColor.secondaryLabel))
         }
-        .padding(.horizontal)
+        Text(message.body)
+          .font(.body)
+      }
+      .padding()
+      .background(
+        RoundedRectangle(cornerRadius: 10)
+          .foregroundColor(Color(UIColor.systemBackground))
+      )
+      if !message.sentByMe {
+        Spacer(minLength: 20)
+      }
     }
+    .padding(.horizontal)
+  }
 }

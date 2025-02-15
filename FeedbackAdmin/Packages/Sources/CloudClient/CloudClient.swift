@@ -19,50 +19,50 @@ import Dependencies
 import XCTestDynamicOverlay
 
 public struct CloudClient {
-    private let container: CKContainer
-    private let onPullConversationsSince: ((Date) async -> [CKRecord])
-    private let onPullMessagesSince: ((Date) async -> [CKRecord])
-    private let onSaveMessages: (([CKRecord]) async -> ([CKRecord], [CKRecord.ID]))
-    
-    public init(
-        container: CKContainer,
-        onPullConversationsSince: @escaping ((Date) async -> [CKRecord]),
-        onPullMessagesSince: @escaping ((Date) async -> [CKRecord]),
-        onSaveMessages: @escaping (([CKRecord]) async -> ([CKRecord], [CKRecord.ID]))
-    ) {
-        self.container = container
-        self.onPullConversationsSince = onPullConversationsSince
-        self.onPullMessagesSince = onPullMessagesSince
-        self.onSaveMessages = onSaveMessages
-    }
+  private let container: CKContainer
+  private let onPullConversationsSince: ((Date) async -> [CKRecord])
+  private let onPullMessagesSince: ((Date) async -> [CKRecord])
+  private let onSaveMessages: (([CKRecord]) async -> ([CKRecord], [CKRecord.ID]))
 
-    public func pullConversations(since date: Date) async -> [CKRecord] {
-        await onPullConversationsSince(date)
-    }
+  public init(
+    container: CKContainer,
+    onPullConversationsSince: @escaping ((Date) async -> [CKRecord]),
+    onPullMessagesSince: @escaping ((Date) async -> [CKRecord]),
+    onSaveMessages: @escaping (([CKRecord]) async -> ([CKRecord], [CKRecord.ID]))
+  ) {
+    self.container = container
+    self.onPullConversationsSince = onPullConversationsSince
+    self.onPullMessagesSince = onPullMessagesSince
+    self.onSaveMessages = onSaveMessages
+  }
 
-    public func pullMessages(since date: Date) async -> [CKRecord] {
-        await onPullMessagesSince(date)
-    }
-    
-    public func save(messages: [CKRecord]) async -> ([CKRecord], [CKRecord.ID]) {
-        await onSaveMessages(messages)
-    }
+  public func pullConversations(since date: Date) async -> [CKRecord] {
+    await onPullConversationsSince(date)
+  }
+
+  public func pullMessages(since date: Date) async -> [CKRecord] {
+    await onPullMessagesSince(date)
+  }
+
+  public func save(messages: [CKRecord]) async -> ([CKRecord], [CKRecord.ID]) {
+    await onSaveMessages(messages)
+  }
 }
 
 extension CloudClient: TestDependencyKey {
-    public static var testValue: CloudClient {
-        CloudClient(
-            container: CKContainer.default(),
-            onPullConversationsSince: unimplemented("\(Self.self).onPullConversationsSince"),
-            onPullMessagesSince: unimplemented("\(Self.self).onPullMessagesSince"),
-            onSaveMessages: unimplemented("\(Self.self).onSaveMessages")
-        )
-    }
+  public static var testValue: CloudClient {
+    CloudClient(
+      container: CKContainer.default(),
+      onPullConversationsSince: unimplemented("\(Self.self).onPullConversationsSince"),
+      onPullMessagesSince: unimplemented("\(Self.self).onPullMessagesSince"),
+      onSaveMessages: unimplemented("\(Self.self).onSaveMessages")
+    )
+  }
 }
 
 extension DependencyValues {
-    public var cloudClient: CloudClient {
-        get { self[CloudClient.self] }
-        set { self[CloudClient.self] = newValue }
-    }
+  public var cloudClient: CloudClient {
+    get { self[CloudClient.self] }
+    set { self[CloudClient.self] = newValue }
+  }
 }

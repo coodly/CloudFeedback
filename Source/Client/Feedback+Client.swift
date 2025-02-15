@@ -17,7 +17,7 @@
 import Foundation
 
 public extension Feedback {
-    var client: FeedbackModule {
-        return ClientModule(container: container, queue: queue)
-    }
+  var client: FeedbackModule {
+    return ClientModule(container: container, queue: queue)
+  }
 }

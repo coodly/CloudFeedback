@@ -17,23 +17,23 @@
 import SwiftUI
 
 internal struct FeedbackHeaderView: View {
-    let styling: Styling
-    
-    var body: some View {
-        ZStack {
-            Color(styling.mainColor)
-                .edgesIgnoringSafeArea([Edge.Set.horizontal, Edge.Set.top])
-            VStack {
-                Text(styling.greetingTitle)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.largeTitle)
-                Text(styling.greetingMessage)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.headline)
-            }
-            .padding()
-            .foregroundColor(Color(styling.greetingTextColor))
-        }
+  let styling: Styling
+
+  var body: some View {
+    ZStack {
+      Color(styling.mainColor)
+        .edgesIgnoringSafeArea([Edge.Set.horizontal, Edge.Set.top])
+      VStack {
+        Text(styling.greetingTitle)
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .font(.largeTitle)
+        Text(styling.greetingMessage)
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .font(.headline)
+      }
+      .padding()
+      .foregroundColor(Color(styling.greetingTextColor))
     }
+  }
 }
 

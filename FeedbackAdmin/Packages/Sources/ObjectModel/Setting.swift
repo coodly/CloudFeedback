@@ -17,16 +17,16 @@
 import CoreData
 
 extension ISO8601DateFormatter {
-    fileprivate static let setting = ISO8601DateFormatter()
+  fileprivate static let setting = ISO8601DateFormatter()
 }
 
 internal class Setting: NSManagedObject {
-    internal var dateValue: Date {
-        get {
-            ISO8601DateFormatter.setting.date(from: value) ?? Date.distantPast
-        }
-        set {
-            value = ISO8601DateFormatter.setting.string(from: newValue)
-        }
+  internal var dateValue: Date {
+    get {
+      ISO8601DateFormatter.setting.date(from: value) ?? Date.distantPast
     }
+    set {
+      value = ISO8601DateFormatter.setting.string(from: newValue)
+    }
+  }
 }

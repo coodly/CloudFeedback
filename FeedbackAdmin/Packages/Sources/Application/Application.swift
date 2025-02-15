@@ -24,151 +24,151 @@ import ObjectModel
 import PersistenceClient
 
 public struct Application: Reducer {
-    public struct State: Equatable {
-        internal var persistenceLoaded = false
-        internal var conversationsState = Conversations.State()
-        internal var sentBy = ""
+  public struct State: Equatable {
+    internal var persistenceLoaded = false
+    internal var conversationsState = Conversations.State()
+    internal var sentBy = ""
         
-        public init() {
-            Log.app.debug("Start the logs :)")
-        }
-    }
-    
-    public enum Action {
-        case loadPersistence
-        case persistenceLoaded
-        case loadConversations
-        case loadMessages
-        case cloudLoaded
-        
-        case resetFailedMessages
-        case pushMessages
-        case messagesPushed
-        
-        case conversations(Conversations.Action)
-    }
-    
     public init() {
+      Log.app.debug("Start the logs :)")
+    }
+  }
+    
+  public enum Action {
+    case loadPersistence
+    case persistenceLoaded
+    case loadConversations
+    case loadMessages
+    case cloudLoaded
         
-    }
+    case resetFailedMessages
+    case pushMessages
+    case messagesPushed
+        
+    case conversations(Conversations.Action)
+  }
     
-    @Dependency(\.cloudClient) var cloud
-    @Dependency(\.mainQueue) var mainQueue
-    @Dependency(\.persistenceClient) var persistence
+  public init() {
+        
+  }
     
-    public var body: some ReducerOf<Self> {
-        Reduce {
-            state, action in
+  @Dependency(\.cloudClient) var cloud
+  @Dependency(\.mainQueue) var mainQueue
+  @Dependency(\.persistenceClient) var persistence
+    
+  public var body: some ReducerOf<Self> {
+    Reduce {
+      state, action in
             
-            switch action {
-            case .loadPersistence:
-                return Effect.run {
-                    send in
+      switch action {
+      case .loadPersistence:
+        return Effect.run {
+          send in
                     
-                    await persistence.loadStores()
-                    await send(.persistenceLoaded)
-                }
+          await persistence.loadStores()
+          await send(.persistenceLoaded)
+        }
                 
-            case .persistenceLoaded:
-                state.sentBy = persistence.sentBy
-                state.persistenceLoaded = true
-                return Effect.send(.loadConversations)
+      case .persistenceLoaded:
+        state.sentBy = persistence.sentBy
+        state.persistenceLoaded = true
+        return Effect.send(.loadConversations)
                 
-            case .loadConversations:
-                return Effect.run {
-                    send in
+      case .loadConversations:
+        return Effect.run {
+          send in
                     
-                    let lastKnown = persistence.lastKnownConversationTime
-                    let conversations = await cloud.pullConversations(since: lastKnown)
-                    persistence.save(conversations: conversations)
-                    if conversations.count == 100 {
-                        await send(.loadConversations)
-                    } else {
-                        await send(.loadMessages)
-                    }
-                }
+          let lastKnown = persistence.lastKnownConversationTime
+          let conversations = await cloud.pullConversations(since: lastKnown)
+          persistence.save(conversations: conversations)
+          if conversations.count == 100 {
+            await send(.loadConversations)
+          } else {
+            await send(.loadMessages)
+          }
+        }
 
-            case .loadMessages:
-                return Effect.run {
-                    send in
+      case .loadMessages:
+        return Effect.run {
+          send in
                     
-                    let lastKnown = persistence.lastKnownMessageTime
-                    let messages = await cloud.pullMessages(since: lastKnown)
-                    persistence.save(messages: messages)
-                    if messages.count == 100 {
-                        await send(.loadMessages)
-                    } else {
-                        await send(.cloudLoaded)
-                    }
-                }
+          let lastKnown = persistence.lastKnownMessageTime
+          let messages = await cloud.pullMessages(since: lastKnown)
+          persistence.save(messages: messages)
+          if messages.count == 100 {
+            await send(.loadMessages)
+          } else {
+            await send(.cloudLoaded)
+          }
+        }
 
-            case .cloudLoaded:
-                return Effect.concatenate(
-                    Effect.send(.conversations(.refreshed)),
-                    Effect.send(.resetFailedMessages)
-                )
+      case .cloudLoaded:
+        return Effect.concatenate(
+          Effect.send(.conversations(.refreshed)),
+          Effect.send(.resetFailedMessages)
+        )
                 
-            case .resetFailedMessages:
-                persistence.resetFailedPushed()
-                return Effect.send(.pushMessages)
+      case .resetFailedMessages:
+        persistence.resetFailedPushed()
+        return Effect.send(.pushMessages)
                 
-            case .pushMessages:
-                return Effect.run {
-                    send in
+      case .pushMessages:
+        return Effect.run {
+          send in
                     
-                    let messages = persistence.messagesToPush()
-                    if messages.count == 0 {
-                        Log.app.debug("No messages to push")
-                        await send(.messagesPushed)
-                        return
-                    }
+          let messages = persistence.messagesToPush()
+          if messages.count == 0 {
+            Log.app.debug("No messages to push")
+            await send(.messagesPushed)
+            return
+          }
 
-                    Log.app.debug("Push \(messages.count) messages")
+          Log.app.debug("Push \(messages.count) messages")
                         
-                    let pushed: [CKRecord] = messages.compactMap(CKRecord.with(message:))
-                    let (saved, failed) = await cloud.save(messages: pushed)
-                    persistence.save(messages: saved)
-                    persistence.markFailure(on: failed.map(\.recordName))
-                    await send(.pushMessages)
-                }
+          let pushed: [CKRecord] = messages.compactMap(CKRecord.with(message:))
+          let (saved, failed) = await cloud.save(messages: pushed)
+          persistence.save(messages: saved)
+          persistence.markFailure(on: failed.map(\.recordName))
+          await send(.pushMessages)
+        }
                 
-            case .messagesPushed:
-                return .none
+      case .messagesPushed:
+        return .none
                 
-            case .conversations(.tapped(let conversation)):
-                state.conversationsState.activeMessagesState = Messages.State(conversation: conversation, sentBy: state.sentBy)
-                return .none
+      case .conversations(.tapped(let conversation)):
+        state.conversationsState.activeMessagesState = Messages.State(conversation: conversation, sentBy: state.sentBy)
+        return .none
                 
-            case .conversations(.refresh):
-                return Effect.send(.loadConversations)
+      case .conversations(.refresh):
+        return Effect.send(.loadConversations)
                 
-            case .conversations(.messages(.send(let conversation, let sentBy, let message))):
-                state.sentBy = sentBy
-                return Effect.run {
-                    send in
+      case .conversations(.messages(.send(let conversation, let sentBy, let message))):
+        state.sentBy = sentBy
+        return Effect.run {
+          send in
                     
-                    persistence.add(message: message, sentBy: sentBy, in: conversation)
-                    await send(.pushMessages)
-                }
+          persistence.add(message: message, sentBy: sentBy, in: conversation)
+          await send(.pushMessages)
+        }
 
-            case .conversations:
-                return .none
-            }
-        }
-        Scope(state: \.conversationsState, action: /Action.conversations) {
-            Conversations()
-        }
+      case .conversations:
+        return .none
+      }
     }
+    Scope(state: \.conversationsState, action: /Action.conversations) {
+      Conversations()
+    }
+  }
 }
 
 
 extension CKRecord {
-    fileprivate static func with(message: Message) -> CKRecord? {
-        let record = CKRecord(recordType: "Message", recordID: CKRecord.ID(recordName: message.recordName!))
-        record["body"] = message.body
-        record["conversation"] = CKRecord.Reference(recordID: CKRecord.ID(recordName: message.conversation.recordName!), action: .none)
-        record["postedAt"] = message.postedAt
-        record["sentBy"] = message.sentBy
-        return record
-    }
+  fileprivate static func with(message: Message) -> CKRecord? {
+    let record = CKRecord(recordType: "Message", recordID: CKRecord.ID(recordName: message.recordName!))
+    record["body"] = message.body
+    record["conversation"] = CKRecord.Reference(recordID: CKRecord.ID(recordName: message.conversation.recordName!), action: .none)
+    record["postedAt"] = message.postedAt
+    record["sentBy"] = message.sentBy
+    return record
+  }
 }

@@ -19,30 +19,30 @@ import CoreData
 
 @objc(Setting)
 internal class Setting: NSManagedObject {
-    private static let formatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return formatter
-    }()
-    var dateValue: Date? {
-        set {
-            if let date = newValue {
-                value = Setting.formatter.string(from: date)
-            } else {
-                value = nil
-            }
-        }
-        get {
-            if let v = value, let date = Setting.formatter.date(from: v) {
-                return date
-            }
-            
-            return nil
-        }
+  private static let formatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    return formatter
+  }()
+  var dateValue: Date? {
+    set {
+      if let date = newValue {
+        value = Setting.formatter.string(from: date)
+      } else {
+        value = nil
+      }
     }
+    get {
+      if let v = value, let date = Setting.formatter.date(from: v) {
+        return date
+      }
+
+      return nil
+    }
+  }
 }
 
 extension Setting {
-    @NSManaged var key: NSNumber
-    @NSManaged var value: String?
+  @NSManaged var key: NSNumber
+  @NSManaged var value: String?
 }

@@ -16,80 +16,80 @@
 
 import CloudKit
 #if canImport(Combine)
-import Combine
+  import Combine
 #endif
 
 private typealias Dependencies = PersistenceConsumer
 
 public final class Feedback: Dependencies, FeedbackInjector {
-    var persistence: CorePersistence!
+  var persistence: CorePersistence!
     
-    @available(iOS 13.0, *)
-    private lazy var disposeBag = Set<AnyCancellable>()
+  @available(iOS 13.0, *)
+  private lazy var disposeBag = Set<AnyCancellable>()
     
-    @available(iOS 13.0, *)
-    private lazy var localUnreadStatus = CurrentValueSubject<Bool, Never>(false)
+  @available(iOS 13.0, *)
+  private lazy var localUnreadStatus = CurrentValueSubject<Bool, Never>(false)
     
-    @available(iOS 13.0, *)
-    public var unreadStatus: AnyPublisher<Bool, Never> {
-        localUnreadStatus.eraseToAnyPublisher()
-    }
+  @available(iOS 13.0, *)
+  public var unreadStatus: AnyPublisher<Bool, Never> {
+    localUnreadStatus.eraseToAnyPublisher()
+  }
     
-    public var hasUnreadMessages: Bool {
-        var hasUnread = false
-        persistence.write() {
-            context in
+  public var hasUnreadMessages: Bool {
+    var hasUnread = false
+    persistence.write() {
+      context in
             
-            hasUnread = context.hasUnseenConversations()
-        }
-        return hasUnread
+      hasUnread = context.hasUnseenConversations()
     }
+    return hasUnread
+  }
     
-    internal let container: CKContainer
-    internal lazy var queue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.qualityOfService = .utility
-        return queue
-    }()
+  internal let container: CKContainer
+  internal lazy var queue: OperationQueue = {
+    let queue = OperationQueue()
+    queue.qualityOfService = .utility
+    return queue
+  }()
     
-    public init(container: CKContainer = .default(), styling: Styling? = nil) {
-        Logging.log("Start with \(String(describing: container.containerIdentifier))")
-        self.container = container
-        FeedbackInjection.sharedInstance.feedbackContainer = container
-        if let styling = styling {
-            FeedbackInjection.sharedInstance.styling = styling
-        }
+  public init(container: CKContainer = .default(), styling: Styling? = nil) {
+    Logging.log("Start with \(String(describing: container.containerIdentifier))")
+    self.container = container
+    FeedbackInjection.sharedInstance.feedbackContainer = container
+    if let styling = styling {
+      FeedbackInjection.sharedInstance.styling = styling
     }
+  }
     
-    public func load() {
-        inject(into: self)
+  public func load() {
+    inject(into: self)
         
-        persistence.loadPersistentStores() {
-            Logging.log("Database loaded")
+    persistence.loadPersistentStores() {
+      Logging.log("Database loaded")
             
-            FeedbackInjection.sharedInstance.setUp()
+      FeedbackInjection.sharedInstance.setUp()
             
-            guard #available(iOS 13, *) else {
-                return
-            }
+      guard #available(iOS 13, *) else {
+        return
+      }
             
-            self.loadUnreadMonitor()
-        }
+      self.loadUnreadMonitor()
     }
+  }
     
-    @available(iOS 13.0, *)
-    private func loadUnreadMonitor() {
-        Logging.log("Load unread monitor")
-        persistence.mainContext.unreadConversations
-            .map(\.count)
-            .receive(on: DispatchQueue.main)
-            .sink() {
-                [localUnreadStatus]
+  @available(iOS 13.0, *)
+  private func loadUnreadMonitor() {
+    Logging.log("Load unread monitor")
+    persistence.mainContext.unreadConversations
+      .map(\.count)
+      .receive(on: DispatchQueue.main)
+      .sink() {
+        [localUnreadStatus]
                 
-                update in
+        update in
                 
-                localUnreadStatus.send(update > 0)
-            }
-            .store(in: &disposeBag)
-    }
+        localUnreadStatus.send(update > 0)
+      }
+      .store(in: &disposeBag)
+  }
 }

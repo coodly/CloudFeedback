@@ -17,7 +17,7 @@
 import Foundation
 
 extension String {
-    public var hasValue: Bool {
-        !trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty
-    }
+  public var hasValue: Bool {
+    !trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty
+  }
 }

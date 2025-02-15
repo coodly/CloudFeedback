@@ -17,15 +17,15 @@
 import Foundation
 
 public struct ChatMessage {
-    public let sentBy: String?
-    public let body: String
-    public let postedAt: Date
-    public let sentByMe: Bool
-    
-    public init(sentBy: String?, body: String, postedAt: Date, sentByMe: Bool) {
-        self.sentBy = sentBy
-        self.body = body
-        self.postedAt = postedAt
-        self.sentByMe = sentByMe
-    }
+  public let sentBy: String?
+  public let body: String
+  public let postedAt: Date
+  public let sentByMe: Bool
+
+  public init(sentBy: String?, body: String, postedAt: Date, sentByMe: Bool) {
+    self.sentBy = sentBy
+    self.body = body
+    self.postedAt = postedAt
+    self.sentByMe = sentByMe
+  }
 }

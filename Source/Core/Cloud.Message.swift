@@ -18,41 +18,41 @@ import Puff
 import CloudKit
 
 public extension Cloud {
-    struct Message: RemoteRecord {
-        public var parent: CKRecord.ID?
-        public var recordData: Data?
-        public var recordName: String?
-        public static var recordType: String {
-            return "Message"
-        }
-        
-        public var body: String?
-        var conversation: CKRecord.Reference?
-        public var postedAt: Date?
-        public var sentBy: String?
-        public var platform: String?
-        
-        public mutating func loadFields(from record: CKRecord) -> Bool {
-            body = record["body"] as? String
-            conversation = record["conversation"] as? CKRecord.Reference
-            postedAt = record["postedAt"] as? Date
-            sentBy = record["sentBy"] as? String
-            platform = record["platform"] as? String
-            return true
-        }
-        
-        public init() {
-            
-        }
-        
-        public init(recordName: String, recordData: Data?, body: String, conversation: Conversation, postedAt: Date, sentBy: String?, platform: String?) {
-            self.recordName = recordName
-            self.recordData = recordData
-            self.body = body
-            self.conversation = conversation.referenceRepresentation()
-            self.postedAt = postedAt
-            self.sentBy = sentBy
-            self.platform = platform
-        }
+  struct Message: RemoteRecord {
+    public var parent: CKRecord.ID?
+    public var recordData: Data?
+    public var recordName: String?
+    public static var recordType: String {
+      return "Message"
     }
+        
+    public var body: String?
+    var conversation: CKRecord.Reference?
+    public var postedAt: Date?
+    public var sentBy: String?
+    public var platform: String?
+        
+    public mutating func loadFields(from record: CKRecord) -> Bool {
+      body = record["body"] as? String
+      conversation = record["conversation"] as? CKRecord.Reference
+      postedAt = record["postedAt"] as? Date
+      sentBy = record["sentBy"] as? String
+      platform = record["platform"] as? String
+      return true
+    }
+        
+    public init() {
+            
+    }
+        
+    public init(recordName: String, recordData: Data?, body: String, conversation: Conversation, postedAt: Date, sentBy: String?, platform: String?) {
+      self.recordName = recordName
+      self.recordData = recordData
+      self.body = body
+      self.conversation = conversation.referenceRepresentation()
+      self.postedAt = postedAt
+      self.sentBy = sentBy
+      self.platform = platform
+    }
+  }
 }

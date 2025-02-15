@@ -19,31 +19,31 @@ import CoreData
 
 @objc(Conversation)
 public class Conversation: NSManagedObject {
-    public override func awakeFromInsert() {
-        lastMessageTime = Date()
-        recordName = UUID().uuidString
+  public override func awakeFromInsert() {
+    lastMessageTime = Date()
+    recordName = UUID().uuidString
+  }
+
+  func toCloud() -> Cloud.Conversation {
+    return Cloud.Conversation(recordName: recordName, recordData: recordData, lastMessageTime: lastMessageTime!, snippet: snippet!)
+  }
+
+  func shouldFetchMessages() -> Bool {
+    if hasUpdate {
+      return true
     }
-    
-    func toCloud() -> Cloud.Conversation {
-        return Cloud.Conversation(recordName: recordName, recordData: recordData, lastMessageTime: lastMessageTime!, snippet: snippet!)
-    }
-    
-    func shouldFetchMessages() -> Bool {
-        if hasUpdate {
-            return true
-        }
-        
-        return recordData != nil && messages?.count == 0
-    }
+
+    return recordData != nil && messages?.count == 0
+  }
 }
 
 extension Conversation {
-    @NSManaged var recordName: String?
-    @NSManaged var lastMessageTime: Date?
-    @NSManaged var messages: Set<Message>?
-    @NSManaged var snippet: String?
-    @NSManaged var recordData: Data?
-    @NSManaged var syncNeeded: Bool
-    @NSManaged var syncFailed: Bool
-    @NSManaged var hasUpdate: Bool
+  @NSManaged var recordName: String?
+  @NSManaged var lastMessageTime: Date?
+  @NSManaged var messages: Set<Message>?
+  @NSManaged var snippet: String?
+  @NSManaged var recordData: Data?
+  @NSManaged var syncNeeded: Bool
+  @NSManaged var syncFailed: Bool
+  @NSManaged var hasUpdate: Bool
 }

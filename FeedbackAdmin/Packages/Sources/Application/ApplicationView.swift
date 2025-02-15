@@ -19,25 +19,25 @@ import ConversationsFeature
 import SwiftUI
 
 public struct ApplicationView: View {
-    private let store: StoreOf<Application>
-    public init(store: StoreOf<Application>) {
-        self.store = store
-    }
-    
-    public var body: some View {
-        WithViewStore(store, observe: \.persistenceLoaded) {
-            viewStore in
-            
-            if viewStore.state {
-                NavigationView {
-                    ConversationsView(store: store.scope(state: \.conversationsState, action: Application.Action.conversations))
-                    Text("No conversation selected")                    
-                }
-            } else {
-                ProgressView()
-                    .progressViewStyle(.automatic)
-                    .onAppear(perform: { store.send(.loadPersistence) })
-            }
+  private let store: StoreOf<Application>
+  public init(store: StoreOf<Application>) {
+    self.store = store
+  }
+
+  public var body: some View {
+    WithViewStore(store, observe: \.persistenceLoaded) {
+      viewStore in
+
+      if viewStore.state {
+        NavigationView {
+          ConversationsView(store: store.scope(state: \.conversationsState, action: Application.Action.conversations))
+          Text("No conversation selected")                    
         }
+      } else {
+        ProgressView()
+          .progressViewStyle(.automatic)
+          .onAppear(perform: { store.send(.loadPersistence) })
+      }
     }
+  }
 }

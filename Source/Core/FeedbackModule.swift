@@ -17,80 +17,80 @@
 import CloudKit
 
 public enum FetchConversationsProgress {
-    case failure
-    case fetched([Cloud.Conversation])
-    case completed
+  case failure
+  case fetched([Cloud.Conversation])
+  case completed
 }
 
 public enum FetchMessagesProgress {
-    case failure
-    case fetched([Cloud.Message])
-    case completed
+  case failure
+  case fetched([Cloud.Message])
+  case completed
 }
 
 public enum SaveConversationsResult {
-    case failure
-    case success([Cloud.Conversation])
+  case failure
+  case success([Cloud.Conversation])
 }
 
 public enum SaveMessagesResult {
-    case failure
-    case success([Cloud.Message])
+  case failure
+  case success([Cloud.Message])
 }
 
 public class FeedbackModule {
-    internal let container: CKContainer
-    internal let queue: OperationQueue
-    internal init(container: CKContainer, queue: OperationQueue) {
-        self.container = container
-        self.queue = queue
-    }
-    
-    public func fetchConversations(since: Date = Date.distantPast, progress: @escaping ((FetchConversationsProgress) -> Void)) {
-        let op = FetchConversationsOperation(since: since, in: container)
-        op.progress = progress
-        let callback: ((Result<FetchConversationsOperation, Error>) -> Void) = {
-            result in
-            
-            switch result {
-            case .success(_):
-                progress(.completed)
-            case .failure(_):
-                progress(.failure)
-            }
+  internal let container: CKContainer
+  internal let queue: OperationQueue
+  internal init(container: CKContainer, queue: OperationQueue) {
+    self.container = container
+    self.queue = queue
+  }
 
-        }
-        op.onCompletion(callback: callback)
-        queue.addOperation(op)
-    }
-    
-    public func fetchMessages(in conversation: Cloud.Conversation, since: Date = Date.distantPast, progress: @escaping ((FetchMessagesProgress) -> Void)) {
-        let op = FetchMessagesOperation(conversation: conversation, since: since, in: container)
-        op.progress = progress
-        let callback: ((Result<FetchMessagesOperation, Error>) -> Void) = {
-            result in
-            
-            switch result {
-            case .success(_):
-                progress(.completed)
-            case .failure(_):
-                progress(.failure)
-            }
+  public func fetchConversations(since: Date = Date.distantPast, progress: @escaping ((FetchConversationsProgress) -> Void)) {
+    let op = FetchConversationsOperation(since: since, in: container)
+    op.progress = progress
+    let callback: ((Result<FetchConversationsOperation, Error>) -> Void) = {
+      result in
 
-        }
-        op.onCompletion(callback: callback)
-        queue.addOperation(op)
-    }
-    
-    public func save(conversations: [Cloud.Conversation], completion: @escaping ((SaveConversationsResult) -> Void)) {
-        let op = SaveConversationsOperation(conversations: conversations, container: container)
-        op.resultHandler = completion
-        queue.addOperation(op)
-    }
+      switch result {
+      case .success(_):
+        progress(.completed)
+      case .failure(_):
+        progress(.failure)
+      }
 
-    public func save(messages: [Cloud.Message], completion: @escaping ((SaveMessagesResult) -> Void)) {
-        let op = SaveMessagesOperation(messages: messages, container: container)
-        op.resultHandler = completion
-        queue.addOperation(op)
     }
+    op.onCompletion(callback: callback)
+    queue.addOperation(op)
+  }
+
+  public func fetchMessages(in conversation: Cloud.Conversation, since: Date = Date.distantPast, progress: @escaping ((FetchMessagesProgress) -> Void)) {
+    let op = FetchMessagesOperation(conversation: conversation, since: since, in: container)
+    op.progress = progress
+    let callback: ((Result<FetchMessagesOperation, Error>) -> Void) = {
+      result in
+
+      switch result {
+      case .success(_):
+        progress(.completed)
+      case .failure(_):
+        progress(.failure)
+      }
+
+    }
+    op.onCompletion(callback: callback)
+    queue.addOperation(op)
+  }
+
+  public func save(conversations: [Cloud.Conversation], completion: @escaping ((SaveConversationsResult) -> Void)) {
+    let op = SaveConversationsOperation(conversations: conversations, container: container)
+    op.resultHandler = completion
+    queue.addOperation(op)
+  }
+
+  public func save(messages: [Cloud.Message], completion: @escaping ((SaveMessagesResult) -> Void)) {
+    let op = SaveMessagesOperation(messages: messages, container: container)
+    op.resultHandler = completion
+    queue.addOperation(op)
+  }
 }
