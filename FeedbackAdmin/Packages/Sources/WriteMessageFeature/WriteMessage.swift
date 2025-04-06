@@ -18,10 +18,12 @@ import ComposableArchitecture
 import Extensions
 import ObjectModel
 
-public struct WriteMessage: Reducer {
+@Reducer
+public struct WriteMessage {
+  @ObservableState
   public struct State: Equatable {
-    @BindingState internal var sentBy = ""
-    @BindingState internal var message = ""
+    internal var sentBy = ""
+    internal var message = ""
         
     internal var sendDisabled = true
     internal let conversation: Conversation

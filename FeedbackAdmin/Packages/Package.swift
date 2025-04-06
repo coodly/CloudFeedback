@@ -1,4 +1,4 @@
-// swift-tools-version:5.9
+// swift-tools-version:6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -7,7 +7,7 @@ private let composable = Target.Dependency.product(name: "ComposableArchitecture
 private let dependencies = Target.Dependency.product(name: "Dependencies", package: "swift-dependencies")
 private let dependenciesMacros = Target.Dependency.product(name: "DependenciesMacros", package: "swift-dependencies")
 
-private let withConcurrencyFlags = [
+private let withConcurrencyFlags: [SwiftSetting] = [
   .enableUpcomingFeature("BareSlashRegexLiterals"),
   .enableUpcomingFeature("ConciseMagicFile"),
   .enableUpcomingFeature("ExistentialAny"),
@@ -25,12 +25,13 @@ private let withConcurrencyFlags = [
       "-Xfrontend",
       "-enable-actor-data-race-checks"
     ]
-  )
+  ),
+  .swiftLanguageMode(.v5)
 ]
 
 let package = Package(
   name: "Packages",
-  platforms: [.iOS(.v15)],
+  platforms: [.iOS(.v17)],
   products: [
     .library(
       name: "Application",
