@@ -22,49 +22,40 @@ import UIComponents
 import WriteMessageFeature
 
 public struct MessagesView: View {
-  private let store: StoreOf<Messages>
+  @Bindable var store: StoreOf<Messages>
   public init(store: StoreOf<Messages>) {
     self.store = store
   }
 
   public var body: some View {
-    WithViewStore(store, observe: { $0 }) {
-      viewStore in
-
-      ScrollView {
-        FilteredObjectsListView(predicate: viewStore.messagesPredicate, sort: [NSSortDescriptor(keyPath: \Message.modifiedAt, ascending: true)]) {
-          (message: Message) in
-
-          let chatMessage = ChatMessage(message: message)
-          MessageBubbleView(message: chatMessage)
-            .overlay(MessageSatatusOverlay(message: message))
-        }
+    ScrollView {
+      FilteredObjectsListView(predicate: store.messagesPredicate, sort: [NSSortDescriptor(keyPath: \Message.modifiedAt, ascending: true)]) {
+        (message: Message) in
+        
+        let chatMessage = ChatMessage(message: message)
+        MessageBubbleView(message: chatMessage)
+          .overlay(MessageSatatusOverlay(message: message))
       }
-      .background(Color(UIColor.secondarySystemBackground))
-      .toolbar {
-        ToolbarItem(placement: .primaryAction) {
-          Button(action: { viewStore.send(.respond) }) {
-            Image(systemName: "square.and.pencil")
-          }
-        }
-      }
-      .sheet(
-        isPresented: viewStore.binding(
-          get: { $0.route == .respond },
-          send: Messages.Action.clearRoute
-        ),
-        content: {
-          NavigationView {
-            IfLetStore(store.scope(state: \.writeMessageState, action: Messages.Action.writeMessage)) {
-              store in
-
-              WriteMessageView(store: store)
-            }
-            .interactiveDismissDisabled(true)
-          }
-        }
-      )
     }
+    .background(Color(UIColor.secondarySystemBackground))
+    .toolbar {
+      ToolbarItem(placement: .primaryAction) {
+        Button(action: { store.send(.respond) }) {
+          Image(systemName: "square.and.pencil")
+        }
+      }
+    }
+    .sheet(
+      item: $store.scope(state: \.destination?.writeMessage, action: \.destination.writeMessage),
+      content: { store in
+        NavigationStack(
+          root: {
+            WriteMessageView(store: store)
+          }
+        )
+        .interactiveDismissDisabled(true)
+      }
+    )
   }
 }
 

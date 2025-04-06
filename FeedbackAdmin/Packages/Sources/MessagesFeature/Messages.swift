@@ -19,21 +19,23 @@ import Foundation
 import ObjectModel
 import WriteMessageFeature
 
-public struct Messages: Reducer {
+@Reducer
+public struct Messages {
+  @Reducer(state: .equatable, .sendable, action: .sendable)
+  public enum Destination {
+    case writeMessage(WriteMessage)
+  }
+  
+  @ObservableState
   public struct State: Equatable {
-    enum Route: Equatable {
-      case respond
-    }
-
-    internal var route: Route?
-        
+    @Presents var destination: Destination.State?
+    
     public let conversation: Conversation
         
     internal var messagesPredicate: NSPredicate {
       NSPredicate(format: "conversation = %@", conversation)
     }
         
-    internal var writeMessageState: WriteMessage.State?
     internal let sentBy: String
     public init(conversation: Conversation, sentBy: String) {
       self.conversation = conversation
@@ -42,12 +44,9 @@ public struct Messages: Reducer {
   }
     
   public enum Action {
+    case destination(PresentationAction<Destination.Action>)
     case respond
-    case clearRoute
-        
     case send(Conversation, String, String)
-        
-    case writeMessage(WriteMessage.Action)
   }
     
   public init() {
@@ -55,37 +54,28 @@ public struct Messages: Reducer {
   }
     
   public var body: some ReducerOf<Self> {
-    Reduce {
-      state, action in
-            
+    Reduce { state, action in
       switch action {
-      case .respond:
-        state.writeMessageState = WriteMessage.State(conversation: state.conversation, sentBy: state.sentBy)
-        state.route = .respond
-        return .none
-                
-      case .clearRoute:
-        state.route = nil
-        return .none
-                
-      case .writeMessage(.cancel):
-        state.writeMessageState = nil
-        return Effect.send(.clearRoute)
-                
-      case .send(_, _, _):
-        return .none
-                
-      case .writeMessage(.send(let conversation, let sentBy, let message)):
-        state.writeMessageState = nil
-        state.route = nil
+      case .destination(.presented(.writeMessage(.send(let conversation, let sentBy, let message)))):
+        state.destination = nil
         return Effect.send(.send(conversation, sentBy, message))
+
+      case .respond:
+        state.destination = .writeMessage(
+          WriteMessage.State(
+            conversation: state.conversation,
+            sentBy: state.sentBy
+          )
+        )
+        return .none
                 
-      case .writeMessage:
+      case .send:
+        return .none
+                
+      case .destination:
         return .none
       }
     }
-    .ifLet(\.writeMessageState, action: /Action.writeMessage) {
-      WriteMessage()
-    }
+    .ifLet(\.$destination, action: \.destination)
   }
 }
