@@ -17,8 +17,9 @@
 import ComposableArchitecture
 import SwiftUI
 
+@ViewAction(for: WriteMessage.self)
 public struct WriteMessageView: View {
-  @Bindable var store: StoreOf<WriteMessage>
+  @Bindable public var store: StoreOf<WriteMessage>
 
   public init(store: StoreOf<WriteMessage>) {
     self.store = store
@@ -37,13 +38,13 @@ public struct WriteMessageView: View {
     .padding()
     .toolbar {
       ToolbarItem(placement: .primaryAction) {
-        Button(action: { store.send(.post) }) {
+        Button(action: { send(.tappedPost) }) {
           Image(systemName: "paperplane")
         }
         .disabled(store.sendDisabled)
       }
       ToolbarItem(placement: .cancellationAction) {
-        Button(action: { store.send(.cancel) }) {
+        Button(action: { send(.tappedCancel) }) {
           Text("Cancel")
         }
       }

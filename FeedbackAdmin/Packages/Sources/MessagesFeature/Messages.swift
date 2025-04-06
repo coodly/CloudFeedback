@@ -43,10 +43,18 @@ public struct Messages {
     }
   }
     
-  public enum Action: Sendable {
+  public enum Action: Sendable, ViewAction {
+    case delegate(Delegate)
     case destination(PresentationAction<Destination.Action>)
-    case respond
-    case send(Conversation, String, String)
+    case view(View)
+    
+    public enum Delegate: Sendable {
+      case post(from: String, message: String, to: Conversation)
+    }
+    
+    public enum View: Sendable {
+      case tappedRespond
+    }
   }
     
   public init() {
@@ -56,20 +64,30 @@ public struct Messages {
   public var body: some ReducerOf<Self> {
     Reduce { state, action in
       switch action {
-      case .destination(.presented(.writeMessage(.send(let conversation, let sentBy, let message)))):
-        state.destination = nil
-        return Effect.send(.send(conversation, sentBy, message))
-
-      case .respond:
-        state.destination = .writeMessage(
-          WriteMessage.State(
-            conversation: state.conversation,
-            sentBy: state.sentBy
+      case .destination(.presented(.writeMessage(.delegate(let action)))):
+        switch action {
+        case .cancel:
+          state.destination = nil
+          return .none
+          
+        case .post(let from, let message, let conversation):
+          state.destination = nil
+          return Effect.send(.delegate(.post(from: from, message: message, to: conversation)))
+        }
+        
+      case .view(let action):
+        switch action {
+        case .tappedRespond:
+          state.destination = .writeMessage(
+            WriteMessage.State(
+              conversation: state.conversation,
+              sentBy: state.sentBy
+            )
           )
-        )
-        return .none
+          return .none
+        }
                 
-      case .send:
+      case .delegate:
         return .none
                 
       case .destination:

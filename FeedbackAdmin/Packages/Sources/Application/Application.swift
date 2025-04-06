@@ -71,13 +71,15 @@ public struct Application: Sendable {
       state, action in
             
       switch action {
-      case .destination(.presented(.messages(.send(let conversation, let sentBy, let message)))):
-        state.sentBy = sentBy
-        return Effect.run {
-          send in
-                    
-          persistence.add(message: message, sentBy: sentBy, in: conversation)
-          await send(.pushMessages)
+      case .destination(.presented(.messages(.delegate(let action)))):
+        switch action {
+        case .post(let from, let message, let conversation):
+          state.sentBy = from
+          return Effect.run { send in
+                      
+            persistence.add(message: message, sentBy: from, in: conversation)
+            await send(.pushMessages)
+          }
         }
 
       case .loadPersistence:
@@ -162,15 +164,6 @@ public struct Application: Sendable {
       case .conversations(.refresh):
         return Effect.send(.loadConversations)
                 
-      case .conversations(.messages(.send(let conversation, let sentBy, let message))):
-        state.sentBy = sentBy
-        return Effect.run {
-          send in
-                    
-          persistence.add(message: message, sentBy: sentBy, in: conversation)
-          await send(.pushMessages)
-        }
-
       case .conversations:
         return .none
         

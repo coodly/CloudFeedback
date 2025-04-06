@@ -21,8 +21,9 @@ import SwiftUI
 import UIComponents
 import WriteMessageFeature
 
+@ViewAction(for: Messages.self)
 public struct MessagesView: View {
-  @Bindable var store: StoreOf<Messages>
+  @Bindable public var store: StoreOf<Messages>
   public init(store: StoreOf<Messages>) {
     self.store = store
   }
@@ -40,7 +41,7 @@ public struct MessagesView: View {
     .background(Color(UIColor.secondarySystemBackground))
     .toolbar {
       ToolbarItem(placement: .primaryAction) {
-        Button(action: { store.send(.respond) }) {
+        Button(action: { send(.tappedRespond) }) {
           Image(systemName: "square.and.pencil")
         }
       }

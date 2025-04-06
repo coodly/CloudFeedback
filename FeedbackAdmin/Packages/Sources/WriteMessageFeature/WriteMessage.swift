@@ -25,25 +25,31 @@ public struct WriteMessage {
     internal var sentBy = ""
     internal var message = ""
         
-    internal var sendDisabled = true
+    internal var sendDisabled: Bool {
+      !sentBy.hasValue || !message.hasValue
+    }
+    
     internal let conversation: Conversation
     public init(conversation: Conversation, sentBy: String) {
       self.conversation = conversation
       self.sentBy = sentBy
     }
-        
-    internal mutating func checkCanSend() {
-      sendDisabled = !(sentBy.hasValue && message.hasValue)
-    }
   }
     
-  public enum Action: BindableAction, Sendable {
-    case cancel
-    case post
-        
-    case send(Conversation, String, String)
-        
+  public enum Action: BindableAction, Sendable, ViewAction {
     case binding(BindingAction<State>)
+    case delegate(Delegate)
+    case view(View)
+    
+    public enum Delegate: Sendable {
+      case cancel
+      case post(from: String, message: String, to: Conversation)
+    }
+    
+    public enum View: Sendable {
+      case tappedCancel
+      case tappedPost
+    }
   }
     
   public init() {
@@ -56,20 +62,21 @@ public struct WriteMessage {
       state, action in
             
       switch action {
-      case .cancel:
-        return .none
-                
-      case .post:
-        return Effect.send(.send(state.conversation, state.sentBy, state.message))
-                
-      case .send(_, _, _):
-        return .none
-                
+      case .view(let action):
+        switch action {
+        case .tappedCancel:
+          return Effect.send(.delegate(.cancel))
+
+        case .tappedPost:
+          return Effect.send(.delegate(.post(from: state.sentBy, message: state.message, to: state.conversation)))
+        }
+        
       case .binding:
-        state.checkCanSend()
+        return .none
+        
+      case .delegate:
         return .none
       }
-
     }
   }
 }
