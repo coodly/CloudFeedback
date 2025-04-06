@@ -27,7 +27,7 @@ public struct Messages {
   }
   
   @ObservableState
-  public struct State: Equatable {
+  public struct State: Equatable, Sendable {
     @Presents var destination: Destination.State?
     
     public let conversation: Conversation
@@ -43,7 +43,7 @@ public struct Messages {
     }
   }
     
-  public enum Action {
+  public enum Action: Sendable {
     case destination(PresentationAction<Destination.Action>)
     case respond
     case send(Conversation, String, String)

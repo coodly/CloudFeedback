@@ -24,14 +24,14 @@ import ObjectModel
 import PersistenceClient
 
 @Reducer
-public struct Application {
+public struct Application: Sendable {
   @Reducer(state: .equatable, .sendable, action: .sendable)
   public enum Destination {
     case messages(Messages)
   }
   
   @ObservableState
-  public struct State: Equatable {
+  public struct State: Equatable, Sendable {
     internal var persistenceLoaded = false
     internal var conversationsState = Conversations.State()
     internal var sentBy = ""
@@ -43,7 +43,7 @@ public struct Application {
     }
   }
     
-  public enum Action {
+  public enum Action: Sendable {
     case destination(PresentationAction<Destination.Action>)
     case loadPersistence
     case persistenceLoaded

@@ -21,7 +21,7 @@ import ObjectModel
 @Reducer
 public struct WriteMessage {
   @ObservableState
-  public struct State: Equatable {
+  public struct State: Equatable, Sendable {
     internal var sentBy = ""
     internal var message = ""
         
@@ -37,7 +37,7 @@ public struct WriteMessage {
     }
   }
     
-  public enum Action: BindableAction {
+  public enum Action: BindableAction, Sendable {
     case cancel
     case post
         

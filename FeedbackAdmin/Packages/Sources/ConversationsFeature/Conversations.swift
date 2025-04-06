@@ -21,7 +21,7 @@ import ObjectModel
 @Reducer
 public struct Conversations {
   @ObservableState
-  public struct State: Equatable {
+  public struct State: Equatable, Sendable {
     public var refreshing = false
         
     public var activeMessagesState: Messages.State?
@@ -35,7 +35,7 @@ public struct Conversations {
     }
   }
     
-  public enum Action {
+  public enum Action: Sendable {
     case refresh
     case refreshed
     case tapped(Conversation)
