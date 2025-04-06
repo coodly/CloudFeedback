@@ -41,6 +41,7 @@ public struct ConversationsView: View {
           .padding(.horizontal)
           .padding(.vertical, 8)
         }
+        .listRowBackground(store.activeMessagesState?.conversation == conversation ? Color.accentColor.opacity(0.2) : Color.clear)
       }
     }
     .navigationBarTitle("Conversations")
