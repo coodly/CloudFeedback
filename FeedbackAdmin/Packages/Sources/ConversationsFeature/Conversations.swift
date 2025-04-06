@@ -18,7 +18,9 @@ import ComposableArchitecture
 import MessagesFeature
 import ObjectModel
 
-public struct Conversations: Reducer {
+@Reducer
+public struct Conversations {
+  @ObservableState
   public struct State: Equatable {
     public var refreshing = false
         
@@ -73,8 +75,6 @@ public struct Conversations: Reducer {
         return .none
       }
     }
-    .ifLet(\.activeMessagesState, action: /Action.messages) {
-      Messages()
-    }
+    .ifLet(\.activeMessagesState, action: \.messages, then: Messages.init)
   }
 }

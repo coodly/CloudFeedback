@@ -23,11 +23,20 @@ import MessagesFeature
 import ObjectModel
 import PersistenceClient
 
-public struct Application: Reducer {
+@Reducer
+public struct Application {
+  @Reducer(state: .equatable, .sendable, action: .sendable)
+  public enum Destination {
+    case messages(Messages)
+  }
+  
+  @ObservableState
   public struct State: Equatable {
     internal var persistenceLoaded = false
     internal var conversationsState = Conversations.State()
     internal var sentBy = ""
+    
+    @Presents var destination: Destination.State?
         
     public init() {
       Log.app.debug("Start the logs :)")
@@ -35,6 +44,7 @@ public struct Application: Reducer {
   }
     
   public enum Action {
+    case destination(PresentationAction<Destination.Action>)
     case loadPersistence
     case persistenceLoaded
     case loadConversations
@@ -61,6 +71,15 @@ public struct Application: Reducer {
       state, action in
             
       switch action {
+      case .destination(.presented(.messages(.send(let conversation, let sentBy, let message)))):
+        state.sentBy = sentBy
+        return Effect.run {
+          send in
+                    
+          persistence.add(message: message, sentBy: sentBy, in: conversation)
+          await send(.pushMessages)
+        }
+
       case .loadPersistence:
         return Effect.run {
           send in
@@ -136,6 +155,7 @@ public struct Application: Reducer {
         return .none
                 
       case .conversations(.tapped(let conversation)):
+        state.destination = .messages(Messages.State(conversation: conversation, sentBy: state.sentBy))
         state.conversationsState.activeMessagesState = Messages.State(conversation: conversation, sentBy: state.sentBy)
         return .none
                 
@@ -153,11 +173,14 @@ public struct Application: Reducer {
 
       case .conversations:
         return .none
+        
+      case .destination:
+        return .none
       }
     }
-    Scope(state: \.conversationsState, action: /Action.conversations) {
-      Conversations()
-    }
+    ._printChanges()
+    .ifLet(\.$destination, action: \.destination)
+    Scope(state: \.conversationsState, action: \.conversations, child: Conversations.init)
   }
 }
 

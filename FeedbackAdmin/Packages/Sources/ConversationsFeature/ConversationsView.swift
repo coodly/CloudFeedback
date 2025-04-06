@@ -26,44 +26,28 @@ public struct ConversationsView: View {
     self.store = store
   }
   public var body: some View {
-    WithViewStore(store, observe: { $0 }) {
-      viewStore in
-
-      List {
-        FilteredObjectsListView(predicate: .truePredicate, sort: [NSSortDescriptor(keyPath: \Conversation.modifiedAt, ascending: false)]) {
-          (conversation: Conversation) in
-
-          NavigationLink(
-            isActive: viewStore.binding(
-              get: { $0.isActive(conversation) },
-              send: { $0 ? .activate(conversation) : .noAction }
-            ),
-            destination: {
-              IfLetStore(
-                store.scope(state: \.activeMessagesState, action: Conversations.Action.messages),
-                then: MessagesView.init(store:)
-              )
-            },
-            label: {
-              VStack(alignment: .leading) {
-                Text(conversation.lastMessage?.body ?? "-")
-                  .lineLimit(3)
-                Text(conversation.application.appIdentifier)
-                  .font(.subheadline)
-              }
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .padding(.horizontal)
-              .padding(.vertical, 8)
-            }
-          )
+    List {
+      FilteredObjectsListView(predicate: .truePredicate, sort: [NSSortDescriptor(keyPath: \Conversation.modifiedAt, ascending: false)]) {
+        (conversation: Conversation) in
+        
+        Button(action: { store.send(.tapped(conversation)) }) {
+          VStack(alignment: .leading) {
+            Text(conversation.lastMessage?.body ?? "-")
+              .lineLimit(3)
+            Text(conversation.application.appIdentifier)
+              .font(.subheadline)
+          }
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .padding(.horizontal)
+          .padding(.vertical, 8)
         }
       }
-      .navigationBarTitle("Conversations")
-      #if !targetEnvironment(macCatalyst)
-        .refreshable {
-          await viewStore.send(.refresh, while: \.refreshing)
-        }
-      #endif
     }
+    .navigationBarTitle("Conversations")
+#if !targetEnvironment(macCatalyst)
+    .refreshable {
+      await store.send(.refresh).finish()
+    }
+#endif
   }
 }

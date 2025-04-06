@@ -15,6 +15,7 @@
  */
 
 import ComposableArchitecture
+import MessagesFeature
 import ConversationsFeature
 import SwiftUI
 
@@ -25,19 +26,19 @@ public struct ApplicationView: View {
   }
 
   public var body: some View {
-    WithViewStore(store, observe: \.persistenceLoaded) {
-      viewStore in
-
-      if viewStore.state {
-        NavigationView {
-          ConversationsView(store: store.scope(state: \.conversationsState, action: Application.Action.conversations))
-          Text("No conversation selected")                    
+    if store.persistenceLoaded {
+      NavigationView {
+        ConversationsView(store: store.scope(state: \.conversationsState, action: \.conversations))
+        if let messages = store.scope(state: \.destination?.messages, action: \.destination.messages) {
+          MessagesView(store: messages)
+        } else {
+          Text("No conversation selected")
         }
-      } else {
-        ProgressView()
-          .progressViewStyle(.automatic)
-          .onAppear(perform: { store.send(.loadPersistence) })
       }
+    } else {
+      ProgressView()
+        .progressViewStyle(.automatic)
+        .onAppear(perform: { store.send(.loadPersistence) })
     }
   }
 }
