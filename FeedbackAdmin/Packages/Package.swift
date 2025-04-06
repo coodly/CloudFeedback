@@ -47,8 +47,8 @@ let package = Package(
     )
   ],
   dependencies: [
-    .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", exact: "1.17.1"),
-    .package(url: "https://github.com/pointfreeco/swift-dependencies", exact: "1.7.0"),
+    .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", exact: "1.19.0"),
+    .package(url: "https://github.com/pointfreeco/swift-dependencies", exact: "1.9.0"),
         
     .package(url: "https://github.com/coodly/swlogger.git", exact: "0.4.3"),
     .package(name: "CloudFeedback", path: "../../")
