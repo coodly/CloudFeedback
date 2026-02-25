@@ -1,4 +1,4 @@
-// swift-tools-version:6.0
+// swift-tools-version:6.2
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -48,10 +48,10 @@ let package = Package(
     )
   ],
   dependencies: [
-    .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", exact: "1.19.0"),
-    .package(url: "https://github.com/pointfreeco/swift-dependencies", exact: "1.9.0"),
+    .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", exact: "1.24.1"),
+    .package(url: "https://github.com/pointfreeco/swift-dependencies.git", exact: "1.11.0"),
         
-    .package(url: "https://github.com/coodly/swlogger.git", exact: "0.4.3"),
+    .package(url: "https://github.com/coodly/swlogger.git", branch: "feature/concurrency-experiment"),
     .package(name: "CloudFeedback", path: "../../")
   ],
   targets: [

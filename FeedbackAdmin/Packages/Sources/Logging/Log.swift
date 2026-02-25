@@ -18,9 +18,9 @@ import SWLogger
 
 public class Log {
   private static let shared: Log = {
-    SWLogger.Log.level = .debug
-    SWLogger.Log.add(output: ConsoleOutput())
-    SWLogger.Log.add(output: FileOutput())
+    SWLogger.Log.set(level: .debug)
+    SWLogger.Log.add(output: .console)
+    SWLogger.Log.add(output: FileOutput().output)
 
     return Log()
   }()

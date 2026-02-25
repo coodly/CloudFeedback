@@ -1,11 +1,11 @@
-// swift-tools-version:5.5
+// swift-tools-version:6.2
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
   name: "CloudFeedback",
-  platforms: [.iOS(.v14), .macOS(.v11)],
+  platforms: [.iOS(.v17), .macOS(.v14)],
   products: [
     .library(
       name: "CloudFeedback",
@@ -19,7 +19,8 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "CloudFeedback"
+      name: "CloudFeedback",
+      swiftSettings: [.swiftLanguageMode(.v5)]
     ),
 
     .testTarget(
